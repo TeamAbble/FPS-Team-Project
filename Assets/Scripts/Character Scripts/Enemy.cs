@@ -36,7 +36,7 @@ public class Enemy : Character
                 break;
             case States.ATTACK:
                 break;
-        }
+        } 
     }
     public override void Move()
     {
