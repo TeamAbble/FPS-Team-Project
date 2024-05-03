@@ -24,6 +24,7 @@ public class Spawner : MonoBehaviour
     {
         GameObject spawn = Instantiate(prefab);
         spawn.transform.position = pos.position;
-
+        
     }
+    
 }
