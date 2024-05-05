@@ -34,7 +34,7 @@ Material:
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
-  m_LockedProperties: _CameraDepth
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -60,26 +60,26 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _CameraDepth: 34.5
-    - _CameraOffsetMult: 1
-    - _CameraSize: 24.9
+    - _CameraDepth: 0.86
+    - _CameraOffsetMult: 0
+    - _CameraSize: 11.04
     - _DepthOffsetMultiplier: 50
     - _ExtraMultiplier: 0
     - _OffsetMultiplier: 1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RectangleWidth: 25
-    - _ReticleDepth: 13.5
-    - _ReticleSize: 4.11
+    - _RectangleWidth: 9.28
+    - _ReticleDepth: 0.07
+    - _ReticleSize: 3.42
     - _ScopeVignetteHardness: 0.9
     - _ScopeVignetteRadius: 0.5
     - _VignetteMultiplier: 0.5
     m_Colors:
-    - _BaseColour: {r: 0.5330188, g: 0.97667426, b: 1, a: 0}
+    - _BaseColour: {r: 0.5235849, g: 0.97597903, b: 1, a: 0}
     - _CamVignetteEdge: {r: 2, g: 0, b: 0, a: 0}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _RTOffset: {r: 1, g: 1, b: 1, a: 0}
-    - _RemapOut: {r: -4.62, g: 8, b: 0, a: 0}
+    - _RemapOut: {r: 1, g: 8, b: 0, a: 0}
     - _RenderTextureTiling: {r: 0, g: 0, b: 0, a: 0}
     - _ReticleColour: {r: 1, g: 1, b: 1, a: 0}
     - _ReticleTiling: {r: 0, g: 0, b: 0, a: 0}

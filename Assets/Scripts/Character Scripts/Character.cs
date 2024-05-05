@@ -8,7 +8,7 @@ public abstract class Character : MonoBehaviour
     protected int health;
     [SerializeField] protected float MoveSpeed;
 
-    public void UpdateHealth(int healthChange)//Adds the change in health to the health variable and clamps it to min 0 max maxHealth
+    public virtual void UpdateHealth(int healthChange)//Adds the change in health to the health variable and clamps it to min 0 max maxHealth
     {
         health = Mathf.Clamp(health+healthChange,0,maxHealth);
     }
