@@ -18,7 +18,7 @@ public class Enemy : Character
     {
         agent = GetComponent<NavMeshAgent>();
         agent.speed = MoveSpeed;
-        Move();
+        
     }
     
     // Update is called once per frame
@@ -28,9 +28,11 @@ public class Enemy : Character
     }
     private void FixedUpdate()
     {
+        Move();
         switch (state)
         {
             case States.PATROL:
+                
                 break;
             case States.CHASE:
                 break;
