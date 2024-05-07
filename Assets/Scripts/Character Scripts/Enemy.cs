@@ -60,4 +60,9 @@ public class Enemy : Character
         state = States.CHASE;
         agent.enabled = true;  
     }
+
+    public override void Die()
+    {
+        Destroy(gameObject);
+    }
 }

@@ -11,7 +11,14 @@ public abstract class Character : MonoBehaviour
     public virtual void UpdateHealth(int healthChange)//Adds the change in health to the health variable and clamps it to min 0 max maxHealth
     {
         health = Mathf.Clamp(health+healthChange,0,maxHealth);
+        if (health <= 0)
+        {
+            Die();
+        }
+        
     }
 
     abstract public void Move();
+
+    abstract public void Die();
 }
