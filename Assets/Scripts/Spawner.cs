@@ -38,7 +38,7 @@ public class Spawner : MonoBehaviour
         spawn.transform.position = pos.position;
         if (spawn.GetComponent<Enemy>()!= null)
         {
-            spawn.GetComponent<Enemy>().target = playerRef.transform;
+            spawn.GetComponent<Enemy>().target = playerRef;
         }
         
     

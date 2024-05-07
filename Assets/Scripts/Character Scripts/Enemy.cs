@@ -6,14 +6,15 @@ using UnityEngine.AI;
 public class Enemy : Character
 {
     private NavMeshAgent agent;
-    public Transform target;
-    enum States
+    private bool firing;
+    public GameObject target;
+    public enum States
     {
         PATROL,
         CHASE,
         ATTACK
     }
-    States state = States.PATROL;
+    public States state = States.PATROL;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -28,20 +29,35 @@ public class Enemy : Character
     }
     private void FixedUpdate()
     {
-        Move();
         switch (state)
         {
             case States.PATROL:
                 
                 break;
             case States.CHASE:
+                Move();
                 break;
             case States.ATTACK:
+                
                 break;
         } 
     }
     public override void Move()
     {
-        agent.SetDestination(target.position);
+        agent.SetDestination(target.transform.position);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject == target)
+        {
+            state = States.ATTACK;
+            firing = true;
+            agent.enabled = false;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        state = States.CHASE;
+        agent.enabled = true;  
     }
 }
