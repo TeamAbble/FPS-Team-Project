@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
@@ -14,17 +15,27 @@ public class GameManager : MonoBehaviour
     float timer=0;
     public static GameManager instance;
     int score = 0;
-    void Start()
+    private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
         else
         {
             Destroy(this);
+            return;
         }
+
+
+        if (!Camera.main.GetComponent<CinemachineBrain>())
+        {
+            Camera.main.gameObject.AddComponent<CinemachineBrain>();
+        }
+        if (!playerRef)
+            playerRef = FindFirstObjectByType<Player>().gameObject;
     }
+
 
     // Update is called once per frame
     private void FixedUpdate()
