@@ -7,11 +7,14 @@ public abstract class Character : MonoBehaviour
     [SerializeField] protected int maxHealth;
     protected int health;
     [SerializeField] protected float MoveSpeed;
-    [SerializeField] Animator animator;
-    [SerializeField] Vector3 meleeBounds;
-    [SerializeField] Vector3 meleeOffset;
-    [SerializeField] LayerMask meleeLayermask;
-    [SerializeField] int meleeDamage;
+    [SerializeField] protected Animator animator;
+    [SerializeField] protected Vector3 meleeBounds;
+    [SerializeField] protected Vector3 meleeOffset;
+    [SerializeField] protected LayerMask meleeLayermask;
+    [SerializeField] protected int meleeDamage;
+    [SerializeField] protected Rigidbody rb;
+    [SerializeField] protected float meleeCooldown;
+    protected float currentMeleeCooldown;
     protected virtual void Start()
     {
         if(!animator)
@@ -21,8 +24,9 @@ public abstract class Character : MonoBehaviour
     public bool IsAlive => health > 0;
     public virtual void UpdateHealth(int healthChange)//Adds the change in health to the health variable and clamps it to min 0 max maxHealth
     {
+        float previousHealth = health;
         health = Mathf.Clamp(health+healthChange,0,maxHealth);
-        if (health <= 0)
+        if (health <= 0 && previousHealth > 0)
         {
             Die();
         }
@@ -30,12 +34,15 @@ public abstract class Character : MonoBehaviour
     }
     public virtual void MeleeAttack()
     {
-        Collider[] cols = Physics.OverlapBox(transform.TransformPoint(meleeOffset), meleeBounds / 2, transform.rotation, meleeLayermask);
-        for (int i = 0; i < cols.Length; i++)
+        if (currentMeleeCooldown <= 0)
         {
-            if (cols[i].TryGetComponent(out Character c))
+            Collider[] cols = Physics.OverlapBox(transform.TransformPoint(meleeOffset), meleeBounds / 2, transform.rotation, meleeLayermask);
+            for (int i = 0; i < cols.Length; i++)
             {
-                c.UpdateHealth(-meleeDamage);
+                if (cols[i].TryGetComponent(out Character c))
+                {
+                    c.UpdateHealth(-meleeDamage);
+                }
             }
         }
     }

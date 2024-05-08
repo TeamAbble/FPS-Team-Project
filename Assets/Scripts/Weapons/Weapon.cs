@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class Weapon : MonoBehaviour
 {
     [System.Serializable]
@@ -45,10 +44,10 @@ public class Weapon : MonoBehaviour
     /// This weapon is currently performing windup when ForceFirstShot is true.
     /// </summary>
     protected bool windupInProgress;
-
+    [SerializeField] protected int timesFired;
     [SerializeField] protected ParticleSystem fireParticles;
     [SerializeField] protected AudioSource fireAudioSource;
-    [SerializeField] protected AudioClip fireAudioClip, lastShotAudioClip;
+    [SerializeField] protected AudioClip fireAudioClip, lastShotAudioClip, firstShotAudioClip;
     [SerializeField] protected AudioClip windupAudio;
     [SerializeField] protected float minWindupPitch, maxWindupPitch;
     [SerializeField] protected Transform firePosition;
@@ -56,7 +55,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected float tracerSpeed;
     [SerializeField] protected LayerMask layermask;
     WeaponManager wm;
-
+    [SerializeField] bool useLoopedSound;
     
 
     private void Start()
@@ -74,6 +73,10 @@ public class Weapon : MonoBehaviour
     public void SetFireInput(bool fireInput)
     {
         this.fireInput = fireInput;
+        if(useLoopedSound && fireAudioSource)
+        {
+            fireAudioSource.loop = fireInput;
+        }
     }
     bool canfire;
     private void FixedUpdate()
@@ -113,9 +116,11 @@ public class Weapon : MonoBehaviour
                 }
             }
         }
-        else if(!windupInProgress)
+        else
         {
-            currentWindup -= Time.fixedDeltaTime * windupDecay;
+            if (!windupInProgress)
+                currentWindup -= Time.fixedDeltaTime * windupDecay;
+            timesFired = 0;
         }
 
         if(fireIntervalRemaining > 0)
@@ -132,6 +137,7 @@ public class Weapon : MonoBehaviour
             {
                 tracers.RemoveAt(i);
                 i = Mathf.Min(i + 1, tracers.Count - 1);
+                continue;
             }
             tracers[i].lerp += tracers[i].timeIncrement;
         }
@@ -155,12 +161,19 @@ public class Weapon : MonoBehaviour
             fireParticles.Play();
         if(fireAudioSource)
         {
-            if (fireAudioClip)
+            if(timesFired == 0 && firstShotAudioClip)
+            {
+                fireAudioSource.PlayOneShot(firstShotAudioClip);
+                fireAudioSource.clip = fireAudioClip;
+                fireAudioSource.Play();
+            }
+            else if (fireAudioClip && !useLoopedSound)
             {
                 fireAudioSource.clip = fireAudioClip;
                 fireAudioSource.Play();
             }
         }
+        timesFired++;
         if (resetWindupAfterFiring)
             currentWindup = 0;
 
@@ -186,6 +199,7 @@ public class Weapon : MonoBehaviour
                     print("did not hit enemy");
                 }
             }
+                Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.TransformDirection(randomDirection), Color.red, 0.25f);
             if (shotEffect)
             {
                 GameObject shotObject = Instantiate(shotEffect, firePosition.position, firePosition.rotation);
@@ -236,4 +250,23 @@ public class Weapon : MonoBehaviour
         windupInProgress = false;
         yield break;
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (firePosition) {
+            Gizmos.color = Color.cyan;
+            Gizmos.matrix = firePosition.localToWorldMatrix;
+            Gizmos.DrawLine(Vector3.zero, Vector3.forward * maxRange);
+            if(maxSpread.x != 0)
+                Gizmos.DrawLine(Vector3.zero, Vector3.forward * maxRange + (Vector3.right * maxSpread.x));
+            if(minSpread.x != 0)
+                Gizmos.DrawLine(Vector3.zero, Vector3.forward * maxRange + (Vector3.right * minSpread.x));
+            if(maxSpread.y != 0)
+                Gizmos.DrawLine(Vector3.zero, Vector3.forward * maxRange + (Vector3.up * maxSpread.y));
+            if (minSpread.y != 0)
+                Gizmos.DrawLine(Vector3.zero, Vector3.forward * maxRange + (Vector3.up * minSpread.y));
+            Gizmos.matrix = Matrix4x4.identity;
+        }
+    }
+
 }

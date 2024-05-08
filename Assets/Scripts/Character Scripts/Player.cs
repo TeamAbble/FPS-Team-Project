@@ -11,7 +11,6 @@ using UnityEngine.ProBuilder.MeshOperations;
 public class Player : Character
 {
     [SerializeField] Vector2 moveInput, lookInput, lookAngle, oldLookAngle, deltaLookAngle;
-    [SerializeField] Rigidbody rb;
     [SerializeField] Vector2 lookSpeed;
     [SerializeField] float aimPitchOffset;
     [SerializeField] Transform aimTransform;
@@ -97,16 +96,7 @@ public class Player : Character
         Vector3 movevec = transform.rotation * new Vector3(moveInput.x, 0, moveInput.y) * MoveSpeed;
         rb.AddForce(movevec);
     }
-    string fpsstring;
-    private void OnGUI()
-    {
-        GUI.skin.textField.fontSize = 40;
-        fpsstring = GUILayout.TextField(fpsstring, GUILayout.Width(Screen.width / 20), GUILayout.Height(Screen.height / 20));
-        if (int.TryParse(fpsstring, out int fps))
-        {
-            Application.targetFrameRate = fps;
-        }
-    }
+
 
     #region InputCallbacks
     public void GetMoveInput(InputAction.CallbackContext context)

@@ -30,18 +30,21 @@ public class Enemy : Character
     }
     private void FixedUpdate()
     {
-        switch (state)
+        if (IsAlive)
         {
-            case States.PATROL:
-                
-                break;
-            case States.CHASE:
-                Move();
-                break;
-            case States.ATTACK:
-                
-                break;
-        } 
+            switch (state)
+            {
+                case States.PATROL:
+
+                    break;
+                case States.CHASE:
+                    Move();
+                    break;
+                case States.ATTACK:
+                    break;
+            }
+        }
+        animator.SetBool("Attacking", state == States.ATTACK);
     }
     public override void Move()
     {
@@ -64,7 +67,12 @@ public class Enemy : Character
 
     public override void Die()
     {
-        Destroy(gameObject);
+        agent.enabled = false;
+        rb.isKinematic = false;
+        GameManager.instance.EnemyDeath();
+        rb.AddRelativeTorque(Vector3.up * 50);
+        Destroy(gameObject, 2);
+        animator.enabled = false;
     }
 
 }

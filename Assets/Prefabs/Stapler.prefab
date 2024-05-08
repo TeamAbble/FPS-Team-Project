@@ -5244,7 +5244,7 @@ MonoBehaviour:
   firePosition: {fileID: 8782631844246148572}
   shotEffect: {fileID: 7745328033304195952, guid: fc6fe62f310ffad4bb1ac07cac08328e,
     type: 3}
-  tracerSpeed: 1
+  tracerSpeed: 75
   layermask:
     serializedVersion: 2
     m_Bits: 256

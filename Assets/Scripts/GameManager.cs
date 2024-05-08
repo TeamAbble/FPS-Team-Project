@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using TMPro;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     public GameObject[] pref;
     public Transform[] pos;
@@ -11,17 +12,25 @@ public class Spawner : MonoBehaviour
     public int spawnCount = 15;
     public float spawnRate = 3;
     float timer=0;
-    
+    public static GameManager instance;
+    int score = 0;
     void Start()
     {
-        
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
     }
 
     // Update is called once per frame
     private void FixedUpdate()
     {
         
-        timer += Time.deltaTime;
+        timer += Time.fixedDeltaTime;
         if (timer >= spawnRate)
         {
 
@@ -39,10 +48,27 @@ public class Spawner : MonoBehaviour
         if (spawn.GetComponent<Enemy>()!= null)
         {
             spawn.GetComponent<Enemy>().target = playerRef;
-        }
-        
-    
-        
+        } 
     }
-    
+    public void EnemyDeath()
+    {
+        spawnCount++;
+        score++;
+    }
+
+
+
+
+    string fpsstring;
+    private void OnGUI()
+    {
+        GUI.skin.textField.fontSize = 40;
+        fpsstring = GUILayout.TextField(fpsstring, GUILayout.Width(Screen.width / 20), GUILayout.Height(Screen.height / 20));
+        if (int.TryParse(fpsstring, out int fps))
+        {
+            Application.targetFrameRate = fps;
+        }
+
+        GUILayout.TextField($"{score}", GUILayout.Width(Screen.width / 15), GUILayout.Height(Screen.height / 20));
+    }
 }
