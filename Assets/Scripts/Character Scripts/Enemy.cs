@@ -15,8 +15,9 @@ public class Enemy : Character
         ATTACK
     }
     public States state = States.PATROL;
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         agent = GetComponent<NavMeshAgent>();
         agent.speed = MoveSpeed;
         
@@ -65,4 +66,5 @@ public class Enemy : Character
     {
         Destroy(gameObject);
     }
+
 }

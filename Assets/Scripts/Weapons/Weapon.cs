@@ -5,16 +5,27 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    [System.Serializable]
+    public class TracerObject
+    {
+        public GameObject tracer;
+        public Vector3 end;
+        public Vector3 start;
+        public float lerp;
+        public float timeIncrement;
+    }
+
+    List<TracerObject> tracers = new List<TracerObject>();
     [SerializeField, Tooltip("The maximum ammunition held by a weapon at one time. If zero, this weapon does not consume ammo.")] protected float maxAmmo;
     [SerializeField, Tooltip("How much ammunition we currently have.")] protected float currentAmmo;
-    [SerializeField, Tooltip("The maximum damage dealt to an enemy.")] protected float damage;
+    [SerializeField, Tooltip("The maximum damage dealt to an enemy.")] protected int damage;
     [SerializeField, Tooltip("How many 'Projectiles' a weapon will fire at an enemy.")] protected int projectilesPerShot;
     [SerializeField, Tooltip("The time, in seconds, between each shot")] protected float fireInterval;
     [SerializeField, Tooltip("The remaining fire interval. Useful for interpolating visuals on weapons.")] protected float fireIntervalRemaining;
     [SerializeField, Tooltip("If true, the weapon will always fire once when clicked, regardless of the windup time.\nIf false, the weapon will only fire when the [CurrentWindup] reaches [FireWindup]")] protected bool forceFirstShot;
     [SerializeField, Tooltip("The wait time for the weapon to first be fired")] protected float fireWindup;
     [SerializeField, Tooltip("The progress of the weapon's windup. Useful for interpolating visuals.")] protected float currentWindup;
-    [SerializeField, Tooltip("")] protected float windupDecay;
+    [SerializeField, Tooltip("How quickly the Windup decays when not holding the fire button")] protected float windupDecay;
     [SerializeField, Tooltip("If true, this weapon's windup will be reset after [FireIntervalRemaining] reaches zero.")] bool resetWindupAfterFiring;
     [SerializeField, Tooltip("The maximum range of the weapon. Weapons will not do damage beyond their maximum range")] protected float maxRange;
     [SerializeField, Tooltip("Should the spread be distributed evenly for every fire iteration? If false, spread will be randomised.")] protected bool unifiedSpread;
@@ -25,7 +36,7 @@ public class Weapon : MonoBehaviour
     [SerializeField, Tooltip("If true, the weapon will only finish the burst when fire input is held for the duration of the burst.")] protected bool canInterruptBurst;
     [SerializeField, Tooltip("If true, the weapon will automatically fire another burst.")] protected bool canAutoBurst;
     protected bool burstFiring;
-    protected bool fireInput;
+    [SerializeField] protected bool fireInput;
     /// <summary>
     /// Firing is blocked for one reason or another - typically through animations
     /// </summary>
@@ -36,44 +47,70 @@ public class Weapon : MonoBehaviour
     protected bool windupInProgress;
 
     [SerializeField] protected ParticleSystem fireParticles;
-    [SerializeField] AudioSource fireAudioSource;
-    [SerializeField] AudioClip fireAudioClip, lastShotAudioClip;
-    [SerializeField] AudioClip windupAudio;
-    [SerializeField] float minWindupPitch, maxWindupPitch;
+    [SerializeField] protected AudioSource fireAudioSource;
+    [SerializeField] protected AudioClip fireAudioClip, lastShotAudioClip;
+    [SerializeField] protected AudioClip windupAudio;
+    [SerializeField] protected float minWindupPitch, maxWindupPitch;
+    [SerializeField] protected Transform firePosition;
+    [SerializeField] protected GameObject shotEffect;
+    [SerializeField] protected float tracerSpeed;
+    [SerializeField] protected LayerMask layermask;
+    WeaponManager wm;
+
+    
+
+    private void Start()
+    {
+        wm = GetComponentInParent<WeaponManager>();
+    }
+    bool IsOwnerAlive => wm.IsAlive;
+    
     protected virtual bool CanFire()
     {
-        return (fireIntervalRemaining <= 0) && 
+        return IsOwnerAlive && (fireIntervalRemaining <= 0) && 
             !fireBlocked && 
-            (burstCount <= 0 || !burstFiring);
+            (burstCount <= 0 || currentBurstCount == 0);
     }
     public void SetFireInput(bool fireInput)
     {
         this.fireInput = fireInput;
     }
-
+    bool canfire;
     private void FixedUpdate()
     {
+        //Cache our ability to fire at the start of the fixed update
+        canfire = CanFire();
         //We can't fire if we're not pressing the fire button
+
         if (fireInput)
         {
-            if(fireWindup > 0)
+            if (canfire)
             {
-                //If forceFirstShot is enabled, and we're not already winding up a shot, we'll start the windup
-                if (forceFirstShot && !windupInProgress)
-                    StartCoroutine(ForcedWindup());
-                //Otherwise, we'll increment the windup by FixedDeltaTime
-                else if(!burstFiring)
-                    currentWindup += Time.fixedDeltaTime;
-                //if current windup is done and we're able to fire, then we'll fire
-                if(currentWindup >= fireWindup && CanFire())
+                if (fireWindup > 0)
+                {
+                    //If forceFirstShot is enabled, and we're not already winding up a shot, we'll start the windup
+                    if (forceFirstShot)
+                    {
+                        if(!windupInProgress && !burstFiring)
+                        {
+                            StartCoroutine(ForcedWindup());
+                        }
+                        //If ForceFirstShot is enabled, we don't want to evaluate the Windup every fixed update
+                        return;
+                    }
+                    //Otherwise, we'll increment the windup by FixedDeltaTime
+                    if(!burstFiring)
+                        currentWindup += Time.fixedDeltaTime;
+                    //if current windup is done and we're able to fire, then we'll fire
+                    if (currentWindup >= fireWindup)
+                    {
+                        TryFire();
+                    }
+                }
+                else
                 {
                     TryFire();
                 }
-            }
-            else
-            {
-                if (CanFire())
-                    TryFire();
             }
         }
         else if(!windupInProgress)
@@ -86,6 +123,18 @@ public class Weapon : MonoBehaviour
             fireIntervalRemaining -= Time.fixedDeltaTime;
         }
         currentWindup = Mathf.Clamp(currentWindup, 0, fireWindup);
+
+        for (int i = tracers.Count -1; i >= 0; i--)
+        {
+            if (tracers[i].tracer)
+                tracers[i].tracer.transform.position = Vector3.Lerp(tracers[i].start, tracers[i].end, tracers[i].lerp);
+            else
+            {
+                tracers.RemoveAt(i);
+                i = Mathf.Min(i + 1, tracers.Count - 1);
+            }
+            tracers[i].lerp += tracers[i].timeIncrement;
+        }
     }
     void TryFire()
     {
@@ -100,7 +149,7 @@ public class Weapon : MonoBehaviour
     }
     void FireWeapon()
     {
-        Debug.Log($"Fired {name} @ {System.DateTime.Now}");
+        //Debug.Log($"Fired {name} @ {System.DateTime.Now}");
         fireIntervalRemaining = fireInterval;
         if (fireParticles)
             fireParticles.Play();
@@ -108,11 +157,52 @@ public class Weapon : MonoBehaviour
         {
             if (fireAudioClip)
             {
-                fireAudioSource.PlayOneShot(fireAudioClip);
+                fireAudioSource.clip = fireAudioClip;
+                fireAudioSource.Play();
             }
         }
         if (resetWindupAfterFiring)
             currentWindup = 0;
+
+        Vector3 randomDirection;
+        for (int i = 0; i < projectilesPerShot; i++)
+        {
+            var vec = Random.insideUnitCircle;
+            randomDirection = firePosition.rotation * new Vector3()
+            {
+                x = Mathf.Lerp(minSpread.x, maxSpread.x, vec.x),
+                y = Mathf.Lerp(minSpread.y, maxSpread.y, vec.y)
+            } + Vector3.forward * maxRange;
+
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.TransformDirection(randomDirection), out RaycastHit hit, maxRange, layermask))
+            {
+                if (hit.rigidbody && hit.rigidbody.TryGetComponent(out Character c))
+                {
+                    c.UpdateHealth(-damage);
+                    print("hit an enemy");
+                }
+                else
+                {
+                    print("did not hit enemy");
+                }
+            }
+            if (shotEffect)
+            {
+                GameObject shotObject = Instantiate(shotEffect, firePosition.position, firePosition.rotation);
+                var t = new TracerObject()
+                {
+                    tracer = shotObject,
+                    start = firePosition.position,
+                    end = hit.collider ? hit.point : (firePosition.TransformDirection(randomDirection) + firePosition.position),
+                    lerp = 0,
+                };
+                t.timeIncrement = (tracerSpeed * Time.fixedDeltaTime) / Vector3.Distance(t.start, t.end);
+                tracers.Add(t);
+
+            }
+        }
+
+
     }
     IEnumerator BurstFire()
     {
@@ -124,11 +214,11 @@ public class Weapon : MonoBehaviour
             currentBurstCount++;
             yield return wu;
         }
-        yield return new WaitForSeconds(burstCooldown);
         if (!canAutoBurst)
         {
-            yield return new WaitUntil(() => fireInput == false);
+            fireInput = false;
         }
+        yield return new WaitForSeconds(burstCooldown);
         currentBurstCount = 0;
         burstFiring = false;
         yield break;
@@ -141,7 +231,9 @@ public class Weapon : MonoBehaviour
             currentWindup += Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
-        FireWeapon();
+        TryFire();
+        yield return new WaitForFixedUpdate();
         windupInProgress = false;
+        yield break;
     }
 }

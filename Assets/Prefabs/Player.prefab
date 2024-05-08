@@ -578,7 +578,7 @@ GameObject:
   - component: {fileID: 5247865180223490922}
   - component: {fileID: 8920253462223167407}
   - component: {fileID: 3824807763634957599}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -665,6 +665,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   MoveSpeed: 15
+  animator: {fileID: 3347311141692031988}
+  meleeBounds: {x: 1, y: 1, z: 1}
+  meleeOffset: {x: 0, y: 1.08, z: 1}
+  meleeLayermask:
+    serializedVersion: 2
+    m_Bits: 256
+  meleeDamage: 0
   moveInput: {x: 0, y: 0}
   lookInput: {x: 0, y: 0}
   lookAngle: {x: 0, y: 0}
@@ -910,7 +917,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f9ec19c3c82b704cb7af59b75d69eb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapons: []
+  weapons:
+  - {fileID: 0}
   weaponIndex: 0
   fireInput: 0
 --- !u!1 &4020397975070656947
@@ -2494,6 +2502,12 @@ Transform:
 --- !u!4 &3161940856774993387 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6124865130931706766, guid: 66b6811e237ef6949b55bca018a7c9cd,
+    type: 3}
+  m_PrefabInstance: {fileID: 9159930311939882597}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &3347311141692031988 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 66b6811e237ef6949b55bca018a7c9cd,
     type: 3}
   m_PrefabInstance: {fileID: 9159930311939882597}
   m_PrefabAsset: {fileID: 0}

@@ -83,6 +83,8 @@ public class Player : Character
     }
     private void FixedUpdate()
     {
+        if (!IsAlive)
+            return;
         rb.drag = drag;
         WeaponSwayMaths();
         WeaponSwayVisuals();
@@ -115,10 +117,15 @@ public class Player : Character
     {
         lookInput = context.ReadValue<Vector2>();
         movingCamera = lookInput != Vector2.zero;
-        Aim();
+        if(IsAlive)
+            Aim();
     }
     #endregion
 
+    public override void UpdateHealth(int healthChange)
+    {
+        base.UpdateHealth(healthChange);
+    }
     public override void Die()
     {
         throw new System.NotImplementedException();
