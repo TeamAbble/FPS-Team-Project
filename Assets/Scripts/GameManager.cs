@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
     {
         
         timer += Time.fixedDeltaTime;
-        if (timer >= spawnRate)
+        if (timer >= spawnRate && spawnCount > 0)
         {
 
             Spawn(pref[Random.Range(0, pref.Length - 1)], pos[Random.Range(0, pos.Length - 1)]);
