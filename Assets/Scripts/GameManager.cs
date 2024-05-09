@@ -15,6 +15,17 @@ public class GameManager : MonoBehaviour
     float timer=0;
     public static GameManager instance;
     int score = 0;
+
+    public GameObject pauseCanvas;
+    public bool paused;
+    public void PauseGame(bool newPause)
+    {
+        paused = newPause;
+        Time.timeScale = paused ? 0 : 1;
+        pauseCanvas.SetActive(paused);
+        Cursor.lockState = paused ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = paused;
+    }
     private void Awake()
     {
         if (instance == null)
@@ -34,6 +45,7 @@ public class GameManager : MonoBehaviour
         }
         if (!playerRef)
             playerRef = FindFirstObjectByType<Player>().gameObject;
+        PauseGame(false);
     }
 
 

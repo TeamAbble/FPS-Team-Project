@@ -181,13 +181,13 @@ public class Weapon : MonoBehaviour
         for (int i = 0; i < projectilesPerShot; i++)
         {
             var vec = Random.insideUnitCircle;
-            randomDirection = firePosition.rotation * new Vector3()
+            randomDirection = new Vector3()
             {
                 x = Mathf.Lerp(minSpread.x, maxSpread.x, vec.x),
                 y = Mathf.Lerp(minSpread.y, maxSpread.y, vec.y)
             } + Vector3.forward * maxRange;
 
-            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.TransformDirection(randomDirection), out RaycastHit hit, maxRange, layermask))
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.TransformDirection(randomDirection), out RaycastHit hit, maxRange, layermask, QueryTriggerInteraction.Ignore))
             {
                 if (hit.rigidbody && hit.rigidbody.TryGetComponent(out Character c))
                 {
@@ -198,8 +198,14 @@ public class Weapon : MonoBehaviour
                 {
                     print("did not hit enemy");
                 }
+                Debug.DrawLine(Camera.main.transform.position, hit.point, Color.green, 0.25f);
             }
+            else
+            {
+                print("Did not hit anything");
                 Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.TransformDirection(randomDirection), Color.red, 0.25f);
+            }
+
             if (shotEffect)
             {
                 GameObject shotObject = Instantiate(shotEffect, firePosition.position, firePosition.rotation);

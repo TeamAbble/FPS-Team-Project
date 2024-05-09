@@ -5234,10 +5234,12 @@ MonoBehaviour:
   canInterruptBurst: 0
   canAutoBurst: 0
   fireInput: 0
+  timesFired: 0
   fireParticles: {fileID: 1665692452114639206}
   fireAudioSource: {fileID: 5905157765483290505}
   fireAudioClip: {fileID: 8300000, guid: 871ba1dc21f9c2942999f3d04cb01533, type: 3}
   lastShotAudioClip: {fileID: 8300000, guid: 9dee834fca66597409a5555b70bb5e23, type: 3}
+  firstShotAudioClip: {fileID: 0}
   windupAudio: {fileID: 0}
   minWindupPitch: 0
   maxWindupPitch: 0
@@ -5247,7 +5249,8 @@ MonoBehaviour:
   tracerSpeed: 75
   layermask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 257
+  useLoopedSound: 0
 --- !u!82 &5905157765483290505
 AudioSource:
   m_ObjectHideFlags: 0

@@ -107,8 +107,13 @@ public class Player : Character
     {
         lookInput = context.ReadValue<Vector2>();
         movingCamera = lookInput != Vector2.zero;
-        if(IsAlive)
+        if (IsAlive && !GameManager.instance.paused)
             Aim();
+    }
+    public void GetPauseInput(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            GameManager.instance.PauseGame(!GameManager.instance.paused);
     }
     #endregion
 
