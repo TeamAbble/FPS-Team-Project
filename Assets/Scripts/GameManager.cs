@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class GameManager : MonoBehaviour
     float timer=0;
     public static GameManager instance;
     int score = 0;
-
+    public Vector3 spawnOffset;
     public GameObject pauseCanvas;
     public bool paused;
     public void PauseGame(bool newPause)
@@ -66,12 +67,16 @@ public class GameManager : MonoBehaviour
     }
     public void Spawn(GameObject prefab,Transform pos)
     {
-        GameObject spawn = Instantiate(prefab);
-        spawn.transform.position = pos.position;
-        if (spawn.GetComponent<Enemy>()!= null)
+
+        if(Physics.Raycast(pos.position, Vector3.down, out RaycastHit hit))
         {
-            spawn.GetComponent<Enemy>().target = playerRef;
-        } 
+            GameObject spawn = Instantiate(prefab, hit.point + spawnOffset, pos.rotation);
+            if (spawn.GetComponent<Enemy>() != null)
+            {
+                spawn.GetComponent<Enemy>().target = playerRef;
+            }
+        }
+
     }
     public void EnemyDeath()
     {
