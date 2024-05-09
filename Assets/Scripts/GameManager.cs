@@ -1,16 +1,15 @@
 using Cinemachine;
 using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public GameObject[] pref;
     public Transform[] pos;
-    public GameObject playerRef; 
+    public Player playerRef; 
     public int spawnCount = 15;
     public float spawnRate = 3;
     float timer=0;
@@ -19,6 +18,8 @@ public class GameManager : MonoBehaviour
     public Vector3 spawnOffset;
     public GameObject pauseCanvas;
     public bool paused;
+    public GameObject respawnScreen;
+    public Vector3 spawnPosition;
     public void PauseGame(bool newPause)
     {
         paused = newPause;
@@ -26,6 +27,10 @@ public class GameManager : MonoBehaviour
         pauseCanvas.SetActive(paused);
         Cursor.lockState = paused ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = paused;
+    }
+    public void Respawn()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     private void Awake()
     {
@@ -39,14 +44,14 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-
         if (!Camera.main.GetComponent<CinemachineBrain>())
         {
             Camera.main.gameObject.AddComponent<CinemachineBrain>();
         }
         if (!playerRef)
-            playerRef = FindFirstObjectByType<Player>().gameObject;
+            playerRef = FindFirstObjectByType<Player>();
         PauseGame(false);
+        respawnScreen.SetActive(false);
     }
 
 
@@ -73,7 +78,7 @@ public class GameManager : MonoBehaviour
             GameObject spawn = Instantiate(prefab, hit.point + spawnOffset, pos.rotation);
             if (spawn.GetComponent<Enemy>() != null)
             {
-                spawn.GetComponent<Enemy>().target = playerRef;
+                spawn.GetComponent<Enemy>().target = playerRef.gameObject;
             }
         }
 
@@ -87,16 +92,11 @@ public class GameManager : MonoBehaviour
 
 
 
-    string fpsstring;
     private void OnGUI()
     {
         GUI.skin.textField.fontSize = 40;
-        fpsstring = GUILayout.TextField(fpsstring, GUILayout.Width(Screen.width / 20), GUILayout.Height(Screen.height / 20));
-        if (int.TryParse(fpsstring, out int fps))
-        {
-            Application.targetFrameRate = fps;
-        }
 
-        GUILayout.TextField($"{score}", GUILayout.Width(Screen.width / 15), GUILayout.Height(Screen.height / 20));
+        GUILayout.TextField($"Score : {score}", GUILayout.Width(Screen.width / 10), GUILayout.Height(Screen.height / 20));
+        GUILayout.TextField($"Health : {playerRef.Health}", GUILayout.Width(Screen.width / 8), GUILayout.Height(Screen.height / 20));
     }
 }

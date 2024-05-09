@@ -123,6 +123,8 @@ public class Player : Character
     }
     public override void Die()
     {
-        throw new System.NotImplementedException();
+        GameManager.instance.respawnScreen.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }

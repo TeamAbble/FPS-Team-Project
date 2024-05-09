@@ -15,6 +15,7 @@ public abstract class Character : MonoBehaviour
     [SerializeField] protected Rigidbody rb;
     [SerializeField] protected float meleeCooldown;
     protected float currentMeleeCooldown;
+    public float Health => health;
     protected virtual void Start()
     {
         if(!animator)
@@ -34,15 +35,13 @@ public abstract class Character : MonoBehaviour
     }
     public virtual void MeleeAttack()
     {
-        if (currentMeleeCooldown <= 0)
+        Collider[] cols = Physics.OverlapBox(transform.TransformPoint(meleeOffset), meleeBounds / 2, transform.rotation, meleeLayermask);
+        
+        for (int i = 0; i < cols.Length; i++)
         {
-            Collider[] cols = Physics.OverlapBox(transform.TransformPoint(meleeOffset), meleeBounds / 2, transform.rotation, meleeLayermask);
-            for (int i = 0; i < cols.Length; i++)
+            if (cols[i].attachedRigidbody != rb && cols[i].TryGetComponent(out Character c))
             {
-                if (cols[i].TryGetComponent(out Character c))
-                {
-                    c.UpdateHealth(-meleeDamage);
-                }
+                c.UpdateHealth(-meleeDamage);
             }
         }
     }
@@ -54,5 +53,6 @@ public abstract class Character : MonoBehaviour
         Gizmos.matrix = transform.localToWorldMatrix;
         Gizmos.DrawWireCube(meleeOffset, meleeBounds);
         Gizmos.matrix = Matrix4x4.identity;
+        Debug.DrawRay(transform.TransformPoint(meleeOffset), transform.forward);
     }
 }
