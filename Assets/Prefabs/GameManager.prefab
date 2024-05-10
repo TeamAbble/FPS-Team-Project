@@ -1817,7 +1817,7 @@ MonoBehaviour:
   - {fileID: 7037993627943554136}
   playerRef: {fileID: 0}
   spawnCount: 15
-  spawnRate: 5
+  spawnRate: 3
   spawnOffset: {x: 0, y: 1, z: 0}
   pauseCanvas: {fileID: 2206434361882750406}
   paused: 0

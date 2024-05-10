@@ -664,7 +664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  MoveSpeed: 15
+  MoveSpeed: 22
   animator: {fileID: 3347311141692031988}
   meleeBounds: {x: 1, y: 1, z: 1}
   meleeOffset: {x: 0, y: 1.08, z: 1}
@@ -1657,6 +1657,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FireExtinguisher
       objectReference: {fileID: 0}
+    - target: {fileID: 539066444441173501, guid: 7f67ea4a8fc9ec443b95f4edc98aa365,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1105979486170393716, guid: 7f67ea4a8fc9ec443b95f4edc98aa365,
         type: 3}
       propertyPath: m_RootOrder
@@ -1711,6 +1716,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6297959150520822701, guid: 7f67ea4a8fc9ec443b95f4edc98aa365,
+        type: 3}
+      propertyPath: emitterVelocityMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6297959150520822701, guid: 7f67ea4a8fc9ec443b95f4edc98aa365,
+        type: 3}
+      propertyPath: CollisionModule.type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6297959150520822701, guid: 7f67ea4a8fc9ec443b95f4edc98aa365,
+        type: 3}
+      propertyPath: RotationBySpeedModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6297959150520822701, guid: 7f67ea4a8fc9ec443b95f4edc98aa365,
+        type: 3}
+      propertyPath: CollisionModule.m_Bounce.scalar
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6297959150520822701, guid: 7f67ea4a8fc9ec443b95f4edc98aa365,
+        type: 3}
+      propertyPath: CollisionModule.m_Dampen.scalar
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6297959150520822701, guid: 7f67ea4a8fc9ec443b95f4edc98aa365,
+        type: 3}
+      propertyPath: InheritVelocityModule.m_Curve.scalar
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1806,7 +1841,7 @@ PrefabInstance:
     - target: {fileID: 5394613421308670716, guid: eba2ef713048c794ab4b96a7fdd5b868,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
