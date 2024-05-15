@@ -10,6 +10,7 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] bool fireInput;
     Player p;
     public bool IsAlive => p.IsAlive;
+    public Weapon CurrentWeapon => weapons[weaponIndex];
     private void Start()
     {
         p = GetComponent<Player>();
@@ -19,7 +20,13 @@ public class WeaponManager : MonoBehaviour
         }
         weapons[weaponIndex].gameObject.SetActive(true);
     }
-    public void SwitchWeapon(InputAction.CallbackContext context)
+
+    public void SwitchWeapon()
+    {
+
+    }
+
+    public void SwitchInput(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
