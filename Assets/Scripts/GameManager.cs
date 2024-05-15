@@ -9,10 +9,11 @@ public class GameManager : MonoBehaviour
 {
     public GameObject[] pref;
     public Transform[] pos;
-    public Player playerRef; 
-    public int spawnCount = 15;
+    public Player playerRef;
+    public int MaxEnemiesAllowed = 15; //The remaining number of enemies to be spawned
+    public int enemiesRemaining;//The remaining number of enemies that must be killed to complete the wave
     public float spawnRate = 3;
-    int wave = 1;
+    public int enemiesAlive = 0;//The Number of Enemies Currently Alive
     
     int remaining;
     float timer=0;
@@ -23,6 +24,14 @@ public class GameManager : MonoBehaviour
     public bool paused;
     public GameObject respawnScreen;
     public Vector3 spawnPosition;
+
+    [System.Serializable]public struct Wave
+    {
+        public int waveNum;//The Wave Number
+        public int EnemiesPerWave;//The Enemies to be spawned in this wave
+    }
+    public Wave[] waves;
+
     public void PauseGame(bool newPause)
     {
         paused = newPause;
@@ -63,12 +72,12 @@ public class GameManager : MonoBehaviour
     {
         
         timer += Time.fixedDeltaTime;
-        if (timer >= spawnRate && spawnCount > 0)
+        if (timer >= spawnRate && MaxEnemiesAllowed > enemiesAlive)
         {
 
             Spawn(pref[Random.Range(0, pref.Length - 1)], pos[Random.Range(0, pos.Length - 1)]);
             timer = 0;
-            spawnCount -= 1;
+            enemiesAlive++;
 
         }
         
@@ -88,9 +97,13 @@ public class GameManager : MonoBehaviour
     }
     public void EnemyDeath()
     {
-        spawnCount++;
+        MaxEnemiesAllowed++;
         score++;
         remaining--;
+        if (remaining == 0)
+        {
+            WaveStart();
+        }
     }
 
 
@@ -106,7 +119,5 @@ public class GameManager : MonoBehaviour
 
     public void WaveStart()
     {
-        wave++;
-        remaining = spawnCount;
     }
 }
