@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
     public Player playerRef; 
     public int spawnCount = 15;
     public float spawnRate = 3;
+    int wave = 1;
+    
+    int remaining;
     float timer=0;
     public static GameManager instance;
     int score = 0;
@@ -87,6 +90,7 @@ public class GameManager : MonoBehaviour
     {
         spawnCount++;
         score++;
+        remaining--;
     }
 
 
@@ -98,5 +102,11 @@ public class GameManager : MonoBehaviour
 
         GUILayout.TextField($"Score : {score}", GUILayout.Width(Screen.width / 10), GUILayout.Height(Screen.height / 20));
         GUILayout.TextField($"Health : {playerRef.Health}", GUILayout.Width(Screen.width / 8), GUILayout.Height(Screen.height / 20));
+    }
+
+    public void WaveStart()
+    {
+        wave++;
+        remaining = spawnCount;
     }
 }
