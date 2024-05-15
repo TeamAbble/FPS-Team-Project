@@ -13,6 +13,13 @@ public class Weapon : MonoBehaviour
         public float lerp;
         public float timeIncrement;
     }
+    [System.Serializable]
+    public class Magazine
+    {
+        public Transform magazine;
+        public Vector3 startPos;
+        public Quaternion startRot;
+    }
 
     List<TracerObject> tracers = new List<TracerObject>();
     [SerializeField, Tooltip("The maximum ammunition held by a weapon at one time. If zero, this weapon does not consume ammo.")] protected float maxAmmo;
@@ -56,7 +63,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected LayerMask layermask;
     WeaponManager wm;
     [SerializeField] bool useLoopedSound;
-    
+    public Magazine oldMag, newMag;
 
     private void Start()
     {

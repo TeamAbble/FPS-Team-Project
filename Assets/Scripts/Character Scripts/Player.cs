@@ -22,7 +22,7 @@ public class Player : Character
     [SerializeField] Vector3 weaponSwayPositionTarget, weaponSwayRotationTarget, maxWeaponSwayPosition, maxWeaponSwayRotation;
     [SerializeField] AnimationCurve swayPositionBounceCurve, swayRotationBounceCurve;
     [SerializeField] float swayPositionReturnSpeed, swayRotationReturnSpeed, swayPositionDamping, swayRotationDamping, aimingSwayPositionDamping, aimingSwayRotationDamping, swayPositionMultiplier, swayRotationMultiplier;
-    Vector3 positionDampVelocity, rotationDampVelocity;
+    Vector3 positionDampVelocity;
     [SerializeField] float swayPositionReturn, swayRotationReturn;
     private void Aim()
     {
