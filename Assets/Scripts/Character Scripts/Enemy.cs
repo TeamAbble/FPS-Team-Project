@@ -41,6 +41,7 @@ public class Enemy : Character
                     Move();
                     break;
                 case States.ATTACK:
+                    transform.rotation = Quaternion.LookRotation(target.transform.position - (transform.position + Vector3.down), Vector3.up);
                     break;
             }
         }
@@ -70,7 +71,7 @@ public class Enemy : Character
         agent.enabled = false;
         rb.isKinematic = false;
         GameManager.instance.EnemyDeath();
-        rb.AddRelativeTorque(Vector3.up * 50);
+        rb.AddRelativeTorque(Random.onUnitSphere * 50);
         Destroy(gameObject, 2);
         animator.enabled = false;
     }
