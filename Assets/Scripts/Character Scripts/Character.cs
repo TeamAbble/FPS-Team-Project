@@ -20,6 +20,8 @@ public abstract class Character : MonoBehaviour
     {
         if(!animator)
             animator = GetComponent<Animator>();
+        if(!rb)
+            rb = GetComponent<Rigidbody>();
         health = maxHealth;
     }
     public bool IsAlive => health > 0;

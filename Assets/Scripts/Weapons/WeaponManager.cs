@@ -23,18 +23,25 @@ public class WeaponManager : MonoBehaviour
 
     public void SwitchWeapon()
     {
-
+        weapons[weaponIndex].SetFireInput(false);
+        weapons[weaponIndex].gameObject.SetActive(false);
+        weaponIndex++;
+        weaponIndex %= weapons.Length;
+        weapons[weaponIndex].gameObject.SetActive(true);
     }
-
+    public void SwitchWeapon(int newWeaponIndex)
+    {
+        weapons[weaponIndex].SetFireInput(false);
+        weapons[weaponIndex].gameObject.SetActive(false);
+        weaponIndex = newWeaponIndex;
+        weaponIndex %= weapons.Length;
+        weapons[weaponIndex].gameObject.SetActive(true);
+    }
     public void SwitchInput(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            weapons[weaponIndex].SetFireInput(false);
-            weapons[weaponIndex].gameObject.SetActive(false);
-            weaponIndex++;
-            weaponIndex %= weapons.Length;
-            weapons[weaponIndex].gameObject.SetActive(true);
+            SwitchWeapon();
         }
     }
     public void OnFire(InputAction.CallbackContext context)

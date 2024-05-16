@@ -98,10 +98,10 @@ GameObject:
   - component: {fileID: 88623443862090701}
   - component: {fileID: 807439792463929493}
   - component: {fileID: 760759512786884568}
-  - component: {fileID: 3331258696732183317}
   - component: {fileID: 6908568454766381738}
   - component: {fileID: -7551953836692022282}
   - component: {fileID: 5271983263195067905}
+  - component: {fileID: 3925175461665802595}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
@@ -221,31 +221,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &3331258696732183317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2671647154385193445}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5841c348ed3c72e4cad7f58aaf2d2d2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 30
-  MoveSpeed: 2
-  animator: {fileID: 0}
-  meleeBounds: {x: 1.42, y: 1.62, z: 1.28}
-  meleeOffset: {x: 0, y: 0, z: 1.26}
-  meleeLayermask:
-    serializedVersion: 2
-    m_Bits: 128
-  meleeDamage: 15
-  rb: {fileID: -7551953836692022282}
-  meleeCooldown: 0
-  target: {fileID: 0}
-  state: 1
 --- !u!65 &6908568454766381738
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -315,6 +290,31 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3925175461665802595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2671647154385193445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee3c52a0e4eb54f4ab6a7bfb20cef56c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 5
+  MoveSpeed: 30
+  animator: {fileID: 5271983263195067905}
+  meleeBounds: {x: 0, y: 0, z: 0}
+  meleeOffset: {x: 0, y: 0, z: 0}
+  meleeLayermask:
+    serializedVersion: 2
+    m_Bits: 128
+  meleeDamage: 0
+  rb: {fileID: 0}
+  meleeCooldown: 0
+  target: {fileID: 0}
+  state: 1
 --- !u!1 &5011346322096944780
 GameObject:
   m_ObjectHideFlags: 0
