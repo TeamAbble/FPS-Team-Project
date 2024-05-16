@@ -1,5 +1,6 @@
 using Cinemachine;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
@@ -7,16 +8,16 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject[] pref;
-    public Transform[] pos;
     public Player playerRef;
-    public int MaxEnemiesAllowed = 15; //The remaining number of enemies to be spawned
+    [Tooltip("The maximum number of enemies that can be alive at any point")]
+    public int MaxEnemiesAllowed; //The remaining number of enemies to be spawned
+    [Tooltip("The number of enemies remaining in this wave")]
     public int enemiesRemaining;//The remaining number of enemies that must be killed to complete the wave
     public float spawnRate = 3;
+    [Tooltip("The number of enemies currently alive")]
     public int enemiesAlive = 0;//The Number of Enemies Currently Alive
     
-    int remaining;
-    float timer=0;
+    public float spawnTimer=0;
     public static GameManager instance;
     int score = 0;
     public Vector3 spawnOffset;
@@ -24,14 +25,20 @@ public class GameManager : MonoBehaviour
     public bool paused;
     public GameObject respawnScreen;
     public Vector3 spawnPosition;
-
-    [System.Serializable]public struct Wave
+    [SerializeField]
+    List<EnemySpawner> spawners;
+    public TextMeshProUGUI waveInfoDisplay;
+    [System.Serializable]public class Wave
     {
         public int waveNum;//The Wave Number
         public int EnemiesPerWave;//The Enemies to be spawned in this wave
+        public float nextWaveDelay = 25;
+        public AnimationCurve enemiesPerWaveRamp;
     }
     public Wave[] waves;
-
+    int waveContainerIndex;
+    public int currentWave;
+    public bool waveInProgress;
     public void PauseGame(bool newPause)
     {
         paused = newPause;
@@ -64,48 +71,74 @@ public class GameManager : MonoBehaviour
             playerRef = FindFirstObjectByType<Player>();
         PauseGame(false);
         respawnScreen.SetActive(false);
+        StartCoroutine(WaveDelay());
+
+        spawners.AddRange(FindObjectsOfType<EnemySpawner>(true));
     }
 
 
     // Update is called once per frame
     private void FixedUpdate()
     {
-        
-        timer += Time.fixedDeltaTime;
-        if (timer >= spawnRate && MaxEnemiesAllowed > enemiesAlive)
+        if (waveInProgress)
         {
-
-            Spawn(pref[Random.Range(0, pref.Length - 1)], pos[Random.Range(0, pos.Length - 1)]);
-            timer = 0;
-            enemiesAlive++;
-
-        }
-        
-    }
-    public void Spawn(GameObject prefab,Transform pos)
-    {
-
-        if(Physics.Raycast(pos.position, Vector3.down, out RaycastHit hit))
-        {
-            GameObject spawn = Instantiate(prefab, hit.point + spawnOffset, pos.rotation);
-            if (spawn.GetComponent<Enemy>() != null)
+            if (enemiesAlive < MaxEnemiesAllowed && enemiesRemaining > 0)
             {
-                spawn.GetComponent<Enemy>().target = playerRef.gameObject;
+                spawnTimer += Time.fixedDeltaTime;
+                if (spawnTimer >= spawnRate)
+                {
+                    FindSpawner();
+                }
+            }
+            else
+            {
+                spawnTimer = 0;
             }
         }
-
+    }
+    public void FindSpawner()
+    {
+        if (playerRef == null || spawners.Count == 0)
+            return;
+        spawnTimer = 0;
+        enemiesAlive++;
+        enemiesRemaining--;
+        int spawnerIndex = Random.Range(0, spawners.Count);
+        spawners[spawnerIndex].Spawn();
+        SetEnemyDisplay();
+    }
+    void SetEnemyDisplay()
+    {
+        waveInfoDisplay.text = $"Enemies Left This Wave\n{enemiesRemaining}\nEnemies Still Working\n{enemiesAlive}";
     }
     public void EnemyDeath()
     {
-        MaxEnemiesAllowed++;
         score++;
-        remaining--;
-        if (remaining == 0)
+        //The number of enemies left decrements when an enemy dies
+        enemiesAlive--;
+        SetEnemyDisplay();
+        if (enemiesRemaining == 0 && enemiesAlive == 0)
         {
-            WaveStart();
+            EndWave();
         }
     }
-
+    void EndWave()
+    {
+        StartCoroutine(WaveDelay());
+    }
+    IEnumerator WaveDelay()
+    {
+        waveInProgress = false;
+        float time = waves[waveContainerIndex].nextWaveDelay;
+        while (time >= 0)
+        {
+            waveInfoDisplay.text = $"Break Time: {time:0}";
+            time -= Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        WaveStart();
+        yield break;
+    }
 
 
 
@@ -119,5 +152,25 @@ public class GameManager : MonoBehaviour
 
     public void WaveStart()
     {
+        currentWave++;
+        for (int i = 0; i < waves.Length; i++)
+        {
+            if(currentWave >= waves[i].waveNum)
+            {
+                waveContainerIndex = i;
+            }
+        }
+
+        if(waveContainerIndex < waves.Length)
+        {
+            float ilerp = Mathf.InverseLerp(waves[waveContainerIndex].waveNum, waves[waveContainerIndex +1].waveNum, currentWave);
+            enemiesRemaining = Mathf.CeilToInt(Mathf.Lerp(waves[waveContainerIndex].EnemiesPerWave, waves[waveContainerIndex + 1].EnemiesPerWave, waves[waveContainerIndex].enemiesPerWaveRamp.Evaluate(ilerp)));
+        }
+        else
+        {
+            enemiesRemaining = waves[waveContainerIndex].EnemiesPerWave;
+        }
+        SetEnemyDisplay();
+        waveInProgress = true;
     }
 }
