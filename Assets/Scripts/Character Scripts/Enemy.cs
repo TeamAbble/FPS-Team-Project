@@ -5,14 +5,15 @@ using UnityEngine.AI;
 
 public class Enemy : Character
 {
-    private NavMeshAgent agent;
-    private bool firing;
+    protected NavMeshAgent agent;
+    protected bool firing;
     public GameObject target;
     public enum States
     {
         PATROL,
         CHASE,
-        ATTACK
+        ATTACK,
+        RETREAT
     }
     public States state = States.PATROL;
     protected override void Start()
@@ -28,43 +29,15 @@ public class Enemy : Character
     {
         
     }
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
-        if (IsAlive)
-        {
-            switch (state)
-            {
-                case States.PATROL:
-
-                    break;
-                case States.CHASE:
-                    Move();
-                    break;
-                case States.ATTACK:
-                    transform.rotation = Quaternion.LookRotation(target.transform.position - (transform.position + Vector3.down), Vector3.up);
-                    break;
-            }
-        }
-        animator.SetBool("Attacking", state == States.ATTACK);
+        EnemyBehaviour();
     }
     public override void Move()
     {
         agent.SetDestination(target.transform.position);
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject == target)
-        {
-            state = States.ATTACK;
-            firing = true;
-            agent.enabled = false;
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        state = States.CHASE;
-        agent.enabled = true;  
-    }
+   
 
     public override void Die()
     {
@@ -74,6 +47,11 @@ public class Enemy : Character
         rb.AddRelativeTorque(Random.onUnitSphere * 50);
         Destroy(gameObject, 2);
         animator.enabled = false;
+    }
+
+    protected virtual void EnemyBehaviour()
+    {
+        
     }
 
 }
