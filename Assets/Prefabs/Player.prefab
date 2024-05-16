@@ -807,6 +807,72 @@ MonoBehaviour:
   weaponSwayRotationTarget: {x: -0.017070571, y: 0.010809153, z: 0.10809153}
   maxWeaponSwayPosition: {x: -0.010891717, y: 0, z: -0.0017200965}
   maxWeaponSwayRotation: {x: -0.01720096, y: 0.010891717, z: 0.10891716}
+  swayPositionBounceCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0
+      value: 0.008919358
+      inSlope: 3.3123903
+      outSlope: 3.3123903
+      tangentMode: 0
+      weightedMode: 2
+      inWeight: 0
+      outWeight: 0.3367833
+    - serializedVersion: 3
+      time: 0.6563556
+      value: 0.9832895
+      inSlope: -1.8276598
+      outSlope: -1.8276598
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.25745058
+      outWeight: 0.46459997
+    - serializedVersion: 3
+      time: 0.82523704
+      value: 0.99903345
+      inSlope: 1.2021909
+      outSlope: 1.2021909
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.13553506
+      outWeight: 0.31933916
+    - serializedVersion: 3
+      time: 1
+      value: 0.9963598
+      inSlope: 0.5149004
+      outSlope: 0.5149004
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.31905833
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  swayRotationBounceCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   swayPositionReturnSpeed: 5
   swayRotationReturnSpeed: 5
   swayPositionDamping: 0.4
@@ -935,7 +1001,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3824807763634957599}
         m_TargetAssemblyTypeName: WeaponManager, Assembly-CSharp
-        m_MethodName: SwitchWeapon
+        m_MethodName: SwitchInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

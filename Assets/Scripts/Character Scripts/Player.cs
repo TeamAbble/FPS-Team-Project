@@ -40,7 +40,7 @@ public class Player : Character
         transform.localRotation = Quaternion.Euler(0, lookAngle.x, 0);
         oldLookAngle = lookAngle;
     }
-
+    
     void WeaponSwayVisuals()
     {
         weaponTransform.SetLocalPositionAndRotation(Vector3.SmoothDamp(weaponTransform.localPosition, weaponSwayPositionTarget * swayPositionMultiplier, ref positionDampVelocity, swayPositionDamping),
