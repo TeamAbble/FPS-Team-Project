@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -65,16 +66,17 @@ public class Weapon : MonoBehaviour
     WeaponManager wm;
     [SerializeField] bool useLoopedSound;
     public Magazine oldMag, newMag;
-
+    [SerializeField] CinemachineImpulseSource recoilSource;
+    [SerializeField] float recoilForce;
     private void Start()
     {
         wm = GetComponentInParent<WeaponManager>();
     }
     bool IsOwnerAlive => wm.IsAlive;
-    
+    public bool isEnemyWeapon;
     protected virtual bool CanFire()
     {
-        return IsOwnerAlive && (fireIntervalRemaining <= 0) && 
+        return (isEnemyWeapon || IsOwnerAlive) && (fireIntervalRemaining <= 0) && 
             !fireBlocked && 
             (burstCount <= 0 || currentBurstCount == 0);
     }
@@ -235,7 +237,8 @@ public class Weapon : MonoBehaviour
 
             }
         }
-
+        if (recoilSource)
+            recoilSource.GenerateImpulse(recoilForce);
 
     }
     IEnumerator BurstFire()
@@ -260,11 +263,15 @@ public class Weapon : MonoBehaviour
     IEnumerator ForcedWindup()
     {
         windupInProgress = true;
+        fireAudioSource.clip = windupAudio;
+        fireAudioSource.Play();
         while (currentWindup < fireWindup)
         {
             currentWindup += Time.fixedDeltaTime;
+            fireAudioSource.pitch = Mathf.Lerp(minWindupPitch, maxWindupPitch, Mathf.InverseLerp(0, fireWindup, currentWindup));
             yield return new WaitForFixedUpdate();
         }
+        fireAudioSource.pitch = 1;
         TryFire();
         yield return new WaitForFixedUpdate();
         windupInProgress = false;

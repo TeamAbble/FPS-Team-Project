@@ -302,8 +302,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee3c52a0e4eb54f4ab6a7bfb20cef56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
-  MoveSpeed: 30
+  maxHealth: 50
+  MoveSpeed: 5
   animator: {fileID: 5271983263195067905}
   meleeBounds: {x: 1.2, y: 1.2, z: 1.2}
   meleeOffset: {x: 0, y: 0, z: 1.2}

@@ -26,9 +26,9 @@ public class RangedEnemy : Enemy
             case States.ATTACK:
                 transform.rotation = Quaternion.LookRotation(target.transform.position - (transform.position + Vector3.down), Vector3.up);
                 shotTimer -= Time.deltaTime;
+                weapon.SetFireInput(shotTimer <= 0);
                 if (shotTimer <= 0)
                 {
-                    //weapon.SetFireInput(true);
                     Debug.Log("EnemyFired");
                     shotTimer = 2;
                 }
