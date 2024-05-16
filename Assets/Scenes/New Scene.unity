@@ -3028,15 +3028,10 @@ PrefabInstance:
       propertyPath: playerRef
       value: 
       objectReference: {fileID: 663685349}
-    - target: {fileID: 4890407698555094173, guid: 63878057147425a45a1cae6ef4d74f39,
+    - target: {fileID: 5626942117131365254, guid: 63878057147425a45a1cae6ef4d74f39,
         type: 3}
-      propertyPath: MaxEnemiesAllowed
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4890407698555094173, guid: 63878057147425a45a1cae6ef4d74f39,
-        type: 3}
-      propertyPath: waves.Array.data[0].nextWaveDelay
-      value: 5
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6464967501249126244, guid: 63878057147425a45a1cae6ef4d74f39,
         type: 3}

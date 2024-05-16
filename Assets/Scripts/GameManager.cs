@@ -36,9 +36,39 @@ public class GameManager : MonoBehaviour
         public AnimationCurve enemiesPerWaveRamp;
     }
     public Wave[] waves;
-    int waveContainerIndex;
+    public int waveContainerIndex;
     public int currentWave;
     public bool waveInProgress;
+    [Header("Weapon Switching")]
+    public GameObject weaponWheel;
+    public float weaponWheelTimeMutliplier;
+    /// <summary>
+    /// The fixed timestep 
+    /// </summary>
+    float weaponWheelTimestep;
+    public float defaultFixedTimestep = 0.02f;
+    public bool weaponWheelOpen;
+    public void UseWeaponWheel(bool opening)
+    {
+        if (opening)
+        {
+            weaponWheelTimestep = defaultFixedTimestep * weaponWheelTimeMutliplier;
+            Time.timeScale = weaponWheelTimeMutliplier;
+            Time.fixedDeltaTime = weaponWheelTimestep;
+            weaponWheel.SetActive(true);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+        else
+        {
+            Time.timeScale = 1;
+            Time.fixedDeltaTime = defaultFixedTimestep;
+            weaponWheel.SetActive(false);
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        weaponWheelOpen = opening;
+    }
     public void PauseGame(bool newPause)
     {
         paused = newPause;
@@ -161,7 +191,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if(waveContainerIndex < waves.Length)
+        if(waveContainerIndex < waves.Length - 1)
         {
             float ilerp = Mathf.InverseLerp(waves[waveContainerIndex].waveNum, waves[waveContainerIndex +1].waveNum, currentWave);
             enemiesRemaining = Mathf.CeilToInt(Mathf.Lerp(waves[waveContainerIndex].EnemiesPerWave, waves[waveContainerIndex + 1].EnemiesPerWave, waves[waveContainerIndex].enemiesPerWaveRamp.Evaluate(ilerp)));

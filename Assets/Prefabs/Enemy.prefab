@@ -305,12 +305,12 @@ MonoBehaviour:
   maxHealth: 5
   MoveSpeed: 30
   animator: {fileID: 5271983263195067905}
-  meleeBounds: {x: 0, y: 0, z: 0}
-  meleeOffset: {x: 0, y: 0, z: 0}
+  meleeBounds: {x: 1.2, y: 1.2, z: 1.2}
+  meleeOffset: {x: 0, y: 0, z: 1.2}
   meleeLayermask:
     serializedVersion: 2
     m_Bits: 128
-  meleeDamage: 0
+  meleeDamage: 10
   rb: {fileID: 0}
   meleeCooldown: 0
   target: {fileID: 0}

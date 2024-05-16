@@ -41,12 +41,13 @@ public class Weapon : MonoBehaviour
     [SerializeField, Tooltip("The time, in seconds, after which the weapon can fire another burst")] protected float burstCooldown;
     [SerializeField, Tooltip("If true, the weapon will only finish the burst when fire input is held for the duration of the burst.")] protected bool canInterruptBurst;
     [SerializeField, Tooltip("If true, the weapon will automatically fire another burst.")] protected bool canAutoBurst;
-    protected bool burstFiring;
+     protected bool burstFiring;
     [SerializeField] protected bool fireInput;
     /// <summary>
     /// Firing is blocked for one reason or another - typically through animations
     /// </summary>
-    protected bool fireBlocked;
+    [SerializeField] protected bool fireBlocked;
+
     /// <summary>
     /// This weapon is currently performing windup when ForceFirstShot is true.
     /// </summary>
@@ -86,6 +87,12 @@ public class Weapon : MonoBehaviour
         }
     }
     bool canfire;
+    private void OnEnable()
+    {
+        burstFiring = false;
+        fireBlocked = false;
+        currentBurstCount = 0;
+    }
     private void FixedUpdate()
     {
         //Cache our ability to fire at the start of the fixed update

@@ -41,12 +41,23 @@ public class WeaponManager : MonoBehaviour
     {
         if (context.performed)
         {
-            SwitchWeapon();
+            GameManager.instance.UseWeaponWheel(true);
+        }
+
+        if (context.canceled)
+        {
+            GameManager.instance.UseWeaponWheel(false);
         }
     }
     public void OnFire(InputAction.CallbackContext context)
     {
+        if (GameManager.instance.paused || GameManager.instance.weaponWheelOpen)
+        {
+            fireInput = false;
+            CurrentWeapon.SetFireInput(false);
+            return;
+        }
         fireInput = context.ReadValueAsButton();
-        weapons[weaponIndex].SetFireInput(fireInput);
+        CurrentWeapon.SetFireInput(fireInput);
     }
 }

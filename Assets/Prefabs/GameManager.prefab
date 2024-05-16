@@ -2455,10 +2455,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRef: {fileID: 0}
-  MaxEnemiesAllowed: 0
+  MaxEnemiesAllowed: 15
   enemiesRemaining: 0
   spawnRate: 3
   enemiesAlive: 0
+  spawnTimer: 0
   spawnOffset: {x: 0, y: 1, z: 0}
   pauseCanvas: {fileID: 2206434361882750406}
   paused: 0
@@ -2469,27 +2470,27 @@ MonoBehaviour:
   waves:
   - waveNum: 1
     EnemiesPerWave: 5
-    nextWaveDelay: 20
+    nextWaveDelay: 5
     enemiesPerWaveRamp:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
         value: 0
-        inSlope: 0
-        outSlope: 0
+        inSlope: 2.3848736
+        outSlope: 2.3848736
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
-        outWeight: 0
+        outWeight: 0.07515924
       - serializedVersion: 3
         time: 1
         value: 1
-        inSlope: 2
-        outSlope: 2
+        inSlope: -0.093348876
+        outSlope: -0.093348876
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0
+        inWeight: 0.15159237
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -2522,6 +2523,11 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   currentWave: 0
+  waveInProgress: 0
+  weaponWheel: {fileID: 5626942117131365254}
+  weaponWheelTimeMutliplier: 0.02
+  defaultFixedTimestep: 0.02
+  weaponWheelOpen: 0
 --- !u!1001 &7156269878616866362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2530,6 +2536,31 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8209468108760736962}
     m_Modifications:
+    - target: {fileID: 1096850874917105388, guid: f45f969390047244a8f8f85a13dd50c4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1096850874917105388, guid: f45f969390047244a8f8f85a13dd50c4,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1686524883217397643, guid: f45f969390047244a8f8f85a13dd50c4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1686524883217397643, guid: f45f969390047244a8f8f85a13dd50c4,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3054206664565987115, guid: f45f969390047244a8f8f85a13dd50c4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3262514345808336316, guid: f45f969390047244a8f8f85a13dd50c4,
         type: 3}
       propertyPath: m_Name
@@ -2538,7 +2569,7 @@ PrefabInstance:
     - target: {fileID: 3262514345808336316, guid: f45f969390047244a8f8f85a13dd50c4,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3340444334220514601, guid: f45f969390047244a8f8f85a13dd50c4,
         type: 3}
@@ -2645,6 +2676,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7956543371986877579, guid: f45f969390047244a8f8f85a13dd50c4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2653,6 +2689,12 @@ PrefabInstance:
 --- !u!224 &5551682584769407763 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3340444334220514601, guid: f45f969390047244a8f8f85a13dd50c4,
+    type: 3}
+  m_PrefabInstance: {fileID: 7156269878616866362}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5626942117131365254 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3262514345808336316, guid: f45f969390047244a8f8f85a13dd50c4,
     type: 3}
   m_PrefabInstance: {fileID: 7156269878616866362}
   m_PrefabAsset: {fileID: 0}

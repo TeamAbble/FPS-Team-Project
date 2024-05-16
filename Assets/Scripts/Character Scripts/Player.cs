@@ -31,9 +31,12 @@ public class Player : Character
         if (!aimTransform)
             return;
         //Add the look input to the look angle
-        lookAngle += lookInput * lookSpeed * Time.fixedDeltaTime;
-        //modulo the look yaw by 360
-        lookAngle.y = Mathf.Clamp(lookAngle.y, -85, 85);
+        if (!GameManager.instance.weaponWheelOpen)
+        {
+            lookAngle += lookInput * lookSpeed * Time.fixedDeltaTime;
+            //modulo the look yaw by 360
+            lookAngle.y = Mathf.Clamp(lookAngle.y, -85, 85);
+        }
         deltaLookAngle = oldLookAngle - lookAngle;
         lookAngle.x %= 360;
         aimTransform.localRotation = Quaternion.Euler(-lookAngle.y + aimPitchOffset, 0, 0);
