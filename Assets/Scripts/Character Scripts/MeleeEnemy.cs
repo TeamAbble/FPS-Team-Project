@@ -30,8 +30,8 @@ public class MeleeEnemy : Enemy
                     transform.rotation = Quaternion.LookRotation(target.transform.position - (transform.position + Vector3.down), Vector3.up);
                     break;
             }
-        }
         animator.SetBool("Attacking", state == States.ATTACK);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
