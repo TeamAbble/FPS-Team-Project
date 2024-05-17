@@ -3028,16 +3028,6 @@ PrefabInstance:
       propertyPath: playerRef
       value: 
       objectReference: {fileID: 663685349}
-    - target: {fileID: 5510859388540995710, guid: 63878057147425a45a1cae6ef4d74f39,
-        type: 3}
-      propertyPath: weaponName
-      value: Pencil MG
-      objectReference: {fileID: 0}
-    - target: {fileID: 5626942117131365254, guid: 63878057147425a45a1cae6ef4d74f39,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6464967501249126244, guid: 63878057147425a45a1cae6ef4d74f39,
         type: 3}
       propertyPath: m_RootOrder
@@ -3093,50 +3083,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7811741522751885526, guid: 63878057147425a45a1cae6ef4d74f39,
-        type: 3}
-      propertyPath: m_Interactable
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8312697096686426729, guid: 63878057147425a45a1cae6ef4d74f39,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -5.165771
-      objectReference: {fileID: 0}
-    - target: {fileID: 8312697096686426729, guid: 63878057147425a45a1cae6ef4d74f39,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.4973419
-      objectReference: {fileID: 0}
-    - target: {fileID: 8312697096686426729, guid: 63878057147425a45a1cae6ef4d74f39,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 3.0079741
-      objectReference: {fileID: 0}
     - target: {fileID: 9106109773358626239, guid: 63878057147425a45a1cae6ef4d74f39,
         type: 3}
       propertyPath: m_Name
       value: GameManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 9106109773358626239, guid: 63878057147425a45a1cae6ef4d74f39,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9128766331015295654, guid: 63878057147425a45a1cae6ef4d74f39,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -5.165771
-      objectReference: {fileID: 0}
-    - target: {fileID: 9128766331015295654, guid: 63878057147425a45a1cae6ef4d74f39,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.509135
-      objectReference: {fileID: 0}
-    - target: {fileID: 9128766331015295654, guid: 63878057147425a45a1cae6ef4d74f39,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 3.0626192
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

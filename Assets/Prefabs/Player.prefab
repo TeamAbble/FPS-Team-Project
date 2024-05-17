@@ -654,7 +654,7 @@ Transform:
   m_Children:
   - {fileID: 8688610723204372878}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &3153882696938285588
 Rigidbody:
@@ -2032,11 +2032,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Stapler
-      objectReference: {fileID: 0}
-    - target: {fileID: 5394613421308670716, guid: eba2ef713048c794ab4b96a7fdd5b868,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

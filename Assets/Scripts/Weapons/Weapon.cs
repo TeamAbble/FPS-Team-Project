@@ -72,7 +72,7 @@ public class Weapon : MonoBehaviour
     {
         wm = GetComponentInParent<WeaponManager>();
     }
-    bool IsOwnerAlive => wm.IsAlive;
+    bool IsOwnerAlive => (wm && wm.IsAlive);
     public bool isEnemyWeapon;
     protected virtual bool CanFire()
     {

@@ -2582,7 +2582,7 @@ PrefabInstance:
     - target: {fileID: 1096850874917105388, guid: f45f969390047244a8f8f85a13dd50c4,
         type: 3}
       propertyPath: m_Interactable
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1686524883217397643, guid: f45f969390047244a8f8f85a13dd50c4,
         type: 3}
@@ -2607,7 +2607,7 @@ PrefabInstance:
     - target: {fileID: 3262514345808336316, guid: f45f969390047244a8f8f85a13dd50c4,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3340444334220514601, guid: f45f969390047244a8f8f85a13dd50c4,
         type: 3}
@@ -2717,7 +2717,7 @@ PrefabInstance:
     - target: {fileID: 3398718961822856772, guid: f45f969390047244a8f8f85a13dd50c4,
         type: 3}
       propertyPath: weaponName
-      value: Shredder
+      value: Pencil MG
       objectReference: {fileID: 0}
     - target: {fileID: 3996343916391624483, guid: f45f969390047244a8f8f85a13dd50c4,
         type: 3}
