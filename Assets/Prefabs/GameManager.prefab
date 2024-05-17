@@ -59,7 +59,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1162277944383016558}
   m_LocalRotation: {x: 0.0018935204, y: 0.00000023825869, z: 6.773533e-10, w: 0.9999982}
-  m_LocalPosition: {x: -5.165771, y: 1.509135, z: 3.0626192}
+  m_LocalPosition: {x: -229.73633, y: 3.976153, z: -31.936115}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -679,7 +679,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4048985927413516639}
   m_LocalRotation: {x: 0.0018935204, y: 0.00000023825869, z: 6.773533e-10, w: 0.9999982}
-  m_LocalPosition: {x: -5.165771, y: 1.4973419, z: 3.0079741}
+  m_LocalPosition: {x: -229.73633, y: 3.9643598, z: -31.99076}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1451,8 +1451,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 180, y: -45}
-  m_SizeDelta: {x: 300, y: 50}
+  m_AnchoredPosition: {x: 800.5, y: -80.5307}
+  m_SizeDelta: {x: 300, y: 121.0614}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7374165721273375181
 CanvasRenderer:
@@ -1525,7 +1525,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -2440,7 +2440,7 @@ Transform:
   - {fileID: 9128766331015295654}
   - {fileID: 8312697096686426729}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4890407698555094173
 MonoBehaviour:
@@ -2470,7 +2470,7 @@ MonoBehaviour:
   waves:
   - waveNum: 1
     EnemiesPerWave: 5
-    nextWaveDelay: 30
+    nextWaveDelay: 10
     enemiesPerWaveRamp:
       serializedVersion: 2
       m_Curve:
@@ -2496,8 +2496,8 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   - waveNum: 5
-    EnemiesPerWave: 15
-    nextWaveDelay: 30
+    EnemiesPerWave: 20
+    nextWaveDelay: 10
     enemiesPerWaveRamp:
       serializedVersion: 2
       m_Curve:
@@ -2523,8 +2523,8 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   - waveNum: 25
-    EnemiesPerWave: 60
-    nextWaveDelay: 30
+    EnemiesPerWave: 100
+    nextWaveDelay: 10
     enemiesPerWaveRamp:
       serializedVersion: 2
       m_Curve:
@@ -2582,7 +2582,7 @@ PrefabInstance:
     - target: {fileID: 1096850874917105388, guid: f45f969390047244a8f8f85a13dd50c4,
         type: 3}
       propertyPath: m_Interactable
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1686524883217397643, guid: f45f969390047244a8f8f85a13dd50c4,
         type: 3}
@@ -2607,7 +2607,7 @@ PrefabInstance:
     - target: {fileID: 3262514345808336316, guid: f45f969390047244a8f8f85a13dd50c4,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3340444334220514601, guid: f45f969390047244a8f8f85a13dd50c4,
         type: 3}
@@ -2717,7 +2717,7 @@ PrefabInstance:
     - target: {fileID: 3398718961822856772, guid: f45f969390047244a8f8f85a13dd50c4,
         type: 3}
       propertyPath: weaponName
-      value: Shredder
+      value: Pencil MG
       objectReference: {fileID: 0}
     - target: {fileID: 3996343916391624483, guid: f45f969390047244a8f8f85a13dd50c4,
         type: 3}

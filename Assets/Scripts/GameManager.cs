@@ -175,7 +175,6 @@ public class GameManager : MonoBehaviour
     private void OnGUI()
     {
         GUI.skin.textField.fontSize = 40;
-
         GUILayout.TextField($"Score : {score}", GUILayout.Width(Screen.width / 10), GUILayout.Height(Screen.height / 20));
         GUILayout.TextField($"Health : {playerRef.Health}", GUILayout.Width(Screen.width / 8), GUILayout.Height(Screen.height / 20));
     }
