@@ -89,18 +89,28 @@ public class Weapon : MonoBehaviour
         }
     }
     bool canfire;
-    private void OnEnable()
+    private void OnDisable()
     {
+        //Cleanup - Some weapons are non-functional after swapping to another weapon before coroutine-controlled CanFire conditions are reset.
+        StopAllCoroutines();
+        //Fix for burst fire weapons being non-functional after swapping during burst cooldown.
         burstFiring = false;
         fireBlocked = false;
         currentBurstCount = 0;
+        //Fix for weapons using ForceFirstShot being non-functional after swapping to another weapon during forced windup.
+        windupInProgress = false;
+        currentWindup = 0;
+        //Fix for weapons potentially playing looped sounds after switching weapons
+        fireAudioSource.loop = false;
+        //Ensure weapons cannot fire upon swapping back to this weapon
+        fireInput = false;
+
     }
     private void FixedUpdate()
     {
         //Cache our ability to fire at the start of the fixed update
         canfire = CanFire();
         //We can't fire if we're not pressing the fire button
-
         if (fireInput)
         {
             if (canfire)
@@ -134,18 +144,27 @@ public class Weapon : MonoBehaviour
         }
         else
         {
+            //If this weapon does not use ForceFirstShot, then the windup needs to be decremented.
             if (!windupInProgress)
                 currentWindup -= Time.fixedDeltaTime * windupDecay;
+            //Reset the number of times we've fired to 0
             timesFired = 0;
         }
-
+        //If we're waiting to fire again, continue the timer
         if(fireIntervalRemaining > 0)
         {
             fireIntervalRemaining -= Time.fixedDeltaTime;
         }
+        //Clamp the windup so it doesn't get too large and allow the player to "over-charge" a weapon and fire with no windup after holding the button for a while
         currentWindup = Mathf.Clamp(currentWindup, 0, fireWindup);
-
-        for (int i = tracers.Count -1; i >= 0; i--)
+    }
+    /// <summary>
+    /// Moved Tracer Update from MonoBehaviour.FixedUpdate() to be controlled by the WeaponManager/RangedEnemy script, so tracers for disabled weapons are still processed.
+    /// </summary>
+    public void UpdateTracers()
+    {
+        //Progress all the tracers for this weapon
+        for (int i = tracers.Count - 1; i >= 0; i--)
         {
             if (tracers[i].tracer)
                 tracers[i].tracer.transform.position = Vector3.Lerp(tracers[i].start, tracers[i].end, tracers[i].lerp);
@@ -155,7 +174,7 @@ public class Weapon : MonoBehaviour
                 i = Mathf.Min(i + 1, tracers.Count - 1);
                 continue;
             }
-            tracers[i].lerp += tracers[i].timeIncrement;
+            tracers[i].lerp += tracers[i].timeIncrement * Time.fixedDeltaTime;
         }
     }
     void TryFire()
@@ -232,7 +251,7 @@ public class Weapon : MonoBehaviour
                     end = hit.collider ? hit.point : (firePosition.TransformDirection(randomDirection) + firePosition.position),
                     lerp = 0,
                 };
-                t.timeIncrement = (tracerSpeed * Time.fixedDeltaTime) / Vector3.Distance(t.start, t.end);
+                t.timeIncrement = tracerSpeed / Vector3.Distance(t.start, t.end);
                 tracers.Add(t);
 
             }

@@ -17,6 +17,9 @@ public class RangedEnemy : Enemy
     }
     protected override void EnemyBehaviour()
     {
+        if(weapon)
+            weapon.UpdateTracers();
+
         CheckLineOfSight();
         switch (state)
         {
@@ -32,6 +35,12 @@ public class RangedEnemy : Enemy
                     Debug.Log("EnemyFired");
                     shotTimer = 2;
                 }
+                break;
+            case States.PATROL:
+                break;
+            case States.RETREAT:
+                break;
+            default:
                 break;
         }
     }

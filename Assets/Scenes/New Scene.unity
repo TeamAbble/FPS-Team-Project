@@ -3028,6 +3028,11 @@ PrefabInstance:
       propertyPath: playerRef
       value: 
       objectReference: {fileID: 663685349}
+    - target: {fileID: 5626942117131365254, guid: 63878057147425a45a1cae6ef4d74f39,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6464967501249126244, guid: 63878057147425a45a1cae6ef4d74f39,
         type: 3}
       propertyPath: m_RootOrder

@@ -50,6 +50,13 @@ public class GameManager : MonoBehaviour
     public bool weaponWheelOpen;
     public void UseWeaponWheel(bool opening)
     {
+        //If the player is dead, we don't want to allow the player to open the weapon wheel.
+        //I don't think there's any real adverse effects of letting the player do this, because it hasn't been tried yet
+        //But its stupid and pointless to let the player do this when the weapon wheel is hidden by the menus anyway :p
+
+        if (!playerRef.IsAlive)
+            return;
+
         if (opening)
         {
             weaponWheelTimestep = defaultFixedTimestep * weaponWheelTimeMutliplier;
@@ -71,6 +78,9 @@ public class GameManager : MonoBehaviour
     }
     public void PauseGame(bool newPause)
     {
+        //pauses the game
+        //I don't much like the timescale method but there's not much else I can think to do other than disabling most components and that might have a wonky effect
+        //this is but a humble game so its okay :)
         paused = newPause;
         Time.timeScale = paused ? 0 : 1;
         pauseCanvas.SetActive(paused);
@@ -83,27 +93,33 @@ public class GameManager : MonoBehaviour
     }
     private void Awake()
     {
+        //Initialise singleton if one doesn't already exist, or destroy this object if it does
         if (instance == null)
         {
             instance = this;
         }
         else
         {
-            Destroy(this);
+            Destroy(gameObject);
             return;
         }
-
+        //Check if the main camera in the scene does or doesn't have a Cinemachine Brain,
+        //Allows it to work with the player
         if (!Camera.main.GetComponent<CinemachineBrain>())
         {
             Camera.main.gameObject.AddComponent<CinemachineBrain>();
         }
+        //Get the player 
         if (!playerRef)
             playerRef = FindFirstObjectByType<Player>();
+        //Force the game to be unpaused
         PauseGame(false);
+        //Disable this menu
         respawnScreen.SetActive(false);
-        StartCoroutine(WaveDelay());
-
+        //Gather all the spawners
         spawners.AddRange(FindObjectsOfType<EnemySpawner>(true));
+        //Start the first wave delay
+        StartCoroutine(WaveDelay());
     }
 
 
