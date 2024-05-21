@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1979887516975900217}
   - component: {fileID: 431476392297400606}
   - component: {fileID: 1473739463979852922}
+  - component: {fileID: -6172658521964175361}
   m_Layer: 0
   m_Name: Office Chair (1)
   m_TagString: Untagged
@@ -83,3 +84,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &-6172658521964175361
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8100197579841262225}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.872, y: 1.4625, z: 2.6789427}
+  m_Center: {x: 0.000000059604645, y: -0.19125, z: 1.3394711}
