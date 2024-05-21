@@ -85,6 +85,8 @@ public class Player : Character
     }
     private void FixedUpdate()
     {
+        
+
         if (!IsAlive)
             return;
         rb.drag = drag;
