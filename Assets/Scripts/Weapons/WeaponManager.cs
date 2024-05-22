@@ -20,6 +20,13 @@ public class WeaponManager : MonoBehaviour
         }
         weapons[weaponIndex].gameObject.SetActive(true);
     }
+    private void FixedUpdate()
+    {
+        for (int i = 0; i < weapons.Length; i++)
+        {
+            weapons[i].UpdateTracers();
+        }
+    }
 
     public void SwitchWeapon()
     {
