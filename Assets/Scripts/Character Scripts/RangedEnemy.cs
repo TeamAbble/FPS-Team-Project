@@ -8,6 +8,7 @@ public class RangedEnemy : Enemy
     [SerializeField] LayerMask layermask;
     float shotTimer = 2;
     public Weapon weapon;
+    [SerializeField] float viewDistance = 30;
    
 
     // Update is called once per frame
@@ -49,7 +50,7 @@ public class RangedEnemy : Enemy
     {
         if (Physics.Linecast(transform.position, target.transform.position,out RaycastHit hit, layermask, QueryTriggerInteraction.Ignore))
         {
-            if (hit.rigidbody && hit.rigidbody.TryGetComponent(out Character player))
+            if (hit.rigidbody && hit.rigidbody.TryGetComponent(out Character player)&&hit.distance<=viewDistance)
             {
                 Debug.Log("found");
                 agent.enabled = false;
