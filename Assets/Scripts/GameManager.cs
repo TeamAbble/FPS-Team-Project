@@ -155,7 +155,7 @@ public class GameManager : MonoBehaviour
     }
     void SetEnemyDisplay()
     {
-        waveInfoDisplay.text = $"Enemies Left This Wave\n{enemiesRemaining}\nEnemies Still Working\n{enemiesAlive}";
+        waveInfoDisplay.text = $"Wave: {WaveStringBuilder()}";
     }
     public void EnemyDeath()
     {
@@ -217,5 +217,14 @@ public class GameManager : MonoBehaviour
         }
         SetEnemyDisplay();
         waveInProgress = true;
+    }
+
+    public string WaveStringBuilder()
+    {
+        string printString = null;
+        int currentwaveHundreds = Mathf.FloorToInt( currentWave / 100);
+        int currentwave = currentWave % 100;
+        printString = $"{currentwaveHundreds:00}:{currentwave:00}";
+        return printString;
     }
 }

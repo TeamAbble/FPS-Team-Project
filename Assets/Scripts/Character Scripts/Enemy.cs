@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Enemy : Character
 {
     protected NavMeshAgent agent;
+    [SerializeField] protected Slider healthBarRef;
     protected bool firing;
     public GameObject target;
     public enum States
@@ -21,6 +23,8 @@ public class Enemy : Character
         base.Start();
         agent = GetComponent<NavMeshAgent>();
         agent.speed = MoveSpeed;
+        healthBarRef.maxValue = maxHealth;
+        healthBarRef.value = maxHealth;
         
     }
     
@@ -53,5 +57,9 @@ public class Enemy : Character
     {
         
     }
-
+    public override void UpdateHealth(int healthChange)
+    {
+        base.UpdateHealth(healthChange);
+        healthBarRef.value = Health;
+    }
 }
