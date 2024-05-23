@@ -11,6 +11,7 @@ public class WeaponManager : MonoBehaviour
     Player p;
     public bool IsAlive => p.IsAlive;
     public Weapon CurrentWeapon => weapons[weaponIndex];
+    public int weaponLayer;
     private void Start()
     {
         p = GetComponent<Player>();
@@ -26,6 +27,7 @@ public class WeaponManager : MonoBehaviour
         {
             weapons[i].UpdateTracers();
         }
+        CurrentWeapon.fireBlocked = p.Animator.GetCurrentAnimatorStateInfo(weaponLayer).IsTag("Block");
     }
 
     public void SwitchWeapon()

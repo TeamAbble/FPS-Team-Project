@@ -32,6 +32,7 @@ public class Weapon : MonoBehaviour
     [SerializeField, Tooltip("If true, the weapon will always fire once when clicked, regardless of the windup time.\nIf false, the weapon will only fire when the [CurrentWindup] reaches [FireWindup]")] protected bool forceFirstShot;
     [SerializeField, Tooltip("The wait time for the weapon to first be fired")] protected float fireWindup;
     [SerializeField, Tooltip("The progress of the weapon's windup. Useful for interpolating visuals.")] protected float currentWindup;
+    float lastWindup;
     [SerializeField, Tooltip("How quickly the Windup decays when not holding the fire button")] protected float windupDecay;
     [SerializeField, Tooltip("If true, this weapon's windup will be reset after [FireIntervalRemaining] reaches zero.")] bool resetWindupAfterFiring;
     [SerializeField, Tooltip("The maximum range of the weapon. Weapons will not do damage beyond their maximum range")] protected float maxRange;
@@ -47,7 +48,7 @@ public class Weapon : MonoBehaviour
     /// <summary>
     /// Firing is blocked for one reason or another - typically through animations
     /// </summary>
-    [SerializeField] protected bool fireBlocked;
+    public bool fireBlocked;
 
     /// <summary>
     /// This weapon is currently performing windup when ForceFirstShot is true.
@@ -64,13 +65,16 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected float tracerSpeed;
     [SerializeField] protected LayerMask layermask;
     WeaponManager wm;
+    Animator animator;
     [SerializeField] bool useLoopedSound;
     public Magazine oldMag, newMag;
     [SerializeField] CinemachineImpulseSource recoilSource;
     [SerializeField] float recoilForce;
+    
     private void Start()
     {
         wm = GetComponentInParent<WeaponManager>();
+        animator = GetComponentInParent<Character>().Animator;
     }
     bool IsOwnerAlive => (wm && wm.IsAlive);
     public bool isEnemyWeapon;
@@ -89,6 +93,10 @@ public class Weapon : MonoBehaviour
         }
     }
     bool canfire;
+    [SerializeField, Tooltip("If true, this weapon will play a firing animation when fired")] bool useFireAnimation;
+    [SerializeField, Tooltip("If true, this weapon will keep playing the same firing animation over and over until the weapon stops being fired.")] bool loopFireAnimation;
+    [SerializeField, Tooltip("If true, the fire animation will be played when the windup starts")] bool playAnimationOnWindup;
+    [SerializeField, Tooltip("If true, use a different trigger for the windup, thus playing a different animation")] bool windupAnimationIsNotFireAnimation;
     private void OnDisable()
     {
         //Cleanup - Some weapons are non-functional after swapping to another weapon before coroutine-controlled CanFire conditions are reset.
@@ -155,8 +163,30 @@ public class Weapon : MonoBehaviour
         {
             fireIntervalRemaining -= Time.fixedDeltaTime;
         }
+
         //Clamp the windup so it doesn't get too large and allow the player to "over-charge" a weapon and fire with no windup after holding the button for a while
         currentWindup = Mathf.Clamp(currentWindup, 0, fireWindup);
+        //We only want to do all this stuff down here if this weapon is NOT configured to charge up 
+        if (!forceFirstShot)
+        {
+            //If this is the first frame we're winding up for, then we want to do some stuff relating to animations
+            if (lastWindup == 0 && currentWindup > 0)
+            {
+                if (playAnimationOnWindup)
+                {
+                    animator.SetTrigger(windupAnimationIsNotFireAnimation ? "Windup" : "Fire");
+                }
+                fireAudioSource.clip = windupAudio;
+                fireAudioSource.Play();
+            }
+            //If the below is true then the windup has ended and we should stop doing windup stuff
+            else if (lastWindup > 0 && currentWindup <= 0)
+            {
+                fireAudioSource.Stop();
+                animator.SetTrigger("WindupCancel");
+            }
+            lastWindup = currentWindup;
+        }
     }
     /// <summary>
     /// Moved Tracer Update from MonoBehaviour.FixedUpdate() to be controlled by the WeaponManager/RangedEnemy script, so tracers for disabled weapons are still processed.
@@ -190,6 +220,8 @@ public class Weapon : MonoBehaviour
     }
     void FireWeapon()
     {
+        if (useFireAnimation)
+            animator.SetTrigger("Fire");
         //Debug.Log($"Fired {name} @ {System.DateTime.Now}");
         fireIntervalRemaining = fireInterval;
         if (fireParticles)

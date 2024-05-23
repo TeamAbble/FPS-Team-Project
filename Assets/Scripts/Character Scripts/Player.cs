@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.ProBuilder.MeshOperations;
 /// <summary>
 /// Player Controller script, written by Lunar :p
 /// Handles the player's input, movement, all that jazz
