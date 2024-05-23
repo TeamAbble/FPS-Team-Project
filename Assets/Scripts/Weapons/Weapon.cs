@@ -91,6 +91,8 @@ public class Weapon : MonoBehaviour
         {
             fireAudioSource.loop = fireInput;
         }
+        if (!fireInput && loopFireAnimation)
+            animator.SetBool("LoopedFire", false);
     }
     bool canfire;
     [SerializeField, Tooltip("If true, this weapon will play a firing animation when fired")] bool useFireAnimation;
@@ -220,8 +222,10 @@ public class Weapon : MonoBehaviour
     }
     void FireWeapon()
     {
-        if (useFireAnimation)
+        if (useFireAnimation && !loopFireAnimation)
             animator.SetTrigger("Fire");
+        if (loopFireAnimation)
+            animator.SetBool("LoopedFire", true);
         //Debug.Log($"Fired {name} @ {System.DateTime.Now}");
         fireIntervalRemaining = fireInterval;
         if (fireParticles)

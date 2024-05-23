@@ -69,4 +69,9 @@ public class WeaponManager : MonoBehaviour
         fireInput = context.ReadValueAsButton();
         CurrentWeapon.SetFireInput(fireInput);
     }
+    public void OnReload(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            p.Animator.SetTrigger("Reload");
+    }
 }

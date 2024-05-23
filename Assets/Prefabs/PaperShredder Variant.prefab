@@ -10136,6 +10136,10 @@ MonoBehaviour:
   recoilSource: {fileID: 3714052209616057912}
   recoilForce: 0.1
   isEnemyWeapon: 0
+  useFireAnimation: 1
+  loopFireAnimation: 0
+  playAnimationOnWindup: 0
+  windupAnimationIsNotFireAnimation: 0
 --- !u!114 &3714052209616057912
 MonoBehaviour:
   m_ObjectHideFlags: 0
