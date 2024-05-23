@@ -156,7 +156,7 @@ public class GameManager : MonoBehaviour
     }
     void SetEnemyDisplay()
     {
-        waveInfoDisplay.text = $"Wave: {WaveStringBuilder()}";
+        waveInfoDisplay.text = WaveStringBuilder();
     }
     public void EnemyDeath()
     {
