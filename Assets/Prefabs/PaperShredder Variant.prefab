@@ -10123,7 +10123,7 @@ MonoBehaviour:
   tracerSpeed: 100
   layermask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 257
   useLoopedSound: 0
   oldMag:
     magazine: {fileID: 0}

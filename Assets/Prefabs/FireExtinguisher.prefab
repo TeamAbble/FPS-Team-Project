@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxAmmo: 0
   currentAmmo: 0
-  damage: 2
+  damage: 1
   projectilesPerShot: 5
   fireInterval: 0.01
   fireIntervalRemaining: 0

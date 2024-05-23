@@ -5017,7 +5017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2831be6fc1d6e7147a213cf8768ad1a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAmmo: 0
+  maxAmmo: 16
   currentAmmo: 0
   damage: 15
   projectilesPerShot: 1

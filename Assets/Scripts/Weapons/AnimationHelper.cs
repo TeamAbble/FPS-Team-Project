@@ -97,5 +97,9 @@ namespace Eclipse.Weapons
                 }
             }
         }
+        public void ReloadWeapon()
+        {
+            wm.CurrentWeapon.ReloadWeapon();
+        }
     }
 }

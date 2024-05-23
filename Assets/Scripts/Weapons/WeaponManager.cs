@@ -12,6 +12,7 @@ public class WeaponManager : MonoBehaviour
     public bool IsAlive => p.IsAlive;
     public Weapon CurrentWeapon => weapons[weaponIndex];
     public int weaponLayer;
+    public int WeaponCount => weapons.Length;
     private void Start()
     {
         p = GetComponent<Player>();
@@ -71,7 +72,7 @@ public class WeaponManager : MonoBehaviour
     }
     public void OnReload(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && CurrentWeapon.CanReload)
             p.Animator.SetTrigger("Reload");
     }
 }

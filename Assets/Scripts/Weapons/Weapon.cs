@@ -23,8 +23,8 @@ public class Weapon : MonoBehaviour
     }
 
     List<TracerObject> tracers = new List<TracerObject>();
-    [SerializeField, Tooltip("The maximum ammunition held by a weapon at one time. If zero, this weapon does not consume ammo.")] protected float maxAmmo;
-    [SerializeField, Tooltip("How much ammunition we currently have.")] protected float currentAmmo;
+    [SerializeField, Tooltip("The maximum ammunition held by a weapon at one time. If zero, this weapon does not consume ammo.")] protected int maxAmmo;
+    [SerializeField, Tooltip("How much ammunition we currently have.")] protected int currentAmmo;
     [SerializeField, Tooltip("The maximum damage dealt to an enemy.")] protected int damage;
     [SerializeField, Tooltip("How many 'Projectiles' a weapon will fire at an enemy.")] protected int projectilesPerShot;
     [SerializeField, Tooltip("The time, in seconds, between each shot")] protected float fireInterval;
@@ -70,11 +70,21 @@ public class Weapon : MonoBehaviour
     public Magazine oldMag, newMag;
     [SerializeField] CinemachineImpulseSource recoilSource;
     [SerializeField] float recoilForce;
-    
+    public bool CanReload => maxAmmo > 0 && currentAmmo < maxAmmo && !fireBlocked;
+    public (int max, int current) Ammo => (maxAmmo, currentAmmo);
+    public void ReloadWeapon()
+    {
+        currentAmmo = maxAmmo;
+    }
     private void Start()
     {
         wm = GetComponentInParent<WeaponManager>();
         animator = GetComponentInParent<Character>().Animator;
+
+        oldMag.startPos = oldMag.magazine.localPosition;
+        oldMag.startRot = oldMag.magazine.localRotation;
+
+        currentAmmo = maxAmmo;
     }
     bool IsOwnerAlive => (wm && wm.IsAlive);
     public bool isEnemyWeapon;
@@ -82,7 +92,7 @@ public class Weapon : MonoBehaviour
     {
         return (isEnemyWeapon || IsOwnerAlive) && (fireIntervalRemaining <= 0) && 
             !fireBlocked && 
-            (burstCount <= 0 || currentBurstCount == 0);
+            (burstCount <= 0 || currentBurstCount == 0) && (maxAmmo <= 0 || (maxAmmo > 0 && currentAmmo > 0));
     }
     public void SetFireInput(bool fireInput)
     {
@@ -226,6 +236,8 @@ public class Weapon : MonoBehaviour
             animator.SetTrigger("Fire");
         if (loopFireAnimation)
             animator.SetBool("LoopedFire", true);
+        if (maxAmmo > 0)
+            currentAmmo--;
         //Debug.Log($"Fired {name} @ {System.DateTime.Now}");
         fireIntervalRemaining = fireInterval;
         if (fireParticles)
