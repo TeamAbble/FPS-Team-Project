@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     List<EnemySpawner> spawners;
     public TextMeshProUGUI waveInfoDisplay;
+    public TextMeshProUGUI breakTimeText;
     [System.Serializable]public class Wave
     {
         public int waveNum;//The Wave Number
@@ -178,7 +179,7 @@ public class GameManager : MonoBehaviour
         float time = waves[waveContainerIndex].nextWaveDelay;
         while (time >= 0)
         {
-            waveInfoDisplay.text = $"Break Time: {time:0}";
+            breakTimeText.text = $"Break Time: {time:0}";
             time -= Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
@@ -198,6 +199,7 @@ public class GameManager : MonoBehaviour
     public void WaveStart()
     {
         currentWave++;
+        breakTimeText.text = "";
         for (int i = 0; i < waves.Length; i++)
         {
             if(currentWave >= waves[i].waveNum)
