@@ -12,13 +12,16 @@ public class WeaponWheelButton : MonoBehaviour, IPointerClickHandler
     public Sprite icon;
     public Image iconRender;
     public TextMeshProUGUI nameDisplay;
-     
     public void OnPointerClick(PointerEventData eventData)
     {
         GameManager.instance.playerRef.GetComponent<WeaponManager>().SwitchWeapon(weaponIndex);
         GameManager.instance.UseWeaponWheel(false);
     }
-
+    private void OnEnable()
+    {
+        GetComponent<Button>().interactable = weaponIndex < GameManager.instance.playerRef.GetComponent<WeaponManager>().WeaponCount;
+        print("Checked weapon is valid!");
+    }
     private void Start()
     {
         if(nameDisplay)

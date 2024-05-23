@@ -11,6 +11,8 @@ public class WeaponManager : MonoBehaviour
     Player p;
     public bool IsAlive => p.IsAlive;
     public Weapon CurrentWeapon => weapons[weaponIndex];
+    public int weaponLayer;
+    public int WeaponCount => weapons.Length;
     private void Start()
     {
         p = GetComponent<Player>();
@@ -26,6 +28,7 @@ public class WeaponManager : MonoBehaviour
         {
             weapons[i].UpdateTracers();
         }
+        CurrentWeapon.fireBlocked = p.Animator.GetCurrentAnimatorStateInfo(weaponLayer).IsTag("Block");
     }
 
     public void SwitchWeapon()
@@ -66,5 +69,10 @@ public class WeaponManager : MonoBehaviour
         }
         fireInput = context.ReadValueAsButton();
         CurrentWeapon.SetFireInput(fireInput);
+    }
+    public void OnReload(InputAction.CallbackContext context)
+    {
+        if (context.performed && CurrentWeapon.CanReload)
+            p.Animator.SetTrigger("Reload");
     }
 }

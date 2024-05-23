@@ -15,6 +15,7 @@ public abstract class Character : MonoBehaviour
     [SerializeField] protected Rigidbody rb;
     [SerializeField] protected float meleeCooldown;
     protected float currentMeleeCooldown;
+    public Animator Animator => animator;
     public float Health => health;
     protected virtual void Start()
     {

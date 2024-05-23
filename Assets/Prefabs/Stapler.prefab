@@ -4980,13 +4980,14 @@ GameObject:
   - component: {fileID: 1960034371843742628}
   - component: {fileID: 776822963043840683}
   - component: {fileID: 5905157765483290505}
+  - component: {fileID: 560794604492257741}
   m_Layer: 6
   m_Name: Stapler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1960034371843742628
 Transform:
   m_ObjectHideFlags: 0
@@ -5016,7 +5017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2831be6fc1d6e7147a213cf8768ad1a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAmmo: 0
+  maxAmmo: 16
   currentAmmo: 0
   damage: 15
   projectilesPerShot: 1
@@ -5062,9 +5063,13 @@ MonoBehaviour:
     magazine: {fileID: 2380546978275536481}
     startPos: {x: 0, y: 0, z: 0}
     startRot: {x: 0, y: 0, z: 0, w: 0}
-  recoilSource: {fileID: 0}
-  recoilForce: 0
+  recoilSource: {fileID: 560794604492257741}
+  recoilForce: 0.02
   isEnemyWeapon: 0
+  useFireAnimation: 1
+  loopFireAnimation: 0
+  playAnimationOnWindup: 0
+  windupAnimationIsNotFireAnimation: 0
 --- !u!82 &5905157765483290505
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5161,6 +5166,86 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &560794604492257741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5394613421308670716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_ImpulseShape: 0
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.003571868
+        inSlope: 25.177425
+        outSlope: 25.177425
+        tangentMode: 0
+        weightedMode: 2
+        inWeight: 0
+        outWeight: 0.085849665
+      - serializedVersion: 3
+        time: 0.7370378
+        value: -0.03908562
+        inSlope: -0.18855053
+        outSlope: -0.18855053
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.3658097
+        outWeight: 0.25396767
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0.25899503
+        outSlope: 0.25899503
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.62976754
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 0.3
+    m_ImpulseType: 0
+    m_DissipationRate: 0.25
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 100
+    m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: 0, y: 0, z: 1}
 --- !u!1 &8018583789078017517
 GameObject:
   m_ObjectHideFlags: 0
@@ -10199,6 +10284,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8442307832336643391, guid: 56066cd63627124428b570bda23cd9b9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8442307832336643391, guid: 56066cd63627124428b570bda23cd9b9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8442307832336643391, guid: 56066cd63627124428b570bda23cd9b9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -505113825378409777, guid: 56066cd63627124428b570bda23cd9b9,
         type: 3}
       propertyPath: m_Layer
@@ -10261,18 +10361,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8879528566716807029, guid: 56066cd63627124428b570bda23cd9b9,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.93813
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879528566716807029, guid: 56066cd63627124428b570bda23cd9b9,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.93813
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879528566716807029, guid: 56066cd63627124428b570bda23cd9b9,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.93813
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879528566716807029, guid: 56066cd63627124428b570bda23cd9b9,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.0012
       objectReference: {fileID: 0}
     - target: {fileID: 8879528566716807029, guid: 56066cd63627124428b570bda23cd9b9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.088
+      value: -0.0489
       objectReference: {fileID: 0}
     - target: {fileID: 8879528566716807029, guid: 56066cd63627124428b570bda23cd9b9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 8879528566716807029, guid: 56066cd63627124428b570bda23cd9b9,
         type: 3}
