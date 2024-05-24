@@ -2967,6 +2967,11 @@ PrefabInstance:
       propertyPath: weaponName
       value: EMPTY
       objectReference: {fileID: 0}
+    - target: {fileID: 3996343916391624483, guid: f45f969390047244a8f8f85a13dd50c4,
+        type: 3}
+      propertyPath: weaponIndex
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5654606773895783459, guid: f45f969390047244a8f8f85a13dd50c4,
         type: 3}
       propertyPath: weaponName
