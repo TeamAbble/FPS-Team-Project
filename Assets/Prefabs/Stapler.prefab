@@ -4987,7 +4987,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1960034371843742628
 Transform:
   m_ObjectHideFlags: 0
@@ -5017,6 +5017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2831be6fc1d6e7147a213cf8768ad1a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animationSet: {fileID: 11400000, guid: ab5de312ad9aa594bb1482fb7ff6fe70, type: 2}
   maxAmmo: 16
   currentAmmo: 0
   damage: 15

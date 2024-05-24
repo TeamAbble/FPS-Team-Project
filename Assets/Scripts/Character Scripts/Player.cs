@@ -22,6 +22,13 @@ public class Player : Character
     [SerializeField] float swayPositionReturnSpeed, swayRotationReturnSpeed, swayPositionDamping, swayRotationDamping, aimingSwayPositionDamping, aimingSwayRotationDamping, swayPositionMultiplier, swayRotationMultiplier;
     Vector3 positionDampVelocity;
     [SerializeField] float swayPositionReturn, swayRotationReturn;
+    public WeaponManager weaponManager;
+    protected override void Start()
+    {
+        base.Start();
+        if(!weaponManager)
+            weaponManager = GetComponent<WeaponManager>();
+    }
     private void Aim()
     {
         //Rotate the player based on the delta time
@@ -123,6 +130,7 @@ public class Player : Character
     public override void UpdateHealth(int healthChange)
     {
         base.UpdateHealth(healthChange);
+        GameManager.instance.damageVolume.weight = Mathf.InverseLerp(0, maxHealth, health);
     }
     public override void Die()
     {

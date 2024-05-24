@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -28,7 +29,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     List<EnemySpawner> spawners;
     public TextMeshProUGUI waveInfoDisplay;
-    public TextMeshProUGUI breakTimeText;
+    public TextMeshProUGUI breakTimeText, ammoDisplayText;
     [System.Serializable]public class Wave
     {
         public int waveNum;//The Wave Number
@@ -49,6 +50,7 @@ public class GameManager : MonoBehaviour
     float weaponWheelTimestep;
     public float defaultFixedTimestep = 0.02f;
     public bool weaponWheelOpen;
+    public Volume damageVolume;
     public void UseWeaponWheel(bool opening)
     {
         //If the player is dead, we don't want to allow the player to open the weapon wheel.
@@ -142,6 +144,11 @@ public class GameManager : MonoBehaviour
                 spawnTimer = 0;
             }
         }
+        if (playerRef.weaponManager.CurrentWeapon) 
+        {
+            (int max, int current) = playerRef.weaponManager.CurrentWeapon.Ammo;
+            ammoDisplayText.text = $"{current}\n/{max}";
+        }
     }
     public void FindSpawner()
     {
@@ -185,15 +192,6 @@ public class GameManager : MonoBehaviour
         }
         WaveStart();
         yield break;
-    }
-
-
-
-    private void OnGUI()
-    {
-        GUI.skin.textField.fontSize = 40;
-        GUILayout.TextField($"Score : {score}", GUILayout.Width(Screen.width / 10), GUILayout.Height(Screen.height / 20));
-        GUILayout.TextField($"Health : {playerRef.Health}", GUILayout.Width(Screen.width / 8), GUILayout.Height(Screen.height / 20));
     }
 
     public void WaveStart()

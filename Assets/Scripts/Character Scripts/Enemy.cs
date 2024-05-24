@@ -60,6 +60,6 @@ public class Enemy : Character
     public override void UpdateHealth(int healthChange)
     {
         base.UpdateHealth(healthChange);
-        healthBarRef.value = Health;
+        healthBarRef.value = CurrentHealth;
     }
 }
