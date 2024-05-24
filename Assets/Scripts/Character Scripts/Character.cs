@@ -4,8 +4,8 @@ using UnityEngine;
 
 public abstract class Character : MonoBehaviour
 {
-    [SerializeField] protected int maxHealth;
-    protected int health;
+    [SerializeField] protected float maxHealth;
+    protected float health;
     [SerializeField] protected float MoveSpeed;
     [SerializeField] protected Animator animator;
     [SerializeField] protected Vector3 meleeBounds;
@@ -16,7 +16,8 @@ public abstract class Character : MonoBehaviour
     [SerializeField] protected float meleeCooldown;
     protected float currentMeleeCooldown;
     public Animator Animator => animator;
-    public float Health => health;
+    public float CurrentHealth => health;
+    public float MaxHealth => maxHealth;
     protected virtual void Start()
     {
         if(!animator)

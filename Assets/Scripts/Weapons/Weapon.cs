@@ -21,7 +21,7 @@ public class Weapon : MonoBehaviour
         public Vector3 startPos;
         public Quaternion startRot;
     }
-
+    public WeaponAnimationSetScriptable animationSet;
     List<TracerObject> tracers = new List<TracerObject>();
     [SerializeField, Tooltip("The maximum ammunition held by a weapon at one time. If zero, this weapon does not consume ammo.")] protected int maxAmmo;
     [SerializeField, Tooltip("How much ammunition we currently have.")] protected int currentAmmo;

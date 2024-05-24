@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2936acf6e92272a48838bafa6e320a16, type: 3}
+  m_Name: SharpenerAnimations
+  m_EditorClassIdentifier: 
+  overrides:
+  - name: Fire
+    overrideClip: {fileID: 7400000, guid: 063eaec3b1248e94db9a7bbec6e9cc6e, type: 2}
+  - name: Reload
+    overrideClip: {fileID: 7400000, guid: 0a52c9659d1fc6f4bb83f2d92059f62a, type: 2}
+  - name: Equip
+    overrideClip: {fileID: 7400000, guid: 2b71a985c3340654295a32d65de41792, type: 2}
+  - name: Idle
+    overrideClip: {fileID: 7400000, guid: a6be2dc2974c7b44f85a70a14a834989, type: 2}

@@ -21,6 +21,8 @@ public class WeaponManager : MonoBehaviour
             weapons[i].gameObject.SetActive(false);
         }
         weapons[weaponIndex].gameObject.SetActive(true);
+        ChangeAnimations();
+
     }
     private void FixedUpdate()
     {
@@ -38,6 +40,9 @@ public class WeaponManager : MonoBehaviour
         weaponIndex++;
         weaponIndex %= weapons.Length;
         weapons[weaponIndex].gameObject.SetActive(true);
+
+        p.Animator.Play("Equip");
+        ChangeAnimations();
     }
     public void SwitchWeapon(int newWeaponIndex)
     {
@@ -46,6 +51,10 @@ public class WeaponManager : MonoBehaviour
         weaponIndex = newWeaponIndex;
         weaponIndex %= weapons.Length;
         weapons[weaponIndex].gameObject.SetActive(true);
+
+        p.Animator.Play("Equip");
+        ChangeAnimations();
+
     }
     public void SwitchInput(InputAction.CallbackContext context)
     {
@@ -74,5 +83,28 @@ public class WeaponManager : MonoBehaviour
     {
         if (context.performed && CurrentWeapon.CanReload)
             p.Animator.SetTrigger("Reload");
+    }
+
+
+    AnimatorOverrideController aoc;
+    AnimationClipOverrides overrideclips;
+    public void ChangeAnimations()
+    {
+        if (!aoc)
+        {
+            aoc = new(p.Animator.runtimeAnimatorController);
+            p.Animator.runtimeAnimatorController = aoc;
+            overrideclips = new(aoc.overridesCount);
+            aoc.GetOverrides(overrideclips);
+        }
+        if (CurrentWeapon.animationSet)
+        {
+            for (int i = 0; i < CurrentWeapon.animationSet.overrides.Count; i++)
+            {
+                AnimationOverrides a = CurrentWeapon.animationSet.overrides[i];
+                overrideclips[a.name] = a.overrideClip;
+            }
+            aoc.ApplyOverrides(overrideclips);
+        }
     }
 }
