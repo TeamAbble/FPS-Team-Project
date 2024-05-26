@@ -26,16 +26,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6945862753918261553}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: 7, y: 0, z: -1.5100021}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 1.1880481, y: 1.188048, z: 1.1880479}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6778955470575075014}
   - {fileID: 5230236756249455504}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!33 &513222088111718071
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -93,7 +93,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6945862753918261553}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 30910691fb66289478923340aaa87822, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -122,6 +122,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Breakroom_Seat (1) 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8705161201764437936, guid: 1d622cd2ac9b68746b4dfb1571201351,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 30910691fb66289478923340aaa87822,
+        type: 2}
     - target: {fileID: 8904831810799940136, guid: 1d622cd2ac9b68746b4dfb1571201351,
         type: 3}
       propertyPath: m_RootOrder
@@ -216,6 +222,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Breakroom_Seat (1) 2 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8705161201764437936, guid: 1d622cd2ac9b68746b4dfb1571201351,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 30910691fb66289478923340aaa87822,
+        type: 2}
     - target: {fileID: 8904831810799940136, guid: 1d622cd2ac9b68746b4dfb1571201351,
         type: 3}
       propertyPath: m_RootOrder

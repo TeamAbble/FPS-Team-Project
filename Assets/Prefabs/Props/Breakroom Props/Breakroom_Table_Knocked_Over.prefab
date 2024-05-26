@@ -29,11 +29,11 @@ Transform:
   m_GameObject: {fileID: 5942564064374868512}
   m_LocalRotation: {x: -0.197081, y: -0.679087, z: -0.679087, w: 0.197081}
   m_LocalPosition: {x: 492.20612, y: -323.23, z: -2.648043}
-  m_LocalScale: {x: 0.6995634, y: 0.6995634, z: 0.69956326}
+  m_LocalScale: {x: 0.8954574, y: 0.89545715, z: 0.8954568}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: -147.633}
 --- !u!33 &6949419574374906502
 MeshFilter:
@@ -92,7 +92,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5942564064374868512}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 30910691fb66289478923340aaa87822, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -117,10 +117,10 @@ NavMeshObstacle:
   m_GameObject: {fileID: 5942564064374868512}
   m_Enabled: 1
   serializedVersion: 3
-  m_Shape: 1
+  m_Shape: 0
   m_Extents: {x: 1, y: 1, z: 1}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 1}
   m_TimeToStationary: 0.5
