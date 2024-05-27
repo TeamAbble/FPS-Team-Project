@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7735292896532601928}
   - component: {fileID: 5629088035732377371}
   - component: {fileID: 2943388747213028850}
+  - component: {fileID: 4795242214611636859}
   m_Layer: 0
   m_Name: Photo Copier (1)
   m_TagString: Untagged
@@ -106,6 +107,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 2.1999996, z: 2.1999996}
   m_Center: {x: 0, y: -1.0999998, z: 1.0999998}
+--- !u!65 &4795242214611636859
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4053647335732444286}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 1.0001098, z: 2.1999998}
+  m_Center: {x: 0, y: -2.7889426, z: 1.1000127}
 --- !u!1001 &6358097456333133602
 PrefabInstance:
   m_ObjectHideFlags: 0
