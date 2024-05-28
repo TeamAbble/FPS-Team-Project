@@ -44,12 +44,13 @@ public class Weapon : MonoBehaviour
     [SerializeField, Tooltip("If true, the weapon will only finish the burst when fire input is held for the duration of the burst.")] protected bool canInterruptBurst;
     [SerializeField, Tooltip("If true, the weapon will automatically fire another burst.")] protected bool canAutoBurst;
      protected bool burstFiring;
+    public RecoilProfile recoilProfile;
     [SerializeField] protected bool fireInput;
     /// <summary>
     /// Firing is blocked for one reason or another - typically through animations
     /// </summary>
     public bool fireBlocked;
-
+    public bool meleeWeapon;
     /// <summary>
     /// This weapon is currently performing windup when ForceFirstShot is true.
     /// </summary>
@@ -232,6 +233,8 @@ public class Weapon : MonoBehaviour
     }
     void FireWeapon()
     {
+
+
         if (useFireAnimation && !loopFireAnimation)
             animator.SetTrigger("Fire");
         if (loopFireAnimation)
@@ -259,54 +262,78 @@ public class Weapon : MonoBehaviour
         timesFired++;
         if (resetWindupAfterFiring)
             currentWindup = 0;
-
-        Vector3 randomDirection;
-        for (int i = 0; i < projectilesPerShot; i++)
+        if (meleeWeapon && !isEnemyWeapon)
         {
-            var vec = Random.insideUnitCircle;
-            randomDirection = new Vector3()
+            GameManager.instance.playerRef.MeleeAttack();
+        }
+        else
+        {
+            Vector3 randomDirection;
+            for (int i = 0; i < projectilesPerShot; i++)
             {
-                x = Mathf.Lerp(minSpread.x, maxSpread.x, vec.x),
-                y = Mathf.Lerp(minSpread.y, maxSpread.y, vec.y)
-            } + Vector3.forward * maxRange;
-
-            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.TransformDirection(randomDirection), out RaycastHit hit, maxRange, layermask, QueryTriggerInteraction.Ignore))
-            {
-                if (hit.rigidbody && hit.rigidbody.TryGetComponent(out Character c))
+                var vec = Random.insideUnitCircle;
+                randomDirection = new Vector3()
                 {
-                    c.UpdateHealth(-damage);
-                    print("hit an enemy");
+                    x = Mathf.Lerp(minSpread.x, maxSpread.x, vec.x),
+                    y = Mathf.Lerp(minSpread.y, maxSpread.y, vec.y)
+                } + Vector3.forward * maxRange;
+
+                if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.TransformDirection(randomDirection), out RaycastHit hit, maxRange, layermask, QueryTriggerInteraction.Ignore))
+                {
+                    if (hit.rigidbody && hit.rigidbody.TryGetComponent(out Character c))
+                    {
+                        c.UpdateHealth(-damage);
+                        print("hit an enemy");
+                    }
+                    else
+                    {
+                        print("did not hit enemy");
+                    }
+                    Debug.DrawLine(Camera.main.transform.position, hit.point, Color.green, 0.25f);
                 }
                 else
                 {
-                    print("did not hit enemy");
+                    print("Did not hit anything");
+                    Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.TransformDirection(randomDirection), Color.red, 0.25f);
                 }
-                Debug.DrawLine(Camera.main.transform.position, hit.point, Color.green, 0.25f);
-            }
-            else
-            {
-                print("Did not hit anything");
-                Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.TransformDirection(randomDirection), Color.red, 0.25f);
-            }
 
-            if (shotEffect)
-            {
-                GameObject shotObject = Instantiate(shotEffect, firePosition.position, firePosition.rotation);
-                var t = new TracerObject()
+                if (shotEffect)
                 {
-                    tracer = shotObject,
-                    start = firePosition.position,
-                    end = hit.collider ? hit.point : (firePosition.TransformDirection(randomDirection) + firePosition.position),
-                    lerp = 0,
-                };
-                t.timeIncrement = tracerSpeed / Vector3.Distance(t.start, t.end);
-                tracers.Add(t);
+                    GameObject shotObject = Instantiate(shotEffect, firePosition.position, firePosition.rotation);
+                    var t = new TracerObject()
+                    {
+                        tracer = shotObject,
+                        start = firePosition.position,
+                        end = hit.collider ? hit.point : (firePosition.TransformDirection(randomDirection) + firePosition.position),
+                        lerp = 0,
+                    };
+                    t.timeIncrement = tracerSpeed / Vector3.Distance(t.start, t.end);
+                    tracers.Add(t);
 
+                }
+            }
+            if (!isEnemyWeapon)
+            {
+                if (recoilSource)
+                    recoilSource.GenerateImpulse(recoilProfile.recoilForce);
+                Vector3 random = Random.insideUnitSphere;
+
+                Vector3 recPos = new()
+                {
+                    x = Mathf.Lerp(recoilProfile.minHipRecoilPos.x, recoilProfile.maxHipRecoilPos.x, random.x),
+                    y = Mathf.Lerp(recoilProfile.minHipRecoilPos.y, recoilProfile.maxHipRecoilPos.y, random.y),
+                    z = Mathf.Lerp(recoilProfile.minHipRecoilPos.z, recoilProfile.maxHipRecoilPos.z, random.z)
+                };
+                Vector3 recRot = new()
+                {
+                    x = Mathf.Lerp(recoilProfile.minHipRecoilRot.x, recoilProfile.maxHipRecoilRot.x, random.x),
+                    y = Mathf.Lerp(recoilProfile.minHipRecoilRot.y, recoilProfile.maxHipRecoilRot.y, random.y),
+                    z = Mathf.Lerp(recoilProfile.minHipRecoilRot.z, recoilProfile.maxHipRecoilRot.z, random.z)
+                };
+
+                wm.ReceiveRecoilImpulse(recPos, recRot);
             }
         }
-        if (recoilSource)
-            recoilSource.GenerateImpulse(recoilForce);
-
     }
     IEnumerator BurstFire()
     {

@@ -1,3 +1,4 @@
+using Eclipse.Weapons;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class WeaponManager : MonoBehaviour
     public Weapon CurrentWeapon => weapons[weaponIndex];
     public int weaponLayer;
     public int WeaponCount => weapons.Length;
+    public AnimationHelper animationHelper;
     private void Start()
     {
         p = GetComponent<Player>();
@@ -33,14 +35,15 @@ public class WeaponManager : MonoBehaviour
         CurrentWeapon.fireBlocked = p.Animator.GetCurrentAnimatorStateInfo(weaponLayer).IsTag("Block");
     }
 
-    public void SwitchWeapon()
+    public void SwitchWeapon(bool increment)
     {
         weapons[weaponIndex].SetFireInput(false);
         weapons[weaponIndex].gameObject.SetActive(false);
-        weaponIndex++;
+        weaponIndex += increment ? 1 : -1;
         weaponIndex %= weapons.Length;
         weapons[weaponIndex].gameObject.SetActive(true);
-
+        animationHelper.ReleaseNewMagInDefault();
+        animationHelper.ReleaseOldMagInDefault();
         p.Animator.Play("Equip");
         ChangeAnimations();
     }
@@ -51,7 +54,8 @@ public class WeaponManager : MonoBehaviour
         weaponIndex = newWeaponIndex;
         weaponIndex %= weapons.Length;
         weapons[weaponIndex].gameObject.SetActive(true);
-
+        animationHelper.ReleaseNewMagInDefault();
+        animationHelper.ReleaseOldMagInDefault();
         p.Animator.Play("Equip");
         ChangeAnimations();
 
@@ -106,5 +110,10 @@ public class WeaponManager : MonoBehaviour
             }
             aoc.ApplyOverrides(overrideclips);
         }
+        p.currentRecoilProfile = CurrentWeapon.recoilProfile;
+    }
+    public void ReceiveRecoilImpulse(Vector3 pos, Vector3 rot)
+    {
+        p.ReceiveRecoilImpulse(pos, rot);
     }
 }

@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1105979486170393716
 Transform:
   m_ObjectHideFlags: 0
@@ -68,8 +68,10 @@ MonoBehaviour:
   burstCooldown: 0
   canInterruptBurst: 0
   canAutoBurst: 0
+  recoilProfile: {fileID: 11400000, guid: 60db764e8432ac246975b1347dd6baeb, type: 2}
   fireInput: 0
   fireBlocked: 0
+  meleeWeapon: 0
   timesFired: 0
   fireParticles: {fileID: 6297959150520822701}
   fireAudioSource: {fileID: 1955807780891793905}
