@@ -78,7 +78,10 @@ public class Player : Character
         weaponTransform.SetLocalPositionAndRotation(weaponSwayPos + (recoilPos.ScaleReturn(recoilPositionScalar) * currentRecoilProfile.recoilPosMultiplier),
            Quaternion.Euler(weaponSwayRot) * Quaternion.Euler(recoilRot.ScaleReturn(recoilRotationScalar) * currentRecoilProfile.recoilRotMultiplier));
 
-        viewCamera.SetLocalPositionAndRotation(recoilPos);
+        viewCamera.SetLocalPositionAndRotation((recoilPos * currentRecoilProfile.viewmodelCameraInfluence).ScaleReturn(currentRecoilProfile.viewPositionScalar), 
+            Quaternion.Euler((recoilRot * currentRecoilProfile.viewmodelCameraInfluence).ScaleReturn(currentRecoilProfile.viewRotationScalar)));
+        worldCamera.SetLocalPositionAndRotation((recoilPos * currentRecoilProfile.worldCameraInfluence).ScaleReturn(currentRecoilProfile.worldPositionScalar),
+            Quaternion.Euler((recoilRot * currentRecoilProfile.worldCameraInfluence).ScaleReturn(currentRecoilProfile.worldRotationScalar)));
     }
 
     void RecoilMaths()
