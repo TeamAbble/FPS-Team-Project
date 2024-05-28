@@ -84,7 +84,7 @@ namespace Eclipse.Weapons
 
         public void SwitchWeaponCallback()
         {
-            wm.SwitchWeapon();
+            //wm.SwitchWeapon();
         }
         private void Update()
         {

@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f16c160dd8877149adcc69a8878c74d, type: 3}
+  m_Name: Extinguisher
+  m_EditorClassIdentifier: 
+  recoilPosReturnSpeed: 0
+  recoilRotReturnSpeed: 0
+  firingRecoilPosDamping: 0
+  firingRecoilRotDamping: 0
+  recoilPosMultiplier: 0
+  recoilRotMultiplier: 0
+  recoilForce: 0
+  minHipRecoilPos: {x: 0, y: 0, z: 0}
+  maxHipRecoilPos: {x: 0, y: 0, z: 0}
+  minAimRecoilPos: {x: 0, y: 0, z: 0}
+  maxAimRecoilPos: {x: 0, y: 0, z: 0}
+  minHipRecoilRot: {x: 0, y: 0, z: 0}
+  maxHipRecoilRot: {x: 0, y: 0, z: 0}
+  minAimRecoilRot: {x: 0, y: 0, z: 0}
+  maxAimRecoilRot: {x: 0, y: 0, z: 0}
+  recoilPosBounceCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  recoilRotBounceCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  recoilPosDamping: 0
+  recoilRotDamping: 0
+  temporaryAimAnglePerShot: {x: 0, y: 0, z: 0}
+  permanentAimAnglePerShot: 0
+  tempAimAngleDecay: 0
+  tempAimAngleDamp: 0
+  permAimAngleDamp: 0
+  tempAimAngleReturnSpeed: 0
+  temporaryAimBounceCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  viewmodelCameraInfluence: 0
+  worldCameraInfluence: 0

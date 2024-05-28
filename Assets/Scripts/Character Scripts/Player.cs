@@ -15,14 +15,26 @@ public class Player : Character
     [SerializeField] float drag;
     [SerializeField] bool movingCamera;
     [SerializeField, Tooltip("The transform that directly holds the weapon, NOT the transform for the weapon"), Header("Weapon Sway")] Transform weaponTransform;
-    [SerializeField] Vector3 weaponSwayPositionLimits, weaponSwayRotationLimits;
     [SerializeField] Vector3 weaponSwayPositionScalar, weaponSwayRotationScalar;
-    [SerializeField] Vector3 weaponSwayPositionTarget, weaponSwayRotationTarget, maxWeaponSwayPosition, maxWeaponSwayRotation;
     [SerializeField] AnimationCurve swayPositionBounceCurve, swayRotationBounceCurve;
     [SerializeField] float swayPositionReturnSpeed, swayRotationReturnSpeed, swayPositionDamping, swayRotationDamping, aimingSwayPositionDamping, aimingSwayRotationDamping, swayPositionMultiplier, swayRotationMultiplier;
-    Vector3 positionDampVelocity;
-    [SerializeField] float swayPositionReturn, swayRotationReturn;
+    Vector3 weaponSwayPositionTarget, weaponSwayRotationTarget, maxWeaponSwayPosition, maxWeaponSwayRotation, weaponSwayPos, weaponSwayRot;
+    Vector3 swayPosDampVelocity;
+    float swayPositionReturn, swayRotationReturn;
+    Vector3 compositePosition, compositeRotation;
+    public RecoilProfile currentRecoilProfile;
+    [SerializeField] Vector3 recoilPositionScalar, recoilRotationScalar;
+    [SerializeField] float recoilPosReturn, recoilRotReturn;
+    Vector3 recoilPosTarget, recoilRotTarget, maxRecoilPos, maxRecoilRot, recoilPosDampVelocity, recoilRotDampVelocity, recoilPos, recoilRot;
+    [SerializeField] Quaternion recoilOrientation;
     public WeaponManager weaponManager;
+    [SerializeField] Vector3 temporaryAimAngleTarget, temporaryAimAngle;
+    [SerializeField] float permanentAimAngle;
+    [SerializeField] float permanentAimAngleMultiplier;
+    float tempAimAngleLerp;
+    Vector3 maxTempAimAngle;
+    bool firing;
+    public Transform viewCamera, worldCamera;
     protected override void Start()
     {
         base.Start();
@@ -48,13 +60,68 @@ public class Player : Character
         transform.localRotation = Quaternion.Euler(0, lookAngle.x, 0);
         oldLookAngle = lookAngle;
     }
-    
+    private void Update()
+    {
+        if (permanentAimAngle > 0)
+            permanentAimAngle -= Time.unscaledDeltaTime * currentRecoilProfile.permAimAngleDamp;
+        lookAngle.y += Mathf.Max(0, permanentAimAngle) * permanentAimAngleMultiplier;
+        temporaryAimAngle = Vector3.Lerp(temporaryAimAngle, temporaryAimAngleTarget, Time.deltaTime * currentRecoilProfile.tempAimAngleDamp);
+        aimTransform.localRotation = Quaternion.Euler(temporaryAimAngle + new Vector3(Mathf.Clamp(-lookAngle.y, -90, 90) + aimPitchOffset, 0, 0));
+    }
     void WeaponSwayVisuals()
     {
-        weaponTransform.SetLocalPositionAndRotation(Vector3.SmoothDamp(weaponTransform.localPosition, weaponSwayPositionTarget * swayPositionMultiplier, ref positionDampVelocity, swayPositionDamping),
-            Quaternion.LerpUnclamped(weaponTransform.localRotation, Quaternion.Euler(weaponSwayRotationTarget * swayRotationMultiplier), Time.fixedDeltaTime * swayRotationDamping));
+        weaponSwayPos = Vector3.SmoothDamp(weaponSwayPos, (weaponSwayPositionTarget * swayPositionMultiplier),
+            ref swayPosDampVelocity, swayPositionDamping);
+        weaponSwayRot = Vector3.LerpUnclamped(weaponSwayRot, weaponSwayRotationTarget * swayRotationMultiplier, Time.smoothDeltaTime * swayRotationDamping);
+
+
+        weaponTransform.SetLocalPositionAndRotation(weaponSwayPos + (recoilPos.ScaleReturn(recoilPositionScalar) * currentRecoilProfile.recoilPosMultiplier),
+           Quaternion.Euler(weaponSwayRot) * Quaternion.Euler(recoilRot.ScaleReturn(recoilRotationScalar) * currentRecoilProfile.recoilRotMultiplier));
     }
 
+    void RecoilMaths()
+    {
+        if (firing)
+        {
+            recoilPosTarget -= currentRecoilProfile.firingRecoilPosDamping * Time.fixedDeltaTime * recoilPosTarget;
+            recoilRotTarget -= currentRecoilProfile.firingRecoilRotDamping * Time.fixedDeltaTime * recoilRotTarget;
+
+            maxRecoilPos = recoilPosTarget;
+            maxRecoilRot = recoilRotTarget;
+
+            tempAimAngleLerp = 0;
+
+            temporaryAimAngleTarget = Vector3.Lerp(temporaryAimAngleTarget, Vector3.zero, currentRecoilProfile.tempAimAngleDecay * Time.fixedDeltaTime);
+            maxTempAimAngle = temporaryAimAngleTarget;
+        }
+        else
+        {
+
+            if (recoilPosReturn < 1)
+            {
+                recoilPosReturn += Time.fixedDeltaTime * currentRecoilProfile.recoilPosReturnSpeed;
+            }
+            if (recoilRotReturn < 1)
+            {
+                recoilRotReturn += Time.fixedDeltaTime * currentRecoilProfile.recoilRotReturnSpeed;
+            }
+            recoilPosTarget = Vector3.LerpUnclamped(maxRecoilPos, Vector3.zero, currentRecoilProfile.recoilPosBounceCurve.Evaluate(recoilPosReturn));
+            recoilRotTarget = Vector3.LerpUnclamped(maxRecoilRot, Vector3.zero, currentRecoilProfile.recoilRotBounceCurve.Evaluate(recoilRotReturn));
+
+            if (tempAimAngleLerp < 1)
+            {
+                tempAimAngleLerp += Time.fixedDeltaTime * currentRecoilProfile.tempAimAngleReturnSpeed;
+            }
+
+            temporaryAimAngleTarget = Vector3.LerpUnclamped(maxTempAimAngle, Vector3.zero, currentRecoilProfile.temporaryAimBounceCurve.Evaluate(tempAimAngleLerp));
+        }
+        firing = false;
+
+        recoilPos = Vector3.SmoothDamp(recoilPos, recoilPosTarget, ref recoilPosDampVelocity, currentRecoilProfile.recoilPosDamping);
+        recoilRot = Vector3.SmoothDamp(recoilRot, recoilRotTarget, ref recoilRotDampVelocity, currentRecoilProfile.recoilRotDamping);
+
+
+    }
     void WeaponSwayMaths()
     {
         if (movingCamera)
@@ -99,6 +166,8 @@ public class Player : Character
         WeaponSwayVisuals();
 
         Move();
+        RecoilMaths();
+
     }
     public override void Move()
     {
@@ -130,12 +199,26 @@ public class Player : Character
     public override void UpdateHealth(int healthChange)
     {
         base.UpdateHealth(healthChange);
-        GameManager.instance.damageVolume.weight = Mathf.InverseLerp(0, maxHealth, health);
+        GameManager.instance.damageVolume.weight = Mathf.InverseLerp(maxHealth, 0, health);
     }
     public override void Die()
     {
         GameManager.instance.respawnScreen.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+    }
+    public void ReceiveRecoilImpulse(Vector3 pos, Vector3 rot)
+    {
+        recoilPosTarget += recoilOrientation * pos;
+        recoilRotTarget += recoilOrientation * rot;
+
+        recoilPosReturn = 0;
+        recoilRotReturn = 0;
+        firing = true;
+
+        permanentAimAngle = currentRecoilProfile.permanentAimAnglePerShot;
+        
+        Vector2 randomCircleVal = Random.insideUnitCircle;
+        temporaryAimAngleTarget += new Vector3(currentRecoilProfile.temporaryAimAnglePerShot.x, randomCircleVal.x * currentRecoilProfile.temporaryAimAnglePerShot.y, randomCircleVal.y * currentRecoilProfile.temporaryAimAnglePerShot.z);
     }
 }
