@@ -77,6 +77,8 @@ public class Player : Character
 
         weaponTransform.SetLocalPositionAndRotation(weaponSwayPos + (recoilPos.ScaleReturn(recoilPositionScalar) * currentRecoilProfile.recoilPosMultiplier),
            Quaternion.Euler(weaponSwayRot) * Quaternion.Euler(recoilRot.ScaleReturn(recoilRotationScalar) * currentRecoilProfile.recoilRotMultiplier));
+
+        viewCamera.SetLocalPositionAndRotation(recoilPos);
     }
 
     void RecoilMaths()
