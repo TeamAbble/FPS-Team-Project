@@ -36,7 +36,7 @@ public class WeaponWheelController : MonoBehaviour
         {
             var b = Instantiate(weaponWheelPrefab, weaponWheelParent);
             b.GetComponent<WeaponWheelButton>().weaponIndex = i;
-            b.transform.position = Quaternion.Euler(0, 0, angle * i) * offsetFromCentre;
+            b.transform.localPosition = Quaternion.Euler(0, 0, angle * i) * offsetFromCentre;
         }
     }
 
