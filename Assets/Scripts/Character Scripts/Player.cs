@@ -9,7 +9,7 @@ using UnityEngine.InputSystem;
 public class Player : Character
 {
     [SerializeField] Vector2 moveInput, lookInput, lookAngle, oldLookAngle, deltaLookAngle;
-    [SerializeField] Vector2 lookSpeed;
+
     [SerializeField] float aimPitchOffset;
     [SerializeField] Transform aimTransform;
     [SerializeField] float drag;
@@ -26,7 +26,7 @@ public class Player : Character
     [SerializeField] Vector3 recoilPositionScalar, recoilRotationScalar;
     [SerializeField] float recoilPosReturn, recoilRotReturn;
     Vector3 recoilPosTarget, recoilRotTarget, maxRecoilPos, maxRecoilRot, recoilPosDampVelocity, recoilRotDampVelocity, recoilPos, recoilRot;
-    [SerializeField] Quaternion recoilOrientation;
+    [SerializeField] Quaternion recoilOrientation, cameraRecoilOrientation;
     public WeaponManager weaponManager;
     [SerializeField] Vector3 temporaryAimAngleTarget, temporaryAimAngle;
     [SerializeField] float permanentAimAngle;
@@ -35,6 +35,8 @@ public class Player : Character
     Vector3 maxTempAimAngle;
     bool firing;
     public Transform viewCamera, worldCamera;
+    public float interactDistance;
+    public LayerMask interactLayermask;
     protected override void Start()
     {
         base.Start();
@@ -50,7 +52,7 @@ public class Player : Character
         //Add the look input to the look angle
         if (!GameManager.instance.weaponWheelOpen)
         {
-            lookAngle += lookInput * lookSpeed * Time.fixedDeltaTime;
+            lookAngle += lookInput * GameManager.instance.lookSpeed * Time.fixedDeltaTime;
             //modulo the look yaw by 360
             lookAngle.y = Mathf.Clamp(lookAngle.y, -85, 85);
         }
@@ -67,6 +69,9 @@ public class Player : Character
         lookAngle.y += Mathf.Max(0, permanentAimAngle) * permanentAimAngleMultiplier;
         temporaryAimAngle = Vector3.Lerp(temporaryAimAngle, temporaryAimAngleTarget, Time.deltaTime * currentRecoilProfile.tempAimAngleDamp);
         aimTransform.localRotation = Quaternion.Euler(temporaryAimAngle + new Vector3(Mathf.Clamp(-lookAngle.y, -90, 90) + aimPitchOffset, 0, 0));
+
+        weaponTransform.SetLocalPositionAndRotation(weaponSwayPos + (recoilPos.ScaleReturn(recoilPositionScalar) * currentRecoilProfile.recoilPosMultiplier),
+   Quaternion.Euler(weaponSwayRot) * Quaternion.Euler(recoilRot.ScaleReturn(recoilRotationScalar) * currentRecoilProfile.recoilRotMultiplier));
     }
     void WeaponSwayVisuals()
     {
@@ -75,8 +80,7 @@ public class Player : Character
         weaponSwayRot = Vector3.LerpUnclamped(weaponSwayRot, weaponSwayRotationTarget * swayRotationMultiplier, Time.smoothDeltaTime * swayRotationDamping);
 
 
-        weaponTransform.SetLocalPositionAndRotation(weaponSwayPos + (recoilPos.ScaleReturn(recoilPositionScalar) * currentRecoilProfile.recoilPosMultiplier),
-           Quaternion.Euler(weaponSwayRot) * Quaternion.Euler(recoilRot.ScaleReturn(recoilRotationScalar) * currentRecoilProfile.recoilRotMultiplier));
+
 
         viewCamera.SetLocalPositionAndRotation((recoilPos * currentRecoilProfile.viewmodelCameraInfluence).ScaleReturn(currentRecoilProfile.viewPositionScalar), 
             Quaternion.Euler((recoilRot * currentRecoilProfile.viewmodelCameraInfluence).ScaleReturn(currentRecoilProfile.viewRotationScalar)));
@@ -173,6 +177,7 @@ public class Player : Character
         Move();
         RecoilMaths();
 
+        InteractCheck();
     }
     public override void Move()
     {
@@ -180,7 +185,24 @@ public class Player : Character
         Vector3 movevec = transform.rotation * new Vector3(moveInput.x, 0, moveInput.y) * MoveSpeed;
         rb.AddForce(movevec);
     }
-
+    [SerializeField] Purchasable targeted;
+    public void InteractCheck()
+    {
+        if (Physics.Raycast(worldCamera.position, worldCamera.forward, out RaycastHit hit, interactDistance, interactLayermask))
+        {
+            if(hit.collider.TryGetComponent(out Purchasable p))
+            {
+                targeted = p;
+            }
+        }
+    }
+    public void InteractConfirm()
+    {
+        if (targeted)
+        {
+            targeted.Purchase();
+        }
+    }
 
     #region InputCallbacks
     public void GetMoveInput(InputAction.CallbackContext context)
@@ -199,6 +221,14 @@ public class Player : Character
         if (context.performed)
             GameManager.instance.PauseGame(!GameManager.instance.paused);
     }
+    public void InteractInput(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+
+        }
+    }
+
     #endregion
 
     public override void UpdateHealth(int healthChange)
@@ -214,8 +244,8 @@ public class Player : Character
     }
     public void ReceiveRecoilImpulse(Vector3 pos, Vector3 rot)
     {
-        recoilPosTarget += recoilOrientation * pos;
-        recoilRotTarget += recoilOrientation * rot;
+        recoilPosTarget += pos;
+        recoilRotTarget += rot;
 
         recoilPosReturn = 0;
         recoilRotReturn = 0;

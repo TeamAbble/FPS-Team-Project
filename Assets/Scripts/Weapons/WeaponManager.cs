@@ -37,25 +37,25 @@ public class WeaponManager : MonoBehaviour
 
     public void SwitchWeapon(bool increment)
     {
+        animationHelper.ReleaseNewMagInDefault();
+        animationHelper.ReleaseOldMagInDefault();
         weapons[weaponIndex].SetFireInput(false);
         weapons[weaponIndex].gameObject.SetActive(false);
         weaponIndex += increment ? 1 : -1;
         weaponIndex %= weapons.Length;
         weapons[weaponIndex].gameObject.SetActive(true);
-        animationHelper.ReleaseNewMagInDefault();
-        animationHelper.ReleaseOldMagInDefault();
         p.Animator.Play("Equip");
         ChangeAnimations();
     }
     public void SwitchWeapon(int newWeaponIndex)
     {
+        animationHelper.ReleaseNewMagInDefault();
+        animationHelper.ReleaseOldMagInDefault();
         weapons[weaponIndex].SetFireInput(false);
         weapons[weaponIndex].gameObject.SetActive(false);
         weaponIndex = newWeaponIndex;
         weaponIndex %= weapons.Length;
         weapons[weaponIndex].gameObject.SetActive(true);
-        animationHelper.ReleaseNewMagInDefault();
-        animationHelper.ReleaseOldMagInDefault();
         p.Animator.Play("Equip");
         ChangeAnimations();
 

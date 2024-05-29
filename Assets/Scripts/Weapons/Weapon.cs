@@ -82,9 +82,16 @@ public class Weapon : MonoBehaviour
         wm = GetComponentInParent<WeaponManager>();
         animator = GetComponentInParent<Character>().Animator;
 
-        oldMag.startPos = oldMag.magazine.localPosition;
-        oldMag.startRot = oldMag.magazine.localRotation;
-
+        if (oldMag.magazine)
+        {
+            oldMag.startPos = oldMag.magazine.localPosition;
+            oldMag.startRot = oldMag.magazine.localRotation;
+        }
+        if (newMag.magazine)
+        {
+            newMag.startPos = newMag.magazine.localPosition;
+            newMag.startRot = newMag.magazine.localRotation;
+        }
         currentAmmo = maxAmmo;
     }
     bool IsOwnerAlive => (wm && wm.IsAlive);

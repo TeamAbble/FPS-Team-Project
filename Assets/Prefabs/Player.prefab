@@ -734,7 +734,6 @@ MonoBehaviour:
   lookAngle: {x: 0, y: 0}
   oldLookAngle: {x: 0, y: 0}
   deltaLookAngle: {x: 0, y: 0}
-  lookSpeed: {x: 4, y: 4}
   aimPitchOffset: 90
   aimTransform: {fileID: 1835944691075051913}
   drag: 2
@@ -821,7 +820,8 @@ MonoBehaviour:
   recoilRotationScalar: {x: 0, y: 0, z: 0}
   recoilPosReturn: 0
   recoilRotReturn: 0
-  recoilOrientation: {x: 0, y: 0, z: 0, w: 0}
+  recoilOrientation: {x: -0.70710677, y: 0, z: 0, w: 0.70710677}
+  cameraRecoilOrientation: {x: 0, y: 0, z: 0, w: 0}
   weaponManager: {fileID: 3824807763634957599}
   temporaryAimAngleTarget: {x: 0, y: 0, z: 0}
   temporaryAimAngle: {x: 0, y: 0, z: 0}
@@ -829,6 +829,11 @@ MonoBehaviour:
   permanentAimAngleMultiplier: -1
   viewCamera: {fileID: 4671290619371547786}
   worldCamera: {fileID: 7669802934783945052}
+  interactDistance: 3
+  interactLayermask:
+    serializedVersion: 2
+    m_Bits: 1
+  targeted: {fileID: 0}
 --- !u!114 &8920253462223167407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -991,6 +996,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a21ac064-7f05-4cab-b166-99884443c598
     m_ActionName: Player/Reload[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5247865180223490922}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: InteractInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2efef357-3553-44ab-8f92-6f89b23a136c
+    m_ActionName: Player/Interact[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
