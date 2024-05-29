@@ -14,7 +14,7 @@ public class Player : Character
     [SerializeField] Transform aimTransform;
     [SerializeField] float drag;
     [SerializeField] bool movingCamera;
-    [SerializeField, Tooltip("The transform that directly holds the weapon, NOT the transform for the weapon"), Header("Weapon Sway")] Transform weaponTransform;
+    [Tooltip("The transform that directly holds the weapon, NOT the transform for the weapon"), Header("Weapon Sway")] public Transform weaponTransform;
     [SerializeField] Vector3 weaponSwayPositionScalar, weaponSwayRotationScalar;
     [SerializeField] AnimationCurve swayPositionBounceCurve, swayRotationBounceCurve;
     [SerializeField] float swayPositionReturnSpeed, swayRotationReturnSpeed, swayPositionDamping, swayRotationDamping, aimingSwayPositionDamping, aimingSwayRotationDamping, swayPositionMultiplier, swayRotationMultiplier;
@@ -42,6 +42,7 @@ public class Player : Character
         base.Start();
         if(!weaponManager)
             weaponManager = GetComponent<WeaponManager>();
+
     }
     private void Aim()
     {
@@ -198,7 +199,7 @@ public class Player : Character
     }
     public void InteractConfirm()
     {
-        if (targeted)
+        if (targeted && targeted.cost <= GameManager.instance.currencyOwned)
         {
             targeted.Purchase();
         }
@@ -225,7 +226,7 @@ public class Player : Character
     {
         if (context.performed)
         {
-
+            InteractConfirm();
         }
     }
 

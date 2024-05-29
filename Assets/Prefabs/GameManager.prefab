@@ -161,7 +161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1482988941746786469}
   - component: {fileID: 2263484738638284293}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: DamagePP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,7 +318,7 @@ MonoBehaviour:
     m_Bits: 512
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 1
+  m_RenderPostProcessing: 0
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -2680,7 +2680,7 @@ Transform:
   - {fileID: 8312697096686426729}
   - {fileID: 1482988941746786469}
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4890407698555094173
 MonoBehaviour:
@@ -2800,10 +2800,12 @@ MonoBehaviour:
   weaponWheelOpen: 0
   damageVolume: {fileID: 2263484738638284293}
   lookSpeed: {x: 4, y: 4}
-  unownedWeapons: []
-  weaponPrintCost: 0
-  areaUnlockCost: 0
-  currencyOwned: 0
+  unownedWeapons:
+  - {fileID: 539066444441173501, guid: 7f67ea4a8fc9ec443b95f4edc98aa365, type: 3}
+  - {fileID: 1191193837061692243, guid: 33f15f9fb2dc0c941ba95cda7b0f17d8, type: 3}
+  weaponPrintCost: 10
+  areaUnlockCost: 10
+  currencyOwned: 100
 --- !u!1001 &7156269878616866362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2855,7 +2857,7 @@ PrefabInstance:
     - target: {fileID: 3262514345808336316, guid: f45f969390047244a8f8f85a13dd50c4,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3340444334220514601, guid: f45f969390047244a8f8f85a13dd50c4,
         type: 3}
@@ -2988,10 +2990,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3289293451856831971, guid: f45f969390047244a8f8f85a13dd50c4, type: 3}
+    - {fileID: 3889592247979932804, guid: f45f969390047244a8f8f85a13dd50c4, type: 3}
+    - {fileID: 6100413282419633891, guid: f45f969390047244a8f8f85a13dd50c4, type: 3}
+    - {fileID: 1198220567742793027, guid: f45f969390047244a8f8f85a13dd50c4, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3262514345808336316, guid: f45f969390047244a8f8f85a13dd50c4,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7790226953446864315}
   m_SourcePrefab: {fileID: 100100000, guid: f45f969390047244a8f8f85a13dd50c4, type: 3}
+--- !u!224 &1258531553571002006 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8225576566163335340, guid: f45f969390047244a8f8f85a13dd50c4,
+    type: 3}
+  m_PrefabInstance: {fileID: 7156269878616866362}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &5551682584769407763 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3340444334220514601, guid: f45f969390047244a8f8f85a13dd50c4,
@@ -3004,3 +3020,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7156269878616866362}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7790226953446864315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5626942117131365254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16553da40a105a74faec19cb2d908d70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponWheelPrefab: {fileID: 3097947165001185267, guid: 7c1fd08882d47d443922857e61714dc5,
+    type: 3}
+  offsetFromCentre: {x: 0, y: 120, z: 0}
+  weaponWheelParent: {fileID: 1258531553571002006}

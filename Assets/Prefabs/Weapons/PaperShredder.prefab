@@ -9878,6 +9878,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -9097157598758866157, guid: 50e3ef33b275e784d96bbf1017346ea3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 50e3ef33b275e784d96bbf1017346ea3,
         type: 3}
       propertyPath: m_RootOrder
@@ -9991,17 +9996,37 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 50e3ef33b275e784d96bbf1017346ea3,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 50e3ef33b275e784d96bbf1017346ea3,
         type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 964265994472512002, guid: 50e3ef33b275e784d96bbf1017346ea3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6905609870639353253, guid: 50e3ef33b275e784d96bbf1017346ea3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036213049465896255, guid: 50e3ef33b275e784d96bbf1017346ea3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8513859187771203891, guid: 50e3ef33b275e784d96bbf1017346ea3,
         type: 3}
       propertyPath: m_Name
       value: Pencil
+      objectReference: {fileID: 0}
+    - target: {fileID: 8574092336206412074, guid: 50e3ef33b275e784d96bbf1017346ea3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8879528566716807029, guid: 50e3ef33b275e784d96bbf1017346ea3,
         type: 3}
@@ -10083,6 +10108,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3714052209616057912}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 50e3ef33b275e784d96bbf1017346ea3,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -215894651641620540}
   m_SourcePrefab: {fileID: 100100000, guid: 50e3ef33b275e784d96bbf1017346ea3, type: 3}
 --- !u!1 &1191193837061692243 stripped
 GameObject:
@@ -10238,6 +10267,27 @@ MonoBehaviour:
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
   m_DefaultVelocity: {x: 0, y: 0, z: 1}
+--- !u!135 &-215894651641620540
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191193837061692243}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1625927469761359043 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8442307832336643391, guid: 50e3ef33b275e784d96bbf1017346ea3,

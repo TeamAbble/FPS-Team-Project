@@ -6,29 +6,31 @@ using UnityEngine.InputSystem;
 
 public class WeaponManager : MonoBehaviour
 {
-    [SerializeField] Weapon[] weapons;
+    public List<Weapon> weapons = new();
     [SerializeField] int weaponIndex;
     [SerializeField] bool fireInput;
     Player p;
     public bool IsAlive => p.IsAlive;
     public Weapon CurrentWeapon => weapons[weaponIndex];
     public int weaponLayer;
-    public int WeaponCount => weapons.Length;
+    public int WeaponCount => weapons.Count;
     public AnimationHelper animationHelper;
     private void Start()
     {
         p = GetComponent<Player>();
-        for (int i = 0; i < weapons.Length; i++)
+        for (int i = 0; i < WeaponCount; i++)
         {
             weapons[i].gameObject.SetActive(false);
+            weapons[i].GiveToEntity();
         }
         weapons[weaponIndex].gameObject.SetActive(true);
         ChangeAnimations();
 
+        WeaponWheelController.Instance.UpdateWeaponWheel();
     }
     private void FixedUpdate()
     {
-        for (int i = 0; i < weapons.Length; i++)
+        for (int i = 0; i < WeaponCount; i++)
         {
             weapons[i].UpdateTracers();
         }
@@ -37,24 +39,28 @@ public class WeaponManager : MonoBehaviour
 
     public void SwitchWeapon(bool increment)
     {
-        animationHelper.ReleaseNewMagInDefault();
-        animationHelper.ReleaseOldMagInDefault();
+        if (CurrentWeapon.newMag.magazine)
+            animationHelper.ReleaseNewMagInDefault();
+        if(CurrentWeapon.oldMag.magazine)
+            animationHelper.ReleaseOldMagInDefault();
         weapons[weaponIndex].SetFireInput(false);
         weapons[weaponIndex].gameObject.SetActive(false);
         weaponIndex += increment ? 1 : -1;
-        weaponIndex %= weapons.Length;
+        weaponIndex %= WeaponCount;
         weapons[weaponIndex].gameObject.SetActive(true);
         p.Animator.Play("Equip");
         ChangeAnimations();
     }
     public void SwitchWeapon(int newWeaponIndex)
     {
-        animationHelper.ReleaseNewMagInDefault();
-        animationHelper.ReleaseOldMagInDefault();
+        if (CurrentWeapon.newMag.magazine)
+            animationHelper.ReleaseNewMagInDefault();
+        if (CurrentWeapon.oldMag.magazine)
+            animationHelper.ReleaseOldMagInDefault();
         weapons[weaponIndex].SetFireInput(false);
         weapons[weaponIndex].gameObject.SetActive(false);
         weaponIndex = newWeaponIndex;
-        weaponIndex %= weapons.Length;
+        weaponIndex %= WeaponCount;
         weapons[weaponIndex].gameObject.SetActive(true);
         p.Animator.Play("Equip");
         ChangeAnimations();
