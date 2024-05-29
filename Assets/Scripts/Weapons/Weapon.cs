@@ -73,6 +73,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] float recoilForce;
     public bool CanReload => maxAmmo > 0 && currentAmmo < maxAmmo && !fireBlocked;
     public (int max, int current) Ammo => (maxAmmo, currentAmmo);
+    public Sprite icon;
     public void ReloadWeapon()
     {
         currentAmmo = maxAmmo;

@@ -289,5 +289,5 @@ MonoBehaviour:
   weaponIndex: 0
   weaponName: 
   icon: {fileID: 0}
-  iconRender: {fileID: 0}
+  iconRender: {fileID: 6848174829007548845}
   nameDisplay: {fileID: 8911142504484976328}
