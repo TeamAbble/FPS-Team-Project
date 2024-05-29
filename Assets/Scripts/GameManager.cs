@@ -52,6 +52,11 @@ public class GameManager : MonoBehaviour
     public bool weaponWheelOpen;
     public Volume damageVolume;
     public Vector2 lookSpeed;
+    public List<GameObject> unownedWeapons;
+    public int weaponPrintCost;
+    public int areaUnlockCost;
+
+    public int currencyOwned;
     public void UseWeaponWheel(bool opening)
     {
         //If the player is dead, we don't want to allow the player to open the weapon wheel.
@@ -108,9 +113,11 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        SceneManager.sceneLoaded += SceneManager_sceneLoaded;
         
     }
-    private void OnLevelWasLoaded(int level)
+
+    private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
         //We need to try and find the player when a level is loaded, rather than just doing it on start. If there's no player, we will effectively ignore this scene as a game scene, and treat it as a menu scene.
         //Get the player 
@@ -135,7 +142,6 @@ public class GameManager : MonoBehaviour
         spawners.AddRange(FindObjectsOfType<EnemySpawner>(true));
         //Start the first wave delay
         StartCoroutine(WaveDelay());
-
 
 
     }

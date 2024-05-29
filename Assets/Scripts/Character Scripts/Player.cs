@@ -35,6 +35,8 @@ public class Player : Character
     Vector3 maxTempAimAngle;
     bool firing;
     public Transform viewCamera, worldCamera;
+    public float interactDistance;
+    public LayerMask interactLayermask;
     protected override void Start()
     {
         base.Start();
@@ -175,6 +177,7 @@ public class Player : Character
         Move();
         RecoilMaths();
 
+        InteractCheck();
     }
     public override void Move()
     {
@@ -182,7 +185,24 @@ public class Player : Character
         Vector3 movevec = transform.rotation * new Vector3(moveInput.x, 0, moveInput.y) * MoveSpeed;
         rb.AddForce(movevec);
     }
-
+    [SerializeField] Purchasable targeted;
+    public void InteractCheck()
+    {
+        if (Physics.Raycast(worldCamera.position, worldCamera.forward, out RaycastHit hit, interactDistance, interactLayermask))
+        {
+            if(hit.collider.TryGetComponent(out Purchasable p))
+            {
+                targeted = p;
+            }
+        }
+    }
+    public void InteractConfirm()
+    {
+        if (targeted)
+        {
+            targeted.Purchase();
+        }
+    }
 
     #region InputCallbacks
     public void GetMoveInput(InputAction.CallbackContext context)
@@ -201,6 +221,14 @@ public class Player : Character
         if (context.performed)
             GameManager.instance.PauseGame(!GameManager.instance.paused);
     }
+    public void InteractInput(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+
+        }
+    }
+
     #endregion
 
     public override void UpdateHealth(int healthChange)
