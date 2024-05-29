@@ -19,6 +19,7 @@ public class MenuManager : MonoBehaviour
         menu = menus.START;
         titleMenu.SetActive(true);
         mainMenu.SetActive(false);
+        settingsMenu.SetActive(false);
     }
 
     // Update is called once per frame

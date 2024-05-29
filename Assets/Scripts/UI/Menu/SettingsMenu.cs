@@ -14,10 +14,16 @@ public class SettingsMenu : MonoBehaviour
 
     public Slider VolumeSlider;
     public Slider sensitivitySlider;
+    public Button applyButton;
 
     void Start()
     {
         
+    }
+
+    private void OnEnable()
+    {
+        applyButton.onClick.AddListener(ApplySettings);
     }
 
     // Update is called once per frame
@@ -35,5 +41,9 @@ public class SettingsMenu : MonoBehaviour
         string path = Application.dataPath + "/save.txt";
 
         
+    }
+    public void ChangeVolume()
+    {
+        float volume = VolumeSlider.value;
     }
 }
