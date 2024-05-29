@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
     public float defaultFixedTimestep = 0.02f;
     public bool weaponWheelOpen;
     public Volume damageVolume;
+    public Vector2 lookSpeed;
     public void UseWeaponWheel(bool opening)
     {
         //If the player is dead, we don't want to allow the player to open the weapon wheel.
@@ -100,21 +101,32 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
             return;
         }
+        
+    }
+    private void OnLevelWasLoaded(int level)
+    {
+        //We need to try and find the player when a level is loaded, rather than just doing it on start. If there's no player, we will effectively ignore this scene as a game scene, and treat it as a menu scene.
+        //Get the player 
+        if (!playerRef)
+            playerRef = FindFirstObjectByType<Player>();
+        //Check the player again and then return this early if we have no player. If there's no player, this scene is effectively a menu scene, and we can ignore everything below this because we're not doing any gameplay stuff.
+        if (!playerRef)
+            return;
+
         //Check if the main camera in the scene does or doesn't have a Cinemachine Brain,
         //Allows it to work with the player
         if (!Camera.main.GetComponent<CinemachineBrain>())
         {
             Camera.main.gameObject.AddComponent<CinemachineBrain>();
         }
-        //Get the player 
-        if (!playerRef)
-            playerRef = FindFirstObjectByType<Player>();
+
         //Force the game to be unpaused
         PauseGame(false);
         //Disable this menu
@@ -123,32 +135,38 @@ public class GameManager : MonoBehaviour
         spawners.AddRange(FindObjectsOfType<EnemySpawner>(true));
         //Start the first wave delay
         StartCoroutine(WaveDelay());
-    }
 
+
+
+    }
 
     // Update is called once per frame
     private void FixedUpdate()
     {
-        if (waveInProgress)
+        if (playerRef)
         {
-            if (enemiesAlive < MaxEnemiesAllowed && enemiesRemaining > 0)
+            if (waveInProgress)
             {
-                spawnTimer += Time.fixedDeltaTime;
-                if (spawnTimer >= spawnRate)
+                if (enemiesAlive < MaxEnemiesAllowed && enemiesRemaining > 0)
                 {
-                    FindSpawner();
+                    spawnTimer += Time.fixedDeltaTime;
+                    if (spawnTimer >= spawnRate)
+                    {
+                        FindSpawner();
+                    }
+                }
+                else
+                {
+                    spawnTimer = 0;
                 }
             }
-            else
+            if (playerRef.weaponManager.CurrentWeapon)
             {
-                spawnTimer = 0;
+                (int max, int current) = playerRef.weaponManager.CurrentWeapon.Ammo;
+                ammoDisplayText.text = $"{current}\n/{max}";
             }
         }
-        if (playerRef.weaponManager.CurrentWeapon) 
-        {
-            (int max, int current) = playerRef.weaponManager.CurrentWeapon.Ammo;
-            ammoDisplayText.text = $"{current}\n/{max}";
-        }
+        
     }
     public void FindSpawner()
     {
