@@ -1,29 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
-    public class settings
+    public class Settings
     {
         public float volume = 0;
-        public Vector2 sensitivity;
+        public Vector2 sensitivity = new Vector2(2, 2);
 
     }
-
+    string SettingsPath => (Application.isEditor ? Application.dataPath : Application.persistentDataPath) + "/settings.json";
     public Slider VolumeSlider;
     public Slider sensitivitySlider;
-    public Button applyButton;
-
+    public AudioMixer mixer;
+    public Settings settings = new();
     void Start()
     {
-        
-    }
-
-    private void OnEnable()
-    {
-        applyButton.onClick.AddListener(ApplySettings);
+        LoadSettings();
     }
 
     // Update is called once per frame
@@ -34,16 +31,30 @@ public class SettingsMenu : MonoBehaviour
 
     public void ApplySettings()
     {
-        settings setting = new settings();
-        setting.volume = VolumeSlider.value;
-
-        string json = JsonUtility.ToJson(setting);
-        string path = Application.dataPath + "/save.txt";
-
-        
+        SaveSettings();
     }
-    public void ChangeVolume()
+    void LoadSettings()
     {
-        float volume = VolumeSlider.value;
+        //Check if the file exists, otherwise we try to save it
+        if(!File.Exists(SettingsPath))
+        {
+            SaveSettings();
+        }
+        //We've made sure there actually IS a settings file, so we can continue
+        string json = File.ReadAllText(SettingsPath);
+        JsonUtility.FromJsonOverwrite(json, settings);
+
+        GameManager.instance.lookSpeed = settings.sensitivity;
+        mixer.SetFloat("Volume", settings.volume);
+    }
+    void SaveSettings()
+    {
+        if (!File.Exists(SettingsPath))
+        {
+            File.Create(SettingsPath);
+        }
+        string json = JsonUtility.ToJson(settings);
+        File.WriteAllText(SettingsPath, json);
+        
     }
 }

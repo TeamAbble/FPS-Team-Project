@@ -33,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 3330700651593756919}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!33 &6687858592795428573
 MeshFilter:
@@ -92,7 +92,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7361386460142216330}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 30910691fb66289478923340aaa87822, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

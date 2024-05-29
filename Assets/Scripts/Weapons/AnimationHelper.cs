@@ -101,5 +101,9 @@ namespace Eclipse.Weapons
         {
             wm.CurrentWeapon.ReloadWeapon();
         }
+        public void MeleeAttack()
+        {
+            GameManager.instance.playerRef.MeleeAttack();
+        }
     }
 }
