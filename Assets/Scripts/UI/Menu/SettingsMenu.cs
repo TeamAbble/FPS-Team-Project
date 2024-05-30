@@ -13,11 +13,14 @@ public class SettingsMenu : MonoBehaviour
         public Vector2 sensitivity = new Vector2(2, 2);
 
     }
-    string SettingsPath => (Application.isEditor ? Application.dataPath : Application.persistentDataPath) + "/settings.json";
+    string SettingsPath => (!Application.isEditor ? Application.dataPath : Application.persistentDataPath) + "/settings.json";
     public Slider VolumeSlider;
     public Slider sensitivitySlider;
     public AudioMixer mixer;
     public Settings settings = new();
+    public Button CloseButton;
+    public Button ApplyButton;
+    public GameObject previousMenu;
     void Start()
     {
         LoadSettings();
@@ -27,6 +30,10 @@ public class SettingsMenu : MonoBehaviour
     void Update()
     {
         
+    }
+    private void OnEnable()
+    {
+        CloseButton.onClick.AddListener(ExitMenu);
     }
 
     public void ApplySettings()
@@ -56,5 +63,10 @@ public class SettingsMenu : MonoBehaviour
         string json = JsonUtility.ToJson(settings);
         File.WriteAllText(SettingsPath, json);
         
+    }
+    void ExitMenu()
+    {
+        previousMenu.SetActive(true);
+        gameObject.SetActive(false);
     }
 }
