@@ -43,6 +43,8 @@ public class Player : Character
         if(!weaponManager)
             weaponManager = GetComponent<WeaponManager>();
         UpdateHealth(0, Vector3.zero);
+        GameManager.instance.healthbar.maxValue = maxHealth;
+        GameManager.instance.healthbar.value = maxHealth;
     }
     private void Aim()
     {
@@ -236,6 +238,7 @@ public class Player : Character
     {
         base.UpdateHealth(healthChange, damagePosition);
         GameManager.instance.damageVolume.weight = Mathf.InverseLerp(maxHealth, 0, health);
+        GameManager.instance.healthbar.value = health;
         if(healthChange < 0)
         {
             DamageRingManager.Instance.AddRing(damagePosition);

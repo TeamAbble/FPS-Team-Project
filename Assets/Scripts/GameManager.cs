@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -30,6 +31,8 @@ public class GameManager : MonoBehaviour
     List<EnemySpawner> spawners;
     public TextMeshProUGUI waveInfoDisplay;
     public TextMeshProUGUI breakTimeText, ammoDisplayText;
+    public TextMeshProUGUI scoreText;
+    public Slider healthbar;
     [System.Serializable]public class Wave
     {
         public int waveNum;//The Wave Number
@@ -98,6 +101,8 @@ public class GameManager : MonoBehaviour
     }
     public void Respawn()
     {
+        score = 0;
+        scoreText.text = $"${score}";
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     private void Awake()
@@ -114,7 +119,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         SceneManager.sceneLoaded += SceneManager_sceneLoaded;
-        
+        scoreText.text = $"${score}";
     }
 
     private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
@@ -204,6 +209,7 @@ public class GameManager : MonoBehaviour
     public void EnemyDeath()
     {
         score++;
+        scoreText.text = $"${score}";
         //The number of enemies left decrements when an enemy dies
         enemiesAlive--;
         SetEnemyDisplay();

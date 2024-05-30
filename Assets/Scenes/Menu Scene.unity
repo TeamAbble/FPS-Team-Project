@@ -709,17 +709,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4890407698555094173, guid: 63878057147425a45a1cae6ef4d74f39,
-        type: 3}
-      propertyPath: unownedWeapons.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4890407698555094173, guid: 63878057147425a45a1cae6ef4d74f39,
-        type: 3}
-      propertyPath: unownedWeapons.Array.data[2]
-      value: 
-      objectReference: {fileID: 3846149180109872664, guid: ff88fd727bd86694fa2082f1d5332f95,
-        type: 3}
     - target: {fileID: 6464967501249126244, guid: 63878057147425a45a1cae6ef4d74f39,
         type: 3}
       propertyPath: m_RootOrder
@@ -773,6 +762,16 @@ PrefabInstance:
     - target: {fileID: 6464967501249126244, guid: 63878057147425a45a1cae6ef4d74f39,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6638401776112494022, guid: 63878057147425a45a1cae6ef4d74f39,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6638401776112494022, guid: 63878057147425a45a1cae6ef4d74f39,
+        type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9106109773358626239, guid: 63878057147425a45a1cae6ef4d74f39,
