@@ -50,7 +50,8 @@ public class Enemy : Character
         GameManager.instance.EnemyDeath();
         rb.AddRelativeTorque(Random.onUnitSphere * 50);
         Destroy(gameObject, 2);
-        animator.enabled = false;
+        if(animator)
+            animator.enabled = false;
     }
 
     protected virtual void EnemyBehaviour()
