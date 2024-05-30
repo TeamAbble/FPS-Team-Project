@@ -24,6 +24,9 @@ public class WeaponWheelButton : MonoBehaviour, IPointerClickHandler
     }
     private void Start()
     {
+        weaponName = GameManager.instance.playerRef.weaponManager.weapons[weaponIndex].name;
+        icon = GameManager.instance.playerRef.weaponManager.weapons[weaponIndex].icon;
+
         if(nameDisplay)
             nameDisplay.text = weaponName;
         if(icon && iconRender)

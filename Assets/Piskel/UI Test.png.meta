@@ -189,10 +189,10 @@ TextureImporter:
       name: UI Test_3
       rect:
         serializedVersion: 2
-        x: 168
-        y: 943
-        width: 141
-        height: 80
+        x: 206
+        y: 972
+        width: 107
+        height: 51
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -420,7 +420,7 @@ TextureImporter:
       name: UI Test_14
       rect:
         serializedVersion: 2
-        x: 269
+        x: 268
         y: 880
         width: 4
         height: 4
@@ -2369,6 +2369,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: UI Test_107
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 947
+        width: 84
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06e589ae08ab87145ae215c1ed8d41a9
+      internalID: -614292001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -2390,6 +2411,7 @@ TextureImporter:
       UI Test_104: -1839861845
       UI Test_105: 1439731775
       UI Test_106: -1143255618
+      UI Test_107: -614292001
       UI Test_11: 2116217519
       UI Test_12: -674561249
       UI Test_13: -611354958
