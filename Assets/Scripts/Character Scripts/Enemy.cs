@@ -25,7 +25,6 @@ public class Enemy : Character
         agent.speed = MoveSpeed;
         healthBarRef.maxValue = maxHealth;
         healthBarRef.value = maxHealth;
-        
     }
     
     // Update is called once per frame
@@ -39,7 +38,8 @@ public class Enemy : Character
     }
     public override void Move()
     {
-        agent.SetDestination(target.transform.position);
+        if(target)
+            agent.SetDestination(target.transform.position);
     }
    
 
