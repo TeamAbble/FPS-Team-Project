@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> unownedWeapons;
     public int weaponPrintCost;
     public int areaUnlockCost;
-
+    public GameObject[] playerDependantObjects;
     public int currencyOwned;
     public void UseWeaponWheel(bool opening)
     {
@@ -125,7 +125,18 @@ public class GameManager : MonoBehaviour
             playerRef = FindFirstObjectByType<Player>();
         //Check the player again and then return this early if we have no player. If there's no player, this scene is effectively a menu scene, and we can ignore everything below this because we're not doing any gameplay stuff.
         if (!playerRef)
+        {
+            for (int i = 0; i < playerDependantObjects.Length; i++)
+            {
+                playerDependantObjects[i].SetActive(false);
+            }
             return;
+        }
+
+        for (int i = 0; i < playerDependantObjects.Length; i++)
+        {
+            playerDependantObjects[i].SetActive(true);
+        }
 
         //Check if the main camera in the scene does or doesn't have a Cinemachine Brain,
         //Allows it to work with the player

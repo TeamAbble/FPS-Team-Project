@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5321882413188077964
 Transform:
@@ -25,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4919630085341640876}
-  m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 5130244730010186781}
   - {fileID: 9051643678098297697}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8738722641935398829
 MeshFilter:
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 77e7b406141fac4478f5a79e13bc0968, type: 2}
+  - {fileID: 2100000, guid: b8ca0bc5a58632849bc19ae33a8116a2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -98,6 +98,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Clock_Minute (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3778903481221975619, guid: 3fe586185a022834691bbfc7a7548bc4,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5705096486883847852, guid: 3fe586185a022834691bbfc7a7548bc4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b8ca0bc5a58632849bc19ae33a8116a2, type: 2}
     - target: {fileID: 8750994969048338844, guid: 3fe586185a022834691bbfc7a7548bc4,
         type: 3}
       propertyPath: m_RootOrder
@@ -177,6 +187,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Clock_Hour (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 487242429130791612, guid: 99d114c216293cd41b68eb007845d3ee,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3837882476251371063, guid: 99d114c216293cd41b68eb007845d3ee,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b8ca0bc5a58632849bc19ae33a8116a2, type: 2}
     - target: {fileID: 8008315046345854141, guid: 99d114c216293cd41b68eb007845d3ee,
         type: 3}
       propertyPath: m_RootOrder

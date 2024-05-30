@@ -219,7 +219,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9128766331015295654
 Transform:
   m_ObjectHideFlags: 0
@@ -840,7 +840,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8312697096686426729
 Transform:
   m_ObjectHideFlags: 0
@@ -2680,7 +2680,7 @@ Transform:
   - {fileID: 8312697096686426729}
   - {fileID: 1482988941746786469}
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4890407698555094173
 MonoBehaviour:
@@ -2805,6 +2805,11 @@ MonoBehaviour:
   - {fileID: 1191193837061692243, guid: 33f15f9fb2dc0c941ba95cda7b0f17d8, type: 3}
   weaponPrintCost: 10
   areaUnlockCost: 10
+  playerDependantObjects:
+  - {fileID: 1513037779674266796}
+  - {fileID: 1162277944383016558}
+  - {fileID: 4048985927413516639}
+  - {fileID: 646336771570893932}
   currencyOwned: 100
 --- !u!1001 &7156269878616866362
 PrefabInstance:

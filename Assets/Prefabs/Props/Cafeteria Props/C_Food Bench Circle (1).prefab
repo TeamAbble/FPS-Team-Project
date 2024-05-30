@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8b486c6ecdfb0c5489acdd651cd7b109, type: 2}
+  - {fileID: 2100000, guid: b8ca0bc5a58632849bc19ae33a8116a2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -292,6 +292,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: C_Food Tray (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5497270582052835010, guid: bfaf2bdfdedd33e4bafa6e4c8e77e282,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8b486c6ecdfb0c5489acdd651cd7b109, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
