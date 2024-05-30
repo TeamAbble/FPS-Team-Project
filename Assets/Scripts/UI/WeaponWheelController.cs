@@ -6,7 +6,7 @@ public class WeaponWheelController : MonoBehaviour
 {
     public static WeaponWheelController Instance { get; private set; }
     public GameObject weaponWheelPrefab;
-    List<WeaponWheelButton> weaponWheelButtons = new();
+    List<GameObject> weaponWheelButtons = new();
     public Vector3 offsetFromCentre;
     public Transform weaponWheelParent;
     private void Awake()
@@ -37,6 +37,7 @@ public class WeaponWheelController : MonoBehaviour
             var b = Instantiate(weaponWheelPrefab, weaponWheelParent);
             b.GetComponent<WeaponWheelButton>().weaponIndex = i;
             b.transform.localPosition = Quaternion.Euler(0, 0, angle * i) * offsetFromCentre;
+            weaponWheelButtons.Add(b);
         }
     }
 

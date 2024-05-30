@@ -5021,7 +5021,7 @@ MonoBehaviour:
   animationSet: {fileID: 11400000, guid: ab5de312ad9aa594bb1482fb7ff6fe70, type: 2}
   maxAmmo: 16
   currentAmmo: 0
-  damage: 15
+  damage: 18
   projectilesPerShot: 1
   fireInterval: 0.05
   fireIntervalRemaining: 0
@@ -5071,6 +5071,7 @@ MonoBehaviour:
   recoilForce: 0.02
   icon: {fileID: 1748008479, guid: 8f7dfdb010bc9f54293ca7bccbd489d8, type: 3}
   isEnemyWeapon: 0
+  canfire: 0
   useFireAnimation: 1
   loopFireAnimation: 0
   playAnimationOnWindup: 0

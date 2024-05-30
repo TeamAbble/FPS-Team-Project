@@ -10132,14 +10132,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationSet: {fileID: 11400000, guid: 8f2af5d60b10aab429326265b8a7fe5a, type: 2}
-  maxAmmo: 100
+  maxAmmo: 30
   currentAmmo: 0
-  damage: 10
+  damage: 8
   projectilesPerShot: 1
-  fireInterval: 0.15
+  fireInterval: 0.12
   fireIntervalRemaining: 0
-  forceFirstShot: 1
-  fireWindup: 0.6
+  forceFirstShot: 0
+  fireWindup: 0
   currentWindup: 0
   windupDecay: 10
   resetWindupAfterFiring: 0
@@ -10158,12 +10158,12 @@ MonoBehaviour:
   timesFired: 0
   fireParticles: {fileID: 168668909631268884}
   fireAudioSource: {fileID: 8523308404094877749}
-  fireAudioClip: {fileID: 8300000, guid: a7a2bcb30b7f5f147b14419de699cd00, type: 3}
+  fireAudioClip: {fileID: 8300000, guid: 13752eaaebab13e408882fb5c640cab0, type: 3}
   lastShotAudioClip: {fileID: 0}
   firstShotAudioClip: {fileID: 0}
   windupAudio: {fileID: 8300000, guid: 1bb61371e697e27479da4152cd330c08, type: 3}
-  minWindupPitch: 0.7
-  maxWindupPitch: 1.8
+  minWindupPitch: 1
+  maxWindupPitch: 1
   firePosition: {fileID: 7594071767366605640}
   shotEffect: {fileID: 7745328033304195952, guid: e8bb126f6732505458608412fc7d1f4c,
     type: 3}
@@ -10184,6 +10184,7 @@ MonoBehaviour:
   recoilForce: 0.1
   icon: {fileID: 1816233060, guid: 8f7dfdb010bc9f54293ca7bccbd489d8, type: 3}
   isEnemyWeapon: 0
+  canfire: 0
   useFireAnimation: 1
   loopFireAnimation: 0
   playAnimationOnWindup: 0

@@ -53,7 +53,7 @@ public class RangedEnemy : Enemy
             return;
         if (Physics.Linecast(transform.position, target.transform.position,out RaycastHit hit, layermask, QueryTriggerInteraction.Ignore))
         {
-            if (hit.rigidbody && hit.rigidbody.TryGetComponent(out Character player)&&hit.distance<=viewDistance)
+            if (hit.rigidbody && hit.rigidbody.TryGetComponent(out Player player)&&hit.distance<=viewDistance)
             {
                 Debug.Log("found");
                 agent.enabled = false;

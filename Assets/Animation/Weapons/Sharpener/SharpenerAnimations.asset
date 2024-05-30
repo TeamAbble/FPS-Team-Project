@@ -21,3 +21,5 @@ MonoBehaviour:
     overrideClip: {fileID: 7400000, guid: 2b71a985c3340654295a32d65de41792, type: 2}
   - name: Idle
     overrideClip: {fileID: 7400000, guid: a6be2dc2974c7b44f85a70a14a834989, type: 2}
+  - name: Fire 1
+    overrideClip: {fileID: 7400000, guid: 063eaec3b1248e94db9a7bbec6e9cc6e, type: 2}

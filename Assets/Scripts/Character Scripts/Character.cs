@@ -27,7 +27,7 @@ public abstract class Character : MonoBehaviour
         health = maxHealth;
     }
     public bool IsAlive => health > 0;
-    public virtual void UpdateHealth(int healthChange)//Adds the change in health to the health variable and clamps it to min 0 max maxHealth
+    public virtual void UpdateHealth(int healthChange, Vector3 damagePosition)//Adds the change in health to the health variable and clamps it to min 0 max maxHealth
     {
         float previousHealth = health;
         health = Mathf.Clamp(health+healthChange,0,maxHealth);
@@ -45,7 +45,7 @@ public abstract class Character : MonoBehaviour
         {
             if (cols[i].attachedRigidbody != rb && cols[i].TryGetComponent(out Character c))
             {
-                c.UpdateHealth(-meleeDamage);
+                c.UpdateHealth(-meleeDamage, transform.position);
             }
         }
     }

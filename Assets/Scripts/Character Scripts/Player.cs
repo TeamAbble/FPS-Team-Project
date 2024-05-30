@@ -42,7 +42,7 @@ public class Player : Character
         base.Start();
         if(!weaponManager)
             weaponManager = GetComponent<WeaponManager>();
-        UpdateHealth(0);
+        UpdateHealth(0, Vector3.zero);
     }
     private void Aim()
     {
@@ -232,10 +232,14 @@ public class Player : Character
 
     #endregion
 
-    public override void UpdateHealth(int healthChange)
+    public override void UpdateHealth(int healthChange, Vector3 damagePosition)
     {
-        base.UpdateHealth(healthChange);
+        base.UpdateHealth(healthChange, damagePosition);
         GameManager.instance.damageVolume.weight = Mathf.InverseLerp(maxHealth, 0, health);
+        if(healthChange < 0)
+        {
+            DamageRingManager.Instance.AddRing(damagePosition);
+        }
     }
     public override void Die()
     {

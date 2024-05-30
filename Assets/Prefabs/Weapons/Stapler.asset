@@ -12,46 +12,131 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f16c160dd8877149adcc69a8878c74d, type: 3}
   m_Name: Stapler
   m_EditorClassIdentifier: 
-  recoilPosReturnSpeed: 0
-  recoilRotReturnSpeed: 0
-  firingRecoilPosDamping: 0
-  firingRecoilRotDamping: 0
-  recoilPosMultiplier: 0
-  recoilRotMultiplier: 0
+  recoilPosReturnSpeed: 10
+  recoilRotReturnSpeed: 10
+  firingRecoilPosDamping: 10
+  firingRecoilRotDamping: 10
+  recoilPosMultiplier: 2
+  recoilRotMultiplier: -20
   recoilForce: 0
-  minHipRecoilPos: {x: 0, y: 0, z: 0}
-  maxHipRecoilPos: {x: 0, y: 0, z: 0}
+  minHipRecoilPos: {x: -0.02, y: -0.02, z: -0.02}
+  maxHipRecoilPos: {x: 0.02, y: 0.02, z: -0.02}
   minAimRecoilPos: {x: 0, y: 0, z: 0}
   maxAimRecoilPos: {x: 0, y: 0, z: 0}
-  minHipRecoilRot: {x: 0, y: 0, z: 0}
-  maxHipRecoilRot: {x: 0, y: 0, z: 0}
+  minHipRecoilRot: {x: -0.2, y: -0.2, z: -0.2}
+  maxHipRecoilRot: {x: 0.2, y: 0.2, z: 0.2}
   minAimRecoilRot: {x: 0, y: 0, z: 0}
   maxAimRecoilRot: {x: 0, y: 0, z: 0}
   recoilPosBounceCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.6861587
+      value: 1.0622337
+      inSlope: 0.73723674
+      outSlope: 0.73723674
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   recoilRotBounceCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.6881517
+      value: 1.0583025
+      inSlope: 0.63898325
+      outSlope: 0.63898325
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  recoilPosDamping: 0
-  recoilRotDamping: 0
-  temporaryAimAnglePerShot: {x: 0, y: 0, z: 0}
-  permanentAimAnglePerShot: 0
-  tempAimAngleDecay: 0
-  tempAimAngleDamp: 0
-  permAimAngleDamp: 0
-  tempAimAngleReturnSpeed: 0
+  recoilPosDamping: 0.1
+  recoilRotDamping: 0.1
+  temporaryAimAnglePerShot: {x: -1, y: 0, z: 0}
+  permanentAimAnglePerShot: 0.2
+  tempAimAngleDecay: 1
+  tempAimAngleDamp: 15
+  permAimAngleDamp: 6
+  tempAimAngleReturnSpeed: 4
   temporaryAimBounceCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.64231163
+      value: 1.2202355
+      inSlope: 0.6414914
+      outSlope: 0.6414914
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   viewmodelCameraInfluence: 0
-  worldCameraInfluence: 0
+  worldCameraInfluence: 1
+  viewRotationScalar: {x: 0, y: 0, z: 0}
+  viewPositionScalar: {x: 1, y: 1, z: 1}
+  worldRotationScalar: {x: 1, y: 1, z: 1}
+  worldPositionScalar: {x: 2, y: 2, z: 2}

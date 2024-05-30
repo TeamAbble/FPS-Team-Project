@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   overrides:
   - name: Fire
-    overrideClip: {fileID: 7400000, guid: d6894d64e2c813148a4e8e53aaa49b9e, type: 2}
+    overrideClip: {fileID: 7400000, guid: 39a36fb3bdde3f54e9eb11c46d88bccd, type: 2}
   - name: Reload
     overrideClip: {fileID: 7400000, guid: 3301b85a87a377f499c66afd2f6f666f, type: 2}
   - name: Equip
     overrideClip: {fileID: 7400000, guid: 2821fe93a9340b34a93bb1fb30466bf4, type: 2}
   - name: Idle
     overrideClip: {fileID: 7400000, guid: b0100ddf2cbc35d44bafb22ed20ebfea, type: 2}
+  - name: Fire 1
+    overrideClip: {fileID: 7400000, guid: 39a36fb3bdde3f54e9eb11c46d88bccd, type: 2}

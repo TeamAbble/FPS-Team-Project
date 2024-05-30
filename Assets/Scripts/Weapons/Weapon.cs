@@ -61,6 +61,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected AudioClip fireAudioClip, lastShotAudioClip, firstShotAudioClip;
     [SerializeField] protected AudioClip windupAudio;
     [SerializeField] protected float minWindupPitch, maxWindupPitch;
+    [SerializeField] protected float minWindupVolume, maxWindupVolume;
     [SerializeField] protected Transform firePosition;
     [SerializeField] protected GameObject shotEffect;
     [SerializeField] protected float tracerSpeed;
@@ -156,7 +157,7 @@ public class Weapon : MonoBehaviour
                     //If forceFirstShot is enabled, and we're not already winding up a shot, we'll start the windup
                     if (forceFirstShot)
                     {
-                        if(!windupInProgress && !burstFiring)
+                        if (!windupInProgress && !burstFiring)
                         {
                             StartCoroutine(ForcedWindup());
                         }
@@ -164,7 +165,7 @@ public class Weapon : MonoBehaviour
                         return;
                     }
                     //Otherwise, we'll increment the windup by FixedDeltaTime
-                    if(!burstFiring)
+                    if (!burstFiring)
                         currentWindup += Time.fixedDeltaTime;
                     //if current windup is done and we're able to fire, then we'll fire
                     if (currentWindup >= fireWindup)
@@ -187,7 +188,7 @@ public class Weapon : MonoBehaviour
             timesFired = 0;
         }
         //If we're waiting to fire again, continue the timer
-        if(fireIntervalRemaining > 0)
+        if (fireIntervalRemaining > 0)
         {
             fireIntervalRemaining -= Time.fixedDeltaTime;
         }
@@ -195,7 +196,7 @@ public class Weapon : MonoBehaviour
         //Clamp the windup so it doesn't get too large and allow the player to "over-charge" a weapon and fire with no windup after holding the button for a while
         currentWindup = Mathf.Clamp(currentWindup, 0, fireWindup);
         //We only want to do all this stuff down here if this weapon is NOT configured to charge up 
-        if (!forceFirstShot)
+        if (!forceFirstShot && fireWindup > 0)
         {
             //If this is the first frame we're winding up for, then we want to do some stuff relating to animations
             if (lastWindup == 0 && currentWindup > 0)
@@ -214,6 +215,11 @@ public class Weapon : MonoBehaviour
                 animator.SetTrigger("WindupCancel");
             }
             lastWindup = currentWindup;
+        }
+        if (currentWindup < fireWindup && currentWindup != 0)
+        {
+            fireAudioSource.pitch = Mathf.Lerp(minWindupPitch, maxWindupPitch, Mathf.InverseLerp(0, fireWindup, currentWindup));
+            fireAudioSource.volume = Mathf.Lerp(minWindupVolume, maxWindupVolume, Mathf.InverseLerp(0, fireWindup, currentWindup));
         }
     }
     /// <summary>
@@ -264,6 +270,13 @@ public class Weapon : MonoBehaviour
             fireParticles.Play();
         if(fireAudioSource)
         {
+            if (!useLoopedSound)
+            {
+                fireAudioSource.Stop();
+                fireAudioSource.time = 0;
+            }
+            fireAudioSource.volume = 1;
+            fireAudioSource.pitch = 1;
             if(timesFired == 0 && firstShotAudioClip)
             {
                 fireAudioSource.PlayOneShot(firstShotAudioClip);
@@ -299,7 +312,7 @@ public class Weapon : MonoBehaviour
                 {
                     if (hit.rigidbody && hit.rigidbody.TryGetComponent(out Character c))
                     {
-                        c.UpdateHealth(-damage);
+                        c.UpdateHealth(-damage, transform.position);
                         print("hit an enemy");
                     }
                     else
@@ -307,6 +320,8 @@ public class Weapon : MonoBehaviour
                         print("did not hit enemy");
                     }
                     Debug.DrawLine(Camera.main.transform.position, hit.point, Color.green, 0.25f);
+                    HitEffects(hit);
+
                 }
                 else
                 {
@@ -387,6 +402,10 @@ public class Weapon : MonoBehaviour
         yield return new WaitForFixedUpdate();
         windupInProgress = false;
         yield break;
+    }
+    public virtual void HitEffects(RaycastHit hit)
+    {
+        
     }
 
     private void OnDrawGizmosSelected()

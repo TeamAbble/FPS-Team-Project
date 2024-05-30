@@ -58,9 +58,9 @@ public class Enemy : Character
     {
         
     }
-    public override void UpdateHealth(int healthChange)
+    public override void UpdateHealth(int healthChange, Vector3 damagePosition)
     {
-        base.UpdateHealth(healthChange);
+        base.UpdateHealth(healthChange, damagePosition);
         healthBarRef.value = CurrentHealth;
     }
 }
