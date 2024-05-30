@@ -120,7 +120,7 @@ public class Weapon : MonoBehaviour
         if (!fireInput && loopFireAnimation)
             animator.SetBool("LoopedFire", false);
     }
-    bool canfire;
+    [SerializeField] bool canfire;
     [SerializeField, Tooltip("If true, this weapon will play a firing animation when fired")] bool useFireAnimation;
     [SerializeField, Tooltip("If true, this weapon will keep playing the same firing animation over and over until the weapon stops being fired.")] bool loopFireAnimation;
     [SerializeField, Tooltip("If true, the fire animation will be played when the windup starts")] bool playAnimationOnWindup;
@@ -294,8 +294,8 @@ public class Weapon : MonoBehaviour
                     x = Mathf.Lerp(minSpread.x, maxSpread.x, vec.x),
                     y = Mathf.Lerp(minSpread.y, maxSpread.y, vec.y)
                 } + Vector3.forward * maxRange;
-
-                if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.TransformDirection(randomDirection), out RaycastHit hit, maxRange, layermask, QueryTriggerInteraction.Ignore))
+                Vector3 pos = (isEnemyWeapon ? firePosition.position : Camera.main.transform.position), dir = isEnemyWeapon ? firePosition.TransformDirection(randomDirection) : Camera.main.transform.TransformDirection(randomDirection);
+                if (Physics.Raycast(pos, dir, out RaycastHit hit, maxRange, layermask, QueryTriggerInteraction.Ignore))
                 {
                     if (hit.rigidbody && hit.rigidbody.TryGetComponent(out Character c))
                     {

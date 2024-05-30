@@ -42,7 +42,7 @@ public class Player : Character
         base.Start();
         if(!weaponManager)
             weaponManager = GetComponent<WeaponManager>();
-
+        UpdateHealth(0);
     }
     private void Aim()
     {

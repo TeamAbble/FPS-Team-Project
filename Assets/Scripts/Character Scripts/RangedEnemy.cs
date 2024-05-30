@@ -9,12 +9,12 @@ public class RangedEnemy : Enemy
     float shotTimer = 2;
     public Weapon weapon;
     [SerializeField] float viewDistance = 30;
-   
+    public Transform aimTransform;
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     protected override void EnemyBehaviour()
     {
@@ -26,16 +26,15 @@ public class RangedEnemy : Enemy
         {
             case States.CHASE:
                 Move();
+                aimTransform.localEulerAngles = Vector3.zero;
                 break;
             case States.ATTACK:
-                transform.rotation = Quaternion.LookRotation(target.transform.position - (transform.position + Vector3.down), Vector3.up);
-                shotTimer -= Time.deltaTime;
-                weapon.SetFireInput(shotTimer <= 0);
-                if (shotTimer <= 0)
+                if (IsAlive)
                 {
-                    Debug.Log("EnemyFired");
-                    shotTimer = 2;
+                    transform.rotation = Quaternion.LookRotation(target.transform.position - (transform.position + Vector3.down), Vector3.up);
+                    aimTransform.forward = target.transform.position - (transform.position + Vector3.down);
                 }
+
                 break;
             case States.PATROL:
                 break;
@@ -44,10 +43,14 @@ public class RangedEnemy : Enemy
             default:
                 break;
         }
+        if (weapon)
+            weapon.SetFireInput(IsAlive && state == States.ATTACK);
     }
 
     void CheckLineOfSight()
     {
+        if (!weapon || !target)
+            return;
         if (Physics.Linecast(transform.position, target.transform.position,out RaycastHit hit, layermask, QueryTriggerInteraction.Ignore))
         {
             if (hit.rigidbody && hit.rigidbody.TryGetComponent(out Character player)&&hit.distance<=viewDistance)

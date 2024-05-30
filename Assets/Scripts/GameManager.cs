@@ -150,6 +150,7 @@ public class GameManager : MonoBehaviour
         //Disable this menu
         respawnScreen.SetActive(false);
         //Gather all the spawners
+        spawners.Clear();
         spawners.AddRange(FindObjectsOfType<EnemySpawner>(true));
         //Start the first wave delay
         StartCoroutine(WaveDelay());
