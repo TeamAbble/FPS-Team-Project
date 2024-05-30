@@ -249,13 +249,15 @@ public class Weapon : MonoBehaviour
     void FireWeapon()
     {
 
-
-        if (useFireAnimation && !loopFireAnimation)
-            animator.SetTrigger("Fire");
-        if (loopFireAnimation)
-            animator.SetBool("LoopedFire", true);
-        if (maxAmmo > 0)
-            currentAmmo--;
+        if (!isEnemyWeapon)
+        {
+            if (useFireAnimation && !loopFireAnimation)
+                animator.SetTrigger("Fire");
+            if (loopFireAnimation)
+                animator.SetBool("LoopedFire", true);
+            if (maxAmmo > 0)
+                currentAmmo--;
+        }
         //Debug.Log($"Fired {name} @ {System.DateTime.Now}");
         fireIntervalRemaining = fireInterval;
         if (fireParticles)
