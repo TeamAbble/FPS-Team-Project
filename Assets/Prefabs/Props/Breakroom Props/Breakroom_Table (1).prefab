@@ -34,7 +34,7 @@ Transform:
   - {fileID: 6778955470575075014}
   - {fileID: 5230236756249455504}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!33 &513222088111718071
 MeshFilter:
@@ -117,41 +117,15 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3918707623772432459}
     m_Modifications:
-    - target: {fileID: 3945316631757132217, guid: 1d622cd2ac9b68746b4dfb1571201351,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 8b486c6ecdfb0c5489acdd651cd7b109, type: 2}
     - target: {fileID: 8419449010105299979, guid: 1d622cd2ac9b68746b4dfb1571201351,
         type: 3}
       propertyPath: m_Name
       value: Breakroom_Seat (1) 2
       objectReference: {fileID: 0}
-    - target: {fileID: 8705161201764437936, guid: 1d622cd2ac9b68746b4dfb1571201351,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 13400000, guid: 30910691fb66289478923340aaa87822,
-        type: 2}
     - target: {fileID: 8904831810799940136, guid: 1d622cd2ac9b68746b4dfb1571201351,
         type: 3}
       propertyPath: m_RootOrder
       value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8904831810799940136, guid: 1d622cd2ac9b68746b4dfb1571201351,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.99999994
-      objectReference: {fileID: 0}
-    - target: {fileID: 8904831810799940136, guid: 1d622cd2ac9b68746b4dfb1571201351,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8904831810799940136, guid: 1d622cd2ac9b68746b4dfb1571201351,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8904831810799940136, guid: 1d622cd2ac9b68746b4dfb1571201351,
         type: 3}
@@ -222,41 +196,15 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3918707623772432459}
     m_Modifications:
-    - target: {fileID: 3945316631757132217, guid: 1d622cd2ac9b68746b4dfb1571201351,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 8b486c6ecdfb0c5489acdd651cd7b109, type: 2}
     - target: {fileID: 8419449010105299979, guid: 1d622cd2ac9b68746b4dfb1571201351,
         type: 3}
       propertyPath: m_Name
       value: Breakroom_Seat (1) 2 (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 8705161201764437936, guid: 1d622cd2ac9b68746b4dfb1571201351,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 13400000, guid: 30910691fb66289478923340aaa87822,
-        type: 2}
     - target: {fileID: 8904831810799940136, guid: 1d622cd2ac9b68746b4dfb1571201351,
         type: 3}
       propertyPath: m_RootOrder
       value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8904831810799940136, guid: 1d622cd2ac9b68746b4dfb1571201351,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.99999994
-      objectReference: {fileID: 0}
-    - target: {fileID: 8904831810799940136, guid: 1d622cd2ac9b68746b4dfb1571201351,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8904831810799940136, guid: 1d622cd2ac9b68746b4dfb1571201351,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8904831810799940136, guid: 1d622cd2ac9b68746b4dfb1571201351,
         type: 3}
