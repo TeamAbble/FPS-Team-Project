@@ -19,7 +19,6 @@ public class WeaponPrinter : Purchasable
     public bool printing;
     private void Start()
     {
-        openRotation = topPart.localEulerAngles;
         startPosition = transform.position;
         topPart.localEulerAngles = openRotation;
     }
