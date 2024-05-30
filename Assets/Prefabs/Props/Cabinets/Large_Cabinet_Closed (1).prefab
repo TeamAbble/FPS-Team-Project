@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4798087346156593349
 Transform:
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 57187490928325259}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: 12.700001, y: 0, z: -43.089996}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
@@ -36,8 +36,8 @@ Transform:
   - {fileID: 3574246707896183184}
   - {fileID: 8574877121042350701}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!33 &6828935878156334066
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 77e7b406141fac4478f5a79e13bc0968, type: 2}
+  - {fileID: 2100000, guid: b8ca0bc5a58632849bc19ae33a8116a2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -117,6 +117,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4798087346156593349}
     m_Modifications:
+    - target: {fileID: 6811852093790577798, guid: da1be94f126c8fd40a3fbee49d510c97,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b8ca0bc5a58632849bc19ae33a8116a2, type: 2}
     - target: {fileID: 7574108194067414897, guid: da1be94f126c8fd40a3fbee49d510c97,
         type: 3}
       propertyPath: m_RootOrder
@@ -197,6 +202,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cabinet_Drawer (1) 1 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7605134884144393119, guid: da1be94f126c8fd40a3fbee49d510c97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -216,6 +226,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4798087346156593349}
     m_Modifications:
+    - target: {fileID: 6811852093790577798, guid: da1be94f126c8fd40a3fbee49d510c97,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b8ca0bc5a58632849bc19ae33a8116a2, type: 2}
     - target: {fileID: 7574108194067414897, guid: da1be94f126c8fd40a3fbee49d510c97,
         type: 3}
       propertyPath: m_RootOrder
@@ -296,6 +311,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cabinet_Drawer (1) 1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7605134884144393119, guid: da1be94f126c8fd40a3fbee49d510c97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -315,6 +335,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4798087346156593349}
     m_Modifications:
+    - target: {fileID: 6811852093790577798, guid: da1be94f126c8fd40a3fbee49d510c97,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b8ca0bc5a58632849bc19ae33a8116a2, type: 2}
     - target: {fileID: 7574108194067414897, guid: da1be94f126c8fd40a3fbee49d510c97,
         type: 3}
       propertyPath: m_RootOrder
@@ -343,7 +368,7 @@ PrefabInstance:
     - target: {fileID: 7574108194067414897, guid: da1be94f126c8fd40a3fbee49d510c97,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.11
+      value: 0.201
       objectReference: {fileID: 0}
     - target: {fileID: 7574108194067414897, guid: da1be94f126c8fd40a3fbee49d510c97,
         type: 3}
@@ -395,6 +420,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cabinet_Drawer (1) 1 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7605134884144393119, guid: da1be94f126c8fd40a3fbee49d510c97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -445,6 +475,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4798087346156593349}
     m_Modifications:
+    - target: {fileID: 6811852093790577798, guid: da1be94f126c8fd40a3fbee49d510c97,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b8ca0bc5a58632849bc19ae33a8116a2, type: 2}
     - target: {fileID: 7574108194067414897, guid: da1be94f126c8fd40a3fbee49d510c97,
         type: 3}
       propertyPath: m_RootOrder
@@ -473,7 +508,7 @@ PrefabInstance:
     - target: {fileID: 7574108194067414897, guid: da1be94f126c8fd40a3fbee49d510c97,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.23
+      value: -0.21
       objectReference: {fileID: 0}
     - target: {fileID: 7574108194067414897, guid: da1be94f126c8fd40a3fbee49d510c97,
         type: 3}
@@ -524,6 +559,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cabinet_Drawer (1) 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7605134884144393119, guid: da1be94f126c8fd40a3fbee49d510c97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

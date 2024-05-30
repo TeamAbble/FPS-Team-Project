@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -38,6 +39,11 @@ public class SettingsMenu : MonoBehaviour
 
     public void ApplySettings()
     {
+        settings.sensitivity = Vector2.one * sensitivitySlider.value;
+        settings.volume = sensitivitySlider.value;
+
+        GameManager.instance.lookSpeed = settings.sensitivity;
+        mixer.SetFloat("MasterVolume", settings.volume);
         SaveSettings();
     }
     void LoadSettings()
@@ -48,21 +54,25 @@ public class SettingsMenu : MonoBehaviour
             SaveSettings();
         }
         //We've made sure there actually IS a settings file, so we can continue
-        string json = File.ReadAllText(SettingsPath);
+        string json = File.ReadAllText(SettingsPath, Encoding.UTF8);
         JsonUtility.FromJsonOverwrite(json, settings);
 
         GameManager.instance.lookSpeed = settings.sensitivity;
-        mixer.SetFloat("Volume", settings.volume);
+        mixer.SetFloat("MasterVolume", settings.volume);
+
+        VolumeSlider.value = settings.volume;
+        
     }
     void SaveSettings()
     {
-        if (!File.Exists(SettingsPath))
-        {
-            File.Create(SettingsPath);
-        }
+        using FileStream file = File.Open(SettingsPath, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
         string json = JsonUtility.ToJson(settings);
-        File.WriteAllText(SettingsPath, json);
-        
+        file.SetLength(0);
+        file.Flush();
+        file.Write(Encoding.UTF8.GetBytes(json));
+        file.Close();
+        print($"{json} saved to {SettingsPath}");
+
     }
     void ExitMenu()
     {
