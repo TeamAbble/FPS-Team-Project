@@ -37,7 +37,7 @@ Transform:
   - {fileID: 670654622227141808}
   - {fileID: 325848109684307697}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!33 &7735292896532601928
 MeshFilter:
@@ -127,18 +127,20 @@ MonoBehaviour:
   closedRotation: {x: 0, y: 0, z: 0}
   openRotation: {x: -90, y: 0, z: 0}
   purchaseTime: 3
-  closeTime: 0.2
-  openTime: 0.2
+  closeTime: 0.02
+  openTime: 0.02
   audioSource: {fileID: 1380270836546535001}
   startClip: {fileID: 8300000, guid: 9dee834fca66597409a5555b70bb5e23, type: 3}
   processingClip: {fileID: 8300000, guid: 1bb61371e697e27479da4152cd330c08, type: 3}
   doneClip: {fileID: 8300000, guid: fef07cf56ebd2764b8ecdb499f47bb8e, type: 3}
   processingSystem: {fileID: 0}
   doneSystem: {fileID: 454054855273198300}
-  processingNoisePower: 0.1
+  processingNoisePower: 0.03
   startPosition: {x: 0, y: 0, z: 0}
   weaponSpawnpoint: {fileID: 325848109684307697}
   costMultiplier: 1.1
+  spawnedWeapon: {fileID: 0}
+  printing: 0
 --- !u!1 &6053649827723487270
 GameObject:
   m_ObjectHideFlags: 0

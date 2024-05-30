@@ -37,6 +37,7 @@ public class MainMenu : MonoBehaviour
     }
     public void Settings()
     {
-        
+        menuManagerRef.settingsMenu.SetActive(true);
+        menuManagerRef.mainMenu.SetActive(false);
     }
 }

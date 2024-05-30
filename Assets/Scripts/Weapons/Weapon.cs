@@ -79,9 +79,8 @@ public class Weapon : MonoBehaviour
     }
     private void Start()
     {
-        wm = GetComponentInParent<WeaponManager>();
-        animator = GetComponentInParent<Character>().Animator;
-
+        if (isEnemyWeapon)
+            GiveToEntity();
         if (oldMag.magazine)
         {
             oldMag.startPos = oldMag.magazine.localPosition;
@@ -93,6 +92,14 @@ public class Weapon : MonoBehaviour
             newMag.startRot = newMag.magazine.localRotation;
         }
         currentAmmo = maxAmmo;
+    }
+    public void GiveToEntity()
+    {
+        wm = GetComponentInParent<WeaponManager>();
+        if (transform.root.TryGetComponent<Character>(out var c))
+        {
+            animator = c.Animator;
+        }
     }
     bool IsOwnerAlive => (wm && wm.IsAlive);
     public bool isEnemyWeapon;
