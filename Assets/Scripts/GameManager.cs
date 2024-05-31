@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
     public int weaponPrintCost;
     public int areaUnlockCost;
     public GameObject[] playerDependantObjects;
+    public float maxSpawnDistance;
     public void UseWeaponWheel(bool opening)
     {
         //If the player is dead, we don't want to allow the player to open the weapon wheel.
@@ -199,10 +200,19 @@ public class GameManager : MonoBehaviour
     {
         if (playerRef == null || spawners.Count == 0)
             return;
+        int spawnerIndex = 0;
+        // int[] checkedRooms = new int[spawners.Count];
+        // int checkedRoomCount = 0;
+        // while (spawnerDistance >= 0 && spawnerDistance < maxSpawnDistance)
+        // {
+        //     spawnerIndex = Random.Range(0, spawners.Count);
+        //     spawnerDistance = Vector3.Distance(playerRef.transform.position, spawners[spawnerIndex].transform.position);
+        // }
+        var spawnersInRange = spawners.FindAll(x => Vector3.Distance(x.transform.position, playerRef.transform.position) < maxSpawnDistance);
+        spawnerIndex = Random.Range(0, spawnersInRange.Count);
         spawnTimer = 0;
         enemiesAlive++;
         enemiesRemaining--;
-        int spawnerIndex = Random.Range(0, spawners.Count);
         spawners[spawnerIndex].Spawn();
         SetEnemyDisplay();
     }
