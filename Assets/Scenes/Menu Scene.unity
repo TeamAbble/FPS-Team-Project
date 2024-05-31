@@ -709,12 +709,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4890407698555094173, guid: 63878057147425a45a1cae6ef4d74f39,
-        type: 3}
-      propertyPath: unownedWeapons.Array.data[2]
-      value: 
-      objectReference: {fileID: 22406242709602842, guid: 7452ec78c2e2bf04c85f216e95301894,
-        type: 3}
     - target: {fileID: 6464967501249126244, guid: 63878057147425a45a1cae6ef4d74f39,
         type: 3}
       propertyPath: m_RootOrder

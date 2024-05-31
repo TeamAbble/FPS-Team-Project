@@ -10021,8 +10021,8 @@ MonoBehaviour:
   fireBlocked: 0
   meleeWeapon: 0
   timesFired: 0
-  fireParticles: {fileID: 0}
-  fireAudioSource: {fileID: 0}
+  fireParticles: {fileID: 658590351481091690}
+  fireAudioSource: {fileID: 8675519776745235454}
   fireAudioClip: {fileID: 8300000, guid: 0c626e2121bea5e4080740b10c21c3fb, type: 3}
   lastShotAudioClip: {fileID: 8300000, guid: 0c626e2121bea5e4080740b10c21c3fb, type: 3}
   firstShotAudioClip: {fileID: 8300000, guid: 0c626e2121bea5e4080740b10c21c3fb, type: 3}
@@ -10031,7 +10031,7 @@ MonoBehaviour:
   maxWindupPitch: 1.5
   minWindupVolume: 0
   maxWindupVolume: 1
-  firePosition: {fileID: 0}
+  firePosition: {fileID: 191470065062338409}
   shotEffect: {fileID: 7745328033304195952, guid: 56105df12f9301847918889e16934751,
     type: 3}
   tracerSpeed: 200
@@ -10040,7 +10040,7 @@ MonoBehaviour:
     m_Bits: 257
   useLoopedSound: 0
   oldMag:
-    magazine: {fileID: 0}
+    magazine: {fileID: 4539753899633117370}
     startPos: {x: -1.1138793e-16, y: -0.88783824, z: 0.31093073}
     startRot: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   newMag:
@@ -10209,6 +10209,12 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &4539753899633117370 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -485866194763051093, guid: b4c3415d05b0d8d4aae28ee7cb6ef8a6,
+    type: 3}
+  m_PrefabInstance: {fileID: 5062513666051835665}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4581593706744588165 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -444521105353760620, guid: b4c3415d05b0d8d4aae28ee7cb6ef8a6,
