@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
     public Volume damageVolume;
     public Vector2 lookSpeed;
     public List<GameObject> unownedWeapons;
-    List<GameObject> defaultWeapons = new();
+    public List<GameObject> defaultWeapons = new();
     public int weaponPrintCost;
     public int areaUnlockCost;
     public GameObject[] playerDependantObjects;
@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
         score = 0;
         scoreText.text = $"${score}";
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        unownedWeapons = defaultWeapons;
+        unownedWeapons = new(defaultWeapons);
         currentWave = 0;
         enemiesAlive = 0;
         enemiesRemaining = 0;
@@ -127,7 +127,7 @@ public class GameManager : MonoBehaviour
         }
         SceneManager.sceneLoaded += SceneManager_sceneLoaded;
         scoreText.text = $"${score}";
-        defaultWeapons = unownedWeapons;
+        defaultWeapons = new(unownedWeapons);
     }
 
     private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)

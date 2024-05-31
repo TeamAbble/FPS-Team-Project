@@ -4637,8 +4637,9 @@ MonoBehaviour:
   lookSpeed: {x: 4, y: 4}
   unownedWeapons:
   - {fileID: 539066444441173501, guid: 7f67ea4a8fc9ec443b95f4edc98aa365, type: 3}
-  - {fileID: 1191193837061692243, guid: 33f15f9fb2dc0c941ba95cda7b0f17d8, type: 3}
   - {fileID: 3846149180109872664, guid: ff88fd727bd86694fa2082f1d5332f95, type: 3}
+  - {fileID: 1191193837061692243, guid: 33f15f9fb2dc0c941ba95cda7b0f17d8, type: 3}
+  defaultWeapons: []
   weaponPrintCost: 10
   areaUnlockCost: 10
   playerDependantObjects:
