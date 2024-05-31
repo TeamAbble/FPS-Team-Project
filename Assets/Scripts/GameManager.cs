@@ -107,6 +107,9 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         unownedWeapons = defaultWeapons;
         currentWave = 0;
+        enemiesAlive = 0;
+        enemiesRemaining = 0;
+        SetEnemyDisplay();
 
     }
     private void Awake()
