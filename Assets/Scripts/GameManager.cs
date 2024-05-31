@@ -124,6 +124,7 @@ public class GameManager : MonoBehaviour
         }
         SceneManager.sceneLoaded += SceneManager_sceneLoaded;
         scoreText.text = $"${score}";
+        defaultWeapons = unownedWeapons;
     }
 
     private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
@@ -213,7 +214,7 @@ public class GameManager : MonoBehaviour
         spawnTimer = 0;
         enemiesAlive++;
         enemiesRemaining--;
-        spawners[spawnerIndex].Spawn();
+        spawnersInRange[spawnerIndex].Spawn();
         SetEnemyDisplay();
     }
     void SetEnemyDisplay()

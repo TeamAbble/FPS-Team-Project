@@ -34,6 +34,7 @@ public class SettingsMenu : MonoBehaviour
     }
     private void OnEnable()
     {
+        if(CloseButton)
         CloseButton.onClick.AddListener(ExitMenu);
     }
 
