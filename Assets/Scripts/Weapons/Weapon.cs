@@ -196,22 +196,24 @@ public class Weapon : MonoBehaviour
         //Clamp the windup so it doesn't get too large and allow the player to "over-charge" a weapon and fire with no windup after holding the button for a while
         currentWindup = Mathf.Clamp(currentWindup, 0, fireWindup);
         //We only want to do all this stuff down here if this weapon is NOT configured to charge up 
-        if (!forceFirstShot && fireWindup > 0)
+        if (!forceFirstShot && fireWindup > 0 && !burstFiring)
         {
             //If this is the first frame we're winding up for, then we want to do some stuff relating to animations
-            if (lastWindup == 0 && currentWindup > 0)
+            if (currentWindup > 0 && currentWindup < fireWindup)
             {
-                if (playAnimationOnWindup)
+                if (!fireAudioSource.isPlaying || fireAudioSource.clip != windupAudio)
+                {
+                    fireAudioSource.clip = windupAudio;
+                    fireAudioSource.Play();
+                }
+                if (playAnimationOnWindup && lastWindup == 0)
                 {
                     animator.SetTrigger(windupAnimationIsNotFireAnimation ? "Windup" : "Fire");
                 }
-                fireAudioSource.clip = windupAudio;
-                fireAudioSource.Play();
             }
             //If the below is true then the windup has ended and we should stop doing windup stuff
             else if (lastWindup > 0 && currentWindup <= 0)
             {
-                fireAudioSource.Stop();
                 animator.SetTrigger("WindupCancel");
             }
             lastWindup = currentWindup;
@@ -285,8 +287,9 @@ public class Weapon : MonoBehaviour
             }
             else if (fireAudioClip && !useLoopedSound)
             {
-                fireAudioSource.clip = fireAudioClip;
-                fireAudioSource.Play();
+                fireAudioSource.volume = 1;
+                fireAudioSource.pitch = 1;
+                fireAudioSource.PlayOneShot(fireAudioClip);
             }
         }
         timesFired++;

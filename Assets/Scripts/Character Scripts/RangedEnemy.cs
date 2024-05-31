@@ -10,7 +10,7 @@ public class RangedEnemy : Enemy
     public Weapon weapon;
     [SerializeField] float viewDistance = 30;
     public Transform aimTransform;
-
+    public float turnSpeed;
     // Update is called once per frame
     void Update()
     {
@@ -31,8 +31,7 @@ public class RangedEnemy : Enemy
             case States.ATTACK:
                 if (IsAlive)
                 {
-                    transform.rotation = Quaternion.LookRotation(target.transform.position - (transform.position + Vector3.down), Vector3.up);
-                    aimTransform.forward = target.transform.position - (transform.position + Vector3.down);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(target.transform.position - (transform.position + Vector3.down), Vector3.up), turnSpeed * Time.fixedTime);
                 }
 
                 break;

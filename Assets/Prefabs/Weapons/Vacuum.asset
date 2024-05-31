@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f16c160dd8877149adcc69a8878c74d, type: 3}
   m_Name: Vacuum
   m_EditorClassIdentifier: 
-  recoilPosReturnSpeed: 10
-  recoilRotReturnSpeed: 10
-  firingRecoilPosDamping: 10
-  firingRecoilRotDamping: 10
+  recoilPosReturnSpeed: 2
+  recoilRotReturnSpeed: 2
+  firingRecoilPosDamping: 4
+  firingRecoilRotDamping: 4
   recoilPosMultiplier: 2
-  recoilRotMultiplier: -20
+  recoilRotMultiplier: -30
   recoilForce: 0
-  minHipRecoilPos: {x: -0.02, y: -0.02, z: -0.02}
-  maxHipRecoilPos: {x: 0.02, y: 0.02, z: -0.02}
+  minHipRecoilPos: {x: -0.02, y: -0.1, z: -0.02}
+  maxHipRecoilPos: {x: 0.02, y: -0.1, z: 0.02}
   minAimRecoilPos: {x: 0, y: 0, z: 0}
   maxAimRecoilPos: {x: 0, y: 0, z: 0}
   minHipRecoilRot: {x: -0.2, y: -0.2, z: -0.2}
@@ -95,12 +95,12 @@ MonoBehaviour:
     m_RotationOrder: 4
   recoilPosDamping: 0.1
   recoilRotDamping: 0.1
-  temporaryAimAnglePerShot: {x: -1, y: 0, z: 0}
-  permanentAimAnglePerShot: 0.2
-  tempAimAngleDecay: 1
-  tempAimAngleDamp: 15
-  permAimAngleDamp: 6
-  tempAimAngleReturnSpeed: 4
+  temporaryAimAnglePerShot: {x: -5, y: 0, z: 0}
+  permanentAimAnglePerShot: 1.5
+  tempAimAngleDecay: 0.1
+  tempAimAngleDamp: 4
+  permAimAngleDamp: 7
+  tempAimAngleReturnSpeed: 1
   temporaryAimBounceCurve:
     serializedVersion: 2
     m_Curve:

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 /// <summary>
 /// Player Controller script, written by Lunar :p
@@ -37,6 +38,13 @@ public class Player : Character
     public Transform viewCamera, worldCamera;
     public float interactDistance;
     public LayerMask interactLayermask;
+    public float passiveHealPerSec, passiveHealDelay;
+    float currentHealDelay;
+    public float iFrameTime, dodgeDelay, dodgeForce;
+    public float current_iFrameTime, currentDodgeDelay;
+    public bool iFrame;
+    public UnityEvent dodgeEvents;
+    public Transform dodgeParticleTransform;
     protected override void Start()
     {
         base.Start();
@@ -181,6 +189,22 @@ public class Player : Character
         RecoilMaths();
 
         InteractCheck();
+
+        if(currentHealDelay < passiveHealDelay)
+        {
+            currentHealDelay += Time.fixedDeltaTime;
+        }
+        else
+        {
+            UpdateHealth(passiveHealPerSec * Time.fixedDeltaTime, transform.position);
+        }
+
+        iFrame = current_iFrameTime < iFrameTime;
+        current_iFrameTime += Time.fixedDeltaTime;
+        current_iFrameTime = Mathf.Clamp(current_iFrameTime, 0, iFrameTime);
+
+        currentDodgeDelay += Time.fixedDeltaTime;
+        currentDodgeDelay = Mathf.Clamp(currentDodgeDelay, 0, dodgeDelay);
     }
     public override void Move()
     {
@@ -198,10 +222,14 @@ public class Player : Character
                 targeted = p;
             }
         }
+        else
+        {
+            targeted = null;
+        }
     }
     public void InteractConfirm()
     {
-        if (targeted && targeted.cost <= GameManager.instance.currencyOwned)
+        if (targeted && targeted.cost <= GameManager.instance.score)
         {
             targeted.Purchase();
         }
@@ -231,17 +259,33 @@ public class Player : Character
             InteractConfirm();
         }
     }
+    public void Dodge(InputAction.CallbackContext context)
+    {
+        if (context.performed && currentDodgeDelay >= dodgeDelay)
+        {
+            Vector3 movevec = transform.rotation * new Vector3(moveInput.x, 0, moveInput.y) * dodgeForce;
+            rb.AddForce(movevec, ForceMode.Impulse);
+            dodgeParticleTransform.localEulerAngles = new Vector3(0, Mathf.Atan2(moveInput.y, moveInput.x), 0);
+            currentDodgeDelay = 0;
+            dodgeEvents.Invoke();
+            current_iFrameTime = 0;
+        }
+    }
 
     #endregion
 
-    public override void UpdateHealth(int healthChange, Vector3 damagePosition)
+    public override void UpdateHealth(float healthChange, Vector3 damagePosition)
     {
-        base.UpdateHealth(healthChange, damagePosition);
-        GameManager.instance.damageVolume.weight = Mathf.InverseLerp(maxHealth, 0, health);
-        GameManager.instance.healthbar.value = health;
-        if(healthChange < 0)
+        if (!iFrame)
         {
-            DamageRingManager.Instance.AddRing(damagePosition);
+            base.UpdateHealth(healthChange, damagePosition);
+            GameManager.instance.damageVolume.weight = Mathf.InverseLerp(maxHealth, 0, health);
+            GameManager.instance.healthbar.value = health;
+            if (healthChange < 0)
+            {
+                DamageRingManager.Instance.AddRing(damagePosition);
+                currentHealDelay = 0;
+            }
         }
     }
     public override void Die()
