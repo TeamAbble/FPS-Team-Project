@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     
     public float spawnTimer=0;
     public static GameManager instance;
-    int score = 0;
+    public int score = 0;
     public Vector3 spawnOffset;
     public GameObject pauseCanvas;
     public bool paused;
@@ -56,10 +56,10 @@ public class GameManager : MonoBehaviour
     public Volume damageVolume;
     public Vector2 lookSpeed;
     public List<GameObject> unownedWeapons;
+    List<GameObject> defaultWeapons = new();
     public int weaponPrintCost;
     public int areaUnlockCost;
     public GameObject[] playerDependantObjects;
-    public int currencyOwned;
     public void UseWeaponWheel(bool opening)
     {
         //If the player is dead, we don't want to allow the player to open the weapon wheel.
@@ -104,6 +104,9 @@ public class GameManager : MonoBehaviour
         score = 0;
         scoreText.text = $"${score}";
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        unownedWeapons = defaultWeapons;
+        currentWave = 0;
+
     }
     private void Awake()
     {
@@ -189,7 +192,8 @@ public class GameManager : MonoBehaviour
                 ammoDisplayText.text = $"{current}\n/{max}";
             }
         }
-        
+        scoreText.text = $"${score}";
+
     }
     public void FindSpawner()
     {
@@ -209,7 +213,6 @@ public class GameManager : MonoBehaviour
     public void EnemyDeath()
     {
         score++;
-        scoreText.text = $"${score}";
         //The number of enemies left decrements when an enemy dies
         enemiesAlive--;
         SetEnemyDisplay();

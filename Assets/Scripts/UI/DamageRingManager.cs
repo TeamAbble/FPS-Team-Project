@@ -34,7 +34,14 @@ public class DamageRingManager : MonoBehaviour
         }
         ringList = new();
     }
-
+    public void ClearRings()
+    {
+        ringList.ForEach(x =>
+        {
+            Destroy(x.ringObject);
+        });
+        ringList.Clear();
+    }
     public void AddRing(Vector3 source)
     {
         var r = new DamageRing()

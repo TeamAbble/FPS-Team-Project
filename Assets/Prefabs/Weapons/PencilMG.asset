@@ -12,46 +12,140 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f16c160dd8877149adcc69a8878c74d, type: 3}
   m_Name: PencilMG
   m_EditorClassIdentifier: 
-  recoilPosReturnSpeed: 0
-  recoilRotReturnSpeed: 0
-  firingRecoilPosDamping: 0
-  firingRecoilRotDamping: 0
-  recoilPosMultiplier: 0
-  recoilRotMultiplier: 0
+  recoilPosReturnSpeed: 2
+  recoilRotReturnSpeed: 6
+  firingRecoilPosDamping: 2
+  firingRecoilRotDamping: 2
+  recoilPosMultiplier: 2
+  recoilRotMultiplier: -20
   recoilForce: 0
-  minHipRecoilPos: {x: 0, y: 0, z: 0}
-  maxHipRecoilPos: {x: 0, y: 0, z: 0}
-  minAimRecoilPos: {x: 0, y: 0, z: 0}
+  minHipRecoilPos: {x: -0.005, y: -0.02, z: -0.005}
+  maxHipRecoilPos: {x: 0.005, y: -0.02, z: 0.005}
+  minAimRecoilPos: {x: 0, y: 0.2, z: 0}
   maxAimRecoilPos: {x: 0, y: 0, z: 0}
-  minHipRecoilRot: {x: 0, y: 0, z: 0}
-  maxHipRecoilRot: {x: 0, y: 0, z: 0}
+  minHipRecoilRot: {x: -0.2, y: 0, z: -0.2}
+  maxHipRecoilRot: {x: 0.2, y: 0, z: 0.2}
   minAimRecoilRot: {x: 0, y: 0, z: 0}
   maxAimRecoilRot: {x: 0, y: 0, z: 0}
   recoilPosBounceCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: -0
+      value: 0.008919358
+      inSlope: 7.4851656
+      outSlope: 7.4851656
+      tangentMode: 0
+      weightedMode: 2
+      inWeight: 0
+      outWeight: 0.15613967
+    - serializedVersion: 3
+      time: 0.43114102
+      value: 1.0142994
+      inSlope: -1.9955238
+      outSlope: -1.9955238
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.41581324
+      outWeight: 0.5063267
+    - serializedVersion: 3
+      time: 0.81546664
+      value: 0.99903345
+      inSlope: 0.27931502
+      outSlope: 0.27931502
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.13553506
+      outWeight: 0.30870667
+    - serializedVersion: 3
+      time: 1
+      value: 0.9963598
+      inSlope: 0.5149004
+      outSlope: 0.5149004
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.31905833
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   recoilRotBounceCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.66052115
+      value: 1.1262583
+      inSlope: 0.6254544
+      outSlope: 0.6254544
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  recoilPosDamping: 0
-  recoilRotDamping: 0
-  temporaryAimAnglePerShot: {x: 0, y: 0, z: 0}
-  permanentAimAnglePerShot: 0
+  recoilPosDamping: 0.03
+  recoilRotDamping: 0.01
+  temporaryAimAnglePerShot: {x: -1, y: 0, z: 0}
+  permanentAimAnglePerShot: 0.2
   tempAimAngleDecay: 0
-  tempAimAngleDamp: 0
-  permAimAngleDamp: 0
-  tempAimAngleReturnSpeed: 0
+  tempAimAngleDamp: 5
+  permAimAngleDamp: 8
+  tempAimAngleReturnSpeed: 3
   temporaryAimBounceCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.6219871
+      value: 1.1168406
+      inSlope: 0.710166
+      outSlope: 0.710166
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  viewmodelCameraInfluence: 0
-  worldCameraInfluence: 0
+  viewmodelCameraInfluence: 1
+  worldCameraInfluence: 3
+  viewRotationScalar: {x: 1, y: 1, z: 1}
+  viewPositionScalar: {x: 1, y: 1, z: 1}
+  worldRotationScalar: {x: 1, y: 1, z: 1}
+  worldPositionScalar: {x: 1, y: 1, z: 1}
