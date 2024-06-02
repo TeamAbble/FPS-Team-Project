@@ -56,11 +56,14 @@ public class GameManager : MonoBehaviour
     public Volume damageVolume;
     public Vector2 lookSpeed;
     public List<GameObject> unownedWeapons;
-    List<GameObject> defaultWeapons = new();
+    public List<GameObject> defaultWeapons = new();
     public int weaponPrintCost;
     public int areaUnlockCost;
     public GameObject[] playerDependantObjects;
     public float maxSpawnDistance;
+
+    public TextMeshProUGUI costText;
+    public GameObject costTextBg;
     public void UseWeaponWheel(bool opening)
     {
         //If the player is dead, we don't want to allow the player to open the weapon wheel.
@@ -105,8 +108,11 @@ public class GameManager : MonoBehaviour
         score = 0;
         scoreText.text = $"${score}";
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        unownedWeapons = defaultWeapons;
+        unownedWeapons = new(defaultWeapons);
         currentWave = 0;
+        enemiesAlive = 0;
+        enemiesRemaining = 0;
+        SetEnemyDisplay();
 
     }
     private void Awake()
@@ -124,6 +130,7 @@ public class GameManager : MonoBehaviour
         }
         SceneManager.sceneLoaded += SceneManager_sceneLoaded;
         scoreText.text = $"${score}";
+        defaultWeapons = new(unownedWeapons);
     }
 
     private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
@@ -213,7 +220,7 @@ public class GameManager : MonoBehaviour
         spawnTimer = 0;
         enemiesAlive++;
         enemiesRemaining--;
-        spawners[spawnerIndex].Spawn();
+        spawnersInRange[spawnerIndex].Spawn();
         SetEnemyDisplay();
     }
     void SetEnemyDisplay()

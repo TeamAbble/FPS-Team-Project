@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3592426734226797631}
   - component: {fileID: 5573929573830086915}
   - component: {fileID: 1986644138507481608}
-  - component: {fileID: 6961213572934340837}
+  - component: {fileID: 7873184394329024643}
   m_Layer: 0
   m_Name: Flower Pot_1 (1)
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!33 &5573929573830086915
 MeshFilter:
@@ -84,8 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &6961213572934340837
-CapsuleCollider:
+--- !u!64 &7873184394329024643
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,8 +102,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.97
-  m_Height: 4.59
-  m_Direction: 2
-  m_Center: {x: 0.0000019073486, y: -1.3735612e-14, z: 1.9331152}
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2853148017403216325, guid: 67bdaec4f9ed1e248bf5105bf3c341a8, type: 3}

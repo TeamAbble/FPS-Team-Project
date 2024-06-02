@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8904831810799940136}
   - component: {fileID: 7408130913992230982}
   - component: {fileID: 3945316631757132217}
-  - component: {fileID: 8705161201764437936}
   - component: {fileID: 1458041011658314228}
+  - component: {fileID: 8864175282144584436}
   m_Layer: 0
   m_Name: Breakroom_Seat (1) 2
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!33 &7408130913992230982
 MeshFilter:
@@ -85,27 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8705161201764437936
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8419449010105299979}
-  m_Material: {fileID: 13400000, guid: 30910691fb66289478923340aaa87822, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.1479777, y: 1.1479776, z: 1.9999993}
-  m_Center: {x: 0, y: 0.016736861, z: 0.99999964}
 --- !u!208 &1458041011658314228
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -122,3 +101,25 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0.017, z: 1}
   m_TimeToStationary: 0.5
+--- !u!64 &8864175282144584436
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8419449010105299979}
+  m_Material: {fileID: 13400000, guid: 30910691fb66289478923340aaa87822, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4123858314672130241, guid: 67bdaec4f9ed1e248bf5105bf3c341a8, type: 3}

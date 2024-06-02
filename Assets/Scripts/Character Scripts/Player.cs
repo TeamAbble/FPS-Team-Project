@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -45,6 +46,10 @@ public class Player : Character
     public bool iFrame;
     public UnityEvent dodgeEvents;
     public Transform dodgeParticleTransform;
+
+    //Purchasable UI elements
+    public TextMeshProUGUI costText;
+    public GameObject costTextBg;
     protected override void Start()
     {
         base.Start();
@@ -53,6 +58,9 @@ public class Player : Character
         UpdateHealth(0, Vector3.zero);
         GameManager.instance.healthbar.maxValue = maxHealth;
         GameManager.instance.healthbar.value = maxHealth;
+        costText = GameManager.instance.costText;
+        costTextBg = GameManager.instance.costTextBg;
+        costTextBg.SetActive(false);
     }
     private void Aim()
     {
@@ -220,11 +228,23 @@ public class Player : Character
             if(hit.collider.TryGetComponent(out Purchasable p))
             {
                 targeted = p;
+                costTextBg.SetActive(true);
+                if (p.cost > GameManager.instance.score)
+                {
+                    costText.text = $"Can't Afford: ${p.cost}";
+                }
+                else
+                {
+                    costText.text = $"Purchase: ${p.cost}";
+                }
+                
+                
             }
         }
         else
         {
             targeted = null;
+            costTextBg.SetActive(false);
         }
     }
     public void InteractConfirm()
