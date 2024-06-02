@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 /// <summary>
 /// Player Controller script, written by Lunar :p
 /// Handles the player's input, movement, all that jazz
@@ -50,6 +51,8 @@ public class Player : Character
     //Purchasable UI elements
     public TextMeshProUGUI costText;
     public GameObject costTextBg;
+    //DodgeUI
+    public Slider DodgeBar;
     protected override void Start()
     {
         base.Start();
@@ -61,6 +64,8 @@ public class Player : Character
         costText = GameManager.instance.costText;
         costTextBg = GameManager.instance.costTextBg;
         costTextBg.SetActive(false);
+        DodgeBar = GameManager.instance.dodgeBar;
+        DodgeBar.maxValue = dodgeDelay;
     }
     private void Aim()
     {
@@ -213,6 +218,7 @@ public class Player : Character
 
         currentDodgeDelay += Time.fixedDeltaTime;
         currentDodgeDelay = Mathf.Clamp(currentDodgeDelay, 0, dodgeDelay);
+        DodgeBar.value = currentDodgeDelay;
     }
     public override void Move()
     {
