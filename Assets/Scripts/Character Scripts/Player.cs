@@ -229,7 +229,15 @@ public class Player : Character
             {
                 targeted = p;
                 costTextBg.SetActive(true);
-                costText.text = $"Purchase: ${p.cost}";
+                if (p.cost > GameManager.instance.score)
+                {
+                    costText.text = $"Can't Afford: ${p.cost}";
+                }
+                else
+                {
+                    costText.text = $"Purchase: ${p.cost}";
+                }
+                
                 
             }
         }
