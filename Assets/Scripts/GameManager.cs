@@ -61,6 +61,9 @@ public class GameManager : MonoBehaviour
     public int areaUnlockCost;
     public GameObject[] playerDependantObjects;
     public float maxSpawnDistance;
+
+    public TextMeshProUGUI costText;
+    public GameObject costTextBg;
     public void UseWeaponWheel(bool opening)
     {
         //If the player is dead, we don't want to allow the player to open the weapon wheel.
