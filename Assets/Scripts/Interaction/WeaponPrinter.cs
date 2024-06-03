@@ -72,8 +72,7 @@ public class WeaponPrinter : Purchasable
         int random = Random.Range(0, GameManager.instance.unownedWeapons.Count);
         GameObject w = Instantiate(GameManager.instance.unownedWeapons[random], weaponSpawnpoint.position, weaponSpawnpoint.rotation);
         GameManager.instance.unownedWeapons.RemoveAt(random);
-        var p = w.AddComponent<WeaponPurchasable>();
-        p.cost = 0;
+        var p = w.AddComponent<WeaponPickup>();
         spawnedWeapon = p.gameObject;
         p.owningPrinter = this;
         while (t < 1)

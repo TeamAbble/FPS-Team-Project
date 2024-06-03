@@ -5688,7 +5688,7 @@ Transform:
   - {fileID: 8688610723204372878}
   - {fileID: 444890199712921334}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &3153882696938285588
 Rigidbody:
@@ -5765,7 +5765,7 @@ MonoBehaviour:
   meleeCooldown: 0
   moveInput: {x: 0, y: 0}
   lookInput: {x: 0, y: 0}
-  lookAngle: {x: 0, y: 0}
+  lookAngle: {x: 90, y: 0}
   oldLookAngle: {x: 0, y: 0}
   deltaLookAngle: {x: 0, y: 0}
   aimPitchOffset: 90

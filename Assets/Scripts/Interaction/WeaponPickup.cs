@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponPurchasable : Purchasable
+public class WeaponPickup : Interactable
 {
     public WeaponPrinter owningPrinter;
-    public override void Purchase()
+    public override void Interact()
     {
         //Give the player this weapon
         GameManager.instance.playerRef.weaponManager.weapons.Add(GetComponent<Weapon>());

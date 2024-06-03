@@ -48,11 +48,6 @@ public class Player : Character
     public UnityEvent dodgeEvents;
     public Transform dodgeParticleTransform;
 
-    //Purchasable UI elements
-    public TextMeshProUGUI costText;
-    public GameObject costTextBg;
-    //DodgeUI
-    public Slider DodgeBar;
     protected override void Start()
     {
         base.Start();
@@ -61,11 +56,7 @@ public class Player : Character
         UpdateHealth(0, Vector3.zero);
         GameManager.instance.healthbar.maxValue = maxHealth;
         GameManager.instance.healthbar.value = maxHealth;
-        costText = GameManager.instance.costText;
-        costTextBg = GameManager.instance.costTextBg;
-        costTextBg.SetActive(false);
-        DodgeBar = GameManager.instance.dodgeBar;
-        DodgeBar.maxValue = dodgeDelay;
+        GameManager.instance.dodgeBar.maxValue = dodgeDelay;
     }
     private void Aim()
     {
@@ -218,7 +209,7 @@ public class Player : Character
 
         currentDodgeDelay += Time.fixedDeltaTime;
         currentDodgeDelay = Mathf.Clamp(currentDodgeDelay, 0, dodgeDelay);
-        DodgeBar.value = currentDodgeDelay;
+        GameManager.instance.dodgeBar.value = currentDodgeDelay;
     }
     public override void Move()
     {
@@ -226,38 +217,48 @@ public class Player : Character
         Vector3 movevec = transform.rotation * new Vector3(moveInput.x, 0, moveInput.y) * MoveSpeed;
         rb.AddForce(movevec);
     }
-    [SerializeField] Purchasable targeted;
+    [SerializeField] Interactable targeted;
     public void InteractCheck()
     {
         if (Physics.Raycast(worldCamera.position, worldCamera.forward, out RaycastHit hit, interactDistance, interactLayermask))
         {
-            if(hit.collider.TryGetComponent(out Purchasable p))
+            if(hit.collider.TryGetComponent(out Interactable i))
             {
-                targeted = p;
-                costTextBg.SetActive(true);
-                if (p.cost > GameManager.instance.score)
+                if (!targeted) 
                 {
-                    costText.text = $"Can't Afford: ${p.cost}";
+                    GameManager.instance.interactTextBG.SetActive(true);
+                    if (i is Purchasable)
+                    {
+                        var p = i as Purchasable;
+                        if (p.cost > GameManager.instance.score)
+                        {
+                            GameManager.instance.interactText.text = $"{p.interactText}\nCan't Afford: ${p.cost}";
+                        }
+                        else
+                        {
+                            GameManager.instance.interactText.text = $"{p.interactText}\nPurchase: ${p.cost}";
+                        }
+                    }
+                    else
+                    {
+                        GameManager.instance.interactText.text = i.interactText;
+                    } 
                 }
-                else
-                {
-                    costText.text = $"Purchase: ${p.cost}";
-                }
-                
-                
+                targeted = i;
             }
         }
         else
         {
+            if(targeted)
+                GameManager.instance.interactTextBG.SetActive(false);
             targeted = null;
-            costTextBg.SetActive(false);
         }
     }
     public void InteractConfirm()
     {
-        if (targeted && targeted.cost <= GameManager.instance.score)
+        if (targeted)
         {
-            targeted.Purchase();
+            targeted.Interact();
         }
     }
 

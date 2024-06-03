@@ -62,8 +62,8 @@ public class GameManager : MonoBehaviour
     public GameObject[] playerDependantObjects;
     public float maxSpawnDistance;
 
-    public TextMeshProUGUI costText;
-    public GameObject costTextBg;
+    public TextMeshProUGUI interactText;
+    public GameObject interactTextBG;
     public Slider dodgeBar;
     public void UseWeaponWheel(bool opening)
     {
