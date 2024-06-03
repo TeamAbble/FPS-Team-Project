@@ -72,3 +72,4 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 Assets/settings.json
 Assets/settings.json.meta
+Assets/Scenes/Level 2 Scene/LightingData.asset

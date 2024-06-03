@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI interactText;
     public GameObject interactTextBG;
     public Slider dodgeBar;
+    public List<string> heldKeysIDs;
     public void UseWeaponWheel(bool opening)
     {
         //If the player is dead, we don't want to allow the player to open the weapon wheel.
