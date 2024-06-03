@@ -66,6 +66,10 @@ public class GameManager : MonoBehaviour
     public GameObject interactTextBG;
     public Slider dodgeBar;
     public List<string> heldKeysIDs;
+
+    public Transform loadingScreenRoot;
+    GameObject currentLoadingScreen;
+    public List<GameObject> loadingScreens;
     public void UseWeaponWheel(bool opening)
     {
         //If the player is dead, we don't want to allow the player to open the weapon wheel.

@@ -387,7 +387,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -1.4102, y: -103.50508}
-  m_SizeDelta: {x: 277.6831, y: 42.6869}
+  m_SizeDelta: {x: 297.8275, y: 64.0717}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5411474087515790048
 CanvasRenderer:
@@ -2966,8 +2966,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.4102038, y: -15.494911}
-  m_SizeDelta: {x: 339.4074, y: 50}
+  m_AnchoredPosition: {x: 1.4102038, y: 0.3921}
+  m_SizeDelta: {x: 295.01, y: 56.9857}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6192896776498750595
 CanvasRenderer:
@@ -2997,7 +2997,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Print Weapon: $10'
+  m_text: 'Buy this stupid fucking thing!!
+
+    $10000000000000000'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bb947715241a76244be633af2d055ee7, type: 2}
   m_sharedMaterial: {fileID: -5650843010624125993, guid: bb947715241a76244be633af2d055ee7,
@@ -3025,15 +3027,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16
-  m_fontSizeBase: 16
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -3061,7 +3063,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 28.801458}
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5006,7 +5008,7 @@ Transform:
   - {fileID: 8312697096686426729}
   - {fileID: 1482988941746786469}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4890407698555094173
 MonoBehaviour:
@@ -5142,9 +5144,10 @@ MonoBehaviour:
   - {fileID: 4048985927413516639}
   - {fileID: 646336771570893932}
   maxSpawnDistance: 30
-  costText: {fileID: 6103803826596910057}
-  costTextBg: {fileID: 824323789270134750}
+  interactText: {fileID: 6103803826596910057}
+  interactTextBG: {fileID: 824323789270134750}
   dodgeBar: {fileID: 9028777115582832006}
+  heldKeysIDs: []
 --- !u!1001 &158882122368225208
 PrefabInstance:
   m_ObjectHideFlags: 0
