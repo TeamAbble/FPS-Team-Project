@@ -47,6 +47,7 @@ public class Player : Character
     public bool iFrame;
     public UnityEvent dodgeEvents;
     public Transform dodgeParticleTransform;
+    public float dodgeDamage;
 
     protected override void Start()
     {
@@ -334,5 +335,12 @@ public class Player : Character
         
         Vector2 randomCircleVal = Random.insideUnitCircle;
         temporaryAimAngleTarget += new Vector3(currentRecoilProfile.temporaryAimAnglePerShot.x, randomCircleVal.x * currentRecoilProfile.temporaryAimAnglePerShot.y, randomCircleVal.y * currentRecoilProfile.temporaryAimAnglePerShot.z);
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (iFrame && collision.rigidbody && collision.rigidbody.TryGetComponent(out Character c))
+        {
+            c.UpdateHealth(-dodgeDamage, transform.position);
+        }
     }
 }
