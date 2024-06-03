@@ -133,6 +133,7 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += SceneManager_sceneLoaded;
         scoreText.text = $"${score}";
         defaultWeapons = new(unownedWeapons);
+        interactTextBG.SetActive(false);
     }
 
     private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
