@@ -322,14 +322,14 @@ public class Weapon : MonoBehaviour
                     {
                         print("did not hit enemy");
                     }
-                    Debug.DrawLine(Camera.main.transform.position, hit.point, Color.green, 0.25f);
+                    Debug.DrawLine(pos, hit.point, Color.green, 0.25f);
                     HitEffects(hit);
 
                 }
                 else
                 {
                     print("Did not hit anything");
-                    Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.TransformDirection(randomDirection), Color.red, 0.25f);
+                    Debug.DrawRay(pos, dir, Color.red, 0.25f);
                 }
 
                 if (shotEffect)
