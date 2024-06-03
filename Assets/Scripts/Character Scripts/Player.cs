@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 /// <summary>
 /// Player Controller script, written by Lunar :p
 /// Handles the player's input, movement, all that jazz
@@ -46,10 +47,8 @@ public class Player : Character
     public bool iFrame;
     public UnityEvent dodgeEvents;
     public Transform dodgeParticleTransform;
+    public float dodgeDamage;
 
-    //Purchasable UI elements
-    public TextMeshProUGUI costText;
-    public GameObject costTextBg;
     protected override void Start()
     {
         base.Start();
@@ -58,9 +57,7 @@ public class Player : Character
         UpdateHealth(0, Vector3.zero);
         GameManager.instance.healthbar.maxValue = maxHealth;
         GameManager.instance.healthbar.value = maxHealth;
-        costText = GameManager.instance.costText;
-        costTextBg = GameManager.instance.costTextBg;
-        costTextBg.SetActive(false);
+        GameManager.instance.dodgeBar.maxValue = dodgeDelay;
     }
     private void Aim()
     {
@@ -213,6 +210,7 @@ public class Player : Character
 
         currentDodgeDelay += Time.fixedDeltaTime;
         currentDodgeDelay = Mathf.Clamp(currentDodgeDelay, 0, dodgeDelay);
+        GameManager.instance.dodgeBar.value = currentDodgeDelay;
     }
     public override void Move()
     {
@@ -220,38 +218,48 @@ public class Player : Character
         Vector3 movevec = transform.rotation * new Vector3(moveInput.x, 0, moveInput.y) * MoveSpeed;
         rb.AddForce(movevec);
     }
-    [SerializeField] Purchasable targeted;
+    [SerializeField] Interactable targeted;
     public void InteractCheck()
     {
         if (Physics.Raycast(worldCamera.position, worldCamera.forward, out RaycastHit hit, interactDistance, interactLayermask))
         {
-            if(hit.collider.TryGetComponent(out Purchasable p))
+            if(hit.collider.TryGetComponent(out Interactable i))
             {
-                targeted = p;
-                costTextBg.SetActive(true);
-                if (p.cost > GameManager.instance.score)
+                if (!targeted) 
                 {
-                    costText.text = $"Can't Afford: ${p.cost}";
+                    GameManager.instance.interactTextBG.SetActive(true);
+                    if (i is Purchasable)
+                    {
+                        var p = i as Purchasable;
+                        if (p.cost > GameManager.instance.score)
+                        {
+                            GameManager.instance.interactText.text = $"{p.interactText}\nCan't Afford: ${p.cost}";
+                        }
+                        else
+                        {
+                            GameManager.instance.interactText.text = $"{p.interactText}\n ${p.cost}";
+                        }
+                    }
+                    else
+                    {
+                        GameManager.instance.interactText.text = i.interactText;
+                    } 
                 }
-                else
-                {
-                    costText.text = $"Purchase: ${p.cost}";
-                }
-                
-                
+                targeted = i;
             }
         }
         else
         {
+            if(targeted)
+                GameManager.instance.interactTextBG.SetActive(false);
             targeted = null;
-            costTextBg.SetActive(false);
         }
     }
     public void InteractConfirm()
     {
-        if (targeted && targeted.cost <= GameManager.instance.score)
+        if (targeted)
         {
-            targeted.Purchase();
+            targeted.Interact();
         }
     }
 
@@ -327,5 +335,12 @@ public class Player : Character
         
         Vector2 randomCircleVal = Random.insideUnitCircle;
         temporaryAimAngleTarget += new Vector3(currentRecoilProfile.temporaryAimAnglePerShot.x, randomCircleVal.x * currentRecoilProfile.temporaryAimAnglePerShot.y, randomCircleVal.y * currentRecoilProfile.temporaryAimAnglePerShot.z);
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (iFrame && collision.rigidbody && collision.rigidbody.TryGetComponent(out Character c))
+        {
+            c.UpdateHealth(-dodgeDamage, transform.position);
+        }
     }
 }

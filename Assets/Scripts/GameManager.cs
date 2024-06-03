@@ -62,8 +62,10 @@ public class GameManager : MonoBehaviour
     public GameObject[] playerDependantObjects;
     public float maxSpawnDistance;
 
-    public TextMeshProUGUI costText;
-    public GameObject costTextBg;
+    public TextMeshProUGUI interactText;
+    public GameObject interactTextBG;
+    public Slider dodgeBar;
+    public List<string> heldKeysIDs;
     public void UseWeaponWheel(bool opening)
     {
         //If the player is dead, we don't want to allow the player to open the weapon wheel.
@@ -131,6 +133,7 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += SceneManager_sceneLoaded;
         scoreText.text = $"${score}";
         defaultWeapons = new(unownedWeapons);
+        interactTextBG.SetActive(false);
     }
 
     private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
