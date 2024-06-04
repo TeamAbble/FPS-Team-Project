@@ -177,7 +177,8 @@ public class GameManager : MonoBehaviour
         spawners.AddRange(FindObjectsOfType<EnemySpawner>(true));
         //Start the first wave delay
         StartCoroutine(WaveDelay());
-
+        interactTextBG.SetActive(false);
+        DamageRingManager.Instance.ClearRings();
 
     }
 
