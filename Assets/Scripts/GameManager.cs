@@ -316,13 +316,14 @@ public class GameManager : MonoBehaviour
         print($"Attempting to load scene {targetScene.Name}");
 
         float t = 0;
+        Time.timeScale = 1;
         lsGroup.alpha = 0;
         currentLoadingScreen = Instantiate(loadingScreens[Random.Range(0, loadingScreens.Count)], loadingScreenRoot);
         currentLoadingScreen.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
         yield return null;
         while (t < 1)
         {
-            t += Time.deltaTime * loadScreenSpeed;
+            t += Time.unscaledDeltaTime * loadScreenSpeed;
             lsGroup.alpha = t;
             yield return new WaitForEndOfFrame();
         }
@@ -334,7 +335,7 @@ public class GameManager : MonoBehaviour
         lsa.allowSceneActivation = true;
         while (t > 0)
         {
-            t -= Time.deltaTime * loadScreenSpeed;
+            t -= Time.unscaledDeltaTime * loadScreenSpeed;
             lsGroup.alpha = t;
             yield return new WaitForEndOfFrame();
         }
