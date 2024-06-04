@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour
     {
         score = 0;
         scoreText.text = $"${score}";
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        StartCoroutine(LoadingScreen(gameScene));
         unownedWeapons = new(defaultWeapons);
         currentWave = 0;
         enemiesAlive = 0;
@@ -298,20 +298,18 @@ public class GameManager : MonoBehaviour
 
     public string WaveStringBuilder()
     {
-        string printString = null;
         int currentwaveHundreds = Mathf.FloorToInt( currentWave / 100);
         int currentwave = currentWave % 100;
-        printString = $"{currentwaveHundreds:00}:{currentwave:00}";
+        string printString = $"{currentwaveHundreds:00}:{currentwave:00}";
         return printString;
     }
     public void StartGame()
     {
-
         StartCoroutine(LoadingScreen(gameScene));
     }
     public void ReturnToMenu()
     {
-
+        StartCoroutine(LoadingScreen(menuScene));
     }
     IEnumerator LoadingScreen(SceneReference targetScene)
     {
@@ -331,7 +329,7 @@ public class GameManager : MonoBehaviour
         var lsa = SceneManager.LoadSceneAsync(targetScene.Name);
         while (!lsa.isDone)
         {
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
         lsa.allowSceneActivation = true;
         while (t > 0)

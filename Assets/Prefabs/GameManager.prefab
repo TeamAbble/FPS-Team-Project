@@ -6405,7 +6405,15 @@ MonoBehaviour:
   loadingScreenRoot: {fileID: 9128580491571430478}
   lsGroup: {fileID: 9035038125315286485}
   loadingScreens:
-  - {fileID: 7759327128908320772, guid: f730c8c44357db54db49a4c2013bba95, type: 3}
+  - {fileID: 7839503639946768802, guid: 32f2dfb59e3cebe4993ea03210b024ca, type: 3}
+  - {fileID: 4652928964244108569, guid: 0e09b82d307fa9f47a888c49754dc50b, type: 3}
+  - {fileID: 4652928964244108569, guid: 679b2df34b978cd46b107deb732c5ccb, type: 3}
+  - {fileID: 5298592534870900813, guid: 9c1ae80bccc267d49bcc91166002d658, type: 3}
+  - {fileID: 6852304269759905039, guid: d2bda9758bb08d84eb6d1c88ad12e5ce, type: 3}
+  - {fileID: 2155310810908766194, guid: acb839d02cd28df42a16bc0923811e4b, type: 3}
+  - {fileID: 5563983510153825102, guid: 355919e83a9de474288f279c6a1d2b64, type: 3}
+  - {fileID: 8546524354496797191, guid: 4dfed27a642360249911e90ad5ffce23, type: 3}
+  - {fileID: 5320322448820513138, guid: 5be25f4f55f009e4f96f45b49ab36e6a, type: 3}
   gameScene:
     asset: {fileID: 102900000, guid: 12275b4f7f3589b40ad3058c331bcfba, type: 3}
     guid: 12275b4f7f3589b40ad3058c331bcfba

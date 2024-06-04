@@ -247,6 +247,12 @@ public class Player : Character
                 }
                 targeted = i;
             }
+            else
+            {
+                if (GameManager.instance.interactTextBG.activeInHierarchy)
+                    GameManager.instance.interactTextBG.SetActive(false);
+                targeted = null;
+            }
         }
         else
         {
