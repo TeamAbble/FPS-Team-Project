@@ -250,7 +250,7 @@ public class Player : Character
         }
         else
         {
-            if(targeted)
+            if(GameManager.instance.interactTextBG.activeInHierarchy)
                 GameManager.instance.interactTextBG.SetActive(false);
             targeted = null;
         }
