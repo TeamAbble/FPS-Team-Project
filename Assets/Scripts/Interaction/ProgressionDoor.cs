@@ -6,6 +6,7 @@ public class ProgressionDoor : Purchasable
 {
     bool opened;
     public Animator animator;
+    public override int Cost => GameManager.instance.areaUnlockCost;
     private void Start()
     {
         if(!animator)

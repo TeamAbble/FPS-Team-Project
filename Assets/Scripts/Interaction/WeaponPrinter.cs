@@ -22,12 +22,11 @@ public class WeaponPrinter : Purchasable
         startPosition = transform.position;
         topPart.localEulerAngles = openRotation;
     }
-
+    public override int Cost => GameManager.instance.weaponPrintCost;
     public override void Purchase()
     {
         if (!spawnedWeapon && !printing && GameManager.instance.unownedWeapons.Count > 0)
         {
-            GameManager.instance.score -= GameManager.instance.weaponPrintCost;
             GameManager.instance.weaponPrintCost = Mathf.FloorToInt(GameManager.instance.weaponPrintCost * costMultiplier);
             StartCoroutine(PurchaseAnimation());
         }

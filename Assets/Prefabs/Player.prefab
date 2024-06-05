@@ -5905,6 +5905,7 @@ MonoBehaviour:
         m_CallState: 2
   dodgeParticleTransform: {fileID: 444890199712921334}
   dodgeDamage: 15
+  dodgeKnockback: 50
   targeted: {fileID: 0}
 --- !u!114 &8920253462223167407
 MonoBehaviour:

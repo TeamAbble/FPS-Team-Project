@@ -48,6 +48,7 @@ public class Player : Character
     public UnityEvent dodgeEvents;
     public Transform dodgeParticleTransform;
     public float dodgeDamage;
+    public float dodgeKnockback;
 
     protected override void Start()
     {
@@ -295,7 +296,7 @@ public class Player : Character
     }
     public void Dodge(InputAction.CallbackContext context)
     {
-        if (context.performed && currentDodgeDelay >= dodgeDelay)
+        if (context.performed && currentDodgeDelay >= dodgeDelay && moveInput != Vector2.zero)
         {
             Vector3 movevec = transform.rotation * new Vector3(moveInput.x, 0, moveInput.y) * dodgeForce;
             rb.AddForce(movevec, ForceMode.Impulse);
@@ -347,6 +348,7 @@ public class Player : Character
         if (iFrame && collision.rigidbody && collision.rigidbody.TryGetComponent(out Character c))
         {
             c.UpdateHealth(-dodgeDamage, transform.position);
+            collision.rigidbody.AddForce(collision.impulse * dodgeKnockback);
         }
     }
 }

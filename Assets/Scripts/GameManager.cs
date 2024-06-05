@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
     public int areaUnlockCost;
     public GameObject[] playerDependantObjects;
     public float maxSpawnDistance;
+    public float minSpawnDistance;
 
     public TextMeshProUGUI interactText;
     public GameObject interactTextBG;
@@ -230,7 +231,7 @@ public class GameManager : MonoBehaviour
         //     spawnerIndex = Random.Range(0, spawners.Count);
         //     spawnerDistance = Vector3.Distance(playerRef.transform.position, spawners[spawnerIndex].transform.position);
         // }
-        var spawnersInRange = spawners.FindAll(x => Vector3.Distance(x.transform.position, playerRef.transform.position) < maxSpawnDistance);
+        var spawnersInRange = spawners.FindAll(x => Vector3.Distance(x.transform.position, playerRef.transform.position) <= maxSpawnDistance && Vector3.Distance(x.transform.position, playerRef.transform.position) >= minSpawnDistance);
         spawnerIndex = Random.Range(0, spawnersInRange.Count);
         spawnTimer = 0;
         enemiesAlive++;

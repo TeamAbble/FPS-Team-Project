@@ -23,8 +23,15 @@ public class Weapon : MonoBehaviour
     }
     public WeaponAnimationSetScriptable animationSet;
     List<TracerObject> tracers = new List<TracerObject>();
+    public string displayName;
+    [TextArea()] public string description;
     [SerializeField, Tooltip("The maximum ammunition held by a weapon at one time. If zero, this weapon does not consume ammo.")] protected int maxAmmo;
     [SerializeField, Tooltip("How much ammunition we currently have.")] protected int currentAmmo;
+    [SerializeField, Tooltip("How much ammo we have in stores")] protected int reserveAmmo;
+    public void GiveReserveAmmo(int amountOfMagazines)
+    {
+        reserveAmmo += amountOfMagazines * maxAmmo;
+    }
     [SerializeField, Tooltip("The maximum damage dealt to an enemy.")] protected int damage;
     [SerializeField, Tooltip("How many 'Projectiles' a weapon will fire at an enemy.")] protected int projectilesPerShot;
     [SerializeField, Tooltip("The time, in seconds, between each shot")] protected float fireInterval;
@@ -77,7 +84,23 @@ public class Weapon : MonoBehaviour
     public Sprite icon;
     public void ReloadWeapon()
     {
-        currentAmmo = maxAmmo;
+        //Store the amount of ammo we have left
+        int tempAmmo = currentAmmo;
+        //Return that ammo to reserves
+        reserveAmmo += currentAmmo;
+        //Set current ammo to zero
+        currentAmmo = 0;
+        //Pull the ammo from reserves
+        if(reserveAmmo >= maxAmmo)
+        {
+            currentAmmo = maxAmmo;
+            reserveAmmo -= maxAmmo;
+        }
+        else
+        {
+            currentAmmo = reserveAmmo;
+            reserveAmmo = 0;
+        }
     }
     private void Start()
     {
