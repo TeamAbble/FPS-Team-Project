@@ -1,19 +1,9 @@
 fileFormatVersion: 2
-guid: 67bdaec4f9ed1e248bf5105bf3c341a8
+guid: 5623f9bb17735ea41b1af15580aed86d
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Texture
-    second: {fileID: 2100000, guid: b8ca0bc5a58632849bc19ae33a8116a2, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Texture-Glow
-    second: {fileID: 2100000, guid: 89670d18882c7d2418c7b660ac0f22e1, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
