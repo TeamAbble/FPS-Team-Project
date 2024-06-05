@@ -27,6 +27,7 @@ public class WeaponPrinter : Purchasable
     {
         if (!spawnedWeapon && !printing && GameManager.instance.unownedWeapons.Count > 0)
         {
+            base.Purchase();
             GameManager.instance.weaponPrintCost = Mathf.FloorToInt(GameManager.instance.weaponPrintCost * costMultiplier);
             StartCoroutine(PurchaseAnimation());
         }
