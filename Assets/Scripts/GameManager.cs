@@ -214,7 +214,8 @@ public class GameManager : MonoBehaviour
             if (playerRef.weaponManager.CurrentWeapon)
             {
                 var w = playerRef.weaponManager.CurrentWeapon;
-                ammoDisplayText.text = $"{w.displayName}\n{}";
+                var a = w.Ammo;
+                ammoDisplayText.text = $"{w.displayName}\n{a.current}/{a.max}\nReserve:{a.reserve}";
             }
         }
         scoreText.text = $"${score}";
