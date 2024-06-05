@@ -213,8 +213,9 @@ public class GameManager : MonoBehaviour
             }
             if (playerRef.weaponManager.CurrentWeapon)
             {
-                (int max, int current, int reserve) = playerRef.weaponManager.CurrentWeapon.Ammo;
-                ammoDisplayText.text = $"{current}\n/{max}\n/{reserve}";
+                var w = playerRef.weaponManager.CurrentWeapon;
+                var a = w.Ammo;
+                ammoDisplayText.text = $"{w.displayName}\n{a.current}/{a.max}\nReserve:{a.reserve}";
             }
         }
         scoreText.text = $"${score}";
@@ -346,6 +347,7 @@ public class GameManager : MonoBehaviour
             }
             Destroy(currentLoadingScreen);
             print($"Loaded scene {targetScene.Name}");
+            loading = false;
         }
         yield break;
     }
