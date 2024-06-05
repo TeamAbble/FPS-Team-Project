@@ -213,8 +213,8 @@ public class GameManager : MonoBehaviour
             }
             if (playerRef.weaponManager.CurrentWeapon)
             {
-                (int max, int current) = playerRef.weaponManager.CurrentWeapon.Ammo;
-                ammoDisplayText.text = $"{current}\n/{max}";
+                (int max, int current, int reserve) = playerRef.weaponManager.CurrentWeapon.Ammo;
+                ammoDisplayText.text = $"{current}\n/{max}\n/{reserve}";
             }
         }
         scoreText.text = $"${score}";

@@ -80,7 +80,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] CinemachineImpulseSource recoilSource;
     [SerializeField] float recoilForce;
     public bool CanReload => maxAmmo > 0 && currentAmmo < maxAmmo && !fireBlocked;
-    public (int max, int current) Ammo => (maxAmmo, currentAmmo);
+    public (int max, int current, int reserve) Ammo => (maxAmmo, currentAmmo, reserveAmmo);
     public Sprite icon;
     public void ReloadWeapon()
     {

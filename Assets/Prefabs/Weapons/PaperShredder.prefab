@@ -10132,8 +10132,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationSet: {fileID: 11400000, guid: 8f2af5d60b10aab429326265b8a7fe5a, type: 2}
+  displayName: 
+  description: 
   maxAmmo: 30
   currentAmmo: 0
+  reserveAmmo: 120
   damage: 8
   projectilesPerShot: 1
   fireInterval: 0.12
@@ -10164,6 +10167,8 @@ MonoBehaviour:
   windupAudio: {fileID: 8300000, guid: 1bb61371e697e27479da4152cd330c08, type: 3}
   minWindupPitch: 1
   maxWindupPitch: 1
+  minWindupVolume: 0
+  maxWindupVolume: 0
   firePosition: {fileID: 7594071767366605640}
   shotEffect: {fileID: 7745328033304195952, guid: e8bb126f6732505458608412fc7d1f4c,
     type: 3}
