@@ -119,8 +119,7 @@ public class GameManager : MonoBehaviour
     }
     public void Respawn()
     {
-
-
+        StartCoroutine(LoadingScreen(gameScene));
     }
     private void Awake()
     {
