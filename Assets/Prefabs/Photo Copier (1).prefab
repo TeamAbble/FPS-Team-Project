@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e054349186af174ca2ed375fb9f6a12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactText: Weapon Printer
   cost: 10
   topPart: {fileID: 4277367026730767006}
   closedRotation: {x: 0, y: 0, z: 0}
@@ -138,7 +139,7 @@ MonoBehaviour:
   processingNoisePower: 0.03
   startPosition: {x: 0, y: 0, z: 0}
   weaponSpawnpoint: {fileID: 325848109684307697}
-  costMultiplier: 1.1
+  costMultiplier: 2
   spawnedWeapon: {fileID: 0}
   printing: 0
 --- !u!1 &4811211193613462706

@@ -1,4 +1,5 @@
 using Cinemachine;
+using Eflatun.SceneReference;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -61,11 +62,21 @@ public class GameManager : MonoBehaviour
     public int areaUnlockCost;
     public GameObject[] playerDependantObjects;
     public float maxSpawnDistance;
+    public float minSpawnDistance;
 
     public TextMeshProUGUI interactText;
     public GameObject interactTextBG;
     public Slider dodgeBar;
     public List<string> heldKeysIDs;
+
+    public Transform loadingScreenRoot;
+    GameObject currentLoadingScreen;
+    public CanvasGroup lsGroup;
+    public List<GameObject> loadingScreens;
+    public SceneReference gameScene;
+    public SceneReference menuScene;
+    public float loadScreenSpeed;
+    bool loading;
     public void UseWeaponWheel(bool opening)
     {
         //If the player is dead, we don't want to allow the player to open the weapon wheel.
@@ -104,18 +115,11 @@ public class GameManager : MonoBehaviour
         pauseCanvas.SetActive(paused);
         Cursor.lockState = paused ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = paused;
+        AudioListener.pause = paused;
     }
     public void Respawn()
     {
-        score = 0;
-        scoreText.text = $"${score}";
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        unownedWeapons = new(defaultWeapons);
-        currentWave = 0;
-        enemiesAlive = 0;
-        enemiesRemaining = 0;
-        SetEnemyDisplay();
-
+        StartCoroutine(LoadingScreen(gameScene));
     }
     private void Awake()
     {
@@ -173,7 +177,17 @@ public class GameManager : MonoBehaviour
         spawners.AddRange(FindObjectsOfType<EnemySpawner>(true));
         //Start the first wave delay
         StartCoroutine(WaveDelay());
+        interactTextBG.SetActive(false);
+        if(DamageRingManager.Instance)
+            DamageRingManager.Instance.ClearRings();
 
+        score = 0;
+        scoreText.text = $"${score}";
+        unownedWeapons = new(defaultWeapons);
+        currentWave = 0;
+        enemiesAlive = 0;
+        enemiesRemaining = 0;
+        SetEnemyDisplay();
 
     }
 
@@ -199,8 +213,8 @@ public class GameManager : MonoBehaviour
             }
             if (playerRef.weaponManager.CurrentWeapon)
             {
-                (int max, int current) = playerRef.weaponManager.CurrentWeapon.Ammo;
-                ammoDisplayText.text = $"{current}\n/{max}";
+                (int max, int current, int reserve) = playerRef.weaponManager.CurrentWeapon.Ammo;
+                ammoDisplayText.text = $"{current}\n/{max}\n/{reserve}";
             }
         }
         scoreText.text = $"${score}";
@@ -218,7 +232,7 @@ public class GameManager : MonoBehaviour
         //     spawnerIndex = Random.Range(0, spawners.Count);
         //     spawnerDistance = Vector3.Distance(playerRef.transform.position, spawners[spawnerIndex].transform.position);
         // }
-        var spawnersInRange = spawners.FindAll(x => Vector3.Distance(x.transform.position, playerRef.transform.position) < maxSpawnDistance);
+        var spawnersInRange = spawners.FindAll(x => Vector3.Distance(x.transform.position, playerRef.transform.position) <= maxSpawnDistance && Vector3.Distance(x.transform.position, playerRef.transform.position) >= minSpawnDistance);
         spawnerIndex = Random.Range(0, spawnersInRange.Count);
         spawnTimer = 0;
         enemiesAlive++;
@@ -286,10 +300,53 @@ public class GameManager : MonoBehaviour
 
     public string WaveStringBuilder()
     {
-        string printString = null;
         int currentwaveHundreds = Mathf.FloorToInt( currentWave / 100);
         int currentwave = currentWave % 100;
-        printString = $"{currentwaveHundreds:00}:{currentwave:00}";
+        string printString = $"{currentwaveHundreds:00}:{currentwave:00}";
         return printString;
+    }
+    public void StartGame()
+    {
+        StartCoroutine(LoadingScreen(gameScene));
+    }
+    public void ReturnToMenu()
+    {
+        StartCoroutine(LoadingScreen(menuScene));
+    }
+    IEnumerator LoadingScreen(SceneReference targetScene)
+    {
+        if (!loading)
+        {
+            loading = true;
+            print($"Attempting to load scene {targetScene.Name}");
+
+            float t = 0;
+            Time.timeScale = 1;
+            lsGroup.alpha = 0;
+            currentLoadingScreen = Instantiate(loadingScreens[Random.Range(0, loadingScreens.Count)], loadingScreenRoot);
+            currentLoadingScreen.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+            yield return null;
+            while (t < 1)
+            {
+                t += Time.unscaledDeltaTime * loadScreenSpeed;
+                lsGroup.alpha = t;
+                yield return new WaitForEndOfFrame();
+            }
+            var lsa = SceneManager.LoadSceneAsync(targetScene.Name);
+            while (!lsa.isDone)
+            {
+                yield return new WaitForFixedUpdate();
+            }
+            lsa.allowSceneActivation = true;
+            while (t > 0)
+            {
+                t -= Time.unscaledDeltaTime * loadScreenSpeed;
+                lsGroup.alpha = t;
+                yield return new WaitForEndOfFrame();
+            }
+            Destroy(currentLoadingScreen);
+            print($"Loaded scene {targetScene.Name}");
+        }
+        yield break;
     }
 }

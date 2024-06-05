@@ -48,6 +48,7 @@ public class Player : Character
     public UnityEvent dodgeEvents;
     public Transform dodgeParticleTransform;
     public float dodgeDamage;
+    public float dodgeKnockback;
 
     protected override void Start()
     {
@@ -231,13 +232,13 @@ public class Player : Character
                     if (i is Purchasable)
                     {
                         var p = i as Purchasable;
-                        if (p.cost > GameManager.instance.score)
+                        if (p.Cost > GameManager.instance.score)
                         {
-                            GameManager.instance.interactText.text = $"{p.interactText}\nCan't Afford: ${p.cost}";
+                            GameManager.instance.interactText.text = $"{p.interactText}\nCan't Afford: ${p.Cost}";
                         }
                         else
                         {
-                            GameManager.instance.interactText.text = $"{p.interactText}\n ${p.cost}";
+                            GameManager.instance.interactText.text = $"{p.interactText}\n ${p.Cost}";
                         }
                     }
                     else
@@ -247,10 +248,16 @@ public class Player : Character
                 }
                 targeted = i;
             }
+            else
+            {
+                if (GameManager.instance.interactTextBG.activeInHierarchy)
+                    GameManager.instance.interactTextBG.SetActive(false);
+                targeted = null;
+            }
         }
         else
         {
-            if(targeted)
+            if(GameManager.instance.interactTextBG.activeInHierarchy)
                 GameManager.instance.interactTextBG.SetActive(false);
             targeted = null;
         }
@@ -289,7 +296,7 @@ public class Player : Character
     }
     public void Dodge(InputAction.CallbackContext context)
     {
-        if (context.performed && currentDodgeDelay >= dodgeDelay)
+        if (context.performed && currentDodgeDelay >= dodgeDelay && moveInput != Vector2.zero)
         {
             Vector3 movevec = transform.rotation * new Vector3(moveInput.x, 0, moveInput.y) * dodgeForce;
             rb.AddForce(movevec, ForceMode.Impulse);
@@ -341,6 +348,7 @@ public class Player : Character
         if (iFrame && collision.rigidbody && collision.rigidbody.TryGetComponent(out Character c))
         {
             c.UpdateHealth(-dodgeDamage, transform.position);
+            collision.rigidbody.AddForce(collision.impulse * dodgeKnockback);
         }
     }
 }

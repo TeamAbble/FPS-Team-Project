@@ -9997,9 +9997,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationSet: {fileID: 11400000, guid: f3fa65c2f2fd178469e63738ee184209, type: 2}
+  displayName: 
+  description: 
   maxAmmo: 5
   currentAmmo: 0
-  damage: 75
+  reserveAmmo: 0
+  damage: 150
   projectilesPerShot: 1
   fireInterval: 0
   fireIntervalRemaining: 0
@@ -10056,7 +10059,7 @@ MonoBehaviour:
   loopFireAnimation: 0
   playAnimationOnWindup: 0
   windupAnimationIsNotFireAnimation: 0
-  areaRadius: 5
+  areaRadius: 10
   areaDamage: 25
   areaParticles: {fileID: 9055257426667228642, guid: 3c83b0119bfbff349888ccce8449358d,
     type: 3}

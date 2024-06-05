@@ -52,6 +52,7 @@ public class Enemy : Character
         Destroy(gameObject, 2);
         if(animator)
             animator.enabled = false;
+        rb.angularDrag = 0;
     }
 
     protected virtual void EnemyBehaviour()

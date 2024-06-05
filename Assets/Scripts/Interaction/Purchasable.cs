@@ -5,15 +5,16 @@ using UnityEngine;
 public class Purchasable : Interactable
 {
     public int cost;
+    public virtual int Cost => cost;
     public override void Interact()
     {
-        if(cost <= GameManager.instance.score)
+        if(Cost <= GameManager.instance.score)
         {
             Purchase();
         }
     }
     public virtual void Purchase()
     {
-
+        GameManager.instance.score -= Cost;
     }
 }
