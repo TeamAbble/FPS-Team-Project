@@ -79,7 +79,7 @@ public class Weapon : MonoBehaviour
     public Magazine oldMag, newMag;
     [SerializeField] CinemachineImpulseSource recoilSource;
     [SerializeField] float recoilForce;
-    public bool CanReload => maxAmmo > 0 && currentAmmo < maxAmmo && !fireBlocked;
+    public bool CanReload => maxAmmo > 0 && currentAmmo < maxAmmo && !fireBlocked && reserveAmmo != 0;
     public (int max, int current, int reserve) Ammo => (maxAmmo, currentAmmo, reserveAmmo);
     public Sprite icon;
     public void ReloadWeapon()
