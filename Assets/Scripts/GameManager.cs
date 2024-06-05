@@ -118,14 +118,7 @@ public class GameManager : MonoBehaviour
     }
     public void Respawn()
     {
-        score = 0;
-        scoreText.text = $"${score}";
-        StartCoroutine(LoadingScreen(gameScene));
-        unownedWeapons = new(defaultWeapons);
-        currentWave = 0;
-        enemiesAlive = 0;
-        enemiesRemaining = 0;
-        SetEnemyDisplay();
+
 
     }
     private void Awake()
@@ -187,6 +180,15 @@ public class GameManager : MonoBehaviour
         interactTextBG.SetActive(false);
         if(DamageRingManager.Instance)
             DamageRingManager.Instance.ClearRings();
+
+        score = 0;
+        scoreText.text = $"${score}";
+        StartCoroutine(LoadingScreen(gameScene));
+        unownedWeapons = new(defaultWeapons);
+        currentWave = 0;
+        enemiesAlive = 0;
+        enemiesRemaining = 0;
+        SetEnemyDisplay();
 
     }
 
