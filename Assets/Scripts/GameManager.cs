@@ -76,6 +76,7 @@ public class GameManager : MonoBehaviour
     public SceneReference gameScene;
     public SceneReference menuScene;
     public float loadScreenSpeed;
+    bool loading;
     public void UseWeaponWheel(bool opening)
     {
         //If the player is dead, we don't want to allow the player to open the weapon wheel.
@@ -183,7 +184,6 @@ public class GameManager : MonoBehaviour
 
         score = 0;
         scoreText.text = $"${score}";
-        StartCoroutine(LoadingScreen(gameScene));
         unownedWeapons = new(defaultWeapons);
         currentWave = 0;
         enemiesAlive = 0;
@@ -316,34 +316,38 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator LoadingScreen(SceneReference targetScene)
     {
-        print($"Attempting to load scene {targetScene.Name}");
+        if (!loading)
+        {
+            loading = true;
+            print($"Attempting to load scene {targetScene.Name}");
 
-        float t = 0;
-        Time.timeScale = 1;
-        lsGroup.alpha = 0;
-        currentLoadingScreen = Instantiate(loadingScreens[Random.Range(0, loadingScreens.Count)], loadingScreenRoot);
-        currentLoadingScreen.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-        yield return null;
-        while (t < 1)
-        {
-            t += Time.unscaledDeltaTime * loadScreenSpeed;
-            lsGroup.alpha = t;
-            yield return new WaitForEndOfFrame();
+            float t = 0;
+            Time.timeScale = 1;
+            lsGroup.alpha = 0;
+            currentLoadingScreen = Instantiate(loadingScreens[Random.Range(0, loadingScreens.Count)], loadingScreenRoot);
+            currentLoadingScreen.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+            yield return null;
+            while (t < 1)
+            {
+                t += Time.unscaledDeltaTime * loadScreenSpeed;
+                lsGroup.alpha = t;
+                yield return new WaitForEndOfFrame();
+            }
+            var lsa = SceneManager.LoadSceneAsync(targetScene.Name);
+            while (!lsa.isDone)
+            {
+                yield return new WaitForFixedUpdate();
+            }
+            lsa.allowSceneActivation = true;
+            while (t > 0)
+            {
+                t -= Time.unscaledDeltaTime * loadScreenSpeed;
+                lsGroup.alpha = t;
+                yield return new WaitForEndOfFrame();
+            }
+            Destroy(currentLoadingScreen);
+            print($"Loaded scene {targetScene.Name}");
         }
-        var lsa = SceneManager.LoadSceneAsync(targetScene.Name);
-        while (!lsa.isDone)
-        {
-            yield return new WaitForFixedUpdate();
-        }
-        lsa.allowSceneActivation = true;
-        while (t > 0)
-        {
-            t -= Time.unscaledDeltaTime * loadScreenSpeed;
-            lsGroup.alpha = t;
-            yield return new WaitForEndOfFrame();
-        }
-        Destroy(currentLoadingScreen);
-        print($"Loaded scene {targetScene.Name}");
         yield break;
     }
 }
