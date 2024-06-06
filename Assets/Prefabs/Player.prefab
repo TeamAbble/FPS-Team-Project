@@ -6809,7 +6809,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 1725915634663555915}
+        transform: {fileID: 5496135258281153434}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -6832,7 +6832,7 @@ MonoBehaviour:
       m_Item7:
         transform: {fileID: 0}
         weight: 0
-    m_Offset: {x: 0, y: 0, z: -0.2}
+    m_Offset: {x: 0, y: 0, z: 0}
     m_ConstrainedAxes:
       x: 1
       y: 1
