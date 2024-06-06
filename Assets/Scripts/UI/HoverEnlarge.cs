@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class HoverEnlarge : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public float enlargeSpeed = 2;
+    public float enlargeSpeed = 50;
     public float maxSize = 1.2f;
     public float time;
     /// <summary>
@@ -13,6 +13,12 @@ public class HoverEnlarge : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     /// </summary>
     /// <param name="enlarge">If true, the UI Element will get bigger.</param>
     /// <returns></returns>
+
+    public void Start()
+    {
+        StartCoroutine(Resize(false));
+    }
+
     IEnumerator Resize(bool enlarge)
     {
         float targetSize = enlarge ? maxSize : 1;

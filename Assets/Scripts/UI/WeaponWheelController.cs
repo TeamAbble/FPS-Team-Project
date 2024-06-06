@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WeaponWheelController : MonoBehaviour
 {
@@ -8,7 +10,9 @@ public class WeaponWheelController : MonoBehaviour
     public GameObject weaponWheelPrefab;
     List<GameObject> weaponWheelButtons = new();
     public Vector3 offsetFromCentre;
+    public float controllerCursorRadius;
     public Transform weaponWheelParent;
+    public TextMeshProUGUI descriptionText;
     private void Awake()
     {
         if(Instance == null)
@@ -22,8 +26,17 @@ public class WeaponWheelController : MonoBehaviour
         }
 
         gameObject.SetActive(false);
+        SetDescription("Select a weapon!");
     }
-
+    private void Update()
+    {
+        if (GameManager.instance.playerRef.IsUsingGamepad)
+        {
+            Vector2 l = GameManager.instance.playerRef.LookInput.normalized;
+            Vector2 screenPos = new Vector2(Screen.width / 2 + l.x, Screen.height / 2 + l.y) * controllerCursorRadius;
+            Mouse.current.WarpCursorPosition(screenPos);
+        }
+    }
     public void UpdateWeaponWheel()
     {
         for (int i = 0; i < weaponWheelButtons.Count; i++)
@@ -40,7 +53,10 @@ public class WeaponWheelController : MonoBehaviour
             weaponWheelButtons.Add(b);
         }
     }
-
+    public void SetDescription(string desc)
+    {
+        descriptionText.text = desc;
+    }
     //private void OnValidate()
     //{
     //    if (Application.isPlaying)

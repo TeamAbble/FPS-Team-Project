@@ -12,7 +12,10 @@ using UnityEngine.UI;
 public class Player : Character
 {
     [SerializeField] Vector2 moveInput, lookInput, lookAngle, oldLookAngle, deltaLookAngle;
-
+    public Vector2 LookInput => lookInput;
+    PlayerInput p;
+    public bool IsUsingGamepad => p.currentControlScheme.Equals(gamepadString);
+        public string gamepadString = "Gamepad";
     [SerializeField] float aimPitchOffset;
     [SerializeField] Transform aimTransform;
     [SerializeField] float drag;

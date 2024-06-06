@@ -1039,7 +1039,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8091526478964269348
@@ -2915,7 +2915,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7052516809923454947
@@ -5108,7 +5108,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 118.89569, y: -40.00006}
+  m_AnchoredPosition: {x: 118.89569, y: -40}
   m_SizeDelta: {x: 148.9467, y: 11.7679}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &9028777115582832006
@@ -6276,7 +6276,7 @@ Transform:
   - {fileID: 8312697096686426729}
   - {fileID: 1482988941746786469}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4890407698555094173
 MonoBehaviour:
@@ -6539,21 +6539,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2527990074532017067, guid: c6b3aace0e2355f41913c5228b456918,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2527990074532017067, guid: c6b3aace0e2355f41913c5228b456918,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2527990074532017067, guid: c6b3aace0e2355f41913c5228b456918,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2527990074532017067, guid: c6b3aace0e2355f41913c5228b456918,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -6631,50 +6616,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4041279575751530156}
     m_Modifications:
-    - target: {fileID: 431685730378887128, guid: f45f969390047244a8f8f85a13dd50c4,
-        type: 3}
-      propertyPath: m_text
-      value: Extinguisher
-      objectReference: {fileID: 0}
-    - target: {fileID: 752338820619390851, guid: f45f969390047244a8f8f85a13dd50c4,
-        type: 3}
-      propertyPath: weaponName
-      value: Stapler
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096850874917105388, guid: f45f969390047244a8f8f85a13dd50c4,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096850874917105388, guid: f45f969390047244a8f8f85a13dd50c4,
-        type: 3}
-      propertyPath: m_Interactable
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1686524883217397643, guid: f45f969390047244a8f8f85a13dd50c4,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1686524883217397643, guid: f45f969390047244a8f8f85a13dd50c4,
-        type: 3}
-      propertyPath: m_Interactable
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054206664565987115, guid: f45f969390047244a8f8f85a13dd50c4,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3262514345808336316, guid: f45f969390047244a8f8f85a13dd50c4,
         type: 3}
       propertyPath: m_Name
       value: WeaponWheel
-      objectReference: {fileID: 0}
-    - target: {fileID: 3262514345808336316, guid: f45f969390047244a8f8f85a13dd50c4,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3340444334220514601, guid: f45f969390047244a8f8f85a13dd50c4,
         type: 3}
@@ -6723,21 +6668,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3340444334220514601, guid: f45f969390047244a8f8f85a13dd50c4,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3340444334220514601, guid: f45f969390047244a8f8f85a13dd50c4,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3340444334220514601, guid: f45f969390047244a8f8f85a13dd50c4,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3340444334220514601, guid: f45f969390047244a8f8f85a13dd50c4,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -6779,7 +6709,7 @@ PrefabInstance:
     - target: {fileID: 3340444334220514601, guid: f45f969390047244a8f8f85a13dd50c4,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000061035156
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3340444334220514601, guid: f45f969390047244a8f8f85a13dd50c4,
         type: 3}
@@ -6796,50 +6726,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3398718961822856772, guid: f45f969390047244a8f8f85a13dd50c4,
-        type: 3}
-      propertyPath: weaponName
-      value: Pencil MG
-      objectReference: {fileID: 0}
-    - target: {fileID: 3996343916391624483, guid: f45f969390047244a8f8f85a13dd50c4,
-        type: 3}
-      propertyPath: weaponName
-      value: EMPTY
-      objectReference: {fileID: 0}
-    - target: {fileID: 3996343916391624483, guid: f45f969390047244a8f8f85a13dd50c4,
-        type: 3}
-      propertyPath: weaponIndex
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5654606773895783459, guid: f45f969390047244a8f8f85a13dd50c4,
-        type: 3}
-      propertyPath: weaponName
-      value: Extinguisher
-      objectReference: {fileID: 0}
-    - target: {fileID: 7956543371986877579, guid: f45f969390047244a8f8f85a13dd50c4,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 3289293451856831971, guid: f45f969390047244a8f8f85a13dd50c4, type: 3}
-    - {fileID: 3889592247979932804, guid: f45f969390047244a8f8f85a13dd50c4, type: 3}
-    - {fileID: 6100413282419633891, guid: f45f969390047244a8f8f85a13dd50c4, type: 3}
-    - {fileID: 1198220567742793027, guid: f45f969390047244a8f8f85a13dd50c4, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3262514345808336316, guid: f45f969390047244a8f8f85a13dd50c4,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7790226953446864315}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f45f969390047244a8f8f85a13dd50c4, type: 3}
---- !u!224 &1258531553571002006 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8225576566163335340, guid: f45f969390047244a8f8f85a13dd50c4,
-    type: 3}
-  m_PrefabInstance: {fileID: 7156269878616866362}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &5551682584769407763 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3340444334220514601, guid: f45f969390047244a8f8f85a13dd50c4,
@@ -6852,19 +6743,3 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7156269878616866362}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7790226953446864315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5626942117131365254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16553da40a105a74faec19cb2d908d70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponWheelPrefab: {fileID: 3097947165001185267, guid: 7c1fd08882d47d443922857e61714dc5,
-    type: 3}
-  offsetFromCentre: {x: 0, y: 120, z: 0}
-  weaponWheelParent: {fileID: 1258531553571002006}
