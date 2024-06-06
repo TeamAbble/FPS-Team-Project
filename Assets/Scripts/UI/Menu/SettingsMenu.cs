@@ -44,7 +44,7 @@ public class SettingsMenu : MonoBehaviour
         settings.volume = sensitivitySlider.value;
 
         GameManager.instance.lookSpeed = settings.sensitivity;
-        mixer.SetFloat("MasterVolume", settings.volume);
+        AudioListener.volume = Mathf.InverseLerp(-80, 0, settings.volume);
         SaveSettings();
     }
     void LoadSettings()
