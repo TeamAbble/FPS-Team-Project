@@ -351,4 +351,9 @@ public class Player : Character
             collision.rigidbody.AddForce(collision.impulse * dodgeKnockback);
         }
     }
+    public override void MeleeAttack()
+    {
+        base.MeleeAttack();
+        print("player melee");
+    }
 }

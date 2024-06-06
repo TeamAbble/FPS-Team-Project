@@ -39,7 +39,7 @@ public abstract class Character : MonoBehaviour
     }
     public virtual void MeleeAttack()
     {
-        Collider[] cols = Physics.OverlapBox(transform.TransformPoint(meleeOffset), meleeBounds / 2, transform.rotation, meleeLayermask);
+        Collider[] cols = Physics.OverlapBox(transform.TransformPoint(meleeOffset), meleeBounds / 2, transform.rotation, meleeLayermask, QueryTriggerInteraction.Ignore);
         
         for (int i = 0; i < cols.Length; i++)
         {
