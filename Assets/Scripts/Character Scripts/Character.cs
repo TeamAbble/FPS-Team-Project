@@ -11,7 +11,7 @@ public abstract class Character : MonoBehaviour
     [SerializeField] protected Vector3 meleeBounds;
     [SerializeField] protected Vector3 meleeOffset;
     [SerializeField] protected LayerMask meleeLayermask;
-    [SerializeField] protected int meleeDamage;
+    public int meleeDamage;
     [SerializeField] protected Rigidbody rb;
     [SerializeField] protected float meleeCooldown;
     protected float currentMeleeCooldown;

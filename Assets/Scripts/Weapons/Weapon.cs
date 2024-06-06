@@ -82,6 +82,7 @@ public class Weapon : MonoBehaviour
     public bool CanReload => maxAmmo > 0 && currentAmmo < maxAmmo && !fireBlocked && reserveAmmo != 0;
     public (int max, int current, int reserve) Ammo => (maxAmmo, currentAmmo, reserveAmmo);
     public Sprite icon;
+    public int Damage => damage;
     public void ReloadWeapon()
     {
         //Store the amount of ammo we have left
@@ -320,7 +321,7 @@ public class Weapon : MonoBehaviour
             currentWindup = 0;
         if (meleeWeapon && !isEnemyWeapon)
         {
-            GameManager.instance.playerRef.MeleeAttack();
+
         }
         else
         {
