@@ -113,6 +113,7 @@ public class GameManager : MonoBehaviour
         //pauses the game
         //I don't much like the timescale method but there's not much else I can think to do other than disabling most components and that might have a wonky effect
         //this is but a humble game so its okay :)
+        UseWeaponWheel(false);
         paused = newPause;
         Time.timeScale = paused ? 0 : 1;
         pauseCanvas.SetActive(paused);

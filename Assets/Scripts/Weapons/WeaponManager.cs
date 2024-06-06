@@ -72,6 +72,8 @@ public class WeaponManager : MonoBehaviour
     }
     public void SwitchInput(InputAction.CallbackContext context)
     {
+        if (GameManager.instance.paused)
+            return;
         if (context.performed)
         {
             GameManager.instance.UseWeaponWheel(true);
@@ -95,7 +97,7 @@ public class WeaponManager : MonoBehaviour
     }
     public void OnReload(InputAction.CallbackContext context)
     {
-        if (context.performed && CurrentWeapon.CanReload)
+        if (context.performed && CurrentWeapon.CanReload && !GameManager.instance.paused)
             p.Animator.SetTrigger("Reload");
     }
 

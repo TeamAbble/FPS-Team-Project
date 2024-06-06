@@ -292,14 +292,14 @@ public class Player : Character
     }
     public void InteractInput(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !GameManager.instance.paused)
         {
             InteractConfirm();
         }
     }
     public void Dodge(InputAction.CallbackContext context)
     {
-        if (context.performed && currentDodgeDelay >= dodgeDelay && moveInput != Vector2.zero)
+        if (context.performed && currentDodgeDelay >= dodgeDelay && moveInput != Vector2.zero && !GameManager.instance.paused)
         {
             Vector3 movevec = transform.rotation * new Vector3(moveInput.x, 0, moveInput.y) * dodgeForce;
             rb.AddForce(movevec, ForceMode.Impulse);
