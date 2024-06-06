@@ -5020,7 +5020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationSet: {fileID: 11400000, guid: ab5de312ad9aa594bb1482fb7ff6fe70, type: 2}
   displayName: 
-  description: 
+  description: A staple gun that fires every time you pull the trigger
   maxAmmo: 16
   currentAmmo: 0
   reserveAmmo: 80

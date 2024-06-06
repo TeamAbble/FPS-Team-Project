@@ -5688,7 +5688,7 @@ Transform:
   - {fileID: 8688610723204372878}
   - {fileID: 444890199712921334}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &3153882696938285588
 Rigidbody:
@@ -5867,7 +5867,7 @@ MonoBehaviour:
   interactDistance: 3
   interactLayermask:
     serializedVersion: 2
-    m_Bits: 1025
+    m_Bits: 3073
   passiveHealPerSec: 1
   passiveHealDelay: 3
   iFrameTime: 0.3

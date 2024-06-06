@@ -10133,7 +10133,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationSet: {fileID: 11400000, guid: 8f2af5d60b10aab429326265b8a7fe5a, type: 2}
   displayName: 
-  description: 
+  description: A fully-automatic pencil sharpener! Hold the fire button to unleash
+    a barrage of pencils
   maxAmmo: 30
   currentAmmo: 0
   reserveAmmo: 120

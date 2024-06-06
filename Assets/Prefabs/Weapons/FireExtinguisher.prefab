@@ -50,8 +50,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationSet: {fileID: 11400000, guid: 429c5a3bd8c7bde4b96c2db8c0805a15, type: 2}
+  displayName: 
+  description: UNUSED
   maxAmmo: 0
   currentAmmo: 0
+  reserveAmmo: 0
   damage: 1
   projectilesPerShot: 4
   fireInterval: 0.015
@@ -82,6 +85,8 @@ MonoBehaviour:
   windupAudio: {fileID: 0}
   minWindupPitch: 0
   maxWindupPitch: 0
+  minWindupVolume: 0
+  maxWindupVolume: 0
   firePosition: {fileID: 3132509812334987641}
   shotEffect: {fileID: 0}
   tracerSpeed: 0
@@ -101,6 +106,7 @@ MonoBehaviour:
   recoilForce: 0.02
   icon: {fileID: 473835730, guid: 8f7dfdb010bc9f54293ca7bccbd489d8, type: 3}
   isEnemyWeapon: 0
+  canfire: 0
   useFireAnimation: 0
   loopFireAnimation: 1
   playAnimationOnWindup: 0

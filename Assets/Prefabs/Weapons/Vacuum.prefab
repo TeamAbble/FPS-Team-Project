@@ -9998,7 +9998,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationSet: {fileID: 11400000, guid: f3fa65c2f2fd178469e63738ee184209, type: 2}
   displayName: 
-  description: 
+  description: Basically a railgun! Charges up, deals heavy direct damage, and explodes
+    in a ball of muck and dirt
   maxAmmo: 5
   currentAmmo: 0
   reserveAmmo: 10
