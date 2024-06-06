@@ -12,6 +12,7 @@ public class ProgressionDoor : Purchasable
         particle.transform.SetParent(null, true);
         particle.Play();
         Destroy(particle, 10f);
+        GameManager.instance.areaUnlockCost *= GameManager.instance.areaCostMultiplier;
         Destroy(gameObject);
     }
 }
