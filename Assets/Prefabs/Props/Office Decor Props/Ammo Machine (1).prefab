@@ -243,7 +243,7 @@ MonoBehaviour:
   cost: 2
   particle: {fileID: 0}
   audioSource: {fileID: 4550312840278678958}
-  clip: {fileID: 8300000, guid: 01be0b9ff844c2045b077fdda1df774e, type: 3}
+  clip: {fileID: 8300000, guid: c798a5ced9026554ba53d6764d8cf51d, type: 3}
   ammo: 1
 --- !u!1 &7985572548956577052
 GameObject:

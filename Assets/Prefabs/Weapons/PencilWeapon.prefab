@@ -263,7 +263,7 @@ MonoBehaviour:
   maxAmmo: 0
   currentAmmo: 0
   reserveAmmo: 0
-  damage: 30
+  damage: 40
   projectilesPerShot: 0
   fireInterval: 0.6
   fireIntervalRemaining: 0

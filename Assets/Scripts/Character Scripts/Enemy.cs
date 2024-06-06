@@ -10,6 +10,11 @@ public class Enemy : Character
     [SerializeField] protected Slider healthBarRef;
     protected bool firing;
     public GameObject target;
+    public Vector2 randomNoiseTimes;
+    public AudioClip[] randomNoises;
+    public AudioClip[] painSounds;
+    public AudioSource source;
+    public AudioClip[] deathsounds;
     public enum States
     {
         PATROL,
@@ -25,8 +30,9 @@ public class Enemy : Character
         agent.speed = MoveSpeed;
         healthBarRef.maxValue = maxHealth;
         healthBarRef.value = maxHealth;
+        Invoke(nameof(PlayRandomSound), Random.Range(randomNoiseTimes.x, randomNoiseTimes.y));
     }
-    
+
     // Update is called once per frame
     void Update()
     {
@@ -41,8 +47,11 @@ public class Enemy : Character
         if(target)
             agent.SetDestination(target.transform.position);
     }
-   
-
+    void PlayRandomSound()
+    {
+        source.PlayOneShot(randomNoises[Random.Range(0, randomNoises.Length)]);
+        Invoke(nameof(PlayRandomSound), Random.Range(randomNoiseTimes.x, randomNoiseTimes.y));
+    }
     public override void Die()
     {
         agent.enabled = false;
@@ -53,6 +62,7 @@ public class Enemy : Character
         if(animator)
             animator.enabled = false;
         rb.angularDrag = 0;
+        source.PlayOneShot(deathsounds[Random.Range(0, deathsounds.Length)]);
     }
 
     protected virtual void EnemyBehaviour()
@@ -63,5 +73,7 @@ public class Enemy : Character
     {
         base.UpdateHealth(healthChange, damagePosition);
         healthBarRef.value = CurrentHealth;
+        source.PlayOneShot(painSounds[Random.Range(0, painSounds.Length)]);
+        
     }
 }

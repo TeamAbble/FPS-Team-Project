@@ -9,6 +9,7 @@ public class ProgressionDoor : Purchasable
     public ParticleSystem particle;
     public override void Purchase()
     {
+        base.Purchase();
         particle.transform.SetParent(null, true);
         particle.Play();
         Destroy(particle, 10f);

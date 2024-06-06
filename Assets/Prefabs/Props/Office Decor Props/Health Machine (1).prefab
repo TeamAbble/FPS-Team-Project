@@ -5269,7 +5269,7 @@ MonoBehaviour:
   cost: 5
   particle: {fileID: 4558347056505133801}
   audioSource: {fileID: 3077255068578379486}
-  clip: {fileID: 8300000, guid: 01be0b9ff844c2045b077fdda1df774e, type: 3}
+  clip: {fileID: 8300000, guid: 244aac79d3e3d9f4db354d7dfd3712ff, type: 3}
   health: 25
 --- !u!1 &8906316274247907356
 GameObject:

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6680863523019515322}
   - component: {fileID: 7153881393789665569}
   - component: {fileID: 8016910334812765598}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Purchasable_Door_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 8645706067869615240}
   - component: {fileID: 301773448535552379}
   - component: {fileID: 7526688856347203745}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Purchasable_Door_1 (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 3304346502913533361}
   - component: {fileID: 7927711899516852625}
   - component: {fileID: 3663215151946214275}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Purchasable_Door_1 (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -326,7 +326,7 @@ GameObject:
   - component: {fileID: 4255639015839320217}
   - component: {fileID: 7045251874034300011}
   - component: {fileID: 5457705645597852208}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5214,7 +5214,7 @@ GameObject:
   - component: {fileID: 4670390896642663287}
   - component: {fileID: 8766941721018697364}
   - component: {fileID: 267136341177111820}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Purchasable_Door_1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5318,7 +5318,7 @@ GameObject:
   - component: {fileID: 8559829148259091241}
   - component: {fileID: 4118462999083040436}
   - component: {fileID: 5980111135803462617}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Particle System (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10205,7 +10205,7 @@ GameObject:
   - component: {fileID: 8566228144345458081}
   - component: {fileID: 6538725802188000259}
   - component: {fileID: 5718807123882929056}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Purchasable_Door_1 (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10310,7 +10310,7 @@ GameObject:
   - component: {fileID: 3451452344254077452}
   - component: {fileID: 623466162449764231}
   - component: {fileID: 8763560833281207648}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Purchasable_Door_1 (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10415,7 +10415,7 @@ GameObject:
   - component: {fileID: 1428116750505817825}
   - component: {fileID: 3208872172426351125}
   - component: {fileID: 5859409786722509533}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Purchasable_Door_1 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10520,7 +10520,7 @@ GameObject:
   - component: {fileID: 4106312867226354673}
   - component: {fileID: 1107091398855178185}
   - component: {fileID: 2767866056190839732}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Purchasable_Door_1 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10625,7 +10625,7 @@ GameObject:
   - component: {fileID: 3184910508047406044}
   - component: {fileID: 1265162922063854833}
   - component: {fileID: 5476959966512735677}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Purchasable_Door_1 (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10730,7 +10730,7 @@ GameObject:
   - component: {fileID: 1183402980686003927}
   - component: {fileID: 4779803740230635413}
   - component: {fileID: 1354555009736214482}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Purchasable_Door_1 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10835,7 +10835,7 @@ GameObject:
   - component: {fileID: 2623686969362078918}
   - component: {fileID: 2850530482679286457}
   - component: {fileID: 7253703544301545294}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Purchasable_Door_1 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10940,7 +10940,7 @@ GameObject:
   - component: {fileID: 3193451977549897907}
   - component: {fileID: 3706520977845039745}
   - component: {fileID: 6618025267393803739}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Purchasable_Door_1 (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11045,7 +11045,7 @@ GameObject:
   - component: {fileID: 5265115557936183354}
   - component: {fileID: 1254016110172122669}
   - component: {fileID: 6317278031825892033}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Purchasable_Door_1 (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11150,7 +11150,7 @@ GameObject:
   - component: {fileID: 5896251972901260018}
   - component: {fileID: 4400416109111958918}
   - component: {fileID: 5446778579394766232}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Purchasable_Door_1 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11255,7 +11255,7 @@ GameObject:
   - component: {fileID: 2513668389102986494}
   - component: {fileID: 6378029794193556441}
   - component: {fileID: 707379658118197405}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Purchasable_Door_1 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11360,7 +11360,7 @@ GameObject:
   - component: {fileID: 4440120830541740821}
   - component: {fileID: 3734460767198540522}
   - component: {fileID: 7963120805108201208}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Purchasable_Door_1 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11465,7 +11465,7 @@ GameObject:
   - component: {fileID: 2415117009859826212}
   - component: {fileID: 6491409280215913867}
   - component: {fileID: 7941267305309655194}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Purchasable_Door_1 (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11570,7 +11570,7 @@ GameObject:
   - component: {fileID: 4461971185453458017}
   - component: {fileID: 8031602873435956582}
   - component: {fileID: 7343552726173438745}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Purchasable_Door_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11667,7 +11667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b143224e90653748bdbd7739215ffef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactText: 
+  interactText: Unlock this area!
   cost: 10
   particle: {fileID: 7045251874034300011}
 --- !u!1 &9137264185033685995
@@ -11682,7 +11682,7 @@ GameObject:
   - component: {fileID: 8255342533800065105}
   - component: {fileID: 1159220938483540563}
   - component: {fileID: 5338807690487871917}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Purchasable_Door_1 (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11788,6 +11788,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: D_Box Open (1) 1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3935473938236782966, guid: d38be7fe0b6c98941a2d440df13e2178,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 5645766067084703287, guid: d38be7fe0b6c98941a2d440df13e2178,
         type: 3}
       propertyPath: m_RootOrder
@@ -11881,6 +11886,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: D_Box Open (1) 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3935473938236782966, guid: d38be7fe0b6c98941a2d440df13e2178,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 5645766067084703287, guid: d38be7fe0b6c98941a2d440df13e2178,
         type: 3}
