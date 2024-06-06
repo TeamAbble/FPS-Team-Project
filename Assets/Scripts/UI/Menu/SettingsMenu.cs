@@ -41,7 +41,7 @@ public class SettingsMenu : MonoBehaviour
     public void ApplySettings()
     {
         settings.sensitivity = Vector2.one * sensitivitySlider.value;
-        settings.volume = sensitivitySlider.value;
+        settings.volume = VolumeSlider.value;
 
         GameManager.instance.lookSpeed = settings.sensitivity;
         AudioListener.volume = Mathf.InverseLerp(-80, 0, settings.volume);
@@ -59,9 +59,10 @@ public class SettingsMenu : MonoBehaviour
         JsonUtility.FromJsonOverwrite(json, settings);
 
         GameManager.instance.lookSpeed = settings.sensitivity;
-        mixer.SetFloat("MasterVolume", settings.volume);
+        AudioListener.volume = Mathf.InverseLerp(-80, 0, settings.volume);
 
         VolumeSlider.value = settings.volume;
+        sensitivitySlider.value = settings.sensitivity.x;
         
     }
     void SaveSettings()
