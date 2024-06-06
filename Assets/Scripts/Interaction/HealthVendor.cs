@@ -11,12 +11,6 @@ public class HealthVendor : Vendor
         {
             base.Purchase();
             GameManager.instance.playerRef.UpdateHealth(health, transform.position);
-            if (particle)
-                particle.Emit(1);
-            if (audioSource && clip)
-            {
-                audioSource.PlayOneShot(clip);
-            }
         }
     }
 }

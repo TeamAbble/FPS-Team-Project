@@ -82,6 +82,7 @@ public class Weapon : MonoBehaviour
     public bool CanReload => maxAmmo > 0 && currentAmmo < maxAmmo && !fireBlocked && reserveAmmo != 0;
     public (int max, int current, int reserve) Ammo => (maxAmmo, currentAmmo, reserveAmmo);
     public Sprite icon;
+    public float fireVolume = 1;
     public int Damage => damage;
     public void ReloadWeapon()
     {
@@ -301,7 +302,7 @@ public class Weapon : MonoBehaviour
                 fireAudioSource.Stop();
                 fireAudioSource.time = 0;
             }
-            fireAudioSource.volume = 1;
+            fireAudioSource.volume = fireVolume;
             fireAudioSource.pitch = 1;
             if(timesFired == 0 && firstShotAudioClip)
             {
@@ -311,7 +312,7 @@ public class Weapon : MonoBehaviour
             }
             else if (fireAudioClip && !useLoopedSound)
             {
-                fireAudioSource.volume = 1;
+                fireAudioSource.volume = fireVolume;
                 fireAudioSource.pitch = 1;
                 fireAudioSource.PlayOneShot(fireAudioClip);
             }

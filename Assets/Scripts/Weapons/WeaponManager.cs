@@ -35,6 +35,10 @@ public class WeaponManager : MonoBehaviour
             weapons[i].UpdateTracers();
         }
         CurrentWeapon.fireBlocked = p.Animator.GetCurrentAnimatorStateInfo(weaponLayer).IsTag("Block");
+        if(!CurrentWeapon.CanReload && !CurrentWeapon.fireBlocked && CurrentWeapon.Ammo.current == 0)
+        {
+
+        }
     }
 
     public void SwitchWeapon(bool increment)
