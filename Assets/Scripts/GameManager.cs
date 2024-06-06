@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
         public int EnemiesPerWave;//The Enemies to be spawned in this wave
         public float nextWaveDelay = 25;
         public AnimationCurve enemiesPerWaveRamp;
+        public List<GameObject> allowedEnemies;
     }
     public Wave[] waves;
     public int waveContainerIndex;
@@ -77,6 +78,8 @@ public class GameManager : MonoBehaviour
     public SceneReference menuScene;
     public float loadScreenSpeed;
     bool loading;
+    public int baseWeaponCost, baseAreaCost;
+    public int areaCostMultiplier;
     public void UseWeaponWheel(bool opening)
     {
         //If the player is dead, we don't want to allow the player to open the weapon wheel.
@@ -188,6 +191,8 @@ public class GameManager : MonoBehaviour
         enemiesAlive = 0;
         enemiesRemaining = 0;
         SetEnemyDisplay();
+        areaUnlockCost = baseAreaCost;
+        weaponPrintCost = baseWeaponCost;
 
     }
 
@@ -215,7 +220,10 @@ public class GameManager : MonoBehaviour
             {
                 var w = playerRef.weaponManager.CurrentWeapon;
                 var a = w.Ammo;
-                ammoDisplayText.text = $"{w.displayName}\n{a.current}/{a.max}\nReserve:{a.reserve}";
+                if (w.meleeWeapon)
+                    ammoDisplayText.text = $"{w.displayName}\nMelee Weapon";
+                else
+                    ammoDisplayText.text = $"{w.displayName}\n{a.current}/{a.max}\nReserve:{a.reserve}";
             }
         }
         scoreText.text = $"${score}";
