@@ -19,6 +19,11 @@ public class WeaponPickup : Interactable
         owningPrinter.spawnedWeapon = null;
         GameManager.instance.playerRef.weaponManager.SwitchWeapon(GameManager.instance.playerRef.weaponManager.WeaponCount -1);
         //Destroy the purchasable
+        foreach (var item in GetComponentsInChildren<Renderer>(true))
+        {
+            if(item is not ParticleSystemRenderer)
+                item.gameObject.layer = LayerMask.NameToLayer("PlayerRender");
+        }
         Destroy(this);
     }
 }

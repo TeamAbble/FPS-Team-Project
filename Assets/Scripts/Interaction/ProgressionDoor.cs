@@ -5,20 +5,15 @@ using UnityEngine;
 public class ProgressionDoor : Purchasable
 {
     bool opened;
-    public Animator animator;
     public override int Cost => GameManager.instance.areaUnlockCost;
-    private void Start()
-    {
-        if(!animator)
-            animator = GetComponent<Animator>();
-    }
+    public ParticleSystem particle;
     public override void Purchase()
     {
-        if (!opened && animator)
-        {
-            base.Purchase();
-            opened = true;
-            animator.SetTrigger("Open");
-        }
+        base.Purchase();
+        particle.transform.SetParent(null, true);
+        particle.Play();
+        Destroy(particle, 10f);
+        GameManager.instance.areaUnlockCost *= GameManager.instance.areaCostMultiplier;
+        Destroy(gameObject);
     }
 }

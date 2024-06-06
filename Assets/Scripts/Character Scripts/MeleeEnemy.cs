@@ -36,7 +36,7 @@ public class MeleeEnemy : Enemy
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == target)
+        if (other.gameObject == target && agent)
         {
             state = States.ATTACK;
             firing = true;

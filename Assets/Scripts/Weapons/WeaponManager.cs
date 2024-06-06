@@ -117,6 +117,8 @@ public class WeaponManager : MonoBehaviour
             aoc.ApplyOverrides(overrideclips);
         }
         p.currentRecoilProfile = CurrentWeapon.recoilProfile;
+        if (CurrentWeapon.meleeWeapon)
+            p.meleeDamage = CurrentWeapon.Damage;
     }
     public void ReceiveRecoilImpulse(Vector3 pos, Vector3 rot)
     {

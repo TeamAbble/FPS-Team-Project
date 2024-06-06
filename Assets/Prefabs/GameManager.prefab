@@ -186,7 +186,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -100, y: 35}
+  m_AnchoredPosition: {x: -200, y: 35}
   m_SizeDelta: {x: 445.9886, y: 80.375}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8051744704768255943
@@ -217,9 +217,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '100
+  m_text: 'Big Long Weapon Name
 
-    /100'
+    1000/1000
+
+    Reserve: 1000'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bb947715241a76244be633af2d055ee7, type: 2}
   m_sharedMaterial: {fileID: -5650843010624125993, guid: bb947715241a76244be633af2d055ee7,
@@ -247,14 +249,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -538,7 +540,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 311
+    m_Bits: 3895
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -6274,7 +6276,7 @@ Transform:
   - {fileID: 8312697096686426729}
   - {fileID: 1482988941746786469}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4890407698555094173
 MonoBehaviour:
@@ -6289,7 +6291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRef: {fileID: 0}
-  MaxEnemiesAllowed: 15
+  MaxEnemiesAllowed: 10
   enemiesRemaining: 0
   spawnRate: 3
   enemiesAlive: 0
@@ -6316,25 +6318,88 @@ MonoBehaviour:
       - serializedVersion: 3
         time: 0
         value: 0
-        inSlope: 2.3848736
-        outSlope: 2.3848736
-        tangentMode: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
         weightedMode: 0
         inWeight: 0
-        outWeight: 0.07515924
+        outWeight: 0
       - serializedVersion: 3
         time: 1
         value: 1
-        inSlope: -0.093348876
-        outSlope: -0.093348876
-        tangentMode: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
         weightedMode: 0
-        inWeight: 0.15159237
+        inWeight: 0
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+    allowedEnemies:
+    - {fileID: 2671647154385193445, guid: adca1e48cc7dafc438979df9e0cfb408, type: 3}
   - waveNum: 5
+    EnemiesPerWave: 15
+    nextWaveDelay: 10
+    enemiesPerWaveRamp:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    allowedEnemies:
+    - {fileID: 2671647154385193445, guid: 59eb213cc614d6e4395f417efa13f6d4, type: 3}
+    - {fileID: 2671647154385193445, guid: adca1e48cc7dafc438979df9e0cfb408, type: 3}
+  - waveNum: 100
+    EnemiesPerWave: 200
+    nextWaveDelay: 10
+    enemiesPerWaveRamp:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    allowedEnemies:
+    - {fileID: 2671647154385193445, guid: e3ce1768ed73036449a0f2602b841cdf, type: 3}
+    - {fileID: 2671647154385193445, guid: 59eb213cc614d6e4395f417efa13f6d4, type: 3}
+    - {fileID: 2671647154385193445, guid: adca1e48cc7dafc438979df9e0cfb408, type: 3}
+  - waveNum: 10
     EnemiesPerWave: 20
     nextWaveDelay: 10
     enemiesPerWaveRamp:
@@ -6343,8 +6408,8 @@ MonoBehaviour:
       - serializedVersion: 3
         time: 0
         value: 0
-        inSlope: 0
-        outSlope: 0
+        inSlope: 2
+        outSlope: 2
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
@@ -6352,42 +6417,19 @@ MonoBehaviour:
       - serializedVersion: 3
         time: 1
         value: 1
-        inSlope: 2
-        outSlope: 2
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  - waveNum: 25
-    EnemiesPerWave: 100
-    nextWaveDelay: 10
-    enemiesPerWaveRamp:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
         outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 2
-        outSlope: 2
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+    allowedEnemies:
+    - {fileID: 2671647154385193445, guid: e3ce1768ed73036449a0f2602b841cdf, type: 3}
+    - {fileID: 2671647154385193445, guid: 59eb213cc614d6e4395f417efa13f6d4, type: 3}
+    - {fileID: 2671647154385193445, guid: adca1e48cc7dafc438979df9e0cfb408, type: 3}
   waveContainerIndex: 0
   currentWave: 0
   waveInProgress: 0
@@ -6398,9 +6440,9 @@ MonoBehaviour:
   damageVolume: {fileID: 2263484738638284293}
   lookSpeed: {x: 4, y: 4}
   unownedWeapons:
-  - {fileID: 539066444441173501, guid: 7f67ea4a8fc9ec443b95f4edc98aa365, type: 3}
   - {fileID: 3846149180109872664, guid: ff88fd727bd86694fa2082f1d5332f95, type: 3}
   - {fileID: 1191193837061692243, guid: 33f15f9fb2dc0c941ba95cda7b0f17d8, type: 3}
+  - {fileID: 5394613421308670716, guid: eba2ef713048c794ab4b96a7fdd5b868, type: 3}
   defaultWeapons: []
   weaponPrintCost: 10
   areaUnlockCost: 10
@@ -6410,6 +6452,7 @@ MonoBehaviour:
   - {fileID: 4048985927413516639}
   - {fileID: 646336771570893932}
   maxSpawnDistance: 30
+  minSpawnDistance: 2
   interactText: {fileID: 6103803826596910057}
   interactTextBG: {fileID: 824323789270134750}
   dodgeBar: {fileID: 9028777115582832006}
@@ -6432,7 +6475,10 @@ MonoBehaviour:
   menuScene:
     asset: {fileID: 102900000, guid: 466b96cef8d96e24fb8657f4058bd329, type: 3}
     guid: 466b96cef8d96e24fb8657f4058bd329
-  loadScreenSpeed: 2
+  loadScreenSpeed: 3
+  baseWeaponCost: 20
+  baseAreaCost: 20
+  areaCostMultiplier: 2
 --- !u!1001 &158882122368225208
 PrefabInstance:
   m_ObjectHideFlags: 0
