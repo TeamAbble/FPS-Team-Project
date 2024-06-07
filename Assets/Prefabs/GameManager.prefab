@@ -348,7 +348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IsGlobal: 1
-  priority: -1.64
+  priority: 48.95
   blendDistance: 0
   weight: 0
   sharedProfile: {fileID: 11400000, guid: d74b6b0346b2fdc4cb910ace8100239b, type: 2}
@@ -1944,7 +1944,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 1
+  m_RenderPostProcessing: 0
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -6368,8 +6368,8 @@ MonoBehaviour:
     allowedEnemies:
     - {fileID: 2671647154385193445, guid: 59eb213cc614d6e4395f417efa13f6d4, type: 3}
     - {fileID: 2671647154385193445, guid: adca1e48cc7dafc438979df9e0cfb408, type: 3}
-  - waveNum: 100
-    EnemiesPerWave: 200
+  - waveNum: 10
+    EnemiesPerWave: 25
     nextWaveDelay: 10
     enemiesPerWaveRamp:
       serializedVersion: 2
@@ -6398,9 +6398,8 @@ MonoBehaviour:
     allowedEnemies:
     - {fileID: 2671647154385193445, guid: e3ce1768ed73036449a0f2602b841cdf, type: 3}
     - {fileID: 2671647154385193445, guid: 59eb213cc614d6e4395f417efa13f6d4, type: 3}
-    - {fileID: 2671647154385193445, guid: adca1e48cc7dafc438979df9e0cfb408, type: 3}
-  - waveNum: 10
-    EnemiesPerWave: 20
+  - waveNum: 100
+    EnemiesPerWave: 200
     nextWaveDelay: 10
     enemiesPerWaveRamp:
       serializedVersion: 2
