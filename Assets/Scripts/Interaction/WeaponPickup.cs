@@ -5,6 +5,12 @@ using UnityEngine;
 public class WeaponPickup : Interactable
 {
     public WeaponPrinter owningPrinter;
+    Weapon w;
+    private void Start()
+    {
+        w = GetComponent<Weapon>();
+        interactText = "Pick up " +  w.displayName;
+    }
     public override void Interact()
     {
         //Give the player this weapon
