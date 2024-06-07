@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
     public float loadScreenSpeed;
     bool loading;
     public int baseWeaponCost, baseAreaCost;
-    public int areaCostMultiplier;
+    public float areaCostMultiplier;
     public void UseWeaponWheel(bool opening)
     {
         //If the player is dead, we don't want to allow the player to open the weapon wheel.
@@ -254,9 +254,9 @@ public class GameManager : MonoBehaviour
     {
         waveInfoDisplay.text = WaveStringBuilder();
     }
-    public void EnemyDeath()
+    public void EnemyDeath(int score)
     {
-        score++;
+        this.score+=score;
         //The number of enemies left decrements when an enemy dies
         enemiesAlive--;
         SetEnemyDisplay();
