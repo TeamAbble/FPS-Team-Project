@@ -21,7 +21,7 @@ public class WeaponWheelButton : MonoBehaviour, IPointerClickHandler, IPointerEn
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        controller.SetDescription(GameManager.instance.playerRef.weaponManager.CurrentWeapon.description);
+        controller.SetDescription(GameManager.instance.playerRef.weaponManager.weapons[weaponIndex].description);
         controller.lastHoveredIndex = weaponIndex;
     }
 
