@@ -6477,7 +6477,7 @@ MonoBehaviour:
   loadScreenSpeed: 3
   baseWeaponCost: 20
   baseAreaCost: 20
-  areaCostMultiplier: 2
+  areaCostMultiplier: 1.2
 --- !u!1001 &158882122368225208
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -709,6 +709,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4890407698555094173, guid: 63878057147425a45a1cae6ef4d74f39,
+        type: 3}
+      propertyPath: areaCostMultiplier
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5199382516530061662, guid: 63878057147425a45a1cae6ef4d74f39,
         type: 3}
       propertyPath: m_AnchorMax.x
