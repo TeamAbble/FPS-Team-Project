@@ -312,7 +312,8 @@ MonoBehaviour:
     startRot: {x: 0, y: 0, z: 0, w: 0}
   recoilSource: {fileID: 0}
   recoilForce: 0
-  icon: {fileID: -1196476987, guid: 8f7dfdb010bc9f54293ca7bccbd489d8, type: 3}
+  icon: {fileID: 21300000, guid: 42de63fbd7be4854f858cdf64c1ead13, type: 3}
+  fireVolume: 1
   isEnemyWeapon: 0
   canfire: 0
   useFireAnimation: 1

@@ -13,6 +13,7 @@ public class WeaponWheelController : MonoBehaviour
     public float controllerCursorRadius;
     public Transform weaponWheelParent;
     public TextMeshProUGUI descriptionText;
+    public int lastHoveredIndex;
     private void Awake()
     {
         if(Instance == null)
@@ -52,6 +53,10 @@ public class WeaponWheelController : MonoBehaviour
             b.transform.localPosition = Quaternion.Euler(0, 0, angle * i) * offsetFromCentre;
             weaponWheelButtons.Add(b);
         }
+    }
+    private void OnEnable()
+    {
+        SetDescription("Select a weapon!");
     }
     public void SetDescription(string desc)
     {

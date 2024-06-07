@@ -53,6 +53,8 @@ public class Player : Character
     public float dodgeDamage;
     public float dodgeKnockback;
 
+    
+
     protected override void Start()
     {
         base.Start();
@@ -62,6 +64,7 @@ public class Player : Character
         GameManager.instance.healthbar.maxValue = maxHealth;
         GameManager.instance.healthbar.value = maxHealth;
         GameManager.instance.dodgeBar.maxValue = dodgeDelay;
+        p = GetComponent<PlayerInput>();
     }
     private void Aim()
     {
@@ -98,8 +101,6 @@ public class Player : Character
         weaponSwayPos = Vector3.SmoothDamp(weaponSwayPos, (weaponSwayPositionTarget * swayPositionMultiplier),
             ref swayPosDampVelocity, swayPositionDamping);
         weaponSwayRot = Vector3.LerpUnclamped(weaponSwayRot, weaponSwayRotationTarget * swayRotationMultiplier, Time.smoothDeltaTime * swayRotationDamping);
-
-
 
 
         viewCamera.SetLocalPositionAndRotation((recoilPos * currentRecoilProfile.viewmodelCameraInfluence).ScaleReturn(currentRecoilProfile.viewPositionScalar), 
@@ -229,7 +230,7 @@ public class Player : Character
         {
             if(hit.collider.TryGetComponent(out Interactable i))
             {
-                if (!targeted) 
+                if (!targeted || targeted != i) 
                 {
                     GameManager.instance.interactTextBG.SetActive(true);
                     if (i is Purchasable)
