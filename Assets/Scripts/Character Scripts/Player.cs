@@ -291,7 +291,7 @@ public class Player : Character
     }
     public void GetPauseInput(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && IsAlive)
             GameManager.instance.PauseGame(!GameManager.instance.paused);
     }
     public void InteractInput(InputAction.CallbackContext context)
