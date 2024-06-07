@@ -142,6 +142,7 @@ public class GameManager : MonoBehaviour
         scoreText.text = $"${score}";
         defaultWeapons = new(unownedWeapons);
         interactTextBG.SetActive(false);
+        Application.targetFrameRate = 60;
     }
 
     private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
@@ -194,7 +195,8 @@ public class GameManager : MonoBehaviour
         SetEnemyDisplay();
         areaUnlockCost = baseAreaCost;
         weaponPrintCost = baseWeaponCost;
-
+        waveInProgress = false;
+        waveContainerIndex = 0;
     }
 
     // Update is called once per frame
@@ -342,11 +344,13 @@ public class GameManager : MonoBehaviour
                 lsGroup.alpha = t;
                 yield return new WaitForEndOfFrame();
             }
+            yield return new WaitForSeconds(1);
             var lsa = SceneManager.LoadSceneAsync(targetScene.Name);
             while (!lsa.isDone)
             {
                 yield return new WaitForFixedUpdate();
             }
+            yield return new WaitForSeconds(1);
             lsa.allowSceneActivation = true;
             while (t > 0)
             {

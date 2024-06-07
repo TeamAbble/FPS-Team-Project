@@ -65,6 +65,9 @@ public class Player : Character
         GameManager.instance.healthbar.value = maxHealth;
         GameManager.instance.dodgeBar.maxValue = dodgeDelay;
         p = GetComponent<PlayerInput>();
+        transform.localRotation = Quaternion.Euler(0, lookAngle.x, 0);
+
+
     }
     private void Aim()
     {
