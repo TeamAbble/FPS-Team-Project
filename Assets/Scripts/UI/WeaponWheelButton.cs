@@ -21,12 +21,14 @@ public class WeaponWheelButton : MonoBehaviour, IPointerClickHandler, IPointerEn
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        controller.SetDescription(GameManager.instance.playerRef.weaponManager.CurrentWeapon.description);
+        controller.SetDescription(GameManager.instance.playerRef.weaponManager.weapons[weaponIndex].description);
+        controller.lastHoveredIndex = weaponIndex;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         controller.SetDescription("Select a weapon!");
+        controller.lastHoveredIndex = GameManager.instance.playerRef.weaponManager.weapons.FindIndex(x => x == GameManager.instance.playerRef.weaponManager.CurrentWeapon);
     }
 
     private void OnEnable()
@@ -37,7 +39,7 @@ public class WeaponWheelButton : MonoBehaviour, IPointerClickHandler, IPointerEn
     }
     private void Start()
     {
-        weaponName = GameManager.instance.playerRef.weaponManager.weapons[weaponIndex].name;
+        weaponName = GameManager.instance.playerRef.weaponManager.weapons[weaponIndex].displayName;
         icon = GameManager.instance.playerRef.weaponManager.weapons[weaponIndex].icon;
         controller = GetComponentInParent<WeaponWheelController>();
         if(nameDisplay)

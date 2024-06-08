@@ -659,6 +659,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 95b4ebe0dfe604648aeb6a51737bd371, type: 3}
   source: {fileID: 7510953374306547726}
   deathsounds: []
+  killValue: 3
   state: 1
 --- !u!1 &3380665423848887453
 GameObject:

@@ -10132,7 +10132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationSet: {fileID: 11400000, guid: 8f2af5d60b10aab429326265b8a7fe5a, type: 2}
-  displayName: Pencil Sharpener
+  displayName: Sharpenator
   description: A fully-automatic pencil sharpener! Hold the fire button to unleash
     a barrage of pencils
   maxAmmo: 30
@@ -10189,6 +10189,7 @@ MonoBehaviour:
   recoilSource: {fileID: 3714052209616057912}
   recoilForce: 0.1
   icon: {fileID: 1816233060, guid: 8f7dfdb010bc9f54293ca7bccbd489d8, type: 3}
+  fireVolume: 1
   isEnemyWeapon: 0
   canfire: 0
   useFireAnimation: 1

@@ -15,6 +15,7 @@ public class Enemy : Character
     public AudioClip[] painSounds;
     public AudioSource source;
     public AudioClip[] deathsounds;
+    public int killValue = 1;
     public enum States
     {
         PATROL,
@@ -56,7 +57,7 @@ public class Enemy : Character
     {
         agent.enabled = false;
         rb.isKinematic = false;
-        GameManager.instance.EnemyDeath();
+        GameManager.instance.EnemyDeath(killValue);
         rb.AddRelativeTorque(Random.onUnitSphere * 50);
         Destroy(gameObject, 2);
         if(animator)

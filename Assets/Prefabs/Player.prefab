@@ -43,7 +43,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 05fae033f8f17e144bf2fda3995c1bf8, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.732
   m_Pitch: 1
   Loop: 0
@@ -5688,7 +5688,7 @@ Transform:
   - {fileID: 8688610723204372878}
   - {fileID: 444890199712921334}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &3153882696938285588
 Rigidbody:
@@ -5755,8 +5755,8 @@ MonoBehaviour:
   maxHealth: 100
   MoveSpeed: 17
   animator: {fileID: 3347311141692031988}
-  meleeBounds: {x: 1, y: 1, z: 1}
-  meleeOffset: {x: 0, y: 1.08, z: 1}
+  meleeBounds: {x: 1, y: 1, z: 2}
+  meleeOffset: {x: 0, y: 1.08, z: 1.3}
   meleeLayermask:
     serializedVersion: 2
     m_Bits: 256
@@ -5768,6 +5768,7 @@ MonoBehaviour:
   lookAngle: {x: 90, y: 0}
   oldLookAngle: {x: 0, y: 0}
   deltaLookAngle: {x: 0, y: 0}
+  gamepadString: Gamepad
   aimPitchOffset: 90
   aimTransform: {fileID: 1835944691075051913}
   drag: 2

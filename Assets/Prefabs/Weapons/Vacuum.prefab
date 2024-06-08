@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1949700668228312961
+--- !u!1 &356
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 191470065062338409}
-  - component: {fileID: 658590351481091690}
-  - component: {fileID: 5730108508007231506}
+  - component: {fileID: 473}
+  - component: {fileID: 665}
+  - component: {fileID: 692}
   m_Layer: 0
   m_Name: Particle System
   m_TagString: Untagged
@@ -18,29 +18,29 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &191470065062338409
+--- !u!4 &473
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1949700668228312961}
+  m_GameObject: {fileID: 356}
   m_LocalRotation: {x: -0.7071065, y: -0, z: -0, w: 0.70710707}
   m_LocalPosition: {x: -0.05895996, y: 7.2879634, z: 0.2060008}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8175707203161063363}
+  - {fileID: 567}
   m_Father: {fileID: 4581593706744588165}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
---- !u!198 &658590351481091690
+--- !u!198 &665
 ParticleSystem:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1949700668228312961}
+  m_GameObject: {fileID: 356}
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
@@ -4815,14 +4815,14 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!199 &5730108508007231506
+--- !u!199 &692
 ParticleSystemRenderer:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1949700668228312961}
+  m_GameObject: {fileID: 356}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -4887,7 +4887,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!1 &3635740235775504386
+--- !u!1 &383
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4895,9 +4895,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8175707203161063363}
-  - component: {fileID: 8867982556436504513}
-  - component: {fileID: 508311727325949803}
+  - component: {fileID: 567}
+  - component: {fileID: 678}
+  - component: {fileID: 680}
   m_Layer: 0
   m_Name: Particle System (1)
   m_TagString: Untagged
@@ -4905,28 +4905,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8175707203161063363
+--- !u!4 &567
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3635740235775504386}
+  m_GameObject: {fileID: 383}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.15705529, y: 0.15705529, z: 0.15705529}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 191470065062338409}
+  m_Father: {fileID: 473}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
---- !u!198 &8867982556436504513
+--- !u!198 &678
 ParticleSystem:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3635740235775504386}
+  m_GameObject: {fileID: 383}
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
@@ -9701,14 +9701,14 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!199 &508311727325949803
+--- !u!199 &680
 ParticleSystemRenderer:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3635740235775504386}
+  m_GameObject: {fileID: 383}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -9963,20 +9963,20 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -444521105353760620, guid: b4c3415d05b0d8d4aae28ee7cb6ef8a6,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 191470065062338409}
+      addedObject: {fileID: 473}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -927199367670048503, guid: b4c3415d05b0d8d4aae28ee7cb6ef8a6,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2549623406865794016}
+      addedObject: {fileID: 784}
     - targetCorrespondingSourceObject: {fileID: -927199367670048503, guid: b4c3415d05b0d8d4aae28ee7cb6ef8a6,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8675519776745235454}
+      addedObject: {fileID: 632}
     - targetCorrespondingSourceObject: {fileID: -927199367670048503, guid: b4c3415d05b0d8d4aae28ee7cb6ef8a6,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3363193216627553135}
+      addedObject: {fileID: 649}
   m_SourcePrefab: {fileID: 100100000, guid: b4c3415d05b0d8d4aae28ee7cb6ef8a6, type: 3}
 --- !u!1 &3846149180109872664 stripped
 GameObject:
@@ -9984,7 +9984,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5062513666051835665}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2549623406865794016
+--- !u!114 &784
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9997,7 +9997,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationSet: {fileID: 11400000, guid: f3fa65c2f2fd178469e63738ee184209, type: 2}
-  displayName: 
+  displayName: SuperSuck
   description: Basically a railgun! Charges up, deals heavy direct damage, and explodes
     in a ball of muck and dirt
   maxAmmo: 5
@@ -10025,8 +10025,8 @@ MonoBehaviour:
   fireBlocked: 0
   meleeWeapon: 0
   timesFired: 0
-  fireParticles: {fileID: 658590351481091690}
-  fireAudioSource: {fileID: 8675519776745235454}
+  fireParticles: {fileID: 665}
+  fireAudioSource: {fileID: 632}
   fireAudioClip: {fileID: 8300000, guid: 0c626e2121bea5e4080740b10c21c3fb, type: 3}
   lastShotAudioClip: {fileID: 8300000, guid: 0c626e2121bea5e4080740b10c21c3fb, type: 3}
   firstShotAudioClip: {fileID: 8300000, guid: 0c626e2121bea5e4080740b10c21c3fb, type: 3}
@@ -10035,7 +10035,7 @@ MonoBehaviour:
   maxWindupPitch: 1.5
   minWindupVolume: 0
   maxWindupVolume: 1
-  firePosition: {fileID: 191470065062338409}
+  firePosition: {fileID: 473}
   shotEffect: {fileID: 7745328033304195952, guid: 56105df12f9301847918889e16934751,
     type: 3}
   tracerSpeed: 200
@@ -10054,20 +10054,21 @@ MonoBehaviour:
   recoilSource: {fileID: 0}
   recoilForce: 0
   icon: {fileID: -239297100, guid: 8f7dfdb010bc9f54293ca7bccbd489d8, type: 3}
+  fireVolume: 1
   isEnemyWeapon: 0
   canfire: 0
   useFireAnimation: 1
   loopFireAnimation: 0
   playAnimationOnWindup: 0
   windupAnimationIsNotFireAnimation: 0
-  areaRadius: 10
-  areaDamage: 25
+  areaRadius: 20
+  areaDamage: 30
   areaParticles: {fileID: 9055257426667228642, guid: 3c83b0119bfbff349888ccce8449358d,
     type: 3}
   areaParticleDestroyTime: 4
   areaLayermask:
     serializedVersion: 2
-    m_Bits: 257
+    m_Bits: 1
   damageLayermask:
     serializedVersion: 2
     m_Bits: 256
@@ -10095,7 +10096,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!82 &8675519776745235454
+--- !u!82 &632
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10192,7 +10193,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!135 &3363193216627553135
+--- !u!135 &649
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
