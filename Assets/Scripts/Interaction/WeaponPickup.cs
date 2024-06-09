@@ -22,8 +22,9 @@ public class WeaponPickup : Interactable
         //callback to the weapon wheel to update that
         WeaponWheelController.Instance.UpdateWeaponWheel();
         GetComponent<Weapon>().GiveToEntity();
-        owningPrinter.spawnedWeapon = null;
-        GameManager.instance.playerRef.weaponManager.SwitchWeapon(GameManager.instance.playerRef.weaponManager.WeaponCount -1);
+        if(owningPrinter)
+            owningPrinter.spawnedWeapon = null;
+        GameManager.instance.playerRef.weaponManager.SwitchWeapon(GameManager.instance.playerRef.weaponManager.weapons.FindIndex(x => x.gameObject == gameObject));
         //Destroy the purchasable
         foreach (var item in GetComponentsInChildren<Renderer>(true))
         {
