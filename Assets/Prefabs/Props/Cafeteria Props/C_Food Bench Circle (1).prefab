@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3851918104318409787}
   - component: {fileID: 2260277438878782213}
   - component: {fileID: 6237325505218004428}
-  - component: {fileID: 6874333783841406762}
+  - component: {fileID: 3260764792895865512}
   m_Layer: 0
   m_Name: C_Food Bench Circle (1)
   m_TagString: Untagged
@@ -87,14 +87,14 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &6874333783841406762
-CapsuleCollider:
+--- !u!64 &3260764792895865512
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 87630664631035343}
-  m_Material: {fileID: 13400000, guid: 30910691fb66289478923340aaa87822, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -105,11 +105,10 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 2.4937723
-  m_Height: 3.95
-  m_Direction: 2
-  m_Center: {x: -0.0023150356, y: -0.04, z: 0.03}
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6865708323390829868, guid: 67bdaec4f9ed1e248bf5105bf3c341a8, type: 3}
 --- !u!1001 &1421545624592724667
 PrefabInstance:
   m_ObjectHideFlags: 0
