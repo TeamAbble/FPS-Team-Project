@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3918707623772432459}
   - component: {fileID: 513222088111718071}
   - component: {fileID: 5039503077337154370}
-  - component: {fileID: 2746839336330895966}
+  - component: {fileID: 6527988894989518310}
   m_Layer: 0
   m_Name: Breakroom_Table (1)
   m_TagString: Untagged
@@ -86,14 +86,14 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &2746839336330895966
-CapsuleCollider:
+--- !u!65 &6527988894989518310
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6945862753918261553}
-  m_Material: {fileID: 13400000, guid: 30910691fb66289478923340aaa87822, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -104,11 +104,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.15
-  m_Height: 3.0528555
-  m_Direction: 2
-  m_Center: {x: 0, y: -1.4187819e-14, z: 1.526427}
+  serializedVersion: 3
+  m_Size: {x: 2, y: 2.0000002, z: 2.0000002}
+  m_Center: {x: 0, y: 0, z: 1}
 --- !u!1001 &2704377833371028718
 PrefabInstance:
   m_ObjectHideFlags: 0
