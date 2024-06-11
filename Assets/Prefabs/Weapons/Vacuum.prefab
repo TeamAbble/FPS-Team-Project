@@ -10068,7 +10068,7 @@ MonoBehaviour:
   areaParticleDestroyTime: 4
   areaLayermask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 256
   damageLayermask:
     serializedVersion: 2
     m_Bits: 256
