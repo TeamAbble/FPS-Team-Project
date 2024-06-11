@@ -23,13 +23,19 @@ public class AreaOfEffectWeapon : Weapon
             if (!item.attachedRigidbody)
                 continue;
 
-            if (Physics.Linecast(hit.point, item.attachedRigidbody.centerOfMass, out RaycastHit hit2, areaLayermask, QueryTriggerInteraction.Ignore)
-                || Physics.Linecast(hit.point, item.attachedRigidbody.centerOfMass + (Vector3.up * 0.3f), out hit2, areaLayermask, QueryTriggerInteraction.Ignore)
-                || Physics.Linecast(hit.point, item.attachedRigidbody.centerOfMass + (Vector3.up * -0.3f), out hit2, areaLayermask, QueryTriggerInteraction.Ignore))
+            Debug.DrawLine(hit.point, item.attachedRigidbody.worldCenterOfMass, Color.red, .5f);
+            Debug.DrawLine(hit.point, item.attachedRigidbody.worldCenterOfMass + (Vector3.up * 0.3f), Color.red, .5f);
+            Debug.DrawLine(hit.point, item.attachedRigidbody.worldCenterOfMass + (Vector3.up * -0.3f), Color.red, .5f);
+
+
+            if (Physics.Linecast(hit.point, item.attachedRigidbody.worldCenterOfMass, out RaycastHit hit2, areaLayermask, QueryTriggerInteraction.Ignore)
+                || Physics.Linecast(hit.point,  item.attachedRigidbody.worldCenterOfMass + (Vector3.up * 0.3f), out hit2, areaLayermask, QueryTriggerInteraction.Ignore)
+                || Physics.Linecast(hit.point, item.attachedRigidbody.worldCenterOfMass + (Vector3.up * -0.3f), out hit2, areaLayermask, QueryTriggerInteraction.Ignore))
             {
-                if (item.attachedRigidbody.TryGetComponent(out Character c))
+                if (hit2.collider.attachedRigidbody && hit.collider.attachedRigidbody.TryGetComponent(out Character c) && c.RB == item.attachedRigidbody)
                 {
                     float d = areaDamage * damageFalloff.Evaluate(Mathf.InverseLerp(0, areaRadius, hit2.distance));
+                    print($"{d}, {hit2.distance}");
                     c.UpdateHealth(Mathf.FloorToInt(-d), hit.point);
                 }
             }

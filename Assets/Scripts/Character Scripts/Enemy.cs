@@ -13,7 +13,7 @@ public class Enemy : Character
     public Vector2 randomNoiseTimes;
     public AudioClip[] randomNoises;
     public AudioClip[] painSounds;
-    public AudioSource source;
+    public AudioSource noiseSource, ambientSource;
     public AudioClip[] deathsounds;
     public AudioClip movementAudioClip;
     public int killValue = 1;
@@ -33,9 +33,9 @@ public class Enemy : Character
         healthBarRef.maxValue = maxHealth;
         healthBarRef.value = maxHealth;
         Invoke(nameof(PlayRandomSound), Random.Range(randomNoiseTimes.x, randomNoiseTimes.y));
-        source.clip = movementAudioClip;
-        source.loop = true;
-        source.Play();
+        ambientSource.clip = movementAudioClip;
+        ambientSource.loop = true;
+        ambientSource.Play();
     }
 
     // Update is called once per frame
@@ -48,13 +48,13 @@ public class Enemy : Character
         EnemyBehaviour();
         if (IsAlive)
         {
-            source.volume = Mathf.InverseLerp(0, MoveSpeed, agent.speed);
+            ambientSource.volume = Mathf.InverseLerp(0, MoveSpeed, agent.velocity.magnitude);
         }
         else
         {
-            if (source.isPlaying)
+            if (ambientSource.isPlaying)
             {
-                source.volume = Mathf.InverseLerp(0, MoveSpeed * 2, rb.velocity.magnitude);
+                ambientSource.volume = Mathf.InverseLerp(0, MoveSpeed * 2, rb.velocity.magnitude);
             }
         }
     }
@@ -67,7 +67,7 @@ public class Enemy : Character
     {
         if (IsAlive)
         {
-            source.PlayOneShot(randomNoises[Random.Range(0, randomNoises.Length)]);
+            noiseSource.PlayOneShot(randomNoises[Random.Range(0, randomNoises.Length)]);
             Invoke(nameof(PlayRandomSound), Random.Range(randomNoiseTimes.x, randomNoiseTimes.y));
         }
     }
@@ -81,7 +81,7 @@ public class Enemy : Character
         if(animator)
             animator.enabled = false;
         rb.angularDrag = 0;
-        source.PlayOneShot(deathsounds[Random.Range(0, deathsounds.Length)]);
+        noiseSource.PlayOneShot(deathsounds[Random.Range(0, deathsounds.Length)]);
         healthBarRef.value = 0;
         healthBarRef.gameObject.SetActive(false);
     }
@@ -94,7 +94,7 @@ public class Enemy : Character
     {
         base.UpdateHealth(healthChange, damagePosition);
         healthBarRef.value = CurrentHealth;
-        source.PlayOneShot(painSounds[Random.Range(0, painSounds.Length)]);
+        noiseSource.PlayOneShot(painSounds[Random.Range(0, painSounds.Length)]);
         
     }
 }

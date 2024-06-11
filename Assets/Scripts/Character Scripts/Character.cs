@@ -20,6 +20,7 @@ public abstract class Character : MonoBehaviour
     public Animator Animator => animator;
     public float CurrentHealth => health;
     public float MaxHealth => maxHealth;
+    public Rigidbody RB => rb;
     protected virtual void Start()
     {
         if(!animator)
@@ -48,7 +49,10 @@ public abstract class Character : MonoBehaviour
             if (cols[i].attachedRigidbody != rb && cols[i].TryGetComponent(out Character c))
             {
                 c.UpdateHealth(-meleeDamage, transform.position);
-                meleeAudioSource.PlayOneShot(meleeAudioClips[Random.Range(0, meleeAudioClips.Length)]);
+                if(meleeAudioSource && meleeAudioClips.Length > 0)
+                {
+                    meleeAudioSource.PlayOneShot(meleeAudioClips[Random.Range(0, meleeAudioClips.Length)]);
+                }
             }
         }
     }
