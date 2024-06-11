@@ -624,7 +624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 150
-  MoveSpeed: 2
+  MoveSpeed: 3
   animator: {fileID: 5271983263195067905}
   meleeBounds: {x: 1.2, y: 1.2, z: 1.2}
   meleeOffset: {x: 0, y: 0, z: 1.2}
@@ -658,7 +658,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 13a09dac406e4f74da0464d86bcc51a1, type: 3}
   - {fileID: 8300000, guid: 95b4ebe0dfe604648aeb6a51737bd371, type: 3}
   source: {fileID: 7510953374306547726}
-  deathsounds: []
+  deathsounds:
+  - {fileID: 8300000, guid: 118eb127d2f745348a0fb8490527a928, type: 3}
+  - {fileID: 8300000, guid: e1ed9e7de163be54dae4c8811175e0e9, type: 3}
   killValue: 3
   state: 1
 --- !u!1 &3380665423848887453

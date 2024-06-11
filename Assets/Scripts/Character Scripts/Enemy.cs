@@ -64,6 +64,8 @@ public class Enemy : Character
             animator.enabled = false;
         rb.angularDrag = 0;
         source.PlayOneShot(deathsounds[Random.Range(0, deathsounds.Length)]);
+        healthBarRef.value = 0;
+        healthBarRef.gameObject.SetActive(false);
     }
 
     protected virtual void EnemyBehaviour()

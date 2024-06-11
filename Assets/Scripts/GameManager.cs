@@ -80,6 +80,8 @@ public class GameManager : MonoBehaviour
     bool loading;
     public int baseWeaponCost, baseAreaCost;
     public float areaCostMultiplier;
+
+    public GameObject quitPrompt;
     public void UseWeaponWheel(bool opening)
     {
         //If the player is dead, we don't want to allow the player to open the weapon wheel.
@@ -120,6 +122,8 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = paused ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = paused;
         AudioListener.pause = paused;
+        if (!paused)
+            quitPrompt.SetActive(false);
     }
     public void Respawn()
     {
@@ -185,8 +189,7 @@ public class GameManager : MonoBehaviour
         interactTextBG.SetActive(false);
         if(DamageRingManager.Instance)
             DamageRingManager.Instance.ClearRings();
-
-        score = 0;
+        score = Debug.isDebugBuild ? 1000 : 0;
         scoreText.text = $"${score}";
         unownedWeapons = new(defaultWeapons);
         currentWave = 0;

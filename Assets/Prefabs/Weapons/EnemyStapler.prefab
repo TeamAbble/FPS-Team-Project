@@ -49,8 +49,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationSet: {fileID: 11400000, guid: ab5de312ad9aa594bb1482fb7ff6fe70, type: 2}
+  displayName: 
+  description: 
   maxAmmo: 0
   currentAmmo: 0
+  reserveAmmo: 0
   damage: 5
   projectilesPerShot: 1
   fireInterval: 1
@@ -81,13 +84,15 @@ MonoBehaviour:
   windupAudio: {fileID: 0}
   minWindupPitch: 0
   maxWindupPitch: 0
+  minWindupVolume: 0
+  maxWindupVolume: 0
   firePosition: {fileID: 3338997510537340167}
   shotEffect: {fileID: 7745328033304195952, guid: fc6fe62f310ffad4bb1ac07cac08328e,
     type: 3}
   tracerSpeed: 75
   layermask:
     serializedVersion: 2
-    m_Bits: 385
+    m_Bits: 2433
   useLoopedSound: 0
   oldMag:
     magazine: {fileID: 5189182271332446518}
@@ -100,6 +105,7 @@ MonoBehaviour:
   recoilSource: {fileID: 5799785377318947094}
   recoilForce: 0.02
   icon: {fileID: 1748008479, guid: 8f7dfdb010bc9f54293ca7bccbd489d8, type: 3}
+  fireVolume: 1
   isEnemyWeapon: 1
   canfire: 0
   useFireAnimation: 0

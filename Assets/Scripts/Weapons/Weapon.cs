@@ -166,7 +166,7 @@ public class Weapon : MonoBehaviour
         fireAudioSource.loop = false;
         //Ensure weapons cannot fire upon swapping back to this weapon
         fireInput = false;
-
+        lastWindup = 0;
     }
     private void FixedUpdate()
     {

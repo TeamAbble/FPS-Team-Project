@@ -10041,7 +10041,7 @@ MonoBehaviour:
   tracerSpeed: 200
   layermask:
     serializedVersion: 2
-    m_Bits: 257
+    m_Bits: 2305
   useLoopedSound: 0
   oldMag:
     magazine: {fileID: 4539753899633117370}
