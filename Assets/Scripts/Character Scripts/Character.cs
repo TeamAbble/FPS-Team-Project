@@ -11,6 +11,8 @@ public abstract class Character : MonoBehaviour
     [SerializeField] protected Vector3 meleeBounds;
     [SerializeField] protected Vector3 meleeOffset;
     [SerializeField] protected LayerMask meleeLayermask;
+    public AudioClip[] meleeAudioClips;
+    public AudioSource meleeAudioSource;
     public int meleeDamage;
     [SerializeField] protected Rigidbody rb;
     [SerializeField] protected float meleeCooldown;
@@ -46,6 +48,7 @@ public abstract class Character : MonoBehaviour
             if (cols[i].attachedRigidbody != rb && cols[i].TryGetComponent(out Character c))
             {
                 c.UpdateHealth(-meleeDamage, transform.position);
+                meleeAudioSource.PlayOneShot(meleeAudioClips[Random.Range(0, meleeAudioClips.Length)]);
             }
         }
     }

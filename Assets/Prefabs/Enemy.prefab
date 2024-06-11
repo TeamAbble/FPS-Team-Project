@@ -401,10 +401,10 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 1
   m_Speed: 3.5
-  m_Acceleration: 8
+  m_Acceleration: 2
   avoidancePriority: 25
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_AngularSpeed: 90
+  m_StoppingDistance: 0.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -501,12 +501,15 @@ MonoBehaviour:
   meleeLayermask:
     serializedVersion: 2
     m_Bits: 128
+  meleeAudioClips:
+  - {fileID: 8300000, guid: ed61a01eec43b8c4491a63c3a1f77574, type: 3}
+  meleeAudioSource: {fileID: 7128663340176308414}
   meleeDamage: 10
   rb: {fileID: -7551953836692022282}
   meleeCooldown: 0
   healthBarRef: {fileID: 3680431501279305405}
   target: {fileID: 0}
-  randomNoiseTimes: {x: 5, y: 10}
+  randomNoiseTimes: {x: 6, y: 20}
   randomNoises:
   - {fileID: 8300000, guid: 5474074f693613244be4b75305b997df, type: 3}
   - {fileID: 8300000, guid: a09beb5e493ee8f48a33a8c5765eed4b, type: 3}
@@ -539,7 +542,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9c01d57b5fc6c424bbd6c23d95de9dae, type: 3}
   - {fileID: 8300000, guid: 2e988bbc1894da14ebd9bd11436d3941, type: 3}
   - {fileID: 8300000, guid: 0f3ec67c7895f9b4e98f9b570811bfc1, type: 3}
-  killValue: 1
+  movementAudioClip: {fileID: 8300000, guid: 0e89e7bc597874d438141780b12eace9, type: 3}
+  killValue: 3
   state: 1
 --- !u!1 &3380665423848887453
 GameObject:

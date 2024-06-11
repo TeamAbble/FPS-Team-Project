@@ -15,6 +15,7 @@ public class Enemy : Character
     public AudioClip[] painSounds;
     public AudioSource source;
     public AudioClip[] deathsounds;
+    public AudioClip movementAudioClip;
     public int killValue = 1;
     public enum States
     {
@@ -32,6 +33,9 @@ public class Enemy : Character
         healthBarRef.maxValue = maxHealth;
         healthBarRef.value = maxHealth;
         Invoke(nameof(PlayRandomSound), Random.Range(randomNoiseTimes.x, randomNoiseTimes.y));
+        source.clip = movementAudioClip;
+        source.loop = true;
+        source.Play();
     }
 
     // Update is called once per frame
@@ -42,6 +46,17 @@ public class Enemy : Character
     protected virtual void FixedUpdate()
     {
         EnemyBehaviour();
+        if (IsAlive)
+        {
+            source.volume = Mathf.InverseLerp(0, MoveSpeed, agent.speed);
+        }
+        else
+        {
+            if (source.isPlaying)
+            {
+                source.volume = Mathf.InverseLerp(0, MoveSpeed * 2, rb.velocity.magnitude);
+            }
+        }
     }
     public override void Move()
     {
@@ -50,8 +65,11 @@ public class Enemy : Character
     }
     void PlayRandomSound()
     {
-        source.PlayOneShot(randomNoises[Random.Range(0, randomNoises.Length)]);
-        Invoke(nameof(PlayRandomSound), Random.Range(randomNoiseTimes.x, randomNoiseTimes.y));
+        if (IsAlive)
+        {
+            source.PlayOneShot(randomNoises[Random.Range(0, randomNoises.Length)]);
+            Invoke(nameof(PlayRandomSound), Random.Range(randomNoiseTimes.x, randomNoiseTimes.y));
+        }
     }
     public override void Die()
     {
