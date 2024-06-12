@@ -32,7 +32,7 @@ public class AreaOfEffectWeapon : Weapon
                 || Physics.Linecast(hit.point,  item.attachedRigidbody.worldCenterOfMass + (Vector3.up * 0.3f), out hit2, areaLayermask, QueryTriggerInteraction.Ignore)
                 || Physics.Linecast(hit.point, item.attachedRigidbody.worldCenterOfMass + (Vector3.up * -0.3f), out hit2, areaLayermask, QueryTriggerInteraction.Ignore))
             {
-                if (hit2.collider.attachedRigidbody && hit.collider.attachedRigidbody.TryGetComponent(out Character c) && c.RB == item.attachedRigidbody)
+                if (hit2.collider.attachedRigidbody && hit2.collider.attachedRigidbody.TryGetComponent(out Character c) && c.RB == item.attachedRigidbody)
                 {
                     float d = areaDamage * damageFalloff.Evaluate(Mathf.InverseLerp(0, areaRadius, hit2.distance));
                     print($"{d}, {hit2.distance}");
