@@ -5179,7 +5179,7 @@ Transform:
   - {fileID: 6123614343185827611}
   - {fileID: 2505120471585096764}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!33 &223075316099658128
 MeshFilter:
@@ -5266,7 +5266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactText: Buy a Yummy Drink (+25HP)
-  cost: 5
+  cost: 10
   particle: {fileID: 4558347056505133801}
   audioSource: {fileID: 3077255068578379486}
   clip: {fileID: 8300000, guid: 244aac79d3e3d9f4db354d7dfd3712ff, type: 3}
