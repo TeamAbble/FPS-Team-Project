@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level 2 Scene.unity
     guid: 12275b4f7f3589b40ad3058c331bcfba
+  - enabled: 1
+    path: Assets/Scenes/Level_3_ThemePark.unity
+    guid: c692dfe6590ea8c42b66d15149551815
   m_configObjects: {}
