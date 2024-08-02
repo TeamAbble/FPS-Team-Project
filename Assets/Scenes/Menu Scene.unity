@@ -817,6 +817,17 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4890407698555094173, guid: 63878057147425a45a1cae6ef4d74f39,
+        type: 3}
+      propertyPath: gameScene.guid
+      value: c692dfe6590ea8c42b66d15149551815
+      objectReference: {fileID: 0}
+    - target: {fileID: 4890407698555094173, guid: 63878057147425a45a1cae6ef4d74f39,
+        type: 3}
+      propertyPath: gameScene.asset
+      value: 
+      objectReference: {fileID: 102900000, guid: c692dfe6590ea8c42b66d15149551815,
+        type: 3}
     - target: {fileID: 5199382516530061662, guid: 63878057147425a45a1cae6ef4d74f39,
         type: 3}
       propertyPath: m_AnchorMax.x
