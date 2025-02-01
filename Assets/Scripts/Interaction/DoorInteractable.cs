@@ -18,6 +18,7 @@ public class DoorInteractable : Purchasable
         if (string.IsNullOrEmpty(keyID) || GameManager.instance.heldKeysIDs.Contains(keyID))
         {
             animator.SetTrigger("Open");
+            GameManager.instance.heldKeysIDs.Remove(keyID);
         }
     }
 }

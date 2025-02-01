@@ -32,7 +32,7 @@ Transform:
   m_Children:
   - {fileID: 6696543108994497663}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!33 &3408580278577688749
 MeshFilter:
@@ -131,7 +131,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 15
-  m_Range: 15.010287
+  m_Range: 30
   m_SpotAngle: 160.4826
   m_InnerSpotAngle: 48.863148
   m_CookieSize: 10
@@ -169,7 +169,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 4.6497774, y: 0.43533373}
   m_BounceIntensity: 0

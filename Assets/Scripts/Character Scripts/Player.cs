@@ -245,7 +245,7 @@ public class Player : Character
                         }
                         else
                         {
-                            GameManager.instance.interactText.text = $"{p.interactText}\n ${p.Cost}";
+                            GameManager.instance.interactText.text = $"{p.interactText}{(p.cost > 0 ? $"\n {p.Cost}" : "")}";
                         }
                     }
                     else
