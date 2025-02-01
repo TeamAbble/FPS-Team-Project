@@ -50,7 +50,7 @@ public class Weapon : MonoBehaviour
     [SerializeField, Tooltip("The time, in seconds, after which the weapon can fire another burst")] protected float burstCooldown;
     [SerializeField, Tooltip("If true, the weapon will only finish the burst when fire input is held for the duration of the burst.")] protected bool canInterruptBurst;
     [SerializeField, Tooltip("If true, the weapon will automatically fire another burst.")] protected bool canAutoBurst;
-     protected bool burstFiring;
+    protected bool burstFiring;
     public RecoilProfile recoilProfile;
     [SerializeField] protected bool fireInput;
     /// <summary>
@@ -93,7 +93,7 @@ public class Weapon : MonoBehaviour
         //Set current ammo to zero
         currentAmmo = 0;
         //Pull the ammo from reserves
-        if(reserveAmmo >= maxAmmo)
+        if (reserveAmmo >= maxAmmo)
         {
             currentAmmo = maxAmmo;
             reserveAmmo -= maxAmmo;
@@ -132,14 +132,14 @@ public class Weapon : MonoBehaviour
     public bool isEnemyWeapon;
     protected virtual bool CanFire()
     {
-        return (isEnemyWeapon || IsOwnerAlive) && (fireIntervalRemaining <= 0) && 
-            !fireBlocked && 
+        return (isEnemyWeapon || IsOwnerAlive) && (fireIntervalRemaining <= 0) &&
+            !fireBlocked &&
             (burstCount <= 0 || currentBurstCount == 0) && (maxAmmo <= 0 || (maxAmmo > 0 && currentAmmo > 0));
     }
     public void SetFireInput(bool fireInput)
     {
         this.fireInput = fireInput;
-        if(useLoopedSound && fireAudioSource)
+        if (useLoopedSound && fireAudioSource)
         {
             fireAudioSource.loop = fireInput;
         }
@@ -270,7 +270,7 @@ public class Weapon : MonoBehaviour
     }
     void TryFire()
     {
-        if(burstCount > 0)
+        if (burstCount > 0)
         {
             StartCoroutine(BurstFire());
         }
@@ -295,7 +295,7 @@ public class Weapon : MonoBehaviour
         fireIntervalRemaining = fireInterval;
         if (fireParticles)
             fireParticles.Play();
-        if(fireAudioSource)
+        if (fireAudioSource)
         {
             if (!useLoopedSound)
             {
@@ -304,11 +304,17 @@ public class Weapon : MonoBehaviour
             }
             fireAudioSource.volume = fireVolume;
             fireAudioSource.pitch = 1;
-            if(timesFired == 0 && firstShotAudioClip)
+            if (firstShotAudioClip)
             {
-                fireAudioSource.PlayOneShot(firstShotAudioClip);
-                fireAudioSource.clip = fireAudioClip;
-                fireAudioSource.Play();
+                if (timesFired == 0)
+                {
+                    fireAudioSource.PlayOneShot(firstShotAudioClip);
+                }
+                else
+                {
+                    fireAudioSource.clip = fireAudioClip;
+                    fireAudioSource.Play();
+                }
             }
             else if (fireAudioClip && !useLoopedSound)
             {
@@ -433,20 +439,21 @@ public class Weapon : MonoBehaviour
     }
     public virtual void HitEffects(RaycastHit hit)
     {
-        
+
     }
 
     private void OnDrawGizmosSelected()
     {
-        if (firePosition) {
+        if (firePosition)
+        {
             Gizmos.color = Color.cyan;
             Gizmos.matrix = firePosition.localToWorldMatrix;
             Gizmos.DrawLine(Vector3.zero, Vector3.forward * maxRange);
-            if(maxSpread.x != 0)
+            if (maxSpread.x != 0)
                 Gizmos.DrawLine(Vector3.zero, Vector3.forward * maxRange + (Vector3.right * maxSpread.x));
-            if(minSpread.x != 0)
+            if (minSpread.x != 0)
                 Gizmos.DrawLine(Vector3.zero, Vector3.forward * maxRange + (Vector3.right * minSpread.x));
-            if(maxSpread.y != 0)
+            if (maxSpread.y != 0)
                 Gizmos.DrawLine(Vector3.zero, Vector3.forward * maxRange + (Vector3.up * maxSpread.y));
             if (minSpread.y != 0)
                 Gizmos.DrawLine(Vector3.zero, Vector3.forward * maxRange + (Vector3.up * minSpread.y));

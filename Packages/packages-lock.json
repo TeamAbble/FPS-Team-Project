@@ -32,11 +32,11 @@
       "hash": "a0aa0ca0704c1319b43b661aeb1a9c2e4a4f6db5"
     },
     "com.rlabrecque.steamworks.net": {
-      "version": "https://github.com/rlabrecque/Steamworks.NET.git?path=/com.rlabrecque.steamworks.net",
+      "version": "https://github.com/rlabrecque/Steamworks.NET.git?path=/com.rlabrecque.steamworks.net#2024.8.0",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "2ceddb2c35c88f069bbd8927b949a3d4eadb4e58"
+      "hash": "a2fc889ab2672981ec3e6225d551d86ce6923121"
     },
     "com.unity.2d.sprite": {
       "version": "1.0.0",

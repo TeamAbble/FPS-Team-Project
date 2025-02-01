@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c7c695651be6f340a32fef05a7d7c9a, type: 3}
+  m_Name: Content Builder Config
+  m_EditorClassIdentifier: 
+  username: Pzllx/FznqFH7Sou6W5dNYs+4C13yfdFtXP7f693WpZlMIPT2HRZ9F6htClo8wBUGIYeTVhaZs7S0ByukvThob5LRFkSrgmFGfx7hNhPhtpXxXMA9WYZWk+dDkTelVns
+  rememberPassword: 1
+  password: JyWqbVez8dqJWpxdFgDQjG7lUAkUQ6NeiS9hS83kaC9KE8c6wPJ5W1fJq8u8+FwZyk9+t78i+HclxsC8g2B7yZkieq/2ztW4okGL+81DaweRCVKHziU9UZ9AS1+mtsg2
+  targetApp: 3123990
+  lastDepot: 0
+  depots:
+  - name: WindowsDepot
+    id: 3123990
+    target: 19
+    extension: 
