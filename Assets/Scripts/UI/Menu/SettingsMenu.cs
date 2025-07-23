@@ -21,7 +21,8 @@ public class SettingsMenu : MonoBehaviour
     public Settings settings = new();
     public Button CloseButton;
     public Button ApplyButton;
-    public GameObject previousMenu;
+    public CanvasGroup previousMenu;
+    public CanvasGroup thisMenu;
     void Start()
     {
         LoadSettings();
@@ -78,7 +79,7 @@ public class SettingsMenu : MonoBehaviour
     }
     void ExitMenu()
     {
-        previousMenu.SetActive(true);
-        gameObject.SetActive(false);
+        previousMenu.SetGroupActive(true);
+        thisMenu.SetGroupActive(false);
     }
 }

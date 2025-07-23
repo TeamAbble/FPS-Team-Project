@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class WeaponManager : MonoBehaviour
 {
     public List<Weapon> weapons = new();
-    [SerializeField] int weaponIndex;
+    [SerializeField] internal int weaponIndex;
     [SerializeField] bool fireInput;
     Player p;
     public bool IsAlive => p.IsAlive;
@@ -26,7 +26,13 @@ public class WeaponManager : MonoBehaviour
         weapons[weaponIndex].gameObject.SetActive(true);
         ChangeAnimations();
 
-        WeaponWheelController.Instance.UpdateWeaponWheel();
+        if (WeaponBar.Instance != null)
+        {
+            WeaponBar.Instance.UpdateWeaponBar();
+            weaponIndex = 0;
+            WeaponBar.Instance.UpdateWeaponHighlight();
+        }
+        //WeaponWheelController.Instance.UpdateWeaponWheel();
     }
     private void FixedUpdate()
     {
@@ -41,19 +47,26 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
+
+    
+
     public void SwitchWeapon(bool increment)
     {
-        if (CurrentWeapon.newMag.magazine)
-            animationHelper.ReleaseNewMagInDefault();
-        if(CurrentWeapon.oldMag.magazine)
-            animationHelper.ReleaseOldMagInDefault();
-        weapons[weaponIndex].SetFireInput(false);
-        weapons[weaponIndex].gameObject.SetActive(false);
-        weaponIndex += increment ? 1 : -1;
-        weaponIndex %= WeaponCount;
-        weapons[weaponIndex].gameObject.SetActive(true);
-        p.Animator.Play("Equip");
-        ChangeAnimations();
+        if(WeaponCount > 1)
+        {
+            if (CurrentWeapon.newMag.magazine)
+                animationHelper.ReleaseNewMagInDefault();
+            if(CurrentWeapon.oldMag.magazine)
+                animationHelper.ReleaseOldMagInDefault();
+            weapons[weaponIndex].SetFireInput(false);
+            weapons[weaponIndex].gameObject.SetActive(false);
+            weaponIndex += increment ? 1 : -1;
+            weaponIndex %= WeaponCount;
+            weapons[weaponIndex].gameObject.SetActive(true);
+            p.Animator.Play("Equip");
+            ChangeAnimations();
+        }
+        WeaponBar.Instance.UpdateWeaponHighlight();
     }
     public void SwitchWeapon(int newWeaponIndex)
     {
@@ -70,23 +83,23 @@ public class WeaponManager : MonoBehaviour
         ChangeAnimations();
 
     }
-    public void SwitchInput(InputAction.CallbackContext context)
-    {
-        if (GameManager.instance.paused)
-            return;
-        if (context.performed)
-        {
-            GameManager.instance.UseWeaponWheel(true);
-        }
+    //public void SwitchInput(InputAction.CallbackContext context)
+    //{
+        //if (GameManager.instance.paused)
+            //return;
+        //if (context.performed)
+        //{
+            //GameManager.instance.UseWeaponWheel(true);
+        //}
 
-        if (context.canceled)
-        {
-            GameManager.instance.UseWeaponWheel(false);
-        }
-    }
+        //if (context.canceled)
+        //{
+            //GameManager.instance.UseWeaponWheel(false);
+        //}
+    //}
     public void OnFire(InputAction.CallbackContext context)
     {
-        if (GameManager.instance.paused || GameManager.instance.weaponWheelOpen)
+        if (GameManager.instance.paused)
         {
             fireInput = false;
             CurrentWeapon.SetFireInput(false);
@@ -99,6 +112,16 @@ public class WeaponManager : MonoBehaviour
     {
         if (context.performed && CurrentWeapon.CanReload && !GameManager.instance.paused)
             p.Animator.SetTrigger("Reload");
+    }
+    public void OnCycleWeaponLeft(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+            SwitchWeapon(false);
+    }
+    public void OnCycleWeaponRight(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+            SwitchWeapon(true);
     }
 
 

@@ -5688,7 +5688,7 @@ Transform:
   - {fileID: 8688610723204372878}
   - {fileID: 444890199712921334}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &3153882696938285588
 Rigidbody:
@@ -5760,6 +5760,8 @@ MonoBehaviour:
   meleeLayermask:
     serializedVersion: 2
     m_Bits: 256
+  meleeAudioClips: []
+  meleeAudioSource: {fileID: 0}
   meleeDamage: 50
   rb: {fileID: 3153882696938285588}
   meleeCooldown: 0
@@ -6023,19 +6025,7 @@ MonoBehaviour:
     m_ActionId: 0e3dda31-5b09-438b-8cde-471ac3ec6914
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3824807763634957599}
-        m_TargetAssemblyTypeName: WeaponManager, Assembly-CSharp
-        m_MethodName: SwitchInput
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 02a70102-0937-4332-9f63-62b0e7d2f0ab
     m_ActionName: Player/Switch[/Keyboard/q]
   - m_PersistentCalls:
@@ -6102,6 +6092,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 28c8e58b-d805-42b3-8561-120cee1439ff
     m_ActionName: Player/Dodge
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3824807763634957599}
+        m_TargetAssemblyTypeName: WeaponManager, Assembly-CSharp
+        m_MethodName: OnCycleWeaponLeft
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b3102434-d6f4-4040-9813-f9c96316c114
+    m_ActionName: Player/CycleWeaponLeft[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3824807763634957599}
+        m_TargetAssemblyTypeName: WeaponManager, Assembly-CSharp
+        m_MethodName: OnCycleWeaponRight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6186d31e-6b2c-4295-b9c9-2a7ecc1920cb
+    m_ActionName: Player/CycleWeaponRight[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

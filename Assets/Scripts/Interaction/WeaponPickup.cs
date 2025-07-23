@@ -19,8 +19,13 @@ public class WeaponPickup : Interactable
         transform.SetParent(GameManager.instance.playerRef.weaponTransform, false);
         //reset the local pose
         transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-        //callback to the weapon wheel to update that
-        WeaponWheelController.Instance.UpdateWeaponWheel();
+        ////callback to the weapon wheel to update that
+        //WeaponWheelController.Instance.UpdateWeaponWheel();
+
+        //GET THAT WEAPON WHEEL OUTTA HERE!
+        //Use the new weapon BAR!!!!
+        if (WeaponBar.Instance != null)
+            WeaponBar.Instance.UpdateWeaponBar();
         GetComponent<Weapon>().GiveToEntity();
         if(owningPrinter)
             owningPrinter.spawnedWeapon = null;

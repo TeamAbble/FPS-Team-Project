@@ -76,12 +76,10 @@ public class Player : Character
         if (!aimTransform)
             return;
         //Add the look input to the look angle
-        if (!GameManager.instance.weaponWheelOpen)
-        {
+        
             lookAngle += lookInput * GameManager.instance.lookSpeed * Time.fixedDeltaTime;
             //modulo the look yaw by 360
             lookAngle.y = Mathf.Clamp(lookAngle.y, -85, 85);
-        }
         deltaLookAngle = oldLookAngle - lookAngle;
         lookAngle.x %= 360;
         aimTransform.localRotation = Quaternion.Euler(-lookAngle.y + aimPitchOffset, 0, 0);
@@ -332,7 +330,7 @@ public class Player : Character
     }
     public override void Die()
     {
-        GameManager.instance.respawnScreen.SetActive(true);
+        GameManager.instance.respawnScreen.SetGroupActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }

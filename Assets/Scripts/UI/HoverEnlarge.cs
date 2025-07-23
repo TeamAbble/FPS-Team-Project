@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class HoverEnlarge : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class HoverEnlarge : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler
 {
     public float enlargeSpeed = 50;
     public float maxSize = 1.2f;
@@ -40,6 +40,16 @@ public class HoverEnlarge : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     }
 
     public void OnPointerExit(PointerEventData eventData)
+    {
+        StartCoroutine(Resize(false));
+    }
+
+    public void OnSelect(BaseEventData eventData)
+    {
+        StartCoroutine(Resize(true));
+    }
+
+    public void OnDeselect(BaseEventData eventData)
     {
         StartCoroutine(Resize(false));
     }

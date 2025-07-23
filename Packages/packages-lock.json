@@ -38,6 +38,16 @@
       "dependencies": {},
       "hash": "a2fc889ab2672981ec3e6225d551d86ce6923121"
     },
+    "com.simonoliver.inputsystemactionprompts": {
+      "version": "https://github.com/simonoliver/InputSystemActionPrompts.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.textmeshpro": "2.0.1",
+        "com.unity.inputsystem": "1.5.0"
+      },
+      "hash": "15f13e757adbe25d52a2a3d4fade82f2e5c2381c"
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,

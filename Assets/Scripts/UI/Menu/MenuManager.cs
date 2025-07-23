@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MenuManager : MonoBehaviour
 {
-    public GameObject mainMenu;
-    public GameObject settingsMenu;
-    public GameObject titleMenu;
+    public CanvasGroup mainMenu;
+    public CanvasGroup settingsMenu;
+    public CanvasGroup titleMenu;
+    public CanvasGroup creditsMenu;
+
+    public InputAction ia;
 
     public enum menus
     {
@@ -17,18 +21,25 @@ public class MenuManager : MonoBehaviour
     void Start()
     {
         menu = menus.START;
-        titleMenu.SetActive(true);
-        mainMenu.SetActive(false);
-        settingsMenu.SetActive(false);
+        titleMenu.SetGroupActive(true);
+        mainMenu.SetGroupActive(false);
+        settingsMenu.SetGroupActive(false);
+        creditsMenu.SetGroupActive(false);
+
+        
+        ia.Enable();
+        ia.performed += Ia_performed;
     }
 
-    // Update is called once per frame
-    void OnGUI()
+    private void Ia_performed(InputAction.CallbackContext obj)
     {
-        if (Event.current.isKey && Event.current.type == EventType.KeyDown&&menu==menus.START) {
+        if (menu == menus.START && obj.ReadValueAsButton())
+        {
+            ia.Disable();
+            ia.performed -= Ia_performed;
             menu = menus.MAIN;
-            mainMenu.SetActive(true);
-            titleMenu.SetActive(false);
+            mainMenu.SetGroupActive(true);
+            titleMenu.SetGroupActive(false);
         }
     }
 }

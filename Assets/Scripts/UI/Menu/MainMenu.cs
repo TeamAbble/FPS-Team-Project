@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
     public Button startButton;
     public Button settingsButton;
     public Button quitButton;
+    public Button creditsButton;
     public MenuManager menuManagerRef;
     public string sceneName;
     void Start()
@@ -26,6 +27,7 @@ public class MainMenu : MonoBehaviour
         startButton.onClick.AddListener(StartGame);
         settingsButton.onClick.AddListener(Settings);
         quitButton.onClick.AddListener(Quit);
+        creditsButton.onClick.AddListener(Credits);
     }
     public void Quit()
     {
@@ -37,7 +39,12 @@ public class MainMenu : MonoBehaviour
     }
     public void Settings()
     {
-        menuManagerRef.settingsMenu.SetActive(true);
-        menuManagerRef.mainMenu.SetActive(false);
+        menuManagerRef.settingsMenu.SetGroupActive(true);
+        menuManagerRef.mainMenu.SetGroupActive(false);
+    }
+    public void Credits()
+    {
+        menuManagerRef.creditsMenu.SetGroupActive(true);
+        menuManagerRef.mainMenu.SetGroupActive(false);
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -24,9 +25,9 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public int score = 0;
     public Vector3 spawnOffset;
-    public GameObject pauseCanvas;
+    public CanvasGroup pauseCanvas;
     public bool paused;
-    public GameObject respawnScreen;
+    public CanvasGroup respawnScreen;
     public Vector3 spawnPosition;
     [SerializeField]
     List<EnemySpawner> spawners;
@@ -48,13 +49,6 @@ public class GameManager : MonoBehaviour
     public bool waveInProgress;
     [Header("Weapon Switching")]
     public GameObject weaponWheel;
-    public float weaponWheelTimeMutliplier;
-    /// <summary>
-    /// The fixed timestep 
-    /// </summary>
-    float weaponWheelTimestep;
-    public float defaultFixedTimestep = 0.02f;
-    public bool weaponWheelOpen;
     public Volume damageVolume;
     public Vector2 lookSpeed;
     public List<GameObject> unownedWeapons;
@@ -82,43 +76,16 @@ public class GameManager : MonoBehaviour
     public float areaCostMultiplier;
 
     public GameObject quitPrompt;
-    public void UseWeaponWheel(bool opening)
-    {
-        //If the player is dead, we don't want to allow the player to open the weapon wheel.
-        //I don't think there's any real adverse effects of letting the player do this, because it hasn't been tried yet
-        //But its stupid and pointless to let the player do this when the weapon wheel is hidden by the menus anyway :p
 
-        if (!playerRef.IsAlive)
-            return;
-
-        if (opening)
-        {
-            weaponWheelTimestep = defaultFixedTimestep * weaponWheelTimeMutliplier;
-            Time.timeScale = weaponWheelTimeMutliplier;
-            Time.fixedDeltaTime = weaponWheelTimestep;
-            weaponWheel.SetActive(true);
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.Confined;
-        }
-        else
-        {
-            Time.timeScale = 1;
-            Time.fixedDeltaTime = defaultFixedTimestep;
-            weaponWheel.SetActive(false);
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-        weaponWheelOpen = opening;
-    }
+    public Selectable firstSelected;
     public void PauseGame(bool newPause)
     {
         //pauses the game
         //I don't much like the timescale method but there's not much else I can think to do other than disabling most components and that might have a wonky effect
         //this is but a humble game so its okay :)
-        UseWeaponWheel(false);
         paused = newPause;
         Time.timeScale = paused ? 0 : 1;
-        pauseCanvas.SetActive(paused);
+        pauseCanvas.SetGroupActive(paused);
         Cursor.lockState = paused ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = paused;
         AudioListener.pause = paused;
@@ -146,7 +113,7 @@ public class GameManager : MonoBehaviour
         scoreText.text = $"${score}";
         defaultWeapons = new(unownedWeapons);
         interactTextBG.SetActive(false);
-        Application.targetFrameRate = 60;
+        Application.targetFrameRate = 144;
     }
 
     private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
@@ -180,7 +147,7 @@ public class GameManager : MonoBehaviour
         //Force the game to be unpaused
         PauseGame(false);
         //Disable this menu
-        respawnScreen.SetActive(false);
+        respawnScreen.SetGroupActive(false);
         //Gather all the spawners
         spawners.Clear();
         spawners.AddRange(FindObjectsOfType<EnemySpawner>(true));
@@ -189,6 +156,7 @@ public class GameManager : MonoBehaviour
         interactTextBG.SetActive(false);
         if(DamageRingManager.Instance)
             DamageRingManager.Instance.ClearRings();
+        //Force recompile :|
         score = Debug.isDebugBuild ? 1000 : 0;
         scoreText.text = $"${score}";
         unownedWeapons = new(defaultWeapons);
@@ -200,6 +168,7 @@ public class GameManager : MonoBehaviour
         weaponPrintCost = baseWeaponCost;
         waveInProgress = false;
         waveContainerIndex = 0;
+
     }
 
     // Update is called once per frame

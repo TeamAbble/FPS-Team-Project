@@ -16,7 +16,7 @@ public class WeaponWheelButton : MonoBehaviour, IPointerClickHandler, IPointerEn
     public void OnPointerClick(PointerEventData eventData)
     {
         GameManager.instance.playerRef.weaponManager.SwitchWeapon(weaponIndex);
-        GameManager.instance.UseWeaponWheel(false);
+        //GameManager.instance.UseWeaponWheel(false);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
