@@ -17,4 +17,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Level_3_ThemePark.unity
     guid: c692dfe6590ea8c42b66d15149551815
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 603ba9a803aa3b84181092f5e297b225,
+      type: 2}

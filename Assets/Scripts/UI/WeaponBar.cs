@@ -31,22 +31,26 @@ public class WeaponBar : MonoBehaviour
         {
             Destroy(weaponIcons[i]);
         }
-
+        weaponIcons.Clear();
         for (int i = 0; i < GameManager.instance.playerRef.weaponManager.weapons.Count; i++)
         {
             var baricon = Instantiate(weaponBarIconPrefab, root).GetComponent<WeaponBarIcon>();
             baricon.Initialise(GameManager.instance.playerRef.weaponManager.weapons[i]);
             weaponIcons.Add(baricon.gameObject);
-        }
-
-        if(weaponIcons.Count > 0)
-        {
-            UpdateWeaponHighlight();
+            if(i == GameManager.instance.playerRef.weaponManager.weaponIndex)
+            {
+                selectedWeaponHighlight.position = weaponIcons[i].transform.position;
+            }
         }
     }
 
     public void UpdateWeaponHighlight()
     {
+        StartCoroutine(WeaponHighlight());
+    }
+    IEnumerator WeaponHighlight()
+    {
+        yield return null;
         selectedWeaponHighlight.position = weaponIcons[GameManager.instance.playerRef.weaponManager.weaponIndex].transform.position;
     }
 }

@@ -23,16 +23,10 @@ public class WeaponManager : MonoBehaviour
             weapons[i].gameObject.SetActive(false);
             weapons[i].GiveToEntity();
         }
+        weaponIndex = 0;
         weapons[weaponIndex].gameObject.SetActive(true);
-        ChangeAnimations();
-
-        if (WeaponBar.Instance != null)
-        {
-            WeaponBar.Instance.UpdateWeaponBar();
-            weaponIndex = 0;
-            WeaponBar.Instance.UpdateWeaponHighlight();
-        }
-        //WeaponWheelController.Instance.UpdateWeaponWheel();
+        WeaponBar.Instance.UpdateWeaponBar();
+        SwitchWeapon(0);
     }
     private void FixedUpdate()
     {
@@ -61,6 +55,10 @@ public class WeaponManager : MonoBehaviour
             weapons[weaponIndex].SetFireInput(false);
             weapons[weaponIndex].gameObject.SetActive(false);
             weaponIndex += increment ? 1 : -1;
+            if(weaponIndex < 0)
+            {
+                weaponIndex = weapons.Count + weaponIndex;
+            }
             weaponIndex %= WeaponCount;
             weapons[weaponIndex].gameObject.SetActive(true);
             p.Animator.Play("Equip");
@@ -81,21 +79,21 @@ public class WeaponManager : MonoBehaviour
         weapons[weaponIndex].gameObject.SetActive(true);
         p.Animator.Play("Equip");
         ChangeAnimations();
-
+        WeaponBar.Instance.UpdateWeaponHighlight();
     }
     //public void SwitchInput(InputAction.CallbackContext context)
     //{
-        //if (GameManager.instance.paused)
-            //return;
-        //if (context.performed)
-        //{
-            //GameManager.instance.UseWeaponWheel(true);
-        //}
+    //if (GameManager.instance.paused)
+    //return;
+    //if (context.performed)
+    //{
+    //GameManager.instance.UseWeaponWheel(true);
+    //}
 
-        //if (context.canceled)
-        //{
-            //GameManager.instance.UseWeaponWheel(false);
-        //}
+    //if (context.canceled)
+    //{
+    //GameManager.instance.UseWeaponWheel(false);
+    //}
     //}
     public void OnFire(InputAction.CallbackContext context)
     {
