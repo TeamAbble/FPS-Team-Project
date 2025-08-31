@@ -34,7 +34,7 @@ public class SettingsMenuV2 : MonoBehaviour
     public UniversalRenderPipelineAsset urpAsset, overrideAsset;
 
     Resolution[] resolutions;
-    List<Resolution> filteredResolutions;
+    public List<Resolution> filteredResolutions;
 
     [System.Serializable]
     public struct Settings
@@ -43,7 +43,7 @@ public class SettingsMenuV2 : MonoBehaviour
         public bool updated;
 
         public float sensitivity, gameVolume, uiVolume, renderScale;
-        public Resolution resolution;
+        public int resolutionIndex;
 
         public int frameLimit;
         public bool vsync, useFrameLimit, showFrames;
@@ -58,7 +58,11 @@ public class SettingsMenuV2 : MonoBehaviour
     public AudioMixerGroup gameMixer, uiMixer;
     int currentResolutionIndex;
 
-    private void Start()
+    private void Awake()
+    {
+        Initialise();
+    }
+    public void Initialise()
     {
         //Use the updated flag to make sure we don't do erroneous operations on the settings.
         //We'll have two different instances of the settings menu in the game.
@@ -79,7 +83,7 @@ public class SettingsMenuV2 : MonoBehaviour
         AddListeners();
         ApplySettings();
     }
-    void ApplySettings()
+    public void ApplySettings()
     {
         Screen.fullScreenMode = settings.fullscreen ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed;
         if (filteredResolutions[currentResolutionIndex].height != Screen.height || filteredResolutions[currentResolutionIndex].height != Screen.height)
@@ -177,19 +181,19 @@ public class SettingsMenuV2 : MonoBehaviour
     public void SetRenderScale(float value)
     {
         settings.renderScale = value;
-        renderScaleDisplay.text = $"x{settings.renderScale}";
+        renderScaleDisplay.text = $"x{settings.renderScale:0.0}";
         ApplySettings();
     }
     public void SetGameAudio(float value)
     {
         settings.gameVolume = value;
-        gameAudioDisplay.text = $"{settings.gameVolume * 100}%";
+        gameAudioDisplay.text = $"{(settings.gameVolume * 100):0.0}%";
         ApplySettings();
     }
     public void SetUIAudio(float value)
     {
         settings.uiVolume = value;
-        uiAudioDisplay.text = $"{settings.uiVolume * 100}%";
+        uiAudioDisplay.text = $"{(settings.uiVolume * 100):0.0}%";
         ApplySettings();
     }
 
@@ -199,17 +203,27 @@ public class SettingsMenuV2 : MonoBehaviour
         filteredResolutions = new List<Resolution>();
         resolutionDropdown.ClearOptions();
         float currentRefreshRate = (float)Screen.currentResolution.refreshRateRatio.value;
-        filteredResolutions.AddRange(resolutions.Where(v => v.refreshRateRatio.value == currentRefreshRate));
+        filteredResolutions.AddRange(resolutions.Where(v => v.refreshRateRatio.value == currentRefreshRate && (v.width / (float)v.height >= 1.6f)));
         List<string> options = new();
+        currentResolutionIndex = -1;
         for (int i = 0; i < filteredResolutions.Count; i++)
         {
-            string option = $"{filteredResolutions[i].width}x{filteredResolutions[i].height}";
+            Resolution r = filteredResolutions[i];
+            string option = $"{r.width}x{r.height}";
             options.Add(option);
-            if (filteredResolutions[i].width == Screen.width && filteredResolutions[i].height == Screen.height)
+            Debug.Log($"{r.width}x{r.height} - {Screen.width}x{Screen.height} == {r.width == Screen.width}x{r.height == Screen.height}");
+            if (r.width == Screen.width && r.height == Screen.height)
             {
                 currentResolutionIndex = i;
             }
         }
+        if(currentResolutionIndex == -1)
+        {
+            currentResolutionIndex = filteredResolutions.Count - 1;
+        }
+
+
+        settings.resolutionIndex = currentResolutionIndex;
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
@@ -234,7 +248,6 @@ public class SettingsMenuV2 : MonoBehaviour
     {
         settings = new()
         {
-            resolution = Screen.currentResolution,
             frameLimit = 60,
             vsync = false,
             useFrameLimit = false,
