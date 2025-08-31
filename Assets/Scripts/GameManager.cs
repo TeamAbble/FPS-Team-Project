@@ -78,6 +78,31 @@ public class GameManager : MonoBehaviour
     public GameObject quitPrompt;
 
     public Selectable firstSelected;
+
+
+    public GameObject frameCounter;
+    public TMP_Text frameCounterText;
+    public bool frameCounterTicking;
+    public void SetFrameCounter(bool value)
+    {
+        frameCounter.SetActive(value);
+        if (!frameCounterTicking)
+        {
+            StartCoroutine(FrameCounterTick());
+        }
+    }
+    public IEnumerator FrameCounterTick()
+    {
+        frameCounterTicking = true;
+        while (frameCounter.activeInHierarchy)
+        {
+            frameCounterText.text = $"FPS:{(1/Time.smoothDeltaTime):00.0}";
+            yield return new WaitForSeconds(0.25f);
+        }
+        frameCounterTicking = false;
+        yield break;
+    }
+
     public void PauseGame(bool newPause)
     {
         //pauses the game
@@ -113,6 +138,9 @@ public class GameManager : MonoBehaviour
         scoreText.text = $"${score}";
         defaultWeapons = new(unownedWeapons);
         interactTextBG.SetActive(false);
+
+        
+        SetFrameCounter(SettingsMenuV2.settings.showFrames);
     }
 
     private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
@@ -193,11 +221,11 @@ public class GameManager : MonoBehaviour
             if (playerRef.weaponManager.CurrentWeapon)
             {
                 var w = playerRef.weaponManager.CurrentWeapon;
-                var a = w.Ammo;
+                var (max, current, reserve) = w.Ammo;
                 if (w.meleeWeapon)
                     ammoDisplayText.text = $"{w.displayName}\nMelee Weapon";
                 else
-                    ammoDisplayText.text = $"{w.displayName}\n{a.current}/{a.max}\nReserve:{a.reserve}";
+                    ammoDisplayText.text = $"{w.displayName}\n{current}/{max}\nReserve:{reserve}";
             }
         }
         scoreText.text = $"${score}";

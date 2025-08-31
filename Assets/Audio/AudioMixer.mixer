@@ -20,7 +20,7 @@ AudioMixerGroupController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ambience
+  m_Name: UI
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 2279bda2d3f088e438215f8e7af06bf4
   m_Children: []
@@ -126,7 +126,7 @@ AudioMixerGroupController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Weapons
+  m_Name: Game
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 56275496ee152d74bbee61b8891e20cd
   m_Children: []
