@@ -4,26 +4,42 @@ using UnityEngine;
 
 public class IconWobble : MonoBehaviour
 {
-    public float angle;
+    public Vector3 angle;
     public Vector3 speed;
-
+    public bool useCosForZ;
     public Vector3 posScale, eulerScale;
 
-    RectTransform rect;
+    public bool useRandomStart;
+
     Vector3 startPos;
+
+    public Vector3 waveOutput;
 
     private void Awake()
     {
-        rect = GetComponent<RectTransform>();
-        startPos = rect.localPosition;
-        angle = Random.Range(0, 90);
+        startPos = transform.localPosition;
+        if (useRandomStart)
+        {
+            angle = Vector3.zero;
+        }
+        else
+        {
+
+        }
     }
 
     private void Update()
     {
-        angle += Time.deltaTime;
-        rect.SetLocalPositionAndRotation(startPos + new Vector3(Mathf.Sin(angle * speed.x) * posScale.x, Mathf.Cos(angle * speed.y) * posScale.y, 0), 
-            Quaternion.Euler(Mathf.Sin(angle * speed.y) * eulerScale.x, Mathf.Cos(angle * speed.y) * eulerScale.y, Mathf.Sin(angle * speed.z) * eulerScale.z));
-        angle %= 90;
+        angle += speed * Time.deltaTime;
+        angle = new(angle.x % 360, angle.y % 360, angle.z % 360);
+        waveOutput.x = Mathf.Sin(angle.x * Mathf.Deg2Rad);
+        waveOutput.y = Mathf.Cos(angle.y * Mathf.Deg2Rad);
+        waveOutput.z = useCosForZ ? Mathf.Cos(angle.z * Mathf.Deg2Rad) : Mathf.Sin(angle.z * Mathf.Deg2Rad);
+        transform.SetLocalPositionAndRotation(startPos + new Vector3(waveOutput.x * posScale.x, waveOutput.y * posScale.y, 0),
+            Quaternion.Euler(waveOutput.x * eulerScale.x, waveOutput.y * eulerScale.y, waveOutput.z * eulerScale.z));
+    }
+    private void OnValidate()
+    {
+        angle = Vector3.zero;
     }
 }

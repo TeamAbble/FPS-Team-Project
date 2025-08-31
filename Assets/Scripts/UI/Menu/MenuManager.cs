@@ -5,6 +5,10 @@ using UnityEngine.InputSystem;
 
 public class MenuManager : MonoBehaviour
 {
+
+
+
+
     public CanvasGroup mainMenu;
     public CanvasGroup settingsMenu;
     public CanvasGroup titleMenu;
@@ -12,15 +16,21 @@ public class MenuManager : MonoBehaviour
 
     public InputAction ia;
 
-    public enum menus
+    public void ReturnToMenu(MenuType menu)
     {
-        START,MAIN
+
     }
-    public menus menu;
+
+
+    public enum MenuType
+    {
+        START,MAIN,NOTMAIN
+    }
+    public MenuType menu;
 
     void Start()
     {
-        menu = menus.START;
+        menu = MenuType.START;
         titleMenu.SetGroupActive(true);
         mainMenu.SetGroupActive(false);
         settingsMenu.SetGroupActive(false);
@@ -33,11 +43,11 @@ public class MenuManager : MonoBehaviour
 
     private void Ia_performed(InputAction.CallbackContext obj)
     {
-        if (menu == menus.START && obj.ReadValueAsButton())
+        if (menu == MenuType.START && obj.ReadValueAsButton())
         {
             ia.Disable();
             ia.performed -= Ia_performed;
-            menu = menus.MAIN;
+            menu = MenuType.MAIN;
             mainMenu.SetGroupActive(true);
             titleMenu.SetGroupActive(false);
         }

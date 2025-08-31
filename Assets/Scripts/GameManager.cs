@@ -113,7 +113,6 @@ public class GameManager : MonoBehaviour
         scoreText.text = $"${score}";
         defaultWeapons = new(unownedWeapons);
         interactTextBG.SetActive(false);
-        Application.targetFrameRate = 144;
     }
 
     private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
@@ -284,10 +283,7 @@ public class GameManager : MonoBehaviour
 
     public string WaveStringBuilder()
     {
-        int currentwaveHundreds = Mathf.FloorToInt( currentWave / 100);
-        int currentwave = currentWave % 100;
-        string printString = $"{currentwaveHundreds:00}:{currentwave:00}";
-        return printString;
+        return $"{currentWave}";
     }
     public void StartGame()
     {

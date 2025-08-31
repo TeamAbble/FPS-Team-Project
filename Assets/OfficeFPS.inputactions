@@ -391,7 +391,7 @@
             "actions": [
                 {
                     "name": "Navigate",
-                    "type": "Value",
+                    "type": "PassThrough",
                     "id": "9e972ac9-5df4-4707-b6a4-483b52424d61",
                     "expectedControlType": "Vector2",
                     "processors": "",
@@ -400,7 +400,7 @@
                 },
                 {
                     "name": "Submit",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "2b56b1de-dd17-4e51-bffa-c4574b723db5",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -409,7 +409,7 @@
                 },
                 {
                     "name": "Cancel",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "19128360-f69e-4254-a071-914fc0ed143e",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -418,7 +418,7 @@
                 },
                 {
                     "name": "Point",
-                    "type": "Value",
+                    "type": "PassThrough",
                     "id": "22e1c435-3bd2-4792-9e07-45a68e8e56c2",
                     "expectedControlType": "Vector2",
                     "processors": "",
@@ -427,7 +427,7 @@
                 },
                 {
                     "name": "Click",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "21946f57-1e8e-4f89-a77e-f5293f224f58",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -436,7 +436,7 @@
                 },
                 {
                     "name": "ScrollWheel",
-                    "type": "Value",
+                    "type": "PassThrough",
                     "id": "55ce2d0c-5e00-4cb4-9ed1-209ae8c94586",
                     "expectedControlType": "Vector2",
                     "processors": "",
@@ -454,7 +454,7 @@
                 },
                 {
                     "name": "RightClick",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "f0231ab1-048c-4fbf-94cf-0932a97e9ecc",
                     "expectedControlType": "Button",
                     "processors": "",

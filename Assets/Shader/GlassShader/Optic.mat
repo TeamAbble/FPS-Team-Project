@@ -61,16 +61,16 @@ Material:
     m_Ints: []
     m_Floats:
     - _CameraDepth: 0.86
-    - _CameraOffsetMult: 0
-    - _CameraSize: 11.04
+    - _CameraOffsetMult: 1.46
+    - _CameraSize: 12.54
     - _DepthOffsetMultiplier: 50
     - _ExtraMultiplier: 0
     - _OffsetMultiplier: 1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RectangleWidth: 9.28
+    - _RectangleWidth: 12.9
     - _ReticleDepth: 0.07
-    - _ReticleSize: 3.42
+    - _ReticleSize: 3.63
     - _ScopeVignetteHardness: 0.9
     - _ScopeVignetteRadius: 0.5
     - _VignetteMultiplier: 0.5
