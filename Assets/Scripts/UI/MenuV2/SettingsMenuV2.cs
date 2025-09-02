@@ -60,7 +60,8 @@ public class SettingsMenuV2 : MonoBehaviour
 
     private void Awake()
     {
-        Initialise();
+        //Remove initialise from Awake, called by MonoEventListener
+        //Initialise();
     }
     public void Initialise()
     {
@@ -203,7 +204,7 @@ public class SettingsMenuV2 : MonoBehaviour
         filteredResolutions = new List<Resolution>();
         resolutionDropdown.ClearOptions();
         float currentRefreshRate = (float)Screen.currentResolution.refreshRateRatio.value;
-        filteredResolutions.AddRange(resolutions.Where(v => v.refreshRateRatio.value == currentRefreshRate && (v.width / (float)v.height >= 1.6f)));
+        filteredResolutions.AddRange(resolutions.Where(v => v.refreshRateRatio.value == currentRefreshRate));
         List<string> options = new();
         currentResolutionIndex = -1;
         for (int i = 0; i < filteredResolutions.Count; i++)

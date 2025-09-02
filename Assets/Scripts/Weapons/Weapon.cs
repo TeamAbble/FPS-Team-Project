@@ -73,8 +73,8 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected GameObject shotEffect;
     [SerializeField] protected float tracerSpeed;
     [SerializeField] protected LayerMask layermask;
-    WeaponManager wm;
-    Animator animator;
+    protected WeaponManager wm;
+    protected Animator animator;
     [SerializeField] bool useLoopedSound;
     public Magazine oldMag, newMag;
     [SerializeField] CinemachineImpulseSource recoilSource;

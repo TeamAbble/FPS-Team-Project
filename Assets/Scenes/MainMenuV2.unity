@@ -1471,7 +1471,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.0000076293945}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1001 &116663810
@@ -1945,7 +1945,7 @@ GameObject:
   - component: {fileID: 146550419}
   - component: {fileID: 146550418}
   m_Layer: 0
-  m_Name: Button (1)
+  m_Name: GameplayTab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2015,7 +2015,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 146550419}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 574474392}
+        m_TargetAssemblyTypeName: MenuTabs, Assembly-CSharp
+        m_MethodName: SwitchToTab
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &146550419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2869,7 +2881,7 @@ GameObject:
   - component: {fileID: 235592767}
   - component: {fileID: 235592766}
   m_Layer: 0
-  m_Name: Button (2)
+  m_Name: OtherTab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2939,7 +2951,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 235592767}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 574474392}
+        m_TargetAssemblyTypeName: MenuTabs, Assembly-CSharp
+        m_MethodName: SwitchToTab
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &235592767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4739,6 +4763,7 @@ GameObject:
   - component: {fileID: 504755691}
   - component: {fileID: 504755690}
   - component: {fileID: 504755689}
+  - component: {fileID: 504755692}
   m_Layer: 0
   m_Name: Template
   m_TagString: Untagged
@@ -4836,6 +4861,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 504755687}
   m_CullTransparentMesh: 1
+--- !u!114 &504755692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504755687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8691980a77dd500409bb6927ccdd2749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &516192612
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5590,6 +5627,18 @@ MonoBehaviour:
   awakeEvent:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 574474396}
+        m_TargetAssemblyTypeName: SettingsMenuV2, Assembly-CSharp
+        m_MethodName: Initialise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 574474389}
         m_TargetAssemblyTypeName: UnityEngine.CanvasGroup, UnityEngine
         m_MethodName: set_alpha
@@ -11704,7 +11753,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 225104553}
   m_HandleRect: {fileID: 225104552}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -19999,7 +20048,7 @@ GameObject:
   - component: {fileID: 1481786872}
   - component: {fileID: 1481786871}
   m_Layer: 0
-  m_Name: Button
+  m_Name: DisplayTab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20069,7 +20118,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1481786872}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 574474392}
+        m_TargetAssemblyTypeName: MenuTabs, Assembly-CSharp
+        m_MethodName: SwitchToTab
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1481786872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22842,7 +22903,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1766636605}
-  - component: {fileID: 1766636606}
   m_Layer: 0
   m_Name: TabScale
   m_TagString: Untagged
@@ -22871,23 +22931,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -30}
   m_SizeDelta: {x: 0, y: -60}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1766636606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1766636604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bbd36f3b71d6ea479341eeef4597c2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tabs:
-  - {fileID: 873682769}
-  - {fileID: 85655132}
-  - {fileID: 1775930090}
-  startingTab: 0
 --- !u!1 &1772576936
 GameObject:
   m_ObjectHideFlags: 0
@@ -24805,7 +24848,6 @@ GameObject:
   - component: {fileID: 1952946803}
   - component: {fileID: 1952946802}
   - component: {fileID: 1952946801}
-  - component: {fileID: 1952946800}
   - component: {fileID: 1952946798}
   m_Layer: 0
   m_Name: CreditsPanel
@@ -24852,23 +24894,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &1952946800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1952946796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bbd36f3b71d6ea479341eeef4597c2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tabs:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  startingTab: 0
 --- !u!114 &1952946801
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ public class WeaponManager : MonoBehaviour
     public List<Weapon> weapons = new();
     [SerializeField] internal int weaponIndex;
     [SerializeField] bool fireInput;
-    Player p;
+    internal Player p;
     public bool IsAlive => p.IsAlive;
     public Weapon CurrentWeapon => weapons[weaponIndex];
     public int weaponLayer;

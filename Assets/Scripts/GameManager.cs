@@ -41,9 +41,12 @@ public class GameManager : MonoBehaviour
         public int EnemiesPerWave;//The Enemies to be spawned in this wave
         public float nextWaveDelay = 25;
         public AnimationCurve enemiesPerWaveRamp;
+        public float healthAtWave = 10;
+        public AnimationCurve healthRamp;
         public List<GameObject> allowedEnemies;
     }
     public Wave[] waves;
+    public static float currentEnemyHealth;
     public int waveContainerIndex;
     public int currentWave;
     public bool waveInProgress;
@@ -300,9 +303,11 @@ public class GameManager : MonoBehaviour
         {
             float ilerp = Mathf.InverseLerp(waves[waveContainerIndex].waveNum, waves[waveContainerIndex +1].waveNum, currentWave);
             enemiesRemaining = Mathf.CeilToInt(Mathf.Lerp(waves[waveContainerIndex].EnemiesPerWave, waves[waveContainerIndex + 1].EnemiesPerWave, waves[waveContainerIndex].enemiesPerWaveRamp.Evaluate(ilerp)));
+            currentEnemyHealth = Mathf.Lerp(waves[waveContainerIndex].healthAtWave, waves[waveContainerIndex + 1].healthAtWave, waves[waveContainerIndex].healthRamp.Evaluate(ilerp));
         }
         else
         {
+            currentEnemyHealth = waves[waveContainerIndex].healthAtWave;
             enemiesRemaining = waves[waveContainerIndex].EnemiesPerWave;
         }
         SetEnemyDisplay();
