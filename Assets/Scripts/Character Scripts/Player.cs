@@ -237,13 +237,13 @@ public class Player : Character
                     if (i is Purchasable)
                     {
                         var p = i as Purchasable;
-                        if (p.Cost > GameManager.instance.score)
+                        if (p.Cost >= GameManager.instance.score)
                         {
                             GameManager.instance.interactText.text = $"{p.interactText}\nCan't Afford: ${p.Cost}";
                         }
                         else
                         {
-                            GameManager.instance.interactText.text = $"{p.interactText}{(p.cost > 0 ? $"\n {p.Cost}" : "")}";
+                            GameManager.instance.interactText.text = $"{p.interactText}{(p.cost > 0 ? $"\n ${p.Cost}" : "")}";
                         }
                     }
                     else

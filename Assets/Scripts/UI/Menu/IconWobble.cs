@@ -18,13 +18,22 @@ public class IconWobble : MonoBehaviour
     private void Awake()
     {
         startPos = transform.localPosition;
+        SetInitAngle();
+    }
+    void SetInitAngle()
+    {
         if (useRandomStart)
         {
-            angle = Vector3.zero;
+            angle = new Vector3()
+            {
+                x = Random.Range(-360, 360),
+                y = Random.Range(-360, 360),
+                z = Random.Range(-360, 360),
+            };
         }
         else
         {
-
+            angle = Vector3.zero;
         }
     }
 
@@ -40,6 +49,6 @@ public class IconWobble : MonoBehaviour
     }
     private void OnValidate()
     {
-        angle = Vector3.zero;
+        SetInitAngle();
     }
 }

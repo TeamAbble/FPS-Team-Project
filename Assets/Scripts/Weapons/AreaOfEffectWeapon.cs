@@ -25,22 +25,16 @@ public class AreaOfEffectWeapon : Weapon
             Collider item = array[i];
             if (!item.attachedRigidbody)
                 continue;
+            if (!item.attachedRigidbody.TryGetComponent(out Character c))
+                continue;
 
             Debug.DrawLine(hit.point, item.attachedRigidbody.worldCenterOfMass, Color.red, .5f);
             Debug.DrawLine(hit.point, item.attachedRigidbody.worldCenterOfMass + (Vector3.up * 0.3f), Color.red, .5f);
             Debug.DrawLine(hit.point, item.attachedRigidbody.worldCenterOfMass + (Vector3.up * -0.3f), Color.red, .5f);
 
-            if (Physics.Linecast(hit.point, item.ClosestPoint(hit.point), out RaycastHit hit2, damageLayermask, QueryTriggerInteraction.Ignore))
-            {
-                //Check if we've hit something, check if we've hit the thing we tried to hit
-                //Also prevent self-damage. We don't want players blowing themselves up in cqc.
-                if(hit2.rigidbody && hit2.rigidbody == item.attachedRigidbody && hit2.rigidbody != wm.p.RB && item.attachedRigidbody.TryGetComponent(out Character c))
-                {
-                    float d = areaDamage * damageFalloff.Evaluate(Mathf.InverseLerp(0, areaRadius, hit2.distance));
-                    print($"{d}, {hit2.distance}");
-                    c.UpdateHealth(Mathf.FloorToInt(-d), hit.point);
-                }
-            }
+            float dist = Vector3.Distance(hit.point, item.ClosestPoint(hit.point));
+            float dmg = areaDamage * damageFalloff.Evaluate(Mathf.InverseLerp(0, areaRadius, dist));
+            c.UpdateHealth(-dmg, hit.point);
 
         }
         validColliderHits.Clear();

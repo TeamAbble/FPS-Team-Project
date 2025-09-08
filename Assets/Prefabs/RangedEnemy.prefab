@@ -5261,8 +5261,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2671647154385193445}
   serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 0.7
+  m_Drag: 0.3
   m_AngularDrag: 2
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -5342,7 +5342,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0f3ec67c7895f9b4e98f9b570811bfc1, type: 3}
   - {fileID: 8300000, guid: 2e988bbc1894da14ebd9bd11436d3941, type: 3}
   movementAudioClip: {fileID: 8300000, guid: 0e89e7bc597874d438141780b12eace9, type: 3}
-  killValue: 2
+  healthMultiplier: 0.5
+  killValue: 1
   state: 0
   layermask:
     serializedVersion: 2

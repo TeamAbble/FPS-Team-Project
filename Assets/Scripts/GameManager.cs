@@ -86,6 +86,8 @@ public class GameManager : MonoBehaviour
     public GameObject frameCounter;
     public TMP_Text frameCounterText;
     public bool frameCounterTicking;
+
+    public AudioSource breaktimeBuzzer;
     public void SetFrameCounter(bool value)
     {
         frameCounter.SetActive(value);
@@ -275,8 +277,10 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator WaveDelay()
     {
+        //Can we make it recompile pls?
         waveInProgress = false;
         float time = waves[waveContainerIndex].nextWaveDelay;
+        breakTimeText.gameObject.SetActive(true);
         while (time >= 0)
         {
             breakTimeText.text = $"Break Time: {time:0}";
@@ -290,6 +294,7 @@ public class GameManager : MonoBehaviour
     public void WaveStart()
     {
         currentWave++;
+        breakTimeText.gameObject.SetActive(false);
         breakTimeText.text = "";
         for (int i = 0; i < waves.Length; i++)
         {
@@ -309,6 +314,10 @@ public class GameManager : MonoBehaviour
         {
             currentEnemyHealth = waves[waveContainerIndex].healthAtWave;
             enemiesRemaining = waves[waveContainerIndex].EnemiesPerWave;
+        }
+        if(breaktimeBuzzer != null)
+        {
+            breaktimeBuzzer.Play();
         }
         SetEnemyDisplay();
         waveInProgress = true;

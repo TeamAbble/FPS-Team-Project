@@ -14,7 +14,7 @@ public class WeaponPickup : Interactable
     public override void Interact()
     {
         //Give the player this weapon
-        GameManager.instance.playerRef.weaponManager.weapons.Add(GetComponent<Weapon>());
+        GameManager.instance.playerRef.weaponManager.weapons.Add(w);
         //Parent it to the weapon transform on the player
         transform.SetParent(GameManager.instance.playerRef.weaponTransform, false);
         //reset the local pose
@@ -26,7 +26,7 @@ public class WeaponPickup : Interactable
         //Use the new weapon BAR!!!!
         if (WeaponBar.Instance != null)
             WeaponBar.Instance.UpdateWeaponBar();
-        GetComponent<Weapon>().GiveToEntity();
+        w.GiveToEntity();
         if(owningPrinter)
             owningPrinter.spawnedWeapon = null;
         GameManager.instance.playerRef.weaponManager.SwitchWeapon(GameManager.instance.playerRef.weaponManager.weapons.FindIndex(x => x.gameObject == gameObject));

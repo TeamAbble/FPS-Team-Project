@@ -16,6 +16,7 @@ public class Enemy : Character
     public AudioSource noiseSource, ambientSource;
     public AudioClip[] deathsounds;
     public AudioClip movementAudioClip;
+    public float healthMultiplier = 1;
     public int killValue = 1;
     public enum States
     {
@@ -29,6 +30,8 @@ public class Enemy : Character
     {
         base.Start();
         agent = GetComponent<NavMeshAgent>();
+        maxHealth = GameManager.currentEnemyHealth * healthMultiplier;
+        health = maxHealth;
         agent.speed = MoveSpeed;
         healthBarRef.maxValue = maxHealth;
         healthBarRef.value = maxHealth;
