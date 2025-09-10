@@ -18,6 +18,7 @@ public class Enemy : Character
     public AudioClip movementAudioClip;
     public float healthMultiplier = 1;
     public int killValue = 1;
+    bool ignorecash = false;
     public enum States
     {
         PATROL,
@@ -39,6 +40,15 @@ public class Enemy : Character
         ambientSource.clip = movementAudioClip;
         ambientSource.loop = true;
         ambientSource.Play();
+
+
+        GameManager.onWaveSkipped += WaveSkipped;
+
+    }
+    void WaveSkipped(int waves)
+    {
+        ignorecash = true;
+        Die();
     }
 
     // Update is called once per frame
@@ -76,9 +86,16 @@ public class Enemy : Character
     }
     public override void Die()
     {
-        agent.enabled = false;
+        if (!IsAlive)
+            return;
+        health = 0;
+        if(agent != null)
+        {
+            agent.enabled = false;
+        }
         rb.isKinematic = false;
-        GameManager.instance.EnemyDeath(killValue);
+
+        GameManager.instance.EnemyDeath(killValue, ignorecash);
         rb.AddRelativeTorque(Random.onUnitSphere * 50);
         Destroy(gameObject, 2);
         if(animator)
@@ -95,6 +112,7 @@ public class Enemy : Character
     }
     public override void UpdateHealth(float healthChange, Vector3 damagePosition)
     {
+        healthChange *= GameManager.cheatsEnabled ? GameManager.ch_damageMultPlayer : 1;
         base.UpdateHealth(healthChange, damagePosition);
         healthBarRef.value = CurrentHealth;
         noiseSource.PlayOneShot(painSounds[Random.Range(0, painSounds.Length)]);

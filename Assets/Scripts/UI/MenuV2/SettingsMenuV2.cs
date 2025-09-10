@@ -12,51 +12,23 @@ using UnityEngine.UI;
 
 public class SettingsMenuV2 : MonoBehaviour
 {
-    [RuntimeInitializeOnLoadMethod(loadType: RuntimeInitializeLoadType.SubsystemRegistration)]
-    public static void LoadSettingsAtLaunch()
-    {
-        if (File.Exists(SettingsPath))
-        {
-            settings = JsonUtility.FromJson<Settings>(File.ReadAllText(SettingsPath));
-            settings.updated = true;
-            Debug.Log($"Settings file exists at startup\nLocated at{SettingsPath}");
-        }
-    }
 
     public bool isSingleton;
 
-    internal static string SettingsPath => (!Application.isEditor ? Application.dataPath : Application.persistentDataPath) + "/settings.json";
-    public static Settings settings;
-
-    public UniversalRenderer urpRenderer;
-    public UniversalRendererData urpData;
-    
-    public UniversalRenderPipelineAsset urpAsset, overrideAsset;
-
-    Resolution[] resolutions;
-    public List<Resolution> filteredResolutions;
-
-    [System.Serializable]
-    public struct Settings
-    {
-        [System.NonSerialized]
-        public bool updated;
-
-        public float sensitivity, gameVolume, uiVolume, renderScale;
-        public int resolutionIndex;
-
-        public int frameLimit;
-        public bool vsync, useFrameLimit, showFrames;
-        public bool fullscreen;
-    }
+   
 
     public TMP_Dropdown resolutionDropdown;
     public Toggle vsyncToggle, frameCapToggle, showFrameToggle, fullscreenToggle;
     public Slider sensitivitySlide, gameVolumeSlide, uiVolumeSlide, frameSlide, renderScaleSlide;
     public TMP_Text fpsCapDisplay, renderScaleDisplay, gameAudioDisplay, sensDisplay, uiAudioDisplay;
 
+    public Toggle cheatsToggle;
+    public void SetCheatsEnabled(bool value)
+    {
+        GameManager.cheatsEnabled = value;
+    }
     public AudioMixerGroup gameMixer, uiMixer;
-    int currentResolutionIndex;
+    Resolution[] resolutions;
 
     private void Awake()
     {
@@ -68,9 +40,9 @@ public class SettingsMenuV2 : MonoBehaviour
         //Use the updated flag to make sure we don't do erroneous operations on the settings.
         //We'll have two different instances of the settings menu in the game.
         //One is on the game manager, the other is on the main menu. Both need to be updated accordingly.
-        if (!settings.updated)
+        if (!SettingsController.settings.updated)
         {
-            if (File.Exists(SettingsPath))
+            if (File.Exists(SettingsController.SettingsPath))
             {
                 LoadFile();
             }
@@ -78,34 +50,13 @@ public class SettingsMenuV2 : MonoBehaviour
             {
                 CreateNewSettings();
             }
-            settings.updated = true;
+            SettingsController.settings.updated = true;
         }
         BuildResolutionDropdown();
         AddListeners();
-        ApplySettings();
+        SettingsController.Instance.ApplySettings();
     }
-    public void ApplySettings()
-    {
-        Screen.fullScreenMode = settings.fullscreen ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed;
-        if (filteredResolutions[currentResolutionIndex].height != Screen.height || filteredResolutions[currentResolutionIndex].height != Screen.height)
-        {
-            Screen.SetResolution(filteredResolutions[currentResolutionIndex].width, filteredResolutions[currentResolutionIndex].height, settings.fullscreen);
-        }
-        QualitySettings.vSyncCount = settings.vsync ? 1 : 0;
-        if(GameManager.instance != null)
-        {
-            GameManager.instance.SetFrameCounter(settings.showFrames);
-        }
-        if (settings.useFrameLimit)
-        {
-            Application.targetFrameRate = settings.frameLimit;
-        }
-        else
-        {
-            Application.targetFrameRate = 500;
-        }
-        urpAsset.renderScale = settings.renderScale;
-    }
+
     void AddListeners()
     {
         //Toggles
@@ -126,128 +77,137 @@ public class SettingsMenuV2 : MonoBehaviour
         if (isSingleton)
         {
             SaveFile();
-            urpAsset.renderScale = 1;
+            SettingsController.Instance.urpAsset.renderScale = 1;
         }
     }
 
     private void OnEnable()
     {
-        vsyncToggle.isOn = settings.vsync;
-        showFrameToggle.isOn = settings.showFrames;
-        frameCapToggle.isOn = settings.useFrameLimit;
-        fullscreenToggle.isOn = settings.fullscreen;
+        if(SettingsController.Instance != null)
+        {
+            vsyncToggle.isOn = SettingsController.settings.vsync;
+            showFrameToggle.isOn = SettingsController.settings.showFrames;
+            frameCapToggle.isOn = SettingsController.settings.useFrameLimit;
+            fullscreenToggle.isOn = SettingsController.settings.fullscreen;
 
-        frameSlide.value = settings.frameLimit;
-        fpsCapDisplay.text = $"{frameSlide.value} FPS";
-        sensitivitySlide.value = settings.sensitivity;
+            frameSlide.value = SettingsController.settings.frameLimit;
+            fpsCapDisplay.text = $"{frameSlide.value} FPS";
+            sensitivitySlide.value = SettingsController.settings.sensitivity;
+            sensDisplay.text = $"{sensitivitySlide.value}";
+            gameVolumeSlide.value = SettingsController.settings.gameVolume;
+            gameAudioDisplay.text = $"{(SettingsController.settings.gameVolume * 100):0.0}%";
+            renderScaleSlide.value = SettingsController.settings.renderScale;
+            renderScaleDisplay.text = $"x{SettingsController.settings.renderScale:0.0}";
+            uiVolumeSlide.value = SettingsController.settings.uiVolume;
+            uiAudioDisplay.text = $"{(SettingsController.settings.uiVolume * 100):0.0}%";
+        }
+    }
+    public void SetSensitivity(float value)
+    {
+        SettingsController.settings.sensitivity = value;
+        SettingsController.Instance.ApplySettings();
         sensDisplay.text = $"{sensitivitySlide.value}";
-        gameVolumeSlide.value = settings.gameVolume;
-        gameAudioDisplay.text = $"{(settings.gameVolume * 100):0.0}%";
-        renderScaleSlide.value = settings.renderScale;
-        renderScaleDisplay.text = $"x{settings.renderScale:0.0}";
-        uiVolumeSlide.value = settings.uiVolume;
-        uiAudioDisplay.text = $"{(settings.uiVolume * 100):0.0}%";
     }
     public void SetFullscreen(bool value)
     {
-        settings.fullscreen = value;
-        ApplySettings();
+        SettingsController.settings.fullscreen = value;
+        SettingsController.Instance.ApplySettings();
     }
     public void SetVsync(bool value)
     {
-        settings.vsync = value;
-        ApplySettings();
+        SettingsController.settings.vsync = value;
+        SettingsController.Instance.ApplySettings();
     }
     public void SetFrameCapOn(bool value)
     {
-        settings.useFrameLimit = value;
-        ApplySettings();
+        SettingsController.settings.useFrameLimit = value;
+        SettingsController.Instance.ApplySettings();
     }
     public void SetShowFrames(bool value)
     {
-        settings.showFrames = value;
-        ApplySettings();
+        SettingsController.settings.showFrames = value;
+        SettingsController.Instance.ApplySettings();
     }
     public void SetFPSCap(float value)
     {
-        settings.frameLimit = Mathf.RoundToInt(value);
+        SettingsController.settings.frameLimit = Mathf.RoundToInt(value);
         fpsCapDisplay.text = $"{value} FPS";
-        ApplySettings();
+        SettingsController.Instance.ApplySettings();
     }
     public void SetResolutionIndex(int index)
     {
-        currentResolutionIndex = index;
-        ApplySettings();
+        SettingsController.Instance.currentResolutionIndex = index;
+        SettingsController.Instance.ApplySettings();
     }
     public void SetRenderScale(float value)
     {
-        settings.renderScale = value;
-        renderScaleDisplay.text = $"x{settings.renderScale:0.0}";
-        ApplySettings();
+        SettingsController.settings.renderScale = value;
+        renderScaleDisplay.text = $"x{SettingsController.settings.renderScale:0.0}";
+        SettingsController.Instance.ApplySettings();
     }
     public void SetGameAudio(float value)
     {
-        settings.gameVolume = value;
-        gameAudioDisplay.text = $"{(settings.gameVolume * 100):0.0}%";
-        ApplySettings();
+        SettingsController.settings.gameVolume = value;
+        gameAudioDisplay.text = $"{(SettingsController.settings.gameVolume * 100):0.0}%";
+        SettingsController.Instance.ApplySettings();
     }
     public void SetUIAudio(float value)
     {
-        settings.uiVolume = value;
-        uiAudioDisplay.text = $"{(settings.uiVolume * 100):0.0}%";
-        ApplySettings();
+        SettingsController.settings.uiVolume = value;
+        uiAudioDisplay.text = $"{(SettingsController.settings.uiVolume * 100):0.0}%";
+        SettingsController.Instance.ApplySettings();
     }
 
     void BuildResolutionDropdown()
     {
         resolutions = Screen.resolutions;
-        filteredResolutions = new List<Resolution>();
+        SettingsController.Instance.filteredResolutions = new List<Resolution>();
         resolutionDropdown.ClearOptions();
         float currentRefreshRate = (float)Screen.currentResolution.refreshRateRatio.value;
-        filteredResolutions.AddRange(resolutions.Where(v => v.refreshRateRatio.value == currentRefreshRate));
+        SettingsController.Instance.filteredResolutions.AddRange(resolutions.Where(v => v.refreshRateRatio.value == currentRefreshRate));
         List<string> options = new();
-        currentResolutionIndex = -1;
-        for (int i = 0; i < filteredResolutions.Count; i++)
+        SettingsController.Instance.currentResolutionIndex = -1;
+        for (int i = 0; i < SettingsController.Instance.filteredResolutions.Count; i++)
         {
-            Resolution r = filteredResolutions[i];
+            Resolution r = SettingsController.Instance.filteredResolutions[i];
             string option = $"{r.width}x{r.height}";
             options.Add(option);
             Debug.Log($"{r.width}x{r.height} - {Screen.width}x{Screen.height} == {r.width == Screen.width}x{r.height == Screen.height}");
             if (r.width == Screen.width && r.height == Screen.height)
             {
-                currentResolutionIndex = i;
+                SettingsController.Instance.currentResolutionIndex = i;
             }
         }
-        if(currentResolutionIndex == -1)
+        if(SettingsController.Instance.currentResolutionIndex == -1)
         {
-            currentResolutionIndex = filteredResolutions.Count - 1;
+            SettingsController.Instance.currentResolutionIndex = SettingsController.Instance.filteredResolutions.Count - 1;
         }
 
 
-        settings.resolutionIndex = currentResolutionIndex;
+        SettingsController.settings.resolutionIndex = SettingsController.Instance.currentResolutionIndex;
         resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentResolutionIndex;
+        resolutionDropdown.value = SettingsController.Instance.currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
     }
 
     void SaveFile()
     {
         //Then we can flip this updated flag at the end to make sure we only write the settings ONCE
-        if (settings.updated)
+        if (SettingsController.settings.updated)
         {
-            if (!File.Exists(SettingsPath))
+            if (!File.Exists(SettingsController.SettingsPath))
             {
-                Debug.Log($"Created save file at {SettingsPath}");
-                File.Create(SettingsPath).Close();
+                Debug.Log($"Created save file at {SettingsController.SettingsPath}");
+                File.Create(SettingsController.SettingsPath).Close();
             }
-            File.WriteAllText(SettingsPath, JsonUtility.ToJson(settings, true));
+            File.WriteAllText(SettingsController.SettingsPath, JsonUtility.ToJson(SettingsController.settings, true));
             Debug.Log("Wrote settings to file at end.");
-            settings.updated = false;
+            SettingsController.settings.updated = false;
         }
     }
     void CreateNewSettings()
     {
-        settings = new()
+        SettingsController.settings = new()
         {
             frameLimit = 60,
             vsync = false,
@@ -264,10 +224,10 @@ public class SettingsMenuV2 : MonoBehaviour
     }
     void LoadFile()
     {
-        if (File.Exists(SettingsPath))
+        if (File.Exists(SettingsController.SettingsPath))
         {
-            settings = JsonUtility.FromJson<Settings>(File.ReadAllText(SettingsPath));
-            Debug.Log($"Loaded settings from {SettingsPath}");
+            SettingsController.settings = JsonUtility.FromJson<SettingsController.Settings>(File.ReadAllText(SettingsController.SettingsPath));
+            Debug.Log($"Loaded settings from {SettingsController.SettingsPath}");
         }
         else
         {

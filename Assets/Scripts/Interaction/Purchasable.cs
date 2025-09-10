@@ -8,13 +8,15 @@ public class Purchasable : Interactable
     public virtual int Cost => cost;
     public override void Interact()
     {
-        if(Cost <= GameManager.instance.score)
+        if((GameManager.cheatsEnabled && GameManager.ch_babyNoMoney) || Cost <= GameManager.instance.score)
         {
             Purchase();
         }
     }
     public virtual void Purchase()
     {
+        if (GameManager.cheatsEnabled && GameManager.ch_babyNoMoney)
+            return;
         GameManager.instance.score -= Cost;
     }
 }

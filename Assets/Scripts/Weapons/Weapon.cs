@@ -218,6 +218,12 @@ public class Weapon : MonoBehaviour
             fireIntervalRemaining -= Time.fixedDeltaTime;
         }
 
+        UpdateWindup();
+    }
+
+    bool playedWindup;
+    void UpdateWindup()
+    {
         //Clamp the windup so it doesn't get too large and allow the player to "over-charge" a weapon and fire with no windup after holding the button for a while
         currentWindup = Mathf.Clamp(currentWindup, 0, fireWindup);
         //We only want to do all this stuff down here if this weapon is NOT configured to charge up 
@@ -226,11 +232,14 @@ public class Weapon : MonoBehaviour
             //If this is the first frame we're winding up for, then we want to do some stuff relating to animations
             if (currentWindup > 0 && currentWindup < fireWindup)
             {
-                if (!fireAudioSource.isPlaying || fireAudioSource.clip != windupAudio)
+                if (!playedWindup)
                 {
                     fireAudioSource.clip = windupAudio;
                     fireAudioSource.Play();
+                    fireAudioSource.time = 0;
+                    playedWindup = true;
                 }
+                
                 if (playAnimationOnWindup && lastWindup == 0)
                 {
                     animator.SetTrigger(windupAnimationIsNotFireAnimation ? "Windup" : "Fire");
@@ -240,6 +249,7 @@ public class Weapon : MonoBehaviour
             else if (lastWindup > 0 && currentWindup <= 0)
             {
                 animator.SetTrigger("WindupCancel");
+                playedWindup = false;
             }
             lastWindup = currentWindup;
         }
@@ -281,14 +291,14 @@ public class Weapon : MonoBehaviour
     }
     void FireWeapon()
     {
-
+        playedWindup = false;
         if (!isEnemyWeapon)
         {
             if (useFireAnimation && !loopFireAnimation)
                 animator.SetTrigger("Fire");
             if (loopFireAnimation)
                 animator.SetBool("LoopedFire", true);
-            if (maxAmmo > 0)
+            if (maxAmmo > 0 && GameManager.cheatsEnabled && GameManager.ch_playerNoAmmo)
                 currentAmmo--;
         }
         //Debug.Log($"Fired {name} @ {System.DateTime.Now}");

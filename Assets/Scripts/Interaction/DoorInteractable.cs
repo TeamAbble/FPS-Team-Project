@@ -10,7 +10,9 @@ public class DoorInteractable : Purchasable
     {
         if(!animator)
             animator = GetComponent<Animator>();
+
     }
+
     public override void Purchase()
     {
         base.Purchase();

@@ -62,6 +62,8 @@ public class GameManager : MonoBehaviour
     public float maxSpawnDistance;
     public float minSpawnDistance;
 
+
+
     public TextMeshProUGUI interactText;
     public GameObject interactTextBG;
     public Slider dodgeBar;
@@ -82,12 +84,33 @@ public class GameManager : MonoBehaviour
 
     public Selectable firstSelected;
 
+    public bool onlyAllowUIToggleInDebug;
 
     public GameObject frameCounter;
     public TMP_Text frameCounterText;
     public bool frameCounterTicking;
 
     public AudioSource breaktimeBuzzer;
+
+
+    public static float ch_damageMultEnemy = 1, ch_damageMultPlayer = 1, ch_spawnRateMult = 1;
+    public static bool ch_playerNoHurt = false, ch_playerNoAmmo = false, ch_playerDodgeNoCool = false, ch_babyNoMoney;
+
+
+    public static bool cheatsEnabled;
+    public CanvasGroup debugUI;
+    public CanvasGroup gameUI;
+    public delegate void DoorCheat();
+    public delegate void WaveCheat(int wavesToSkip);
+    public static WaveCheat onWaveSkipped;
+    public static DoorCheat onDoorsUnlocked;
+    public TMP_Text waveSkipCounter;
+    public Button waveSkipButton, unlockDoorButton;
+    public Slider enemyHurtSlide, playerHurtSlide, spawnRateSlide;
+    public Toggle invTog, noAmmoTog, dodgeCoolTog, noMoneyTog;
+    public TMP_Text enemyDmgMultDisplay, playerDmgMultDisplay, spawnRateMultDisplay, waveSkipDisplay;
+    public int wavesToSkip = 1;
+
     public void SetFrameCounter(bool value)
     {
         frameCounter.SetActive(value);
@@ -107,7 +130,6 @@ public class GameManager : MonoBehaviour
         frameCounterTicking = false;
         yield break;
     }
-
     public void PauseGame(bool newPause)
     {
         //pauses the game
@@ -145,7 +167,94 @@ public class GameManager : MonoBehaviour
         interactTextBG.SetActive(false);
 
         
-        SetFrameCounter(SettingsMenuV2.settings.showFrames);
+        SetFrameCounter(SettingsController.settings.showFrames);
+        InitCheats();
+    }
+
+    void InitCheats()
+    {
+        cheatsEnabled = false;
+        unlockDoorButton.onClick.AddListener(UnlockAllDoors);
+        waveSkipButton.onClick.AddListener(SkipWaves);
+        invTog.onValueChanged.AddListener(GodMode);
+        dodgeCoolTog.onValueChanged.AddListener(InfDodge);
+        noAmmoTog.onValueChanged.AddListener(InfAmmo);
+        noMoneyTog.onValueChanged.AddListener(InfCash);
+    }
+    /// <summary>
+    /// Multiplies damage done by enemies
+    /// </summary>
+    public void EnemyDamage(float value)
+    {
+        ch_damageMultEnemy = value;
+        enemyDmgMultDisplay.text = $"x{ch_damageMultEnemy}";
+    }
+    public void SpawnMultiply(float value)
+    {
+        ch_spawnRateMult = value;
+        spawnRateMultDisplay.text = $"x{ch_spawnRateMult}";
+    }
+    /// <summary>
+    /// Multiplies damage done by player
+    /// </summary>
+    public void PlayerDamage(float value)
+    {
+        ch_damageMultPlayer = value;
+        playerDmgMultDisplay.text = $"x{ch_damageMultPlayer}";
+    }
+    public void SetWavesSkip(float value)
+    {
+        wavesToSkip = Mathf.CeilToInt(value);
+        waveSkipDisplay.text = wavesToSkip.ToString();
+    }
+    public void ToggleDebugUI(bool state)
+    {
+        if (!cheatsEnabled)
+            state = false;
+
+        paused = state;
+        Time.timeScale = state ? 0 : 1;
+        debugUI.SetGroupActive(state);
+        Cursor.lockState = state ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = state;
+    }
+    public void SetSkipWaves(int value)
+    {
+        wavesToSkip = value;
+    }
+    public void SkipWaves()
+    {
+        enemiesRemaining = 0;
+        onWaveSkipped?.Invoke(wavesToSkip);
+        currentWave += wavesToSkip;
+    }
+    public void UnlockAllDoors()
+    {
+        onDoorsUnlocked?.Invoke();
+    }
+    public void ToggleUI()
+    {
+        if (gameUI != null)
+        {
+            gameUI.SetGroupActive(!debugUI.gameObject.activeSelf);
+        }
+    }
+
+    public void InfCash(bool value)
+    {
+        ch_babyNoMoney = value;
+    }
+    public void InfDodge(bool value)
+    {
+        ch_playerDodgeNoCool = value;
+    }
+    public void GodMode(bool value)
+    {
+        ch_playerNoHurt = value;
+    }
+    public void InfAmmo(bool value)
+    {
+        ch_playerNoAmmo = value;
     }
 
     private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
@@ -189,7 +298,8 @@ public class GameManager : MonoBehaviour
         if(DamageRingManager.Instance)
             DamageRingManager.Instance.ClearRings();
         //Force recompile :|
-        score = Debug.isDebugBuild ? 1000 : 0;
+        //score = Debug.isDebugBuild ? 1000 : 0;
+        score = 0;
         scoreText.text = $"${score}";
         unownedWeapons = new(defaultWeapons);
         currentWave = 0;
@@ -212,7 +322,7 @@ public class GameManager : MonoBehaviour
             {
                 if (enemiesAlive < MaxEnemiesAllowed && enemiesRemaining > 0)
                 {
-                    spawnTimer += Time.fixedDeltaTime;
+                    spawnTimer += Time.fixedDeltaTime * (cheatsEnabled ? ch_spawnRateMult : 1);
                     if (spawnTimer >= spawnRate)
                     {
                         FindSpawner();
@@ -260,9 +370,12 @@ public class GameManager : MonoBehaviour
     {
         waveInfoDisplay.text = WaveStringBuilder();
     }
-    public void EnemyDeath(int score)
+    public void EnemyDeath(int score, bool ignorecash = false)
     {
-        this.score+=score;
+        if (!ignorecash)
+        {
+            this.score+=score;
+        }
         //The number of enemies left decrements when an enemy dies
         enemiesAlive--;
         SetEnemyDisplay();

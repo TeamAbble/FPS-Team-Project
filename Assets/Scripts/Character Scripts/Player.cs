@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -53,7 +54,7 @@ public class Player : Character
     public float dodgeDamage;
     public float dodgeKnockback;
 
-    
+    public CinemachineImpulseSource hitImpulseSource;
 
     protected override void Start()
     {
@@ -69,6 +70,14 @@ public class Player : Character
 
 
     }
+
+    private void OnGUI()
+    {
+        if ((Debug.isDebugBuild || Application.isEditor) && p != null)
+        {
+            GUILayout.Label($"Current Input Mode:{p.currentControlScheme}");
+        }
+    }
     private void Aim()
     {
         //Rotate the player based on the delta time
@@ -76,7 +85,8 @@ public class Player : Character
         if (!aimTransform)
             return;
         //Add the look input to the look angle
-        
+        if (lookInput == Vector2.zero)
+            return;
             lookAngle += lookInput * GameManager.instance.lookSpeed * Time.fixedDeltaTime;
             //modulo the look yaw by 360
             lookAngle.y = Mathf.Clamp(lookAngle.y, -85, 85);
@@ -88,6 +98,11 @@ public class Player : Character
     }
     private void Update()
     {
+
+        if (IsAlive && !GameManager.instance.paused)
+            Aim();
+
+
         if (permanentAimAngle > 0)
             permanentAimAngle -= Time.unscaledDeltaTime * currentRecoilProfile.permAimAngleDamp;
         lookAngle.y += Mathf.Max(0, permanentAimAngle) * permanentAimAngleMultiplier;
@@ -284,8 +299,7 @@ public class Player : Character
     {
         lookInput = context.ReadValue<Vector2>();
         movingCamera = lookInput != Vector2.zero;
-        if (IsAlive && !GameManager.instance.paused)
-            Aim();
+
     }
     public void GetPauseInput(InputAction.CallbackContext context)
     {
@@ -306,9 +320,19 @@ public class Player : Character
             Vector3 movevec = transform.rotation * new Vector3(moveInput.x, 0, moveInput.y) * dodgeForce;
             rb.AddForce(movevec, ForceMode.Impulse);
             dodgeParticleTransform.localEulerAngles = new Vector3(0, Mathf.Atan2(moveInput.y, moveInput.x), 0);
-            currentDodgeDelay = 0;
+            if(!(GameManager.cheatsEnabled && GameManager.ch_playerDodgeNoCool))
+            {
+                currentDodgeDelay = 0;
+            }
             dodgeEvents.Invoke();
             current_iFrameTime = 0;
+        }
+    }
+    public void ToggleUI(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            GameManager.instance.ToggleDebugUI(!GameManager.instance.debugUI.gameObject.activeSelf);
         }
     }
 
@@ -316,8 +340,9 @@ public class Player : Character
 
     public override void UpdateHealth(float healthChange, Vector3 damagePosition)
     {
-        if (!iFrame)
+        if (!iFrame && !(GameManager.cheatsEnabled && GameManager.ch_playerNoHurt))
         {
+            healthChange *= GameManager.cheatsEnabled ? GameManager.ch_damageMultEnemy : 1;
             base.UpdateHealth(healthChange, damagePosition);
             GameManager.instance.damageVolume.weight = Mathf.InverseLerp(maxHealth, 0, health);
             GameManager.instance.healthbar.value = health;
@@ -325,6 +350,10 @@ public class Player : Character
             {
                 DamageRingManager.Instance.AddRing(damagePosition);
                 currentHealDelay = 0;
+            }
+            if(hitImpulseSource != null)
+            {
+                hitImpulseSource.GenerateImpulse(healthChange / 10f);
             }
         }
     }
