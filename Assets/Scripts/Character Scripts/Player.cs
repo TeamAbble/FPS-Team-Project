@@ -87,7 +87,7 @@ public class Player : Character
         //Add the look input to the look angle
         if (lookInput == Vector2.zero)
             return;
-            lookAngle += lookInput * GameManager.instance.lookSpeed * Time.fixedDeltaTime;
+        lookAngle += SettingsController.settings.sensitivity * Time.fixedDeltaTime * lookInput;
             //modulo the look yaw by 360
             lookAngle.y = Mathf.Clamp(lookAngle.y, -85, 85);
         deltaLookAngle = oldLookAngle - lookAngle;

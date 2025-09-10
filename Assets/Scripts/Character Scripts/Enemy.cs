@@ -47,8 +47,11 @@ public class Enemy : Character
     }
     void WaveSkipped(int waves)
     {
-        ignorecash = true;
-        Die();
+        if (IsAlive)
+        {
+            ignorecash = true;
+            Die();
+        }
     }
 
     // Update is called once per frame
@@ -86,13 +89,8 @@ public class Enemy : Character
     }
     public override void Die()
     {
-        if (!IsAlive)
-            return;
-        health = 0;
-        if(agent != null)
-        {
-            agent.enabled = false;
-        }
+        
+        agent.enabled = false;
         rb.isKinematic = false;
 
         GameManager.instance.EnemyDeath(killValue, ignorecash);
