@@ -11254,6 +11254,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6464967501249126244}
   - component: {fileID: 4890407698555094173}
+  - component: {fileID: 3028464126183074057}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -11279,7 +11280,7 @@ Transform:
   - {fileID: 1482988941746786469}
   - {fileID: 5273051614967781451}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4890407698555094173
 MonoBehaviour:
@@ -11585,6 +11586,45 @@ MonoBehaviour:
   spawnRateMultDisplay: {fileID: 453617185261277997}
   waveSkipDisplay: {fileID: 2096730211425436398}
   wavesToSkip: 1
+--- !u!114 &3028464126183074057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9106109773358626239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cea33be71e081649a986b7a80eafaf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  awakeEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4149452827333116685}
+        m_TargetAssemblyTypeName: SettingsMenuV2, Assembly-CSharp
+        m_MethodName: Initialise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  startEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  enableEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  disableEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  destroyEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &9113520914134652273
 GameObject:
   m_ObjectHideFlags: 0
@@ -12513,6 +12553,7 @@ PrefabInstance:
     - {fileID: 8103188357104988328, guid: 5a9f0f04763674d4e8dcec1dd7364e41, type: 3}
     - {fileID: 522227638481379640, guid: 5a9f0f04763674d4e8dcec1dd7364e41, type: 3}
     - {fileID: 8306149570861103793, guid: 5a9f0f04763674d4e8dcec1dd7364e41, type: 3}
+    - {fileID: 7742851851647954144, guid: 5a9f0f04763674d4e8dcec1dd7364e41, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -12563,6 +12604,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lastMenu: {fileID: 4214998277984101536}
   thisMenu: {fileID: 8809255891309753701}
+--- !u!114 &4149452827333116685 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1595149255490779030, guid: 5a9f0f04763674d4e8dcec1dd7364e41,
+    type: 3}
+  m_PrefabInstance: {fileID: 3438158117449233563}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886581809383468868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45255a8a80114c4889a59c15042a7d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &6059160478380369494 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8908327653050503885, guid: 5a9f0f04763674d4e8dcec1dd7364e41,
