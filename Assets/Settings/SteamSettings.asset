@@ -68,6 +68,48 @@ MonoBehaviour:
   StatusChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &-1719943040008227355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc250c6c93d29664697c63cee645dbdb, type: 3}
+  m_Name: '[Stat Int] waves'
+  m_EditorClassIdentifier: 
+  data:
+    id: waves
+--- !u!114 &-1711304792235651331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc250c6c93d29664697c63cee645dbdb, type: 3}
+  m_Name: '[Stat Int] elims'
+  m_EditorClassIdentifier: 
+  data:
+    id: elims
+--- !u!114 &-659720555010437892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc250c6c93d29664697c63cee645dbdb, type: 3}
+  m_Name: '[Stat Int] cash'
+  m_EditorClassIdentifier: 
+  data:
+    id: cash
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,7 +157,10 @@ MonoBehaviour:
     inventory:
       items: []
       runTimeUpdateItemDefinitions: 0
-  stats: []
+  stats:
+  - {fileID: -1711304792235651331}
+  - {fileID: -659720555010437892}
+  - {fileID: -1719943040008227355}
   achievements:
   - {fileID: -6858793598170572835}
   - {fileID: 2567463424671660504}

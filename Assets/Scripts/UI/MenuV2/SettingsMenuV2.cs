@@ -26,6 +26,7 @@ public class SettingsMenuV2 : MonoBehaviour
     public void SetCheatsEnabled(bool value)
     {
         GameManager.cheatsEnabled = value;
+        StatsManager.cheatsWereEverUsed = true;
     }
     public AudioMixerGroup gameMixer, uiMixer;
     Resolution[] resolutions;

@@ -3,37 +3,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StatsManager
+public class StatsManager : MonoBehaviour
 {
     public static bool cheatsWereEverUsed;
-    public static void Initialise()
+    void Awake()
+    {
+        Initialise();
+    }
+    public void Initialise()
     {
         if(Instance == null)
         {
-            Instance = new StatsManager();
-            Instance.QueryStats();
+            Instance = this;
+            StartCoroutine(StoreStatsOnServer());
         }
     }
-    void QueryStats()
+    public void StartNewGame()
     {
-        StatsAndAchievements.Client.GetStat("elims", out elims);
-        StatsAndAchievements.Client.GetStat("cash", out cash);
-        StatsAndAchievements.Client.GetStat("waves", out waves);
-
+        elims = cash = waves = 0;
     }
     public void UpdateElims(int elimsToAdd)
     {
         if (cheatsWereEverUsed)
             return;
-        elims += elimsToAdd;
-        StatsAndAchievements.Client.SetStat("elims", elims);
+        Elims += elimsToAdd;
+        StatsAndAchievements.Client.SetStat("Elims", Elims);
     }
     public void UpdateCash(int cashToAdd)
     {
         if (cheatsWereEverUsed)
             return;
-        cash += cashToAdd;
-        StatsAndAchievements.Client.SetStat("cash", cash);
+        Cash += cashToAdd;
+        StatsAndAchievements.Client.SetStat("Cash", Cash);
     }
     /// <summary>
     /// UpdateWaves works slightly differently. We want to directly set the number of waves instead.
@@ -43,11 +44,26 @@ public class StatsManager
     {
         if (cheatsWereEverUsed)
             return;
-        waves = newWavesCount;
-        StatsAndAchievements.Client.SetStat("waves", waves);
+        Waves = newWavesCount;
+        StatsAndAchievements.Client.SetStat("Waves", Waves);
     }
     public static StatsManager Instance;
-    public static int elims;
-    public static int cash;
-    public static int waves;
+    public int elims, cash, waves;
+    public static int Elims { get  { return Instance.elims; } set { Instance.elims = value; } }
+    public static int Cash { get { return Instance.cash; } set { Instance.cash = value; } }
+    public static int Waves { get { return Instance.waves; } set { Instance.waves = value; } }
+
+    public IEnumerator StoreStatsOnServer()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(60);
+            StatsAndAchievements.Client.StoreStats();
+        }
+    }
+    private void OnApplicationQuit()
+    {
+        StatsAndAchievements.Client.StoreStats();
+    }
+
 }

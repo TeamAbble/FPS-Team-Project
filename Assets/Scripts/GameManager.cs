@@ -445,6 +445,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         StartCoroutine(LoadingScreen(gameScene));
+        StatsManager.Instance.StartNewGame();
     }
     public void ReturnToMenu()
     {
