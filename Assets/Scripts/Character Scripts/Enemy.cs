@@ -1,3 +1,5 @@
+using HeathenEngineering.SteamworksIntegration;
+using HeathenEngineering.SteamworksIntegration.API;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -102,6 +104,16 @@ public class Enemy : Character
         noiseSource.PlayOneShot(deathsounds[Random.Range(0, deathsounds.Length)]);
         healthBarRef.value = 0;
         healthBarRef.gameObject.SetActive(false);
+
+        try
+        {
+            //StatsAndAchievements.Client.SetStat("elims", );
+        }
+        catch (System.Exception)
+        {
+
+            throw;
+        }
     }
 
     protected virtual void EnemyBehaviour()

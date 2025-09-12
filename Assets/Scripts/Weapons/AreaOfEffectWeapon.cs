@@ -1,3 +1,4 @@
+using HeathenEngineering.SteamworksIntegration.API;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,7 @@ public class AreaOfEffectWeapon : Weapon
         g.transform.up = hit.normal;
         Destroy(g, areaParticleDestroyTime);
         Collider[] array = Physics.OverlapSphere(hit.point, areaRadius, damageLayermask, QueryTriggerInteraction.Ignore);
+        int elims = 0;
         for (int i = 0; i < array.Length; i++)
         {
             Collider item = array[i];
@@ -34,8 +36,20 @@ public class AreaOfEffectWeapon : Weapon
 
             float dist = Vector3.Distance(hit.point, item.ClosestPoint(hit.point));
             float dmg = areaDamage * damageFalloff.Evaluate(Mathf.InverseLerp(0, areaRadius, dist));
+            float oldHP = c.CurrentHealth;
             c.UpdateHealth(-dmg, hit.point);
-
+            if (oldHP > 0 && c.CurrentHealth <= 0)
+            {
+                //We eliminated an enemy
+                elims++;
+            }
+        }
+        if(elims > 5)
+        {
+            if (StatsAndAchievements.Client.GetAchievement("fiveblast", out bool achieved) && !achieved)
+            {
+                StatsAndAchievements.Client.SetAchievement("fiveblast");
+            }
         }
         validColliderHits.Clear();
     }

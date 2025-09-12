@@ -11280,7 +11280,7 @@ Transform:
   - {fileID: 1482988941746786469}
   - {fileID: 5273051614967781451}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4890407698555094173
 MonoBehaviour:
@@ -11505,7 +11505,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    healthAtWave: 2000
+    healthAtWave: 500
     healthRamp:
       serializedVersion: 2
       m_Curve: []
