@@ -375,6 +375,7 @@ public class GameManager : MonoBehaviour
         if (!ignorecash)
         {
             this.score+=score;
+            StatsManager.Instance.UpdateCash(score);
         }
         //The number of enemies left decrements when an enemy dies
         enemiesAlive--;
@@ -390,6 +391,7 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator WaveDelay()
     {
+        StatsManager.Instance.UpdateWaves(currentWave);
         //Can we make it recompile pls?
         waveInProgress = false;
         float time = waves[waveContainerIndex].nextWaveDelay;

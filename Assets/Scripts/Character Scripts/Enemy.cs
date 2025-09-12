@@ -108,6 +108,7 @@ public class Enemy : Character
         try
         {
             //StatsAndAchievements.Client.SetStat("elims", );
+            StatsManager.Instance.UpdateElims(1);
         }
         catch (System.Exception)
         {

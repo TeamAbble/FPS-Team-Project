@@ -46,10 +46,7 @@ public class AreaOfEffectWeapon : Weapon
         }
         if(elims > 5)
         {
-            if (StatsAndAchievements.Client.GetAchievement("fiveblast", out bool achieved) && !achieved)
-            {
-                StatsAndAchievements.Client.SetAchievement("fiveblast");
-            }
+           StatsAndAchievements.Client.SetAchievement("fiveblast");
         }
         validColliderHits.Clear();
     }

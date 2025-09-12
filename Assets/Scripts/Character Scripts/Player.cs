@@ -1,4 +1,5 @@
 using Cinemachine;
+using HeathenEngineering.SteamworksIntegration.API;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -381,7 +382,13 @@ public class Player : Character
     {
         if (iFrame && collision.rigidbody && collision.rigidbody.TryGetComponent(out Character c))
         {
+            bool alive = c.IsAlive;
             c.UpdateHealth(-dodgeDamage, transform.position);
+            if(alive && !c.IsAlive)
+            {
+                //eliminated an enemy
+                StatsAndAchievements.Client.SetAchievement("dashkill");
+            }
             collision.rigidbody.AddForce(collision.impulse * dodgeKnockback);
         }
     }
