@@ -27,14 +27,12 @@ public class StatsManager : MonoBehaviour
         if (cheatsWereEverUsed)
             return;
         Elims += elimsToAdd;
-        StatsAndAchievements.Client.SetStat("Elims", Elims);
     }
     public void UpdateCash(int cashToAdd)
     {
         if (cheatsWereEverUsed)
             return;
         Cash += cashToAdd;
-        StatsAndAchievements.Client.SetStat("Cash", Cash);
     }
     /// <summary>
     /// UpdateWaves works slightly differently. We want to directly set the number of waves instead.
@@ -45,7 +43,6 @@ public class StatsManager : MonoBehaviour
         if (cheatsWereEverUsed)
             return;
         Waves = newWavesCount;
-        StatsAndAchievements.Client.SetStat("Waves", Waves);
     }
     public static StatsManager Instance;
     public int elims, cash, waves;
@@ -58,11 +55,19 @@ public class StatsManager : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(60);
-            StatsAndAchievements.Client.StoreStats();
+            StoreStats();
         }
     }
     private void OnApplicationQuit()
     {
+        StoreStats();
+    }
+    void StoreStats()
+    {
+        StatsAndAchievements.Client.SetStat("cash", Cash);
+        StatsAndAchievements.Client.SetStat("waves", Waves);
+        StatsAndAchievements.Client.SetStat("elims", Elims);
+
         StatsAndAchievements.Client.StoreStats();
     }
 

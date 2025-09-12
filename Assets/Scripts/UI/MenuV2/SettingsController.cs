@@ -61,7 +61,7 @@ public class SettingsController : MonoBehaviour
     public void ApplySettings()
     {
         Screen.fullScreenMode = settings.fullscreen ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed;
-        if (currentResolutionIndex >= 0 && filteredResolutions.Count > 0)
+        if (currentResolutionIndex >= 0 && filteredResolutions != null && filteredResolutions.Count > 0)
         {
             if (filteredResolutions[currentResolutionIndex].height != Screen.height || filteredResolutions[currentResolutionIndex].height != Screen.height)
             {

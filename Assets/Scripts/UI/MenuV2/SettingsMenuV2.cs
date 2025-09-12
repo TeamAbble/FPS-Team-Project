@@ -55,7 +55,8 @@ public class SettingsMenuV2 : MonoBehaviour
         }
         BuildResolutionDropdown();
         AddListeners();
-        SettingsController.Instance.ApplySettings();
+        if(SettingsController.Instance != null)
+            SettingsController.Instance.ApplySettings();
     }
 
     void AddListeners()
@@ -162,6 +163,8 @@ public class SettingsMenuV2 : MonoBehaviour
     void BuildResolutionDropdown()
     {
         resolutions = Screen.resolutions;
+        if (SettingsController.Instance == null)
+            return;
         SettingsController.Instance.filteredResolutions = new List<Resolution>();
         resolutionDropdown.ClearOptions();
         float currentRefreshRate = (float)Screen.currentResolution.refreshRateRatio.value;

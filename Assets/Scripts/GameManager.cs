@@ -212,6 +212,9 @@ public class GameManager : MonoBehaviour
         if (!cheatsEnabled)
             state = false;
 
+        if (paused)
+            state = paused;
+
         paused = state;
         Time.timeScale = state ? 0 : 1;
         debugUI.SetGroupActive(state);
@@ -227,6 +230,7 @@ public class GameManager : MonoBehaviour
         enemiesRemaining = 0;
         onWaveSkipped?.Invoke(wavesToSkip);
         currentWave += wavesToSkip;
+        EndWave();
     }
     public void UnlockAllDoors()
     {
@@ -236,7 +240,7 @@ public class GameManager : MonoBehaviour
     {
         if (gameUI != null)
         {
-            gameUI.SetGroupActive(!debugUI.gameObject.activeSelf);
+            gameUI.SetGroupActive(!gameUI.gameObject.activeSelf);
         }
     }
 

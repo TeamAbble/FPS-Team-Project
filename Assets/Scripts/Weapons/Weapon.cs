@@ -298,7 +298,7 @@ public class Weapon : MonoBehaviour
                 animator.SetTrigger("Fire");
             if (loopFireAnimation)
                 animator.SetBool("LoopedFire", true);
-            if (maxAmmo > 0 && GameManager.cheatsEnabled && GameManager.ch_playerNoAmmo)
+            if (maxAmmo > 0 && !(GameManager.cheatsEnabled && GameManager.ch_playerNoAmmo))
                 currentAmmo--;
         }
         //Debug.Log($"Fired {name} @ {System.DateTime.Now}");
