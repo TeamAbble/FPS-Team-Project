@@ -1,0 +1,74 @@
+using HeathenEngineering.SteamworksIntegration.API;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class StatsManager : MonoBehaviour
+{
+    public static bool cheatsWereEverUsed;
+    void Awake()
+    {
+        Initialise();
+    }
+    public void Initialise()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+            StartCoroutine(StoreStatsOnServer());
+        }
+    }
+    public void StartNewGame()
+    {
+        elims = cash = waves = 0;
+    }
+    public void UpdateElims(int elimsToAdd)
+    {
+        if (cheatsWereEverUsed)
+            return;
+        Elims += elimsToAdd;
+    }
+    public void UpdateCash(int cashToAdd)
+    {
+        if (cheatsWereEverUsed)
+            return;
+        Cash += cashToAdd;
+    }
+    /// <summary>
+    /// UpdateWaves works slightly differently. We want to directly set the number of waves instead.
+    /// </summary>
+    /// <param name="newWavesCount"></param>
+    public void UpdateWaves(int newWavesCount)
+    {
+        if (cheatsWereEverUsed)
+            return;
+        Waves = newWavesCount;
+    }
+    public static StatsManager Instance;
+    public int elims, cash, waves;
+    public static int Elims { get  { return Instance.elims; } set { Instance.elims = value; } }
+    public static int Cash { get { return Instance.cash; } set { Instance.cash = value; } }
+    public static int Waves { get { return Instance.waves; } set { Instance.waves = value; } }
+
+    public IEnumerator StoreStatsOnServer()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(60);
+            StoreStats();
+        }
+    }
+    private void OnApplicationQuit()
+    {
+        StoreStats();
+    }
+    void StoreStats()
+    {
+        StatsAndAchievements.Client.SetStat("cash", Cash);
+        StatsAndAchievements.Client.SetStat("waves", Waves);
+        StatsAndAchievements.Client.SetStat("elims", Elims);
+
+        StatsAndAchievements.Client.StoreStats();
+    }
+
+}

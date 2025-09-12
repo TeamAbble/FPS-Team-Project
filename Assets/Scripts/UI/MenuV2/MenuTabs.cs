@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class MenuTabs : MonoBehaviour
 {
-    public GameObject[] tabs;
+    public CanvasGroup[] tabs;
     public int startingTab;
 
     public void SwitchToTab(int index)
     {
         for (int i = 0; i < tabs.Length; i++)
         {
-            tabs[i].SetActive(i == index);
+            tabs[i].SetGroupActive(i == index);
         }
     }
 }

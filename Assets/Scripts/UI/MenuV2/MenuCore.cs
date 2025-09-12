@@ -28,14 +28,9 @@ public class MenuCore : MonoBehaviour
     IEnumerator MenuSwitchCoroutine(MenuGroup a, MenuGroup b)
     {
         yield return StartCoroutine(Fade(0, 1));
-        a.panel.alpha = 0;
-        a.panel.blocksRaycasts = false;
-        a.panel.interactable = false;
+        a.panel.SetGroupActive(false);
         a.cam.enabled = false;
-        b.panel.alpha = 1;
-        b.panel.blocksRaycasts = true;
-        b.panel.interactable = true;
-        b.cam.enabled = true;
+        b.panel.SetGroupActive(true);
         yield return new WaitForSeconds(fadeWait);
         yield return StartCoroutine(Fade(1, 0));
     }

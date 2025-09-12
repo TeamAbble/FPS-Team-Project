@@ -2273,8 +2273,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tabs:
-  - {fileID: 8840296583715159479}
-  - {fileID: 7085821791336880105}
+  - {fileID: 0}
+  - {fileID: 0}
   startingTab: 0
 --- !u!114 &8103188357104988328
 MonoBehaviour:
@@ -2336,6 +2336,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1588973094802537136}
   - component: {fileID: 2562809813522876162}
+  - component: {fileID: 2532344396124644907}
   m_Layer: 0
   m_Name: VSyncToggle
   m_TagString: Untagged
@@ -2413,6 +2414,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
+--- !u!114 &2532344396124644907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2646353858197023500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8246ec0b288e85846a46b1e452e25ae8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectable: {fileID: 2562809813522876162}
 --- !u!1 &2772702702436261329
 GameObject:
   m_ObjectHideFlags: 0
@@ -6666,6 +6680,7 @@ GameObject:
   - component: {fileID: 820571081641579645}
   - component: {fileID: 5321763913657993843}
   - component: {fileID: 2065914256319879656}
+  - component: {fileID: 544077879263358536}
   m_Layer: 0
   m_Name: GameplayPanel
   m_TagString: Untagged
@@ -6738,6 +6753,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &544077879263358536
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7085821791336880105}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &7121651640438315897
 GameObject:
   m_ObjectHideFlags: 0
@@ -7282,6 +7309,7 @@ GameObject:
   m_Component:
   - component: {fileID: 626013820120293828}
   - component: {fileID: 9005304627579013253}
+  - component: {fileID: 8647047001565578923}
   m_Layer: 0
   m_Name: SensSlider
   m_TagString: Untagged
@@ -7377,6 +7405,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8647047001565578923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7801648988534949583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8246ec0b288e85846a46b1e452e25ae8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectable: {fileID: 9005304627579013253}
 --- !u!1 &7855293957903018410
 GameObject:
   m_ObjectHideFlags: 0
@@ -8587,6 +8628,7 @@ GameObject:
   - component: {fileID: 4326385423071685192}
   - component: {fileID: 6302450751488484015}
   - component: {fileID: 5714539894238498248}
+  - component: {fileID: 5598538331959246943}
   m_Layer: 0
   m_Name: DisplayPanel
   m_TagString: Untagged
@@ -8660,6 +8702,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &5598538331959246943
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8840296583715159479}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8856130920311401877
 GameObject:
   m_ObjectHideFlags: 0

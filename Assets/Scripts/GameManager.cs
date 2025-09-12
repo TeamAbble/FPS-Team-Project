@@ -212,6 +212,9 @@ public class GameManager : MonoBehaviour
         if (!cheatsEnabled)
             state = false;
 
+        if (paused)
+            state = paused;
+
         paused = state;
         Time.timeScale = state ? 0 : 1;
         debugUI.SetGroupActive(state);
@@ -227,6 +230,7 @@ public class GameManager : MonoBehaviour
         enemiesRemaining = 0;
         onWaveSkipped?.Invoke(wavesToSkip);
         currentWave += wavesToSkip;
+        EndWave();
     }
     public void UnlockAllDoors()
     {
@@ -236,7 +240,7 @@ public class GameManager : MonoBehaviour
     {
         if (gameUI != null)
         {
-            gameUI.SetGroupActive(!debugUI.gameObject.activeSelf);
+            gameUI.SetGroupActive(!gameUI.gameObject.activeSelf);
         }
     }
 
@@ -375,6 +379,7 @@ public class GameManager : MonoBehaviour
         if (!ignorecash)
         {
             this.score+=score;
+            StatsManager.Instance.UpdateCash(score);
         }
         //The number of enemies left decrements when an enemy dies
         enemiesAlive--;
@@ -390,6 +395,7 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator WaveDelay()
     {
+        StatsManager.Instance.UpdateWaves(currentWave);
         //Can we make it recompile pls?
         waveInProgress = false;
         float time = waves[waveContainerIndex].nextWaveDelay;
@@ -443,6 +449,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         StartCoroutine(LoadingScreen(gameScene));
+        StatsManager.Instance.StartNewGame();
     }
     public void ReturnToMenu()
     {

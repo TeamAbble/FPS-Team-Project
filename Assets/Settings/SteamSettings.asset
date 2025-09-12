@@ -1,5 +1,115 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6858793598170572835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1590c8affe9f884388e9c8c5bcf1697, type: 3}
+  m_Name: '[Ach] 1000elim'
+  m_EditorClassIdentifier: 
+  data:
+    id: 1000elim
+  StatusChanged:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &-6404159848291941938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1590c8affe9f884388e9c8c5bcf1697, type: 3}
+  m_Name: '[Ach] firstelim'
+  m_EditorClassIdentifier: 
+  data:
+    id: firstelim
+  StatusChanged:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &-5591183561106292116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1590c8affe9f884388e9c8c5bcf1697, type: 3}
+  m_Name: '[Ach] 10elim'
+  m_EditorClassIdentifier: 
+  data:
+    id: 10elim
+  StatusChanged:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &-2692886465678900263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1590c8affe9f884388e9c8c5bcf1697, type: 3}
+  m_Name: '[Ach] 250elim'
+  m_EditorClassIdentifier: 
+  data:
+    id: 250elim
+  StatusChanged:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &-1719943040008227355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc250c6c93d29664697c63cee645dbdb, type: 3}
+  m_Name: '[Stat Int] waves'
+  m_EditorClassIdentifier: 
+  data:
+    id: waves
+--- !u!114 &-1711304792235651331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc250c6c93d29664697c63cee645dbdb, type: 3}
+  m_Name: '[Stat Int] elims'
+  m_EditorClassIdentifier: 
+  data:
+    id: elims
+--- !u!114 &-659720555010437892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc250c6c93d29664697c63cee645dbdb, type: 3}
+  m_Name: '[Stat Int] cash'
+  m_EditorClassIdentifier: 
+  data:
+    id: cash
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47,7 +157,86 @@ MonoBehaviour:
     inventory:
       items: []
       runTimeUpdateItemDefinitions: 0
-  stats: []
-  achievements: []
+  stats:
+  - {fileID: -1711304792235651331}
+  - {fileID: -659720555010437892}
+  - {fileID: -1719943040008227355}
+  achievements:
+  - {fileID: -6858793598170572835}
+  - {fileID: 2567463424671660504}
+  - {fileID: -5591183561106292116}
+  - {fileID: -2692886465678900263}
+  - {fileID: 8997795314284264863}
+  - {fileID: 8633477449349731999}
+  - {fileID: -6404159848291941938}
+  - {fileID: 960067377775254567}
   dlc: []
   leaderboards: []
+--- !u!114 &960067377775254567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1590c8affe9f884388e9c8c5bcf1697, type: 3}
+  m_Name: '[Ach] millionelim'
+  m_EditorClassIdentifier: 
+  data:
+    id: millionelim
+  StatusChanged:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &2567463424671660504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1590c8affe9f884388e9c8c5bcf1697, type: 3}
+  m_Name: '[Ach] 100elim'
+  m_EditorClassIdentifier: 
+  data:
+    id: 100elim
+  StatusChanged:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &8633477449349731999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1590c8affe9f884388e9c8c5bcf1697, type: 3}
+  m_Name: '[Ach] 50elim'
+  m_EditorClassIdentifier: 
+  data:
+    id: 50elim
+  StatusChanged:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &8997795314284264863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1590c8affe9f884388e9c8c5bcf1697, type: 3}
+  m_Name: '[Ach] 500elim'
+  m_EditorClassIdentifier: 
+  data:
+    id: 500elim
+  StatusChanged:
+    m_PersistentCalls:
+      m_Calls: []
