@@ -115,6 +115,10 @@ public class GameManager : MonoBehaviour
 
     public PromptIcon[] promptIconsToChange;
 
+    public AudioSource calmMusic, battleMusic;
+    public float musicFadeTime;
+    public AudioClip calmClip, battleClip;
+
     public void SetFrameCounter(bool value)
     {
         frameCounter.SetActive(value);
@@ -173,6 +177,30 @@ public class GameManager : MonoBehaviour
         
         SetFrameCounter(SettingsController.settings.showFrames);
         InitCheats();
+    }
+    public void FadeMusic(bool calm)
+    {
+        StartCoroutine(_FadeMusic(calm));
+    }
+    IEnumerator _FadeMusic(bool calm)
+    {
+        float t = 0;
+        float inc = (1 / musicFadeTime) * Time.fixedDeltaTime;
+        while (t < 1)
+        {
+            if (calm)
+            {
+                calmMusic.volume = t;
+                battleMusic.volume = 1 - t;
+            }
+            else
+            {
+                calmMusic.volume = 1 - t;
+                battleMusic.volume = t;
+            }
+            t += inc;
+            yield return new WaitForFixedUpdate();
+        }
     }
 
     void InitCheats()

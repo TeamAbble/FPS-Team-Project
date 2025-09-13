@@ -254,7 +254,17 @@ public class Player : Character
         GameManager.instance.UpdatePromptIcons();
     }
 
-
+    void GenerateDefaultInteractText(Purchasable p)
+    {
+        if (p.Cost >= GameManager.instance.score)
+        {
+            GameManager.instance.interactText.text = $"{p.interactText}\nCan't Afford: ${p.Cost}";
+        }
+        else
+        {
+            GameManager.instance.interactText.text = $"{p.interactText}{(p.Cost > 0 ? $"\n ${p.Cost}" : "")}";
+        }
+    }
     public void InteractCheck()
     {
         if (Physics.Raycast(worldCamera.position, worldCamera.forward, out RaycastHit hit, interactDistance, interactLayermask))
@@ -263,23 +273,25 @@ public class Player : Character
             {
                 if (!targeted || targeted != i) 
                 {
-                    GameManager.instance.interactTextBG.SetActive(true);
-                    if (i is Purchasable)
+                    switch (i)
                     {
-                        var p = i as Purchasable;
-                        if (p.Cost >= GameManager.instance.score)
-                        {
-                            GameManager.instance.interactText.text = $"{p.interactText}\nCan't Afford: ${p.Cost}";
-                        }
-                        else
-                        {
-                            GameManager.instance.interactText.text = $"{p.interactText}{(p.cost > 0 ? $"\n ${p.Cost}" : "")}";
-                        }
+                        case WeaponPrinter wp:
+                            if (weaponManager.weapons.Count == 4)
+                            {
+                                GameManager.instance.interactText.text = $"Cannot buy weapons,\nYou have them all!";
+                            }
+                            else
+                            {
+                                GenerateDefaultInteractText(wp);
+                            }
+                                break;
+                        case Purchasable p:
+                            GenerateDefaultInteractText(p);
+                            break;
+                        default:
+                            GameManager.instance.interactText.text = i.interactText;
+                            break;
                     }
-                    else
-                    {
-                        GameManager.instance.interactText.text = i.interactText;
-                    } 
                 }
                 targeted = i;
             }
