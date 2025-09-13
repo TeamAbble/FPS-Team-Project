@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &778815883522905060
 MonoBehaviour:
@@ -46,5 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentResolutionIndex: 0
   urpData: {fileID: 11400000, guid: c40be3174f62c4acf8c1216858c64956, type: 2}
+  volumeMixer: {fileID: 24300002, guid: f36b1bcf36b45f34189089169359d924, type: 2}
   urpAsset: {fileID: 11400000, guid: 7b7fd9122c28c4d15b667c7040e3b3fd, type: 2}
   overrideAsset: {fileID: 0}

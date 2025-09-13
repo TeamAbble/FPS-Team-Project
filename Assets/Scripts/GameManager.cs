@@ -1,5 +1,6 @@
 using Cinemachine;
 using Eflatun.SceneReference;
+using InputSystemActionPrompts;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -65,6 +66,7 @@ public class GameManager : MonoBehaviour
 
 
     public TextMeshProUGUI interactText;
+    public InputSystemActionPrompts.PromptText interactPromptText;
     public GameObject interactTextBG;
     public Slider dodgeBar;
     public List<string> heldKeysIDs;
@@ -110,6 +112,8 @@ public class GameManager : MonoBehaviour
     public Toggle invTog, noAmmoTog, dodgeCoolTog, noMoneyTog;
     public TMP_Text enemyDmgMultDisplay, playerDmgMultDisplay, spawnRateMultDisplay, waveSkipDisplay;
     public int wavesToSkip = 1;
+
+    public PromptIcon[] promptIconsToChange;
 
     public void SetFrameCounter(bool value)
     {
@@ -212,8 +216,9 @@ public class GameManager : MonoBehaviour
         if (!cheatsEnabled)
             state = false;
 
-        if (paused)
-            state = paused;
+        //If we've paused the game and tried to open this menu
+        if (paused && !debugUI.isActiveAndEnabled)
+            state = false;
 
         paused = state;
         Time.timeScale = state ? 0 : 1;
@@ -259,6 +264,15 @@ public class GameManager : MonoBehaviour
     public void InfAmmo(bool value)
     {
         ch_playerNoAmmo = value;
+    }
+
+
+    public void UpdatePromptIcons()
+    {
+        for (int i = 0; i < promptIconsToChange.Length; i++)
+        {
+            promptIconsToChange[i].Refresh();
+        }
     }
 
     private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
@@ -363,12 +377,15 @@ public class GameManager : MonoBehaviour
         //     spawnerDistance = Vector3.Distance(playerRef.transform.position, spawners[spawnerIndex].transform.position);
         // }
         var spawnersInRange = spawners.FindAll(x => Vector3.Distance(x.transform.position, playerRef.transform.position) <= maxSpawnDistance && Vector3.Distance(x.transform.position, playerRef.transform.position) >= minSpawnDistance);
-        spawnerIndex = Random.Range(0, spawnersInRange.Count);
+        if(spawnersInRange.Count > 0)
+        {
+            spawnerIndex = Random.Range(0, spawnersInRange.Count);
+            enemiesAlive++;
+            enemiesRemaining--;
+            spawnersInRange[spawnerIndex].Spawn();
+            SetEnemyDisplay();
+        }
         spawnTimer = 0;
-        enemiesAlive++;
-        enemiesRemaining--;
-        spawnersInRange[spawnerIndex].Spawn();
-        SetEnemyDisplay();
     }
     void SetEnemyDisplay()
     {
@@ -389,6 +406,9 @@ public class GameManager : MonoBehaviour
             EndWave();
         }
     }
+    
+
+
     void EndWave()
     {
         StartCoroutine(WaveDelay());

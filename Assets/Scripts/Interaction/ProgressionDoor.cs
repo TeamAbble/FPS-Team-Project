@@ -6,6 +6,7 @@ public class ProgressionDoor : Purchasable
 {
     bool opened;
     public override int Cost => GameManager.instance.areaUnlockCost;
+    
     public ParticleSystem particle;
 
     private void Start()
@@ -18,7 +19,7 @@ public class ProgressionDoor : Purchasable
         particle.transform.SetParent(null, true);
         particle.Play();
         Destroy(particle, 10f);
-        GameManager.instance.areaUnlockCost *= Mathf.FloorToInt(GameManager.instance.areaCostMultiplier);
+        GameManager.instance.areaUnlockCost = Mathf.RoundToInt(GameManager.instance.areaUnlockCost * GameManager.instance.areaCostMultiplier);
         Destroy(gameObject);
     }
 
@@ -27,4 +28,5 @@ public class ProgressionDoor : Purchasable
         base.Purchase();
         UnlockDoor();
     }
+    
 }

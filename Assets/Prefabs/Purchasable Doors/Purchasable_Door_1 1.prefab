@@ -23033,7 +23033,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactText: Unlock this area!
-  cost: 0
+  cost: 10
   particle: {fileID: 7081258783210290877}
 --- !u!1 &9137264185033685995
 GameObject:

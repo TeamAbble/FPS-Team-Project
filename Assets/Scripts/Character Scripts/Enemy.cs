@@ -76,10 +76,18 @@ public class Enemy : Character
             }
         }
     }
+    float targetUpdateTime;
     public override void Move()
     {
-        if(target)
-            agent.SetDestination(target.transform.position);
+        if (target)
+        {
+            targetUpdateTime += Time.fixedDeltaTime;
+            if(targetUpdateTime >= 0.5f)
+            {
+                targetUpdateTime = 0;
+                agent.SetDestination(target.transform.position);
+            }
+        }
     }
     void PlayRandomSound()
     {

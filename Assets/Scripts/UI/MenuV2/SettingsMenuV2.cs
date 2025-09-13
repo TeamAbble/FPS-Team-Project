@@ -19,8 +19,8 @@ public class SettingsMenuV2 : MonoBehaviour
 
     public TMP_Dropdown resolutionDropdown;
     public Toggle vsyncToggle, frameCapToggle, showFrameToggle, fullscreenToggle;
-    public Slider sensitivitySlide, gameVolumeSlide, uiVolumeSlide, frameSlide, renderScaleSlide;
-    public TMP_Text fpsCapDisplay, renderScaleDisplay, gameAudioDisplay, sensDisplay, uiAudioDisplay;
+    public Slider sensitivitySlide, gameVolumeSlide, frameSlide, renderScaleSlide;
+    public TMP_Text fpsCapDisplay, renderScaleDisplay, gameAudioDisplay, sensDisplay;
 
     public Toggle cheatsToggle;
     public void SetCheatsEnabled(bool value)
@@ -71,7 +71,6 @@ public class SettingsMenuV2 : MonoBehaviour
         //Sliders;
         frameSlide.onValueChanged.AddListener(SetFPSCap);
         gameVolumeSlide.onValueChanged.AddListener(SetGameAudio);
-        uiVolumeSlide.onValueChanged.AddListener(SetUIAudio);
         renderScaleSlide.onValueChanged.AddListener(SetRenderScale);
     }
     private void OnDestroy()
@@ -100,8 +99,6 @@ public class SettingsMenuV2 : MonoBehaviour
             gameAudioDisplay.text = $"{(SettingsController.settings.gameVolume * 100):0.0}%";
             renderScaleSlide.value = SettingsController.settings.renderScale;
             renderScaleDisplay.text = $"x{SettingsController.settings.renderScale:0.0}";
-            uiVolumeSlide.value = SettingsController.settings.uiVolume;
-            uiAudioDisplay.text = $"{(SettingsController.settings.uiVolume * 100):0.0}%";
         }
     }
     public void SetSensitivity(float value)
@@ -151,12 +148,6 @@ public class SettingsMenuV2 : MonoBehaviour
     {
         SettingsController.settings.gameVolume = value;
         gameAudioDisplay.text = $"{(SettingsController.settings.gameVolume * 100):0.0}%";
-        SettingsController.Instance.ApplySettings();
-    }
-    public void SetUIAudio(float value)
-    {
-        SettingsController.settings.uiVolume = value;
-        uiAudioDisplay.text = $"{(SettingsController.settings.uiVolume * 100):0.0}%";
         SettingsController.Instance.ApplySettings();
     }
 

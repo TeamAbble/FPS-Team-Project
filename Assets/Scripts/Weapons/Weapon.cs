@@ -167,6 +167,7 @@ public class Weapon : MonoBehaviour
         //Ensure weapons cannot fire upon swapping back to this weapon
         fireInput = false;
         lastWindup = 0;
+        playedWindup = false;
     }
     private void FixedUpdate()
     {
@@ -257,6 +258,11 @@ public class Weapon : MonoBehaviour
         {
             fireAudioSource.pitch = Mathf.Lerp(minWindupPitch, maxWindupPitch, Mathf.InverseLerp(0, fireWindup, currentWindup));
             fireAudioSource.volume = Mathf.Lerp(minWindupVolume, maxWindupVolume, Mathf.InverseLerp(0, fireWindup, currentWindup));
+        }
+
+        if(currentWindup <= 0)
+        {
+            playedWindup = false;
         }
     }
     /// <summary>

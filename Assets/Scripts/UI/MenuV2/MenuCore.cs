@@ -30,7 +30,9 @@ public class MenuCore : MonoBehaviour
         yield return StartCoroutine(Fade(0, 1));
         a.panel.SetGroupActive(false);
         a.cam.enabled = false;
+        yield return new WaitForFixedUpdate();
         b.panel.SetGroupActive(true);
+        b.cam.enabled = true;
         yield return new WaitForSeconds(fadeWait);
         yield return StartCoroutine(Fade(1, 0));
     }

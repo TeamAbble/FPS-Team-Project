@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.Rendering.Universal;
 
 public class SettingsController : MonoBehaviour
@@ -18,6 +19,11 @@ public class SettingsController : MonoBehaviour
         {
             return;
         }
+
+    }
+    private void Start()
+    {
+        ApplySettings();
     }
 
     [RuntimeInitializeOnLoadMethod(loadType: RuntimeInitializeLoadType.SubsystemRegistration)]
@@ -41,6 +47,8 @@ public class SettingsController : MonoBehaviour
     public UniversalRenderer urpRenderer;
     public UniversalRendererData urpData;
 
+    public AudioMixerGroup volumeMixer;
+
     public UniversalRenderPipelineAsset urpAsset, overrideAsset;
 
     public List<Resolution> filteredResolutions;
@@ -58,6 +66,7 @@ public class SettingsController : MonoBehaviour
         public bool vsync, useFrameLimit, showFrames;
         public bool fullscreen;
     }
+    
     public void ApplySettings()
     {
         Screen.fullScreenMode = settings.fullscreen ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed;
@@ -82,5 +91,7 @@ public class SettingsController : MonoBehaviour
             Application.targetFrameRate = 500;
         }
         urpAsset.renderScale = settings.renderScale;
+
+        AudioListener.volume = settings.gameVolume;
     }
 }

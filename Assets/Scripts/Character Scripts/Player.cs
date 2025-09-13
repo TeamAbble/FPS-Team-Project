@@ -76,7 +76,14 @@ public class Player : Character
     {
         if ((Debug.isDebugBuild || Application.isEditor) && p != null)
         {
+            GUILayout.BeginVertical();
             GUILayout.Label($"Current Input Mode:{p.currentControlScheme}");
+            if(targeted != null)
+            {
+                GUILayout.Label($"Current Interactable type: {targeted.GetType()} --- Is Purchasable?{targeted is Purchasable}");
+            }
+
+            GUILayout.EndVertical();
         }
     }
     private void Aim()
@@ -241,6 +248,13 @@ public class Player : Character
         rb.AddForce(movevec);
     }
     [SerializeField] Interactable targeted;
+
+    public void ControlsUpdated()
+    {
+        GameManager.instance.UpdatePromptIcons();
+    }
+
+
     public void InteractCheck()
     {
         if (Physics.Raycast(worldCamera.position, worldCamera.forward, out RaycastHit hit, interactDistance, interactLayermask))
