@@ -16,6 +16,10 @@ public class StatsManager : MonoBehaviour
         {
             Instance = this;
             StartCoroutine(StoreStatsOnServer());
+
+            StatsAndAchievements.Client.GetStat("total_cash", out totalCash);
+            StatsAndAchievements.Client.GetStat("total_waves", out totalWaves);
+            StatsAndAchievements.Client.GetStat("total_elims", out totalElims);
         }
     }
     public void StartNewGame()
@@ -27,12 +31,14 @@ public class StatsManager : MonoBehaviour
         if (cheatsWereEverUsed)
             return;
         Elims += elimsToAdd;
+        totalElims += elimsToAdd;
     }
     public void UpdateCash(int cashToAdd)
     {
         if (cheatsWereEverUsed)
             return;
         Cash += cashToAdd;
+        totalCash += cashToAdd;
     }
     /// <summary>
     /// UpdateWaves works slightly differently. We want to directly set the number of waves instead.
@@ -43,13 +49,14 @@ public class StatsManager : MonoBehaviour
         if (cheatsWereEverUsed)
             return;
         Waves = newWavesCount;
+        totalWaves += newWavesCount - waves;
     }
     public static StatsManager Instance;
     public int elims, cash, waves;
     public static int Elims { get  { return Instance.elims; } set { Instance.elims = value; } }
     public static int Cash { get { return Instance.cash; } set { Instance.cash = value; } }
     public static int Waves { get { return Instance.waves; } set { Instance.waves = value; } }
-
+    public int totalElims, totalCash, totalWaves;
     public IEnumerator StoreStatsOnServer()
     {
         while (true)
@@ -67,6 +74,9 @@ public class StatsManager : MonoBehaviour
         StatsAndAchievements.Client.SetStat("cash", Cash);
         StatsAndAchievements.Client.SetStat("waves", Waves);
         StatsAndAchievements.Client.SetStat("elims", Elims);
+        StatsAndAchievements.Client.SetStat("total_elims", totalElims);
+        StatsAndAchievements.Client.SetStat("total_waves", totalWaves);
+        StatsAndAchievements.Client.SetStat("total_cash", totalCash);
 
         StatsAndAchievements.Client.StoreStats();
     }
