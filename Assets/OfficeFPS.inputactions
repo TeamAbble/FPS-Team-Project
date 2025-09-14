@@ -383,11 +383,33 @@
                 },
                 {
                     "name": "",
+                    "id": "ae80ee9f-d6e6-46cf-b8ca-f4d547e858cf",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "CycleWeaponLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "2a0da89d-63f4-49de-b466-5a1bda158037",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
+                    "action": "CycleWeaponRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "86ac83a7-36fa-4224-b9b6-37509d0747e8",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
                     "action": "CycleWeaponRight",
                     "isComposite": false,
                     "isPartOfComposite": false
