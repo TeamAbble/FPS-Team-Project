@@ -47,7 +47,8 @@ public class SettingsController : MonoBehaviour
     public UniversalRenderer urpRenderer;
     public UniversalRendererData urpData;
 
-    public AudioMixerGroup volumeMixer;
+    public string musicVolKey, gameVolKey;
+    public AudioMixer mixer;
 
     public UniversalRenderPipelineAsset urpAsset, overrideAsset;
 
@@ -59,7 +60,7 @@ public class SettingsController : MonoBehaviour
         [System.NonSerialized]
         public bool updated;
 
-        public float sensitivity, gameVolume, uiVolume, renderScale;
+        public float sensitivity, gameVolume, musicVolume, renderScale;
         public int resolutionIndex;
 
         public int frameLimit;
@@ -91,7 +92,7 @@ public class SettingsController : MonoBehaviour
             Application.targetFrameRate = 500;
         }
         urpAsset.renderScale = settings.renderScale;
-
-        AudioListener.volume = settings.gameVolume;
+        mixer.SetFloat(musicVolKey, Mathf.Lerp(-80, 0, settings.musicVolume));
+        mixer.SetFloat(gameVolKey, Mathf.Lerp(-80, 0, settings.gameVolume));
     }
 }

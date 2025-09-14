@@ -10061,8 +10061,8 @@ MonoBehaviour:
   loopFireAnimation: 0
   playAnimationOnWindup: 0
   windupAnimationIsNotFireAnimation: 0
-  areaRadius: 20
-  areaDamage: 30
+  areaRadius: 7
+  areaDamage: 100
   areaParticles: {fileID: 9055257426667228642, guid: 3c83b0119bfbff349888ccce8449358d,
     type: 3}
   areaParticleDestroyTime: 4

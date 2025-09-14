@@ -178,15 +178,31 @@ public class GameManager : MonoBehaviour
         SetFrameCounter(SettingsController.settings.showFrames);
         InitCheats();
     }
+    private void Start()
+    {
+        battleMusic.clip = battleClip;
+        calmMusic.clip = calmClip;
+        FadeMusic(true);
+    }
     public void FadeMusic(bool calm)
     {
-        StartCoroutine(_FadeMusic(calm));
+        StartCoroutine(FadeMusicCoroutine(calm));
     }
-    IEnumerator _FadeMusic(bool calm)
+    IEnumerator FadeMusicCoroutine(bool calm)
     {
         float t = 0;
         float inc = (1 / musicFadeTime) * Time.fixedDeltaTime;
-        while (t < 1)
+        if (calm)
+        {
+            if (!calmMusic.isPlaying)
+                calmMusic.Play();
+        }
+        else
+        {
+            if(!battleMusic.isPlaying)
+                battleMusic.Play();
+        }
+        while (t <= 1)
         {
             if (calm)
             {
@@ -200,6 +216,16 @@ public class GameManager : MonoBehaviour
             }
             t += inc;
             yield return new WaitForFixedUpdate();
+        }
+        if (calm)
+        {
+            if (battleMusic.isPlaying)
+                battleMusic.Stop();
+        }
+        else
+        {
+            if (calmMusic.isPlaying)
+                calmMusic.Stop();
         }
     }
 
@@ -439,6 +465,7 @@ public class GameManager : MonoBehaviour
 
     void EndWave()
     {
+        FadeMusic(true);
         StartCoroutine(WaveDelay());
     }
     IEnumerator WaveDelay()
@@ -488,6 +515,7 @@ public class GameManager : MonoBehaviour
         }
         SetEnemyDisplay();
         waveInProgress = true;
+        FadeMusic(false);
     }
 
     public string WaveStringBuilder()

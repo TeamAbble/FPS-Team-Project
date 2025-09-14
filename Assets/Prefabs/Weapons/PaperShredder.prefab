@@ -9783,7 +9783,8 @@ AudioSource:
   m_GameObject: {fileID: 8042162109084398241}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 4271284372746053610, guid: f36b1bcf36b45f34189089169359d924,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: a7a2bcb30b7f5f147b14419de699cd00, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -10138,7 +10139,7 @@ MonoBehaviour:
   maxAmmo: 30
   currentAmmo: 0
   reserveAmmo: 120
-  damage: 16
+  damage: 20
   projectilesPerShot: 1
   fireInterval: 0.12
   fireIntervalRemaining: 0

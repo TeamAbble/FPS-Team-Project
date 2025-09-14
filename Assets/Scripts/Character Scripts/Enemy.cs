@@ -105,11 +105,11 @@ public class Enemy : Character
 
         GameManager.instance.EnemyDeath(killValue, ignorecash);
         rb.AddRelativeTorque(Random.onUnitSphere * 50);
-        Destroy(gameObject, 2);
+        Destroy(gameObject, 4);
         if(animator)
             animator.enabled = false;
         rb.angularDrag = 0;
-        noiseSource.PlayOneShot(deathsounds[Random.Range(0, deathsounds.Length)]);
+        noiseSource.PlayOneShot(deathsounds[Random.Range(0, deathsounds.Length)], 0.9f);
         healthBarRef.value = 0;
         healthBarRef.gameObject.SetActive(false);
 

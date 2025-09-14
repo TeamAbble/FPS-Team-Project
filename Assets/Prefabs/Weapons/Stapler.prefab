@@ -5004,7 +5004,7 @@ Transform:
   - {fileID: 8782631844246148572}
   - {fileID: 3449527079842307506}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &776822963043840683
 MonoBehaviour:
@@ -5024,7 +5024,7 @@ MonoBehaviour:
   maxAmmo: 16
   currentAmmo: 0
   reserveAmmo: 80
-  damage: 25
+  damage: 30
   projectilesPerShot: 1
   fireInterval: 0.05
   fireIntervalRemaining: 0
@@ -5091,7 +5091,8 @@ AudioSource:
   m_GameObject: {fileID: 5394613421308670716}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 4271284372746053610, guid: f36b1bcf36b45f34189089169359d924,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1

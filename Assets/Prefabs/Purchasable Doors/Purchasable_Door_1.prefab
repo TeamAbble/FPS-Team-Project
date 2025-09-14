@@ -11568,7 +11568,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6744266671715812495}
   - component: {fileID: 4461971185453458017}
-  - component: {fileID: 8031602873435956582}
   - component: {fileID: 7343552726173438745}
   m_Layer: 11
   m_Name: Purchasable_Door_1
@@ -11634,27 +11633,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 7.5028276, y: 3.522081, z: 5.093619}
   m_Center: {x: 0.26999998, y: -0.6801827, z: 2.5468097}
---- !u!95 &8031602873435956582
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8997459674859269127}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &7343552726173438745
 MonoBehaviour:
   m_ObjectHideFlags: 0

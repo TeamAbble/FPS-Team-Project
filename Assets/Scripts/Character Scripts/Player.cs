@@ -251,7 +251,10 @@ public class Player : Character
 
     public void ControlsUpdated()
     {
-        GameManager.instance.UpdatePromptIcons();
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.UpdatePromptIcons();
+        }
     }
 
     void GenerateDefaultInteractText(Purchasable p)
@@ -273,6 +276,10 @@ public class Player : Character
             {
                 if (!targeted || targeted != i) 
                 {
+                    if (!GameManager.instance.interactTextBG.activeInHierarchy)
+                    {
+                        GameManager.instance.interactTextBG.SetActive(true);
+                    }
                     switch (i)
                     {
                         case WeaponPrinter wp:

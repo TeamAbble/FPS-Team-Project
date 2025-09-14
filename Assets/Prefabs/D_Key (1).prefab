@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 6944628700706487744}
   - component: {fileID: 6409018331082882169}
   - component: {fileID: 1392071847711327261}
+  - component: {fileID: 781707203866598432}
+  - component: {fileID: 5509384462850908036}
   m_Layer: 0
   m_Name: D_Key (1)
   m_TagString: Untagged
@@ -25,14 +27,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1357671241652903700}
-  m_LocalRotation: {x: -0.7070329, y: 0.022781212, z: -0.010222011, w: 0.7067397}
+  m_LocalRotation: {x: -0.70703286, y: 0.022784295, z: -0.010224581, w: 0.70673966}
   m_LocalPosition: {x: -15.94, y: 0.0024900693, z: 8.69}
-  m_LocalScale: {x: 0.45349485, y: 0.45349482, z: 0.45349494}
+  m_LocalScale: {x: 0.19295299, y: 0.19295298, z: 0.19295304}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 70
+  m_LocalEulerAnglesHint: {x: -87.325, y: 91.018, z: -90}
 --- !u!33 &6409018331082882169
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -83,3 +85,38 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &781707203866598432
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357671241652903700}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.804869, y: 7.7534423, z: 0.49842852}
+  m_Center: {x: -0.0016102198, y: -3.2706373, z: 0.007596622}
+--- !u!114 &5509384462850908036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357671241652903700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 751dfc7c42818d647bd4cd30ae4df377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactText: The Boss's Key?!
+  keyID: BossOffice

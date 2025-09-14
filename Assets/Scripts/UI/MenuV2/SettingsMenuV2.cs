@@ -19,8 +19,8 @@ public class SettingsMenuV2 : MonoBehaviour
 
     public TMP_Dropdown resolutionDropdown;
     public Toggle vsyncToggle, frameCapToggle, showFrameToggle, fullscreenToggle;
-    public Slider sensitivitySlide, gameVolumeSlide, frameSlide, renderScaleSlide;
-    public TMP_Text fpsCapDisplay, renderScaleDisplay, gameAudioDisplay, sensDisplay;
+    public Slider sensitivitySlide, gameVolumeSlide, musicVolumeSlide, frameSlide, renderScaleSlide;
+    public TMP_Text fpsCapDisplay, renderScaleDisplay, gameAudioDisplay, musicAudioDisplay, sensDisplay;
 
     public Toggle cheatsToggle;
     public void SetCheatsEnabled(bool value)
@@ -59,6 +59,7 @@ public class SettingsMenuV2 : MonoBehaviour
             SettingsController.Instance.ApplySettings();
     }
 
+
     void AddListeners()
     {
         //Toggles
@@ -71,6 +72,7 @@ public class SettingsMenuV2 : MonoBehaviour
         //Sliders;
         frameSlide.onValueChanged.AddListener(SetFPSCap);
         gameVolumeSlide.onValueChanged.AddListener(SetGameAudio);
+        musicVolumeSlide.onValueChanged.AddListener(SetMusicAudio);
         renderScaleSlide.onValueChanged.AddListener(SetRenderScale);
     }
     private void OnDestroy()
@@ -96,9 +98,11 @@ public class SettingsMenuV2 : MonoBehaviour
             sensitivitySlide.value = SettingsController.settings.sensitivity;
             sensDisplay.text = $"{sensitivitySlide.value}";
             gameVolumeSlide.value = SettingsController.settings.gameVolume;
+            musicVolumeSlide.value = SettingsController.settings.musicVolume;
             gameAudioDisplay.text = $"{(SettingsController.settings.gameVolume * 100):0.0}%";
+            musicAudioDisplay.text = $"{(SettingsController.settings.musicVolume * 100):0.0}%";
             renderScaleSlide.value = SettingsController.settings.renderScale;
-            renderScaleDisplay.text = $"x{SettingsController.settings.renderScale:0.0}";
+            renderScaleDisplay.text = $"x{SettingsController.settings.renderScale:0.00}";
         }
     }
     public void SetSensitivity(float value)
@@ -148,6 +152,12 @@ public class SettingsMenuV2 : MonoBehaviour
     {
         SettingsController.settings.gameVolume = value;
         gameAudioDisplay.text = $"{(SettingsController.settings.gameVolume * 100):0.0}%";
+        SettingsController.Instance.ApplySettings();
+    }
+    public void SetMusicAudio(float value)
+    {
+        SettingsController.settings.musicVolume = value;
+        musicAudioDisplay.text = $"{(SettingsController.settings.musicVolume * 100):0.0}%";
         SettingsController.Instance.ApplySettings();
     }
 
