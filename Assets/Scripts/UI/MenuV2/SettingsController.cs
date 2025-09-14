@@ -92,7 +92,7 @@ public class SettingsController : MonoBehaviour
             Application.targetFrameRate = 500;
         }
         urpAsset.renderScale = settings.renderScale;
-        mixer.SetFloat(musicVolKey, Mathf.Lerp(-80, 0, settings.musicVolume));
-        mixer.SetFloat(gameVolKey, Mathf.Lerp(-80, 0, settings.gameVolume));
+        mixer.SetFloat(musicVolKey, settings.musicVolume <= 0 ? -80 : Mathf.Lerp(-30, 0, settings.musicVolume));
+        mixer.SetFloat(gameVolKey, settings.gameVolume <= 0 ? -80 : Mathf.Lerp(-30, 0, settings.gameVolume));
     }
 }
