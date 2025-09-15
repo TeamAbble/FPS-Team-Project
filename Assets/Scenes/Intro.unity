@@ -310,6 +310,36 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2987911068086511077, guid: 63878057147425a45a1cae6ef4d74f39,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2987911068086511077, guid: 63878057147425a45a1cae6ef4d74f39,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2987911068086511077, guid: 63878057147425a45a1cae6ef4d74f39,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2987911068086511077, guid: 63878057147425a45a1cae6ef4d74f39,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2987911068086511077, guid: 63878057147425a45a1cae6ef4d74f39,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2987911068086511077, guid: 63878057147425a45a1cae6ef4d74f39,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4672515977972537090, guid: 63878057147425a45a1cae6ef4d74f39,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -428,16 +458,6 @@ PrefabInstance:
     - target: {fileID: 6638401776112494022, guid: 63878057147425a45a1cae6ef4d74f39,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8689100591118254147, guid: 63878057147425a45a1cae6ef4d74f39,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9021156381548610564, guid: 63878057147425a45a1cae6ef4d74f39,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9106109773358626239, guid: 63878057147425a45a1cae6ef4d74f39,
