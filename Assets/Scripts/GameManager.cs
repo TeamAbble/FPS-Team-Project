@@ -162,13 +162,10 @@ public class GameManager : MonoBehaviour
     public void OnHitFeedback()
     {
         enemyHitFeedback.Play();
+            hitmarkerCurrTime = 0;
         if (!doingCrosshair)
         {
             StartCoroutine(FadeHitmarker());
-        }
-        else
-        {
-            hitmarkerCurrTime = 0;
         }
     }
     IEnumerator FadeHitmarker()
@@ -176,8 +173,8 @@ public class GameManager : MonoBehaviour
         doingCrosshair = true;
         while (hitmarkerCurrTime <= hitmarkerTime)
         {
-            hitMarker.alpha = Mathf.InverseLerp(hitmarkerTime, 0, hitmarkerCurrTime);
             hitmarkerCurrTime += Time.deltaTime;
+            hitMarker.alpha = Mathf.InverseLerp(hitmarkerTime, 0, hitmarkerCurrTime);
             yield return null;
         }
         doingCrosshair = false;
