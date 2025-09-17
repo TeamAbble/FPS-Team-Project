@@ -25,6 +25,6 @@ MonoBehaviour:
   DefaultDevicePriority: 020000000100000000000000
   OpenTag: 91
   CloseTag: 93
-  PromptSpriteFormatter: '{SPRITE}'
+  PromptSpriteFormatter: <size=150%>{SPRITE}</size>
   RichTextTags: 
   RuntimePlatformsOverride: []

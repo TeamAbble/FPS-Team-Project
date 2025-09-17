@@ -151,6 +151,9 @@ public class Weapon : MonoBehaviour
     [SerializeField, Tooltip("If true, this weapon will keep playing the same firing animation over and over until the weapon stops being fired.")] bool loopFireAnimation;
     [SerializeField, Tooltip("If true, the fire animation will be played when the windup starts")] bool playAnimationOnWindup;
     [SerializeField, Tooltip("If true, use a different trigger for the windup, thus playing a different animation")] bool windupAnimationIsNotFireAnimation;
+
+    [SerializeField] protected AudioSource reloadAudioSource;
+    [SerializeField] protected AudioClip reloadAudioClip;
     private void OnDisable()
     {
         //Cleanup - Some weapons are non-functional after swapping to another weapon before coroutine-controlled CanFire conditions are reset.
@@ -474,6 +477,21 @@ public class Weapon : MonoBehaviour
             if (minSpread.y != 0)
                 Gizmos.DrawLine(Vector3.zero, Vector3.forward * maxRange + (Vector3.up * minSpread.y));
             Gizmos.matrix = Matrix4x4.identity;
+        }
+    }
+    public void PlayReloadSound()
+    {
+        if(reloadAudioSource != null)
+        {
+            reloadAudioSource.clip = reloadAudioClip;
+            reloadAudioSource.Play();
+        }
+    }
+    public void StopReloadSound()
+    {
+        if(reloadAudioSource != null)
+        {
+            reloadAudioSource.Stop();
         }
     }
 

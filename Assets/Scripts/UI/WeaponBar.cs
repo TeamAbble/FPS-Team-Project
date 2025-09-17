@@ -1,3 +1,4 @@
+using HeathenEngineering.SteamworksIntegration.API;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class WeaponBar : MonoBehaviour
     public int currentWeaponIndex;
     public RectTransform selectedWeaponHighlight;
     public static WeaponBar Instance;
+
     private void Awake()
     {
         if(Instance == null)
@@ -42,15 +44,21 @@ public class WeaponBar : MonoBehaviour
                 selectedWeaponHighlight.position = weaponIcons[i].transform.position;
             }
         }
+        if(GameManager.instance.playerRef.weaponManager.WeaponCount == 4)
+        {
+            StatsAndAchievements.Client.SetAchievement("sp4-allweapons");
+        }
     }
 
     public void UpdateWeaponHighlight()
     {
-        StartCoroutine(WeaponHighlight());
+        StartCoroutine(WeaponHighlightUpdate());
     }
-    IEnumerator WeaponHighlight()
+    IEnumerator WeaponHighlightUpdate()
     {
         yield return null;
         selectedWeaponHighlight.position = weaponIcons[GameManager.instance.playerRef.weaponManager.weaponIndex].transform.position;
+
     }
+
 }

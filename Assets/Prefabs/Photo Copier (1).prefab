@@ -139,7 +139,7 @@ MonoBehaviour:
   processingNoisePower: 0.03
   startPosition: {x: 0, y: 0, z: 0}
   weaponSpawnpoint: {fileID: 325848109684307697}
-  costMultiplier: 2
+  costMultiplier: 3
   spawnedWeapon: {fileID: 0}
   printing: 0
 --- !u!1 &4811211193613462706

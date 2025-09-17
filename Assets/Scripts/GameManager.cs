@@ -1,6 +1,7 @@
 using Cinemachine;
 using Eflatun.SceneReference;
 using InputSystemActionPrompts;
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -119,6 +120,25 @@ public class GameManager : MonoBehaviour
     public float musicFadeTime;
     public AudioClip calmClip, battleClip;
 
+    public AudioSource enemyHitFeedback;
+
+    public AudioClip doorUnlockClip;
+
+    public float hitmarkerTime;
+    float hitmarkerCurrTime;
+    public CanvasGroup hitMarker;
+
+    public AudioSource uiClick;
+    public void PlayUISound()
+    {
+        if (Application.isEditor)
+        {
+            Debug.Log("ui sound play");
+        }
+        uiClick.pitch = Random.Range(0.8f, 1.2f);
+        uiClick.Play();
+    }
+
     public void SetFrameCounter(bool value)
     {
         frameCounter.SetActive(value);
@@ -138,8 +158,39 @@ public class GameManager : MonoBehaviour
         frameCounterTicking = false;
         yield break;
     }
+    bool doingCrosshair;
+    public void OnHitFeedback()
+    {
+        enemyHitFeedback.Play();
+        if (!doingCrosshair)
+        {
+            StartCoroutine(FadeHitmarker());
+        }
+        else
+        {
+            hitmarkerCurrTime = 0;
+        }
+    }
+    IEnumerator FadeHitmarker()
+    {
+        doingCrosshair = true;
+        while (hitmarkerCurrTime <= hitmarkerTime)
+        {
+            hitMarker.alpha = Mathf.InverseLerp(hitmarkerTime, 0, hitmarkerCurrTime);
+            hitmarkerCurrTime += Time.deltaTime;
+            yield return null;
+        }
+        doingCrosshair = false;
+    }
+    public void DoorUnlocked(Vector3 point)
+    {
+        AudioSource.PlayClipAtPoint(doorUnlockClip, point);
+    }
+
     public void PauseGame(bool newPause)
     {
+        if (debugUI.isActiveAndEnabled)
+            return;
         //pauses the game
         //I don't much like the timescale method but there's not much else I can think to do other than disabling most components and that might have a wonky effect
         //this is but a humble game so its okay :)
@@ -148,7 +199,6 @@ public class GameManager : MonoBehaviour
         pauseCanvas.SetGroupActive(paused);
         Cursor.lockState = paused ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = paused;
-        AudioListener.pause = paused;
         if (!paused)
             quitPrompt.SetActive(false);
     }
@@ -267,12 +317,8 @@ public class GameManager : MonoBehaviour
     }
     public void ToggleDebugUI(bool state)
     {
-        if (!cheatsEnabled)
-            state = false;
-
-        //If we've paused the game and tried to open this menu
-        if (paused && !debugUI.isActiveAndEnabled)
-            state = false;
+        if (!cheatsEnabled || pauseCanvas.isActiveAndEnabled)
+            return;
 
         paused = state;
         Time.timeScale = state ? 0 : 1;
@@ -529,6 +575,10 @@ public class GameManager : MonoBehaviour
     }
     public void ReturnToMenu()
     {
+        if (battleMusic.isPlaying && !calmMusic.isPlaying)
+        {
+            FadeMusic(true);
+        }
         StartCoroutine(LoadingScreen(menuScene));
     }
     IEnumerator LoadingScreen(SceneReference targetScene)

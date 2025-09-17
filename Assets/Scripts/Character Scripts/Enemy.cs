@@ -21,6 +21,10 @@ public class Enemy : Character
     public float healthMultiplier = 1;
     public int killValue = 1;
     bool ignorecash = false;
+
+    public GameObject deathEffect;
+    public float deathEffectKillTime;
+
     public enum States
     {
         PATROL,
@@ -124,6 +128,11 @@ public class Enemy : Character
             throw;
         }
     }
+    private void OnDestroy()
+    {
+        GameObject go = Instantiate(deathEffect, transform.position, transform.rotation);
+        Destroy(go, deathEffectKillTime);
+    }
 
     protected virtual void EnemyBehaviour()
     {
@@ -136,5 +145,9 @@ public class Enemy : Character
         healthBarRef.value = CurrentHealth;
         noiseSource.PlayOneShot(painSounds[Random.Range(0, painSounds.Length)]);
         
+        if(healthChange < 0)
+        {
+            GameManager.instance.OnHitFeedback();
+        }
     }
 }

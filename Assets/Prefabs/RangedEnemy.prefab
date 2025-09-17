@@ -5306,7 +5306,7 @@ MonoBehaviour:
   rb: {fileID: -7551953836692022282}
   meleeCooldown: 0
   healthBarRef: {fileID: 4465864207381162500}
-  target: {fileID: 0}
+  target: {fileID: 94156394612696507}
   randomNoiseTimes: {x: 5, y: 20}
   randomNoises:
   - {fileID: 8300000, guid: 5474074f693613244be4b75305b997df, type: 3}
@@ -5344,6 +5344,8 @@ MonoBehaviour:
   movementAudioClip: {fileID: 8300000, guid: 0e89e7bc597874d438141780b12eace9, type: 3}
   healthMultiplier: 0.5
   killValue: 1
+  deathEffect: {fileID: 0}
+  deathEffectKillTime: 5
   state: 0
   layermask:
     serializedVersion: 2

@@ -57,6 +57,7 @@ public class StatsManager : MonoBehaviour
     public static int Cash { get { return Instance.cash; } set { Instance.cash = value; } }
     public static int Waves { get { return Instance.waves; } set { Instance.waves = value; } }
     public int totalElims, totalCash, totalWaves;
+    public static int heals = 0;
     public IEnumerator StoreStatsOnServer()
     {
         while (true)
@@ -65,6 +66,7 @@ public class StatsManager : MonoBehaviour
             StoreStats();
         }
     }
+    
     private void OnApplicationQuit()
     {
         StoreStats();
@@ -74,6 +76,7 @@ public class StatsManager : MonoBehaviour
         StatsAndAchievements.Client.SetStat("cash", Cash);
         StatsAndAchievements.Client.SetStat("waves", Waves);
         StatsAndAchievements.Client.SetStat("elims", Elims);
+        StatsAndAchievements.Client.SetStat("heals", heals);
         StatsAndAchievements.Client.SetStat("total_elims", totalElims);
         StatsAndAchievements.Client.SetStat("total_waves", totalWaves);
         StatsAndAchievements.Client.SetStat("total_cash", totalCash);

@@ -55,6 +55,12 @@ public class Player : Character
     public float dodgeDamage;
     public float dodgeKnockback;
 
+
+    public AudioSource rollerSound;
+    float rollLerp;
+    public Vector2 minMaxSpeedForRoll;
+    public Vector2 minMaxPitchForRoll;
+    public float maxRollVolume;
     public CinemachineImpulseSource hitImpulseSource;
 
     protected override void Start()
@@ -68,8 +74,7 @@ public class Player : Character
         GameManager.instance.dodgeBar.maxValue = dodgeDelay;
         p = GetComponent<PlayerInput>();
         transform.localRotation = Quaternion.Euler(0, lookAngle.x, 0);
-
-
+        rollerSound.Play();
     }
 
     private void OnGUI()
@@ -240,6 +245,11 @@ public class Player : Character
         currentDodgeDelay += Time.fixedDeltaTime;
         currentDodgeDelay = Mathf.Clamp(currentDodgeDelay, 0, dodgeDelay);
         GameManager.instance.dodgeBar.value = currentDodgeDelay;
+
+
+        rollLerp = Mathf.Clamp01(Mathf.InverseLerp(minMaxSpeedForRoll.x, minMaxSpeedForRoll.y, rb.velocity.magnitude));
+        rollerSound.pitch = Mathf.Lerp(minMaxPitchForRoll.x, minMaxPitchForRoll.y, rollLerp);
+        rollerSound.volume = rollLerp * maxRollVolume;
     }
     public override void Move()
     {
@@ -420,7 +430,7 @@ public class Player : Character
             if(alive && !c.IsAlive)
             {
                 //eliminated an enemy
-                StatsAndAchievements.Client.SetAchievement("dashkill");
+                StatsAndAchievements.Client.SetAchievement("sp2-dashkill");
             }
             collision.rigidbody.AddForce(collision.impulse * dodgeKnockback);
         }

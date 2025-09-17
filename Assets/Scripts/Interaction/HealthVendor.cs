@@ -11,6 +11,7 @@ public class HealthVendor : Vendor
         {
             base.Purchase();
             GameManager.instance.playerRef.UpdateHealth(health, transform.position);
+            StatsManager.heals += health;
         }
     }
 }

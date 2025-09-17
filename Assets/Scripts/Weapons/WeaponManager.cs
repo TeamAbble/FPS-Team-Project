@@ -38,6 +38,7 @@ public class WeaponManager : MonoBehaviour
         if(CurrentWeapon.CanReload && !CurrentWeapon.fireBlocked && CurrentWeapon.Ammo.current == 0)
         {
             p.Animator.SetTrigger("Reload");
+            CurrentWeapon.PlayReloadSound();
         }
     }
 
@@ -48,6 +49,7 @@ public class WeaponManager : MonoBehaviour
     {
         if(WeaponCount > 1)
         {
+            CurrentWeapon.StopReloadSound();
             if (CurrentWeapon.newMag.magazine)
                 animationHelper.ReleaseNewMagInDefault();
             if(CurrentWeapon.oldMag.magazine)
